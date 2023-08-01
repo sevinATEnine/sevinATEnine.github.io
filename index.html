@@ -127,9 +127,12 @@
         const ip = ipMatch && ipMatch[1];
         console.log(ip);
         ipAdresses.push(ip);
+        console.log(ipAdresses)
 
-        document.getElementById('ipAdress').innerText = ipAdresses[0];
+
+        
       };
+      document.getElementById('ipAdress').innerText = ("User IPv4: "+ipAdresses[0]);
     };
     getIP();
 
