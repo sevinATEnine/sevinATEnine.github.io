@@ -119,10 +119,14 @@
     // fetch('https://api.ipify.org?format=json')
 
 
+    async function useUrl(url){
+      const response = await fetch(url);
+      var data = await response.text();
+      console.log(data);
+      window.sessionStorage.setItem('IPv4', data);
+    }
 
-    let ipv4 = fetch('https://api.ipify.org?format=json');
-    console.log(ipv4.json());
-    window.sessionStorage.setItem('IPv4', ipv4.json());
+    useUrl('https://api.ipify.org?format=json');
 
 
 
