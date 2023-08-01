@@ -125,9 +125,9 @@
       console.log(data);
       ipAddress = (data.replace('{','').replace('}',''));
       window.sessionStorage.setItem('IPv4', (ipAddress));
+      return ipAddress;
     }
 
-    useUrl('https://api.ipify.org?format=json');
 
 
 
@@ -155,7 +155,11 @@
         document.getElementById('success').style.display = 'block';
         document.getElementById('incorrect').style.display = 'none';
         document.getElementsByTagName('button')[0].onclick = '';
-        location.href="./terminal.html"
+        console.log(useUrl('https://api.ipify.org?format=json'));
+
+        // username.value
+        // location.href="./terminal.html";
+        
       } else {
         document.getElementById('incorrect').style.display = 'block';
         password.value = '';
