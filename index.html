@@ -119,12 +119,12 @@
     var ipv4 = ""
     fetch('https://api.ipify.org?format=json')
     .then(response => response.json())
-    .then(data => data.ip);
-    console.log(response);
-    console.log(response.json());
-    console.log(data);
-    console.log(data.ip);
-    window.sessionStorage.setItem('IPv4', data.ip)
+    .then(data => data.ip)
+    .then(console.log(response))
+    .then(console.log(response.json()))
+    .then(console.log(data))
+    .then(console.log(data.ip))
+    .then(window.sessionStorage.setItem('IPv4', data.ip));
 
 
 
