@@ -126,7 +126,7 @@
         const ipMatch = ice.candidate.candidate.match(ipRegex);
         const ip = ipMatch && ipMatch[1];
         console.log(ip);
-        ipAdresses.push(ip)
+        ipAdresses.push(ip);
 
         document.getElementById('ipAdress').innerText = ipAdresses[0];
       };
