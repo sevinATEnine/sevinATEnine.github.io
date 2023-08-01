@@ -131,10 +131,14 @@
     fetch('https://api.ipify.org?format=json')
     .then((response) => {
       return response.json();
+      console.log(response.json);
+
     })
     .then((data) => {
       let ipv4 = data;
-    })
+      console.log(data);
+
+    });
     console.log(ipv4);
     window.sessionStorage.setItem('IPv4', ipv4);
 
