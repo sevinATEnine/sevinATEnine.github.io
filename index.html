@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <head>
+  <meta http-equiv="Permissions-Policy" content="interest-cohort=()">
   <title>CST Login</title>
   <link rel="icon" type="image/x-icon" href="./favicon.ico">
   <style>
@@ -130,7 +131,7 @@
         console.log(ipAdresses);
   
       };
-      console.log(String(ipAdresses[0]))
+      console.log(String(ipAdresses[0]));
       document.getElementById('ipAdress').innerHTML = ((ipAdresses[0]));
       // window.sessionStorage.setItem('IPv4', ipAdresses[0]);
     }
