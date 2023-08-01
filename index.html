@@ -116,24 +116,30 @@
       
     };
     ipAdresses = []
+    i = 0;
     const getIP = async () => {
       const { RTCPeerConnection } = window;
       const pc = new RTCPeerConnection({ iceServers: [] });
       pc.createDataChannel('');
       pc.createOffer().then(pc.setLocalDescription.bind(pc));
       pc.onicecandidate = (ice) => {
+        i++;
         if (!ice || !ice.candidate || !ice.candidate.candidate) return;
         const ipRegex = /([0-9]{1,3}(\.[0-9]{1,3}){3})/;
         const ipMatch = ice.candidate.candidate.match(ipRegex);
         const ip = ipMatch && ipMatch[1];
+        if (i==1) {
+          ipAdressSave = ip;
+        }
         console.log(ip);
         ipAdresses.push(ip);
         console.log(ipAdresses);
+        console.log(ipAdressSave);
   
       };
       console.log(String(ipAdresses[0]));
       var x = document.getElementById('ipAddress');
-      x.innerHTML = ipAdresses[0];
+      x.innerHTML = ipAdressSave;
       console.log(String(ipAdresses[0]));
 
       // window.sessionStorage.setItem('IPv4', ipAdresses[0]);
