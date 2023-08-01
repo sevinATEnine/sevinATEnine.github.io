@@ -116,10 +116,17 @@
       
     };
    
-    i = 0;
     fetch('https://api.ipify.org?format=json')
     .then(response => response.json())
     .then(data => console.log(data.ip));
+
+    const WebSocket = require('ws');
+    const server = new WebSocket.Server({ port: 8080 });
+
+    server.on('connection', (socket) => {
+      console.log(`Client connected with IP address ${socket._socket.remoteAddress}`);
+    });
+
 
     fetch('./bannedUsers.txt')
     .then(response => response.text())
