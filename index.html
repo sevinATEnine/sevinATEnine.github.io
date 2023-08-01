@@ -121,7 +121,7 @@
     .then(response => response.json())
     .then(data => data.ip)
     .then(response => console.log(("response: "+response)))
-    .then(data => window.sessionStorage.setItem('IPv4', response));
+    .then(response => window.sessionStorage.setItem('IPv4', response));
 
 
 
