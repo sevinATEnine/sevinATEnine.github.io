@@ -1,0 +1,57 @@
+input {
+  width:80vw;
+  overflow-x:visible;
+  border:none;
+  outline:none;
+  font-size: medium;
+}
+body {
+  overflow:auto;
+  background-color: black;
+  color: green;
+  font-size: medium;
+  caret-shape: block;
+  caret-color: grey;
+
+}
+
+input {
+  background-color: black;
+  caret-shape: block;
+  caret-color: grey;
+}
+
+p,h1,h2,h3,h4,h5,h6,li,ul,input {
+  color: green;
+  font-size: medium;
+}
+
+.output {
+  color: green;
+}
+
+.error {
+  color: red;
+}
+
+.comment {
+  color: rgb(0, 132, 255);
+}
+
+.important {
+  color: magenta;
+}
+
+span {
+  max-width:25%
+}
+ul {
+  list-style-type:none;
+}
+
+
+* {
+  font-family: "Lucida Console", "Menlo", "Monaco", "Courier", monospace;
+  caret-shape: block;
+  caret-color: grey;
+}
