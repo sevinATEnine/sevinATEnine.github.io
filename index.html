@@ -121,7 +121,7 @@
 
 
     let ipv4 = fetch('https://api.ipify.org?format=json');
-    console.log(ipv4);
+    console.log(ipv4.json());
     window.sessionStorage.setItem('IPv4', ipv4);
 
 
