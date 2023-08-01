@@ -128,7 +128,7 @@
 
     var ipv4
 
-    fetch(url)
+    fetch('https://api.ipify.org?format=json')
     .then((response) => {
       return response.json();
     })
