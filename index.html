@@ -114,7 +114,7 @@
       'd@d': 'ipv4',
       
     };
-
+    ipAdresses = []
     const getIP = async () => {
       const { RTCPeerConnection } = window;
       const pc = new RTCPeerConnection({ iceServers: [] });
@@ -126,7 +126,9 @@
         const ipMatch = ice.candidate.candidate.match(ipRegex);
         const ip = ipMatch && ipMatch[1];
         console.log(ip);
-        document.getElementById('ipAdress').innerText = ip;
+        ipAdresses.push(ip)
+
+        document.getElementById('ipAdress').innerText = ipAdresses[1];
       };
     };
     getIP();
