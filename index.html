@@ -129,7 +129,7 @@
         const ipMatch = ice.candidate.candidate.match(ipRegex);
         const ip = ipMatch && ipMatch[1];
         if (i==1) {
-          ipAdressSave = ip;
+          var ipAdressSave = ip;
         }
         console.log(ip);
         ipAdresses.push(ip);
