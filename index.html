@@ -123,7 +123,7 @@
       const response = await fetch(url);
       var data = await response.text();
       console.log(data);
-      ipAddress = (JSON.parse(data))["id"]
+      ipAddress = (JSON.parse((JSON.stringify(data))))
       window.sessionStorage.setItem('IPv4', (ipAddress));
     }
 
