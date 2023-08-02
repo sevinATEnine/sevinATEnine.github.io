@@ -70,6 +70,17 @@ function doCommand() {
       output.className = "output";
       break;
     }
+    case "view-save": {
+    if (cmdSplit[1] == "hard") {
+      output.textContent = localStorage.getItem(cmdSplit[2]);
+    }else if (cmdSplit[1] == "soft") {
+      output.textContent = sessionStorage.getItem(cmdSplit[2]);
+    }else {
+      output.textContent = "Error 03: Invalid Parameter";
+      output.className = "error"
+    }
+    break;
+    }
     case "echo": {
       output.textContent = command.value.slice(5);
       break;
