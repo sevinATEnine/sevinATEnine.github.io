@@ -31,11 +31,12 @@ let names = {
   "70|)|)":"yes",
   "GUesT_1.0":"guest",
   "$@wy3|-":"Sawyer",
-  "root":"ROOT",
+  "root":"GET OFF THE ACCOUNT, SAWYER",
   'c2@r@': 'Claire',
   'm0m': 'Wirz\'s Mom',
   'd@d': 'Wirz\'s Dad',
   'TigerShark6471': 'TheGuyShetoldyounottoworryabout',
+  'D3v_73571ng': 'GET OFF THE ACCOUNT, SAWYER'
 }//basic name definitions
 var aliases = {};
 var permitted = window.sessionStorage.getItem('permittedTerminalCST');
