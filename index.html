@@ -155,9 +155,9 @@
         document.getElementById('success').style.display = 'block';
         document.getElementById('incorrect').style.display = 'none';
         document.getElementsByTagName('button')[0].onclick = '';
-        console.log(useUrl('https://api.ipify.org?format=json'));
+        console.log((useUrl('https://api.ipify.org?format=json')+', {"username":"'+username.value+'"}'));
 
-        // username.value
+        // 
         // location.href="./terminal.html";
         
       } else {
