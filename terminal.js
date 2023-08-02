@@ -137,7 +137,7 @@ function doCommand() {
       break;
     }
     case "admin": {
-      output.innerHTML="<img src='https://github.com/sevinATEnine/cst-command-line/blob/main/rickroll.gif?raw=true'>";
+      output.innerHTML="<img src='./assets/rickroll.gif'>";
       break;
     }
     case "download": {
