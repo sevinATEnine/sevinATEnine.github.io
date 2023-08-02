@@ -66,7 +66,7 @@ function doCommand() {
   cmdSplit = command.value.split(" ");
   switch (cmdSplit[0]) {
     case "help": {
-      output.innerHTML = "<ul><li>help: Shows list of basic commands<li>docs: Shows all commands<li>credits: Shows credits<li>quit or exit: Logs out of CST<li>kill: Kills the terminal and forwards to an empty page<li>clear: CLears the terminal<li>admin: Enters the root user<li>ranks: Displays list of ranks<li>users: Displays list of users<li>exec: Executes commands<li>alias: Makes alias<li>get-alias: Gets the value of an alias<li>theme: Changes the theme</ul>";
+      output.innerHTML = "<ul><li>help: Shows list of basic commands<li>docs: Shows all commands<li>credits: Shows credits<li>echo: Prints text<li>quit or exit: Logs out of CST<li>kill: Kills the terminal and forwards to an empty page<li>clear: CLears the terminal<li>admin: Enters the root user<li>ranks: Displays list of ranks<li>users: Displays list of users<li>exec: Executes commands<li>alias [key] [value]: Makes alias<li>get-alias [key]: Gets the value of an alias<li>theme: Changes the theme<li>dowload [name] [url]: Dowloads a file from a url<li>echo [text]: Prints out text<li>save [hard|soft]: Saves aliase to sessionstorge|localstorage</ul>";
       output.className = "output";
       break;
     }
@@ -85,7 +85,7 @@ function doCommand() {
     }else if (cmdSplit[1] == "soft") {
       sessioStorage.setItem(cmdSplit[2],aliases[cmdSplit[2]]);
     }else {
-      output.textContent = "Errror 03: Invalid parameter";
+      output.textContent = "Errror 03: Invalid value for parameter";
       output.className = "error";
     }
     break;
