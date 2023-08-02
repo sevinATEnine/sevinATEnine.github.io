@@ -200,4 +200,4 @@ node.addEventListener("keydown", function(event) {
       prev.appendChild(add);
       doCommand();
     }
-});
+})
