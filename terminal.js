@@ -44,7 +44,7 @@ if (permitted != 'affirmed') {
   // location.replace("./index.html");
 }
 else if (localStorage.getItem("lockdownCST") != null && localStorage.getItem("lockdownCST") != undefined) {
-  if(prompt("Enter lockdown shuttoff key:"==localStorage.getItem("lockdownCST"))) {
+  if(prompt("Enter lockdown shuttoff key:")==localStorage.getItem("lockdownCST")) {
     alert("Access granted. Reload this page.")
   }else {
     alert("Access denied.");
