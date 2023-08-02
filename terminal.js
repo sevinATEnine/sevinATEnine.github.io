@@ -35,6 +35,7 @@ let names = {
   'c2@r@': 'Claire',
   'm0m': 'Wirz\'s Mom',
   'd@d': 'Wirz\'s Dad',
+  'MyLastBra!nCe11': 'TheGuyShetoldyounottoworryabout',
 }//basic name definitions
 var aliases = {};
 var permitted = window.sessionStorage.getItem('permittedTerminalCST');
