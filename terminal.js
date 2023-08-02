@@ -66,7 +66,7 @@ function doCommand() {
   cmdSplit = command.value.split(" ");
   switch (cmdSplit[0]) {
     case "help": {
-      output.innerHTML = "<ul><li>help: Shows list of basic commands<li>docs: Shows all commands<li>credits: Shows credits<li>echo: Prints text<li>quit or exit: Logs out of CST<li>kill: Kills the terminal and forwards to an empty page<li>clear: CLears the terminal<li>admin: Enters the root user<li>ranks: Displays list of ranks<li>users: Displays list of users<li>exec: Executes commands<li>alias [key] [value]: Makes alias<li>get-alias [key]: Gets the value of an alias<li>theme: Changes the theme<li>dowload [name] [url]: Dowloads a file from a url<li>echo [text]: Prints out text<li>save [hard|soft] [key]: Saves aliase to sessionstorge|localstorage<li>view-save [hard|soft] [key]: Views data saved by save command in sessionstorge|localstorage</ul>";
+      output.innerHTML = "<ul><li>* Work in progress<li>help: Shows list of basic commands<li>docs: Shows all commands *<li>credits: Shows credits<li>echo: Prints text<li>quit or exit: Logs out of CST<li>kill: Kills the terminal and forwards to an empty page<li>clear: CLears the terminal<li>admin: Enters the root user<li>ranks: Displays list of ranks<li>users: Displays list of users<li>exec: Executes commands<li>alias [key] [value]: Makes alias<li>get-alias [key]: Gets the value of an alias<li>theme: Changes the theme<li>dowload [name] [url]: Dowloads a file from a url<li>echo [text]: Prints out text<li>save [hard|soft] [key]: Saves aliase to sessionstorge|localstorage<li>view-save [hard|soft] [key]: Views data saved by save command in sessionstorge|localstorage<li>clear-save [hard|soft|var]: Clears data saved by save command in sessionstorge|localstorage|variables</ul>";
       output.className = "output";
       break;
     }
@@ -80,6 +80,19 @@ function doCommand() {
       output.className = "error"
     }
     break;
+    }
+    case "clear-save": {
+      if (cmdSplit[1] == "hard") {
+        localStorage.clear();
+      }else if (cmdSplit[1] == "soft") {
+        sessionStorage.clear();
+      } else if (cmdSplit[1] == "var") {
+        aliases = {};
+      } else {
+        output.textContent = "Error 03: Invalid Parameter";
+        output.className = "error";
+      }
+      break;
     }
     case "echo": {
       output.textContent = command.value.slice(5);
