@@ -74,6 +74,10 @@ function doCommand() {
       output.textContent = command.value.slice(5);
       break;
     }
+    case "redirect": {
+      location.replace(cmdSplit[1]);
+      break;
+    }
     case "quit": {
       location.replace("./index.html");
       sessionStorage.setItem("permittedTerminalCST","loggedOut");
