@@ -36,7 +36,7 @@ let names = {
   'm0m': 'Wirz\'s Mom',
   'd@d': 'Wirz\'s Dad',
 }//basic name definitions
- var aliases = {};
+var aliases = {};
 var permitted = window.sessionStorage.getItem('permittedTerminalCST');
 if (permitted != 'affirmed') {
   document.getElementById('body').style.display = 'none';
@@ -73,6 +73,16 @@ function doCommand() {
     case "quit": {
       location.replace("./index.html");
       sessionStorage.setItem("permittedTerminalCST","loggedOut");
+      break;
+    }
+    case "ranks": {
+      output.innerHTML = "<ul><li>0 | Root<li>1 | Owner<li>2 | Developer<li>3 | Admin<li>4 | Helper<li>5 | Icon<li>6 | Geek<li>7 | User<li>8 | Guest<li>9 | Banned</ul>";
+      output.className = "output";
+      break;
+    }
+    case "users": {
+      output.innerHTML = "<ul><li>c@d3N | Developer<li>$|m0n | Developer<li>70DD | Developer<li>GUesT_1.0 | Guest<li>root | Root<li>$@wy3|- | User<li>c2@r@ | User<li>m0m | User<li>d@d | User<li>";
+      output.className = "output";
       break;
     }
     case "alias": {
