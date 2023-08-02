@@ -41,11 +41,12 @@ var permitted = window.sessionStorage.getItem('permittedTerminalCST');
 if (permitted != 'affirmed') {
   document.getElementById('body').style.display = 'none';
   alert("Sorry, but you do not have permission to use the cst terminal. Please use the sign-in on our home page to gain access.");
-  // location.replace("./index.html");
+  location.replace("./index.html");
 }
-else if (localStorage.getItem("lockdownCST") != null && localStorage.getItem("lockdownCST") != undefined) {
+else if (localStorage.getItem("lockdownCST") != null && localStorage.getItem("lockdownCST") != undefined && localStorage.getItem("lockdownCST") != "undefined" && localStorage.getItem("lockdownCST") != "authorized") {
   if(prompt("Enter lockdown shuttoff key:")==localStorage.getItem("lockdownCST")) {
-    alert("Access granted. Reload this page.")
+    alert("Access granted. Reload this page.");
+    localStorage.setItem("lockdownCST", "authorized");
   }else {
     alert("Access denied.");
     location.href = "about:blank";
