@@ -117,7 +117,8 @@ function doCommand() {
       break;
     }
     case "docs": {
-      window.open("./docs.rtf", "_blank");
+      output.innerHTML="<iftame src='./docs.rtf'></iframe>";
+      output.className = "output";
       break;
     }
     case "": {
