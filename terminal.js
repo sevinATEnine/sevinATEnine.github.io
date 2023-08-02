@@ -117,7 +117,7 @@ function doCommand() {
       break;
     }
     case "docs": {
-      output.innerHTML="<iftame src='./docs.rtf'></iframe>";
+      output.innerHTML="<iftame src='./docs.txt'></iframe>";
       output.className = "output";
       break;
     }

@@ -1,0 +1,14 @@
+help: Shows list of basic commands
+docs: Shows all commands
+credits: Shows credits
+quit or exit: Logs out of CST
+kill: Kills the terminal and forwards to an empty page
+clear: CLears the terminal
+admin: Enters the root user
+ranks: Displays list of ranks
+users: Displays list of users
+exec [command]:Executes commands
+alias [name] [value]: Makes alias
+get-alias [name]: Gets the value of an alias
+theme: Changes the theme
+drop-aliases: Clears localStorage, sessionStorage, and aliases
