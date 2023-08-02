@@ -117,6 +117,7 @@ function doCommand() {
       break;
     }
     case "docs": {
+      window.open("./docs.rtf", "_blank");
       break;
     }
     case "": {
