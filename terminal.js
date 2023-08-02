@@ -70,6 +70,10 @@ function doCommand() {
       output.className = "output";
       break;
     }
+    case "echo": {
+      output.textContent = command.value.slice(5);
+      break;
+    }
     case "quit": {
       location.replace("./index.html");
       sessionStorage.setItem("permittedTerminalCST","loggedOut");
