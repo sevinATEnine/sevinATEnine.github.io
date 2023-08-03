@@ -63,6 +63,7 @@ var command = document.getElementById("command");
 var prev = document.getElementById("previous");
 var cmdSplit = null;
 var execWindow = ["No executionals created yet."];
+var clear = 0;
 //Just some DOM nodes
 
 function doCommand() {
@@ -150,7 +151,7 @@ function doCommand() {
     }
     case "exec": {
       command.value = execWindow[execWindow.length-1];
-      exec();
+      clear = 2;
       break;
     }
     case "credits": {
@@ -226,11 +227,8 @@ function doCommand() {
     }
   }
   prev.appendChild(output);
-  command.value = "";
+  clear === 0 ? command.value = "" : clear -= 1;
 };
-function exec() {
-  doCommand();
-}
 const node = document.getElementById("command");
 node.addEventListener("keydown", function(event) {
     if (event.key == "Enter") {
