@@ -45,7 +45,7 @@ if (permitted != 'affirmed') {
   alert("Sorry, but you do not have permission to use the cst terminal. Please use the sign-in on our home page to gain access.");
   location.replace("./index.html");
 }
-else if (localStorage.getItem("lockdownMode") == true {
+else if (localStorage.getItem("lockdownMode") == true) {
   if(prompt("Enter lockdown shuttoff key:")==localStorage.getItem("lockdownCST")) {
     alert("Lockdown mode lifted. Please reload this page.");
     localStorage.setItem("lockdownMode", false);
