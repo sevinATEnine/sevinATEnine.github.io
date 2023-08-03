@@ -54,9 +54,9 @@ else if (localStorage.getItem("lockdownMode") == true {
     location.href = "./index.html";
   }
 }
-//else {
+else {
   document.getElementById("prompt").textContent = "CST/"+names[sessionStorage.getItem("userTerminalCST")]+"-->";
-//}//Access granted? Time to find out!
+}//Access granted? Time to find out!
 
 var command = document.getElementById("command");
 var prev = document.getElementById("previous");
