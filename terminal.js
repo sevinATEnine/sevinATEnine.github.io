@@ -122,6 +122,10 @@ function doCommand() {
     }
     break;
     }
+    case "add-exec": {
+      execWindow.push(command.value.split(8));
+      break;
+    }
     case "ranks": {
       output.innerHTML = "<ul><li>0 | Root<li>1 | Owner<li>2 | Developer<li>3 | Admin<li>4 | Helper<li>5 | Icon<li>6 | Geek<li>7 | User<li>8 | Guest<li>9 | Banned</ul>";
       output.className = "output";
