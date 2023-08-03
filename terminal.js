@@ -47,7 +47,7 @@ if (permitted != 'affirmed') {
 }
 else if (localStorage.getItem("lockdownMode") == true {
   if(prompt("Enter lockdown shuttoff key:")==localStorage.getItem("lockdownCST")) {
-    alert("Access granted. Reload this page.");
+    alert("Lockdown mode lifted. Please reload this page.");
     localStorage.setItem("lockdownCST", "authorized");
   }else {
     alert("Access denied.");
@@ -61,7 +61,7 @@ else {
 var command = document.getElementById("command");
 var prev = document.getElementById("previous");
 var cmdSplit = null;
-var execWindow = [];
+var execWindow = ["No executionals created yet."];
 //Just some DOM nodes
 
 function doCommand() {
