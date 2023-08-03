@@ -46,7 +46,7 @@ if (permitted != 'affirmed') {
   alert("Sorry, but you do not have permission to use the cst terminal. Please use the sign-in on our home page to gain access.");
   location.replace("./index.html");
 }
-else if (localStorage.getItem("lockdownMode") == true) {
+else if (localStorage.getItem("lockdownMode") === "active") {
   if(prompt("Enter lockdown shuttoff key:")==localStorage.getItem("lockdownCST")) {
     alert("Lockdown mode lifted. Please reload this page.");
     localStorage.setItem("lockdownMode", false);
@@ -185,7 +185,7 @@ function doCommand() {
         output.textContent = "Lockdown mode activated.";
         output.className = "important"
         localStorage.setItem("lockdownCST",cmdSplit[1]);
-        localStorage.setItem("lockdownMode",true)
+        localStorage.setItem("lockdownMode","active")
       }else {
         output.textContent = "Error 02: User lacking root priveleges.";
         output.className = "error";
