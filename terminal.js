@@ -48,7 +48,7 @@ if (permitted != 'affirmed') {
 else if (localStorage.getItem("lockdownMode") == true {
   if(prompt("Enter lockdown shuttoff key:")==localStorage.getItem("lockdownCST")) {
     alert("Lockdown mode lifted. Please reload this page.");
-    localStorage.setItem("lockdownCST", "authorized");
+    localStorage.setItem("lockdownMode", false);
   }else {
     alert("Access denied.");
     location.href = "./index.html";
