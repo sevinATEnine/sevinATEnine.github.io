@@ -66,6 +66,14 @@ var execWindow = ["No executionals created yet."];
 //Just some DOM nodes
 
 function doCommand() {
+  command = document.getElementById("command");
+      const add = document.createElement("li");
+      add.textContent = ("CST/"+names[sessionStorage.getItem("userTerminalCST")]+"-->"+command.value);
+      add.className = "add";
+      if(command.value.split(" ")[0]=="//") {
+        add.className = "comment"
+      }
+      prev.appendChild(add);
   const output = document.createElement("li");
   cmdSplit = command.value.split(" ");
   switch (cmdSplit[0]) {
@@ -141,7 +149,8 @@ function doCommand() {
       break;
     }
     case "exec": {
-      output.innerHTML = execWindow[execWindow.length-1];
+      command.value = execWindow[execWindow.length-1];
+      doCommand();
       break;
     }
     case "credits": {
@@ -223,14 +232,6 @@ function doCommand() {
 const node = document.getElementById("command");
 node.addEventListener("keydown", function(event) {
     if (event.key == "Enter") {
-      command = document.getElementById("command");
-      const add = document.createElement("li");
-      add.textContent = ("CST/"+names[sessionStorage.getItem("userTerminalCST")]+"-->"+command.value);
-      add.className = "add";
-      if(command.value.split(" ")[0]=="//") {
-        add.className = "comment"
-      }
-      prev.appendChild(add);
       doCommand();
     }
 })
