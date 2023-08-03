@@ -45,13 +45,13 @@ if (permitted != 'affirmed') {
   alert("Sorry, but you do not have permission to use the cst terminal. Please use the sign-in on our home page to gain access.");
   location.replace("./index.html");
 }
-else if (localStorage.getItem("lockdownCST") != null && localStorage.getItem("lockdownCST") != undefined && localStorage.getItem("lockdownCST") != "undefined" && localStorage.getItem("lockdownCST") != "authorized") {
+else if (localStorage.getItem("lockdownMode") == true {
   if(prompt("Enter lockdown shuttoff key:")==localStorage.getItem("lockdownCST")) {
     alert("Access granted. Reload this page.");
     localStorage.setItem("lockdownCST", "authorized");
   }else {
     alert("Access denied.");
-    location.href = "about:blank";
+    location.href = "./index.html";
   }
 }
 else {
@@ -184,6 +184,7 @@ function doCommand() {
         output.textContent = "Lockdown mode activated.";
         output.className = "important"
         localStorage.setItem("lockdownCST",cmdSplit[1]);
+        localStorage.setItem("lockdownMode",true)
       }else {
         output.textContent = "Error 02: User lacking root priveleges.";
         output.className = "error";
