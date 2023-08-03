@@ -151,7 +151,7 @@ function doCommand() {
     }
     case "exec": {
       command.value = execWindow[execWindow.length-1];
-      clear = 2;
+      clear = 1;
       break;
     }
     case "credits": {
@@ -228,8 +228,10 @@ function doCommand() {
   }
   prev.appendChild(output);
   if (clear === 0) {command.value = ""} 
-  else {clear -= 1;
-       doCommand();};
+  else {
+    clear -= 1;
+    doCommand();
+  };
 };
 const node = document.getElementById("command");
 node.addEventListener("keydown", function(event) {
