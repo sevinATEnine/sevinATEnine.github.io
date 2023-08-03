@@ -1,3 +1,4 @@
+alert(localStorage.getItem("lockdownMode"));
 function forceDownload(blob, filename) {
   var a = document.createElement('a');
   a.download = filename;
