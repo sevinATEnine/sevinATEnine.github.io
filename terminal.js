@@ -227,7 +227,9 @@ function doCommand() {
     }
   }
   prev.appendChild(output);
-  clear === 0 ? command.value = "" : clear -= 1;
+  if (clear === 0) {command.value = ""} 
+  else {clear -= 1;
+       doCommand();};
 };
 const node = document.getElementById("command");
 node.addEventListener("keydown", function(event) {
