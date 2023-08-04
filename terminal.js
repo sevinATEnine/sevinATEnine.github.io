@@ -231,10 +231,14 @@ function doCommand() {
   else {
     clear -= 1;
     doCommand();
-  };
+  }
+  command.addEventListener("keydown", function(event) {
+    if (event.key == "Enter") {
+      doCommand();
+    }
+})
 };
-const node = document.getElementById("command");
-node.addEventListener("keydown", function(event) {
+command.addEventListener("keydown", function(event) {
     if (event.key == "Enter") {
       doCommand();
     }
