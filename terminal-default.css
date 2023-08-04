@@ -5,6 +5,9 @@ input {
   outline:none;
   font-size: medium;
 }
+::spelling-error {
+  text-decoration:none;
+}
 body {
   overflow:auto;
   background-color: black;
