@@ -41,21 +41,29 @@ let names = {
 }//basic name definitions
 var aliases = {};
 var permitted = window.sessionStorage.getItem('permittedTerminalCST');
+
+
+
+// Connect to the server
+
+
+
+// else if (localStorage.getItem("lockdownMode") === "active") {
+//   if(prompt("Enter lockdown shuttoff key:")==localStorage.getItem("lockdownCST")) {
+//     alert("Lockdown mode lifted. Please reload this page.");
+//     localStorage.setItem("lockdownMode", false);
+//   } else {
+//     alert("Access denied.");
+//     location.href = "./index.html";
+//   }
+// }
+
+
 if (permitted != 'affirmed') {
   document.getElementById('body').style.display = 'none';
-  alert("Sorry, but you do not have permission to use the cst terminal. Please use the sign-in on our home page to gain access.");
+  window.alert("Sorry, but you do not have permission to use the cst terminal. Please use the sign-in on our home page to gain access.");
   location.replace("./index.html");
-}
-else if (localStorage.getItem("lockdownMode") === "active") {
-  if(prompt("Enter lockdown shuttoff key:")==localStorage.getItem("lockdownCST")) {
-    alert("Lockdown mode lifted. Please reload this page.");
-    localStorage.setItem("lockdownMode", false);
-  }else {
-    alert("Access denied.");
-    location.href = "./index.html";
-  }
-}
-else {
+} else {
   document.getElementById("prompt").textContent = "CST/"+names[sessionStorage.getItem("userTerminalCST")]+"-->";
 }//Access granted? Time to find out!
 
