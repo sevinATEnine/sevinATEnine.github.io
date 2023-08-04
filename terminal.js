@@ -150,7 +150,6 @@ function doCommand() {
       break;
     }
     case "exec": {
-      command.value = execWindow[execWindow.length-1];
       clear = 1;
       break;
     }
@@ -227,9 +226,12 @@ function doCommand() {
     }
   }
   prev.appendChild(output);
-  if (clear === 0) {command.value = ""} 
+  if (clear === 0) {
+    command.value = ""
+  } 
   else {
     clear -= 1;
+    command.value = execWindow[execWindow.length-1];
     doCommand();
   }
 };
