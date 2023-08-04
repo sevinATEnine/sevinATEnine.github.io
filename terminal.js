@@ -232,11 +232,6 @@ function doCommand() {
     clear -= 1;
     doCommand();
   }
-  command.addEventListener("keydown", function(event) {
-    if (event.key == "Enter") {
-      doCommand();
-    }
-})
 };
 command.addEventListener("keydown", function(event) {
     if (event.key == "Enter") {
