@@ -132,7 +132,7 @@ function doCommand() {
     break;
     }
     case "add-exec": {
-      execWindow.push(command.value.slice(8));
+      execWindow.push(command.value.slice(9));
       break;
     }
     case "ranks": {
