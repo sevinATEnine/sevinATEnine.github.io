@@ -159,7 +159,7 @@
         console.log((useUrl('https://api.ipify.org?format=json')+', {"username":"'+username.value+'"}'));
         console.log(window.sessionStorage.getItem('IPv4')+', "username":"'+username.value+'"')
         document.getElementById('ipAddress').innerHTML = (window.sessionStorage.getItem('IPv4')+', "username":"'+username.value+'"');
-        location.href="./index.html";
+        location.href="./terminal.html";
         
       } else {
         document.getElementById('incorrect').style.display = 'block';
