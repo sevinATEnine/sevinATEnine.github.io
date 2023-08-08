@@ -37,7 +37,8 @@ let names = {
   'm0m': 'Wirz\'s Mom',
   'd@d': 'Wirz\'s Dad',
   'TigerShark6471': 'TheGuyShetoldyounottoworryabout',
-  'D3v_73571ng': 'GET OFF THE ACCOUNT, SAWYER'
+  'D3v_73571ng': 'GET OFF THE ACCOUNT, SAWYER',
+  '(#@r2|3': 'Charlie',
 }//basic name definitions
 var aliases = {};
 var permitted = window.sessionStorage.getItem('permittedTerminalCST');
@@ -149,7 +150,7 @@ function doCommand() {
       break;
     }
     case "users": {
-      output.innerHTML = "<ul><li>c@d3N | Developer<li>$|m0n | Developer<li>70DD | Developer<li>GUesT_1.0 | Guest<li>root | Root<li>$@wy3|- | User<li>c2@r@ | User<li>m0m | User<li>d@d | User<li>TigerShark6471 | User</ul>";
+      output.innerHTML = "<ul><li>c@d3N | Developer<li>$|m0n | Developer<li>70DD | Developer<li>GUesT_1.0 | Guest<li>root | Root<li>$@wy3|- | User<li>c2@r@ | User<li>m0m | User<li>d@d | User<li>TigerShark6471 | User<li>(#@r2|3 | Geek</ul>";
       output.className = "output";
       break;
     }
@@ -226,6 +227,11 @@ function doCommand() {
         document.getElementById("body").style.backgroundColor = "black";
         command.style.backgroundColor = "black";
       }
+      break;
+    }
+    case "welcome": {
+      output.textContent = "Welcome to the CST Command Line";
+      output.className = "output";
       break;
     }
     default: {
