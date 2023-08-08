@@ -230,7 +230,7 @@ function doCommand() {
       break;
     }
     case "welcome": {
-      output.textContent = "Welcome to the CST Command Line";
+      output.textContent = "<ul>Welcome to the CST Command Line<li><ul>";
       output.className = "output";
       break;
     }
