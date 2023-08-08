@@ -1,4 +1,9 @@
 #include <stdio.h>
+#include <string.h>
+
+char user[32];
+char pass[32];
+int UID;
 
 void main() {
   struct users {
@@ -12,7 +17,15 @@ struct users u[2] = {
   {"c@d3N","(0d3r_4_L1FE","ThatGuyOverThere",1},
   {"$|m0n","Dev","TacoMan",2}
 };//Create users
-  for (int i = 0;i < 2;i++) {
-    printf("\n%s\n%s\n%s\n%d\n",u[i].username,u[i].password,u[i].name,u[i].id);
-    };
+    printf("Enter your username: ");
+    scanf("%s",&user);
+    printf("Enter your password: ");
+    scanf("%s",&pass);
+    printf("Enter your UID: ");
+    scanf("%d",&UID);
+    if (strcmp(user,u[UID].username)==0 && strcmp(pass,u[UID].password)==0) {
+        printf("Logged in as: \n %s \n %s",&user,&pass);
+    } else {
+        printf("Username and or password entered incorrectly.")
+    }
 };
