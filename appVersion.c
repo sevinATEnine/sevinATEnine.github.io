@@ -24,8 +24,8 @@ struct users u[2] = {
     printf("Enter your UID: ");
     scanf("%d",&UID);
     if (strcmp(user,u[UID].username)==0 && strcmp(pass,u[UID].password)==0) {
-        printf("Logged in as: \n %s \n %s",&user,&pass);
+        printf("Logged in as: %s\n",u[UID].name);
     } else {
-        printf("Username and or password entered incorrectly.")
+        printf("Username and or password entered incorrectly.");
     }
 };
