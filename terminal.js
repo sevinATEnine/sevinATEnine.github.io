@@ -70,6 +70,7 @@ var clear = 0;
 //Just some DOM nodes
 
 function doCommand() {
+  document.getElementById("prompt").textContent = "CST/"+names[sessionStorage.getItem("userTerminalCST")]+"-->";
   command = document.getElementById("command");
       const add = document.createElement("li");
       add.textContent = ("CST/"+names[sessionStorage.getItem("userTerminalCST")]+"-->"+command.value);
