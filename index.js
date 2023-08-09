@@ -12,6 +12,7 @@
       'TigerShark6471': '13243546',
       'dev testing': 'devs only',
       'Ethan':'123',
+      'root': 'go awwaaaayyyyy now!!!',
     };
    
     // fetch('https://api.ipify.org?format=json')
@@ -47,6 +48,10 @@
     function signin() {
       password = document.getElementById('password');
       username = document.getElementById('username');
+      if (username.value == "root") {
+        document.getElementById('noroot').style.display = 'block';
+        return 0;
+      }
       if (users[username.value] == password.value) {
         sessionStorage.setItem('permittedTerminalCST', 'affirmed');
         sessionStorage.setItem("userTerminalCST", username.value);
