@@ -158,7 +158,7 @@ function doCommand() {
     }
     case "theme": {
       document.getElementById("body").style.backgroundColor = cmdSplit[1];
-      command.style.backgroundColor = cmdSplit[1];
+      command.style.background = cmdSplit[1];
       break;
     }
     case "credits": {
