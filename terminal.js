@@ -232,6 +232,16 @@ function doCommand() {
       output.innerText = cmdSplit[2];
       break;
     }
+    case "reset": {
+      prev.innerHTML = "";
+      localStorage.clear();
+      sessionStorage.clear();
+      document.getElementById("body").style.backgroundColor = 'black';
+      command.style.background = 'black';
+      output.innerHTML = "Command line reset";
+      output.className = "important";
+      break;
+    }
 
     default: {
       output.innerHTML = "Error 01: Invalid command";
