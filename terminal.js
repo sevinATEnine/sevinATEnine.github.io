@@ -213,14 +213,8 @@ function doCommand() {
       break;
     }
     case "theme": {
-      if (document.body.style.backgroundColor == "black") {
-        document.getElementById("body").style.backgroundColor = "white";
-        command.style.backgroundColor = "white";
-      }
-      else {
-        document.getElementById("body").style.backgroundColor = "black";
-        command.style.backgroundColor = "black";
-      }
+        document.getElementById("body").style.backgroundColor = cmdSplit[1];
+        command.style.backgroundColor = cmdSplit[1];
       break;
     }
     case "welcome": {
