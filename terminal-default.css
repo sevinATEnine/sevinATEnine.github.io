@@ -1,3 +1,11 @@
+@keyframes fatal-error {
+  from {
+    color:red;
+  }
+  to {
+    color:white;
+  }
+}
 input {
   width:80vw;
   overflow-x:visible;
@@ -35,6 +43,10 @@ p,h1,h2,h3,h4,h5,h6,li,ul,input {
 
 .error {
   color: red;
+}
+
+.fatal-error {
+  animation:fatal-error 1s infinite alternate;
 }
 
 .html {
