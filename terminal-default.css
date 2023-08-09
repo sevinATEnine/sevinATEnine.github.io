@@ -37,6 +37,10 @@ p,h1,h2,h3,h4,h5,h6,li,ul,input {
   color: red;
 }
 
+.html {
+  color: white;
+}
+
 .comment {
   color: rgb(0, 132, 255);
 }
