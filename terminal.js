@@ -125,8 +125,8 @@ function doCommand() {
       break;
     }
     case "quit": {
-      location.replace("./index.html");
       sessionStorage.setItem("permittedTerminalCST","loggedOut");
+      location.replace("./index.html");
       break;
     }
     case "save": {
