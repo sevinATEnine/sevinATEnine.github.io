@@ -7,7 +7,7 @@ function forceDownload(blob, filename) {
   a.click();
   a.remove();
 }
- 
+
 // Current blob size limit is around 500MB for browsers
 function downloadResource(url, filename) {
   if (!filename) filename = url.split('\\').pop().split('/').pop();
