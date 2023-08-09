@@ -180,7 +180,7 @@ function doCommand() {
       break;
     }
     case "docs": {
-      output.innerHTML = "<ul><li>help: Shows list of basic commands<li>docs: Shows all commands<li>credits: Shows credits<li>echo: Prints text<li>quit or exit: Logs out of CST<li>kill: Kills the terminal and forwards to an empty page<li>clear: CLears the terminal<li>admin: Enters the root user<li>ranks: Displays list of ranks<li>users: Displays list of users<li>exec: Executes commands<li>alias [key] [value]: Makes alias<li>get-alias [key]: Gets the value of an alias<li>theme: Changes the theme</ul>";
+      output.innerHTML = "<ul><li>welcome: Shows the welcome screen<li>help: Shows list of basic commands<li>docs: Shows all commands<li>credits: Shows credits<li>echo: Prints text<li>quit or exit: Logs out of CST<li>kill: Kills the terminal and forwards to an empty page<li>clear: CLears the terminal<li>admin: Enters the root user<li>ranks: Displays list of ranks<li>users: Displays list of users<li>exec: Executes commands<li>alias [key] [value]: Makes alias<li>get-alias [key]: Gets the value of an alias<li>theme: Changes the theme</ul>";
       output.className = "output";
       break;
     }
@@ -229,7 +229,7 @@ function doCommand() {
       break;
     }
     case "html": {
-      output.innerHTML = command.split(5);
+      output.innerHTML = command.value.slice(5);
       output.className = "html";
       break;
     }
