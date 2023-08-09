@@ -39,6 +39,7 @@ let names = {
   'TigerShark6471': 'TheGuyShetoldyounottoworryabout',
   'D3v_73571ng': 'GET OFF THE ACCOUNT, SAWYER',
   '(#@r2|3': 'Charlie',
+  'Ethan': 'Ethan',
 }//basic name definitions
 var aliases = {};
 var permitted = window.sessionStorage.getItem('permittedTerminalCST');

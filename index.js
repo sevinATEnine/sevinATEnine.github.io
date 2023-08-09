@@ -10,7 +10,8 @@
       'm0m': '0m0',
       'd@d': 'ipv4',
       'TigerShark6471': '13243546',
-      'dev testing': 'devs only'
+      'dev testing': 'devs only',
+      'Ethan':'123',
     };
    
     // fetch('https://api.ipify.org?format=json')
