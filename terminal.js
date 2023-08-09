@@ -125,14 +125,11 @@ function doCommand() {
       break;
     }
     case "quit": {
-      output.textContent = "YOU'RE A QUITTER! QUITTER! QUITTER! QUITTER! QUITTER! QUITTER! QUITTER! QUITTER! QUITTER! QUITTER! ";
-      setTimeout(quitNow, 5000);
-      function quitNow() {
-        location.replace("./index.html");
-        sessionStorage.setItem("permittedTerminalCST","loggedOut");
-      };
+      sessionStorage.setItem("permittedTerminalCST","loggedOut");
+      location.replace("./index.html");
       break;
     }
+
     case "save": {
     if (cmdSplit[1] == "hard") {
       localStorage.setItem(cmdSplit[2],aliases[cmdSplit[2]]);
