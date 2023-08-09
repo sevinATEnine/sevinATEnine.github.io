@@ -85,7 +85,7 @@ function doCommand() {
       }
       prev.appendChild(add);
   const output = document.createElement("li");
-  cmdSplit = ((command.value.stripLeft()).split(" "));
+  cmdSplit = ((command.value.trim()).split(" "));
   switch ((cmdSplit[0])) {
     case "help": {
       output.innerHTML = "<ul><li>* Work in progress<li>help: Shows list of basic commands<li>docs: Shows all commands *<li>credits: Shows credits<li>echo: Prints text<li>quit or exit: Logs out of CST<li>kill: Kills the terminal and forwards to an empty page<li>clear: CLears the terminal<li>admin: Enters the root user<li>ranks: Displays list of ranks<li>users: Displays list of users<li>exec: Executes commands<li>alias [key] [value]: Makes alias<li>get-alias [key]: Gets the value of an alias<li>theme: Changes the theme<li>dowload [name] [url]: Dowloads a file from a url<li>echo [text]: Prints out text<li>save [hard|soft] [key]: Saves aliase to sessionstorge|localstorage<li>view-save [hard|soft] [key]: Views data saved by save command in sessionstorge|localstorage<li>clear-save [hard|soft|var]: Clears data saved by save command in sessionstorge|localstorage|variables</ul>";
