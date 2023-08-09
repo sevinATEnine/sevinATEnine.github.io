@@ -1,4 +1,4 @@
-@keyframes fatal-error {
+@keyframes fatal-error-keys {
   from {
     color:red;
   }
@@ -46,7 +46,7 @@ p,h1,h2,h3,h4,h5,h6,li,ul,input {
 }
 
 .fatal-error {
-  animation:fatal-error 1s infinite alternate;
+  animation:fatal-error-keys 1s infinite alternate;
 }
 
 .html {
