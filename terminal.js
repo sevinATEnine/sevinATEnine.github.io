@@ -125,8 +125,12 @@ function doCommand() {
       break;
     }
     case "quit": {
-      location.replace("./index.html");
-      sessionStorage.setItem("permittedTerminalCST","loggedOut");
+      output.textContent = "YOU'RE A QUITTER! QUITTER! QUITTER! QUITTER! QUITTER! QUITTER! QUITTER! QUITTER! QUITTER! QUITTER! ";
+      setTimeout(quitNow, 5000);
+      function quitNow() {
+        location.replace("./index.html");
+        sessionStorage.setItem("permittedTerminalCST","loggedOut");
+      };
       break;
     }
     case "save": {
