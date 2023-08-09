@@ -237,7 +237,14 @@ function doCommand() {
     case "html": {
       output.innerHTML = command.slice(5);
       output.className = "html";
+      break;
     }
+    case "throw": {
+      output.className = cmdSplit[1];
+      output.innerText = cmdSplit[2];
+      break;
+    }
+
     default: {
       output.innerHTML = "Error 01: Invalid command";
       output.className = "error";
