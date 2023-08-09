@@ -156,6 +156,11 @@ function doCommand() {
       clear = 1;
       break;
     }
+    case "theme": {
+      document.getElementById("body").style.backgroundColor = cmdSplit[1];
+      command.style.backgroundColor = cmdSplit[1];
+      break;
+    }
     case "credits": {
       output.innerHTML = "<ul><li>Simon & Caden: Programming<li>Todd: Graphics</ul>";
       output.className = "output"
