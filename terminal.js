@@ -42,13 +42,7 @@ let names = {
 }//basic name definitions
 var aliases = {};
 var permitted = window.sessionStorage.getItem('permittedTerminalCST');
-
-
-
 // Connect to the server
-
-
-
 // else if (localStorage.getItem("lockdownMode") === "active") {
 //   if(prompt("Enter lockdown shuttoff key:")==localStorage.getItem("lockdownCST")) {
 //     alert("Lockdown mode lifted. Please reload this page.");
@@ -235,7 +229,7 @@ function doCommand() {
       break;
     }
     case "html": {
-      output.innerHTML = cmdSplit[1];
+      output.innerHTML = command.split(5);
       output.className = "html";
       break;
     }
