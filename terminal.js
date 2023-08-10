@@ -71,7 +71,6 @@ var foreground = 'green';
 //Just some DOM nodes
 
 function doCommand() {
-  output.className = "output";
   command = document.getElementById("command");
       const add = document.createElement("li");
       add.textContent = ("CST/"+names[sessionStorage.getItem("userTerminalCST")]+"-->"+command.value);
@@ -81,6 +80,7 @@ function doCommand() {
       }
       prev.appendChild(add);
   const output = document.createElement("li");
+  output.className = "output";
   cmdSplit = command.value.split(" ");
   switch ((cmdSplit[0])) {
     case "help": {
