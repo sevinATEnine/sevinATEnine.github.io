@@ -248,8 +248,10 @@ function doCommand() {
       output.className = "error";
     }
   }
+  if (output.className == "output") {
+    output.style.color = foreground;
+  }
   prev.appendChild(output);
-  document.querySelector(".output").color = foreground;
   if (clear === 0) {
     command.value = ""
   } 
