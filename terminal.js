@@ -249,7 +249,7 @@ function doCommand() {
     }
   }
   prev.appendChild(output);
-  //document.querySelector(".output").color = foreground;
+  document.querySelector(".output").color = foreground;
   if (clear === 0) {
     command.value = ""
   } 
