@@ -116,7 +116,7 @@ function doCommand() {
       break;
     }
     case "cursor": {
-      document.body.style.cursor = cmdSplit[1];
+      document.querySelector("body").style.cursor = cmdSplit[1];
       break;
     }
     case "redirect": {
