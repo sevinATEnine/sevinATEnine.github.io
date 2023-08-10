@@ -117,6 +117,7 @@ function doCommand() {
     }
     case "cursor": {
       document.body.style.cursor = cmdSplit[1];
+      break;
     }
     case "redirect": {
       location.replace(cmdSplit[1]);
