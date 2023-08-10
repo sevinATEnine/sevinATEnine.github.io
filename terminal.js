@@ -115,6 +115,9 @@ function doCommand() {
       output.textContent = command.value.slice(5);
       break;
     }
+    case "cursor": {
+      document.body.style.cursor = cmdSplit[1];
+    }
     case "redirect": {
       location.replace(cmdSplit[1]);
       break;
