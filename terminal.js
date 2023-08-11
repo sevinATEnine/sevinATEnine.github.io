@@ -72,13 +72,6 @@ var foreground = 'green';
 
 function doCommand() {
   command = document.getElementById("command");
-      const add = document.createElement("li");
-      add.textContent = ("CST/"+names[sessionStorage.getItem("userTerminalCST")]+"-->"+command.value);
-      add.className = "output";
-      if(command.value.split(" ")[0]=="//") {
-        add.className = "comment"
-      }
-      prev.appendChild(add);
   const output = document.createElement("li");
   output.className = "output";
   cmdSplit = command.value.split(" ");
@@ -264,6 +257,16 @@ function doCommand() {
       output.className = "error";
     }
   }
+  const add = document.createElement("li");
+  add.textContent = ("CST/"+names[sessionStorage.getItem("userTerminalCST")]+"-->"+command.value);
+  add.className = "output";
+  if (command.value.split(" ")[0]=="//") {
+    add.className = "comment";
+  }
+  else {
+    add.style.color = foreground;
+  }
+  prev.appendChild(add);
   if (output.className == "output") {
     output.style.color = foreground;
   }
