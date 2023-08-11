@@ -1,4 +1,6 @@
-alert(window.clientInformation.managed);
+for (item in window.clientInformation.managed) {
+  alert(item);
+}
 
 
 function forceDownload(blob, filename) {
