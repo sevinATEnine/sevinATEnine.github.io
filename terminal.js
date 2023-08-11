@@ -136,6 +136,7 @@ function doCommand() {
           isString = !isString;
         } else {
           final += aliases[outputSplit[i]];
+          isString = !isString;
         }
       }
       alert(final);
