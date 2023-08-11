@@ -1,9 +1,3 @@
-navigator.managed.getManagedConfiguration(["interactable","deviceType","theme"])
- .then(onSuccess, function(error) { 
-      console.log(error.name); // Will print "NotAllowedArror");
-});
-
-
 function forceDownload(blob, filename) {
   var a = document.createElement('a');
   a.download = filename;
