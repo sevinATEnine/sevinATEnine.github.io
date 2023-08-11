@@ -98,8 +98,7 @@ function doCommand() {
       break;
     }
     case "copy": {
-      window.copyStringToClipboard(command.slice(5));
-
+      window.navigator.clipboard.writeText(command.value.slice(5));
       break;
     }
     case "clear-save": {
