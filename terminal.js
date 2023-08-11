@@ -139,9 +139,9 @@ function doCommand() {
         tempStrings.push(temp[i]);
       }
 
-      for (var i=0; i<tempStrings.length; i+=2) {
-        final.push(tempStrings[i])
-        final.push(tempVars[i+1])
+      for (i=0; i<tempStrings.length; i++) {
+        final.push(tempStrings[i]);
+        final.push(tempVars[i]);
       }
 
       // for (var i=0; i<tempStrings.length; i+=1) {
@@ -153,10 +153,10 @@ function doCommand() {
         
       // }
 
-      putInOutput = final;
-      console.log(tempVars);
-      console.log(tempStrings);
-      console.log(final)
+      for (item in final) {
+        putInOutput += item;
+      }
+
       output.textContent = putInOutput;
       break;
     }
