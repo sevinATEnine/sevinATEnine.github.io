@@ -127,37 +127,16 @@ function doCommand() {
       break;
     }
     case "echo": {
-      var putInOutput = "";
-      var temp = command.value.slice(5).split('|');
-      var tempVars = [];
-      var tempStrings = [];
-      var final = [];
-      for (var i=1; i<temp.length; i+=2) {
-        tempVars.push(temp[i]);
-      }
-      for (var i=0; i<temp.length; i+=2) {
-        tempStrings.push(temp[i]);
-      }
-
-      for (i=0; i<tempStrings.length; i++) {
-        final.push(tempStrings[i]);
-        final.push(tempVars[i]);
-      }
-
-      // for (var i=0; i<tempStrings.length; i+=1) {
-      //   if (i%2 == 0) {
-      //     final.push(tempStrings[i]);
-      //   } else {
-      //     final.push(tempVars[i]);
-      //   }
-        
-      // }
-
-      for (item in final) {
-        putInOutput += item;
-      }
-
-      output.textContent = putInOutput;
+      var outputSplit = command.value.slice(5).split("|");
+      var final = "";
+      var isString = true;
+      for(var i = 0; i < outputSplit.length; i++) {
+        if(isString == true) {
+          final += outputSplit[i];
+          isString = !isString;
+        } else {
+          final += aliases[outputSplit[i]];
+        }
       break;
     }
     case "watch-me": {
