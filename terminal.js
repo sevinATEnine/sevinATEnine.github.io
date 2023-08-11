@@ -97,10 +97,11 @@ function doCommand() {
       command.style.animation="colore-colors 5s infinite";
       break;
     }
-   case "copy": {
-    copyStringToClipboard(command.slice(5));
-    break;
-   }
+    case "copy": {
+      window.copyStringToClipboard(command.slice(5));
+
+      break;
+    }
     case "clear-save": {
       if (cmdSplit[1] == "hard") {
         localStorage.clear();
