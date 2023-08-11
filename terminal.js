@@ -234,7 +234,7 @@ function doCommand() {
     }
     case "throw": {
       output.className = cmdSplit[1];
-      output.innerText = command.value.splice(cmdSplit[1].length + 7);
+      output.innerText = command.value.slice(cmdSplit[1].length + 7);
       break;
     }
     case "reset": {
