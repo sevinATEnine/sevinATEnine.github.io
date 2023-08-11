@@ -169,7 +169,7 @@ function doCommand() {
       document.getElementById("body").style.backgroundColor = cmdSplit[1];
       command.style.background = cmdSplit[1];
       foreground = cmdSplit[2];
-      prompt.style.color = foreground;
+      document.getElementById("prompt").style.color = foreground;
       command.style.colore = foreground;
       break;
     }
