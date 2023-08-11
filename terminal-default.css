@@ -6,6 +6,20 @@
     color:white;
   }
 }
+@keyframes colore-colors {
+  0% {background-color: red; color:orange;}
+  10% {background-color: orange; color:lightgoldenrodyellow;}
+  20% {background-color: lightgoldenrodyellow; color:lightgreen;}
+  30% {background-color: lightgreen; color:blue;}
+  40% {background-color: blue; color:rgb(40, 99, 226);}
+  50% {background-color: rgb(40, 99, 226); color:purple;}
+  60% {background-color: purple; color:palevioletred;}
+  70% {background-color: palevioletred; color:black;}
+  80% {background-color: black; color:white;}
+  90% {background-color: white; color:pink;}
+  100% {background-color: pink; color:red;}
+}
+
 input {
   width:80vw;
   overflow-x:visible;
