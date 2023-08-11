@@ -170,7 +170,7 @@ function doCommand() {
       command.style.background = cmdSplit[1];
       foreground = cmdSplit[2];
       document.getElementById("prompt").style.color = foreground;
-      command.style.colore = foreground;
+      command.style.color = foreground;
       break;
     }
     case "credits": {
