@@ -23,6 +23,26 @@ function downloadResource(url, filename) {
     })
     .catch(e => console.log(e));
 }
+function varHandle(data, len) {
+  var outputSplit = data.slice(len+1).split("|");
+  var final = "";
+  var isString = true;
+  for(var i = 0; i < outputSplit.length; i++) {
+    if(isString == true) {
+      final += outputSplit[i];
+      isString = !isString;
+    } else {
+      final += aliases[outputSplit[i]];
+      isString = !isString;
+    }
+  }
+  var finalStr = "";
+  for (var i = 0; i < final.length; i++) {
+    finalStr+=final[i];
+  }
+  return finalStr;
+
+}
 
 let names = {
   "c@d3N":"ThatGuyOverThere",
@@ -79,9 +99,9 @@ function doCommand() {
       break;
     }
     case "view-save": {
-    if (cmdSplit[1] == "hard") {
+    if (varHandle(cmdSplit[1], 4) == "hard") {
       output.textContent = localStorage.getItem(cmdSplit[2]);
-    }else if (cmdSplit[1] == "soft") {
+    }else if (varHandle(cmdSplit[1],4) == "soft") {
       output.textContent = sessionStorage.getItem(cmdSplit[2]);
     }else {
       output.textContent = "Error 03: Invalid Parameter";
@@ -98,7 +118,7 @@ function doCommand() {
       break;
     }
     case "copy": {
-      window.navigator.clipboard.writeText(command.value.slice(5));
+      window.navigator.clipboard.writeText(varHandle(command.value, 4));
       break;
     }
     case "view-copy": {
@@ -114,11 +134,11 @@ function doCommand() {
       break;
     }
     case "clear-save": {
-      if (cmdSplit[1] == "hard") {
+      if (varHandle(cmdSplit[1]) == "hard") {
         localStorage.clear();
-      }else if (cmdSplit[1] == "soft") {
+      }else if (varHandle(cmdSplit[1]) == "soft") {
         sessionStorage.clear();
-      } else if (cmdSplit[1] == "var") {
+      } else if (varHandle(cmdSplit[1]) == "var") {
         aliases = {};
       } else {
         output.textContent = "Error 03: Invalid Parameter";
@@ -127,19 +147,7 @@ function doCommand() {
       break;
     }
     case "echo": {
-      var outputSplit = command.value.slice(5).split("|");
-      var final = "";
-      var isString = true;
-      for(var i = 0; i < outputSplit.length; i++) {
-        if(isString == true) {
-          final += outputSplit[i];
-          isString = !isString;
-        } else {
-          final += aliases[outputSplit[i]];
-          isString = !isString;
-        }
-      }
-      alert(final);
+      output.innerText = varHandle(command.value,4);
       break;
     }
     case "watch-me": {
@@ -158,11 +166,11 @@ function doCommand() {
       }
     }
     case "cursor": {
-      document.querySelector("body").style.cursor = cmdSplit[1];
+      document.querySelector("body").style.cursor = varHandle(command.value, 6);
       break;
     }
     case "redirect": {
-      location.replace(cmdSplit[1]);
+      location.replace(varHandle(command.value,8));
       break;
     }
     case "quit": {
@@ -182,7 +190,7 @@ function doCommand() {
     break;
     }
     case "add-exec": {
-      execWindow.push(command.value.slice(9));
+      execWindow.push(varHandle(command.value,9));
       break;
     }
     case "ranks": {
@@ -258,7 +266,7 @@ function doCommand() {
       break;
     }
     case "get-alias": {
-      output.textContent = aliases[cmdSplit[1]];
+      output.textContent = aliases[varHandle(command.value,9)];
       break;
     }
     case "welcome": {
