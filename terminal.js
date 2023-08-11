@@ -104,10 +104,12 @@ function doCommand() {
     case "view-copy": {
       navigator.clipboard.readText()
       .then(text => {
-        console.log('Pasted content: ', text);
+        output.innerText = (text);
+        output.className = "output";
       })
       .catch(err => {
         output.innerText = ('Failed to read clipboard contents: ', err);
+        output.className = "error";
       });
       break;
     }
