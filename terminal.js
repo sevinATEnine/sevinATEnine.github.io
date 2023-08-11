@@ -101,6 +101,10 @@ function doCommand() {
       window.navigator.clipboard.writeText(command.value.slice(5));
       break;
     }
+    case "view-copy": {
+      window.navigator.clipboard.readText();
+      break;
+    }
     case "clear-save": {
       if (cmdSplit[1] == "hard") {
         localStorage.clear();
