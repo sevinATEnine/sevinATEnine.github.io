@@ -249,6 +249,18 @@ function doCommand() {
       output.className = "html";
       break;
     }
+    case "get": {
+      switch(cmdSplit[1]) {
+        case "mouse-position": {
+          output.textContent = `X: ${window.clientX},Y: ${window.clientY}`;
+          break;
+        }
+        case "managed": {
+          output.textContent = window.clientInformation.managed;
+        }
+      }
+      break;
+    }
     case "throw": {
       output.className = cmdSplit[1];
       output.innerText = command.value.slice(cmdSplit[1].length + 7);
