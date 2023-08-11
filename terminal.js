@@ -169,6 +169,8 @@ function doCommand() {
       document.getElementById("body").style.backgroundColor = cmdSplit[1];
       command.style.background = cmdSplit[1];
       foreground = cmdSplit[2];
+      prompt.style.color = foreground;
+      command.style.colore = foreground;
       break;
     }
     case "credits": {
@@ -268,6 +270,7 @@ function doCommand() {
     output.style.color = foreground;
   }
   prev.appendChild(output);
+  prevCommand = command.value;
   if (clear === 0) {
     command.value = ""
   } 
@@ -281,7 +284,9 @@ command.addEventListener("keydown", function(event) {
     if (event.key == "Enter") {
       doCommand();
     }
+    else if (event.key == "ArrowUp") {
+      command.value = prevCommand;
+    }
 })
-
 
 
