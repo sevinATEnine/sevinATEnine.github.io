@@ -16,8 +16,7 @@
   60% {background-color: purple; color:palevioletred;}
   70% {background-color: palevioletred; color:black;}
   80% {background-color: black; color:white;}
-  90% {background-color: white; color:pink;}
-  100% {background-color: pink; color:red;}
+  90% {background-color: white; color:red;}
 }
 
 input {
