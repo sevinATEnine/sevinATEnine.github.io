@@ -1,6 +1,7 @@
-for (item in window.clientInformation.managed) {
-  alert(item);
-}
+navigator.managed.getManagedConfiguration(["interactable","deviceType","theme"])
+ .then(onSuccess, function(error) { 
+      console.log(error.name); // Will print "NotAllowedArror");
+});
 
 
 function forceDownload(blob, filename) {
