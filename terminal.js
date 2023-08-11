@@ -296,6 +296,9 @@ command.addEventListener("keydown", function(event) {
     else if (event.key == "ArrowUp") {
       command.value = prevCommand;
     }
+  else if (event.key == "ArrowDown") {
+      command.value = "";
+    }
 })
 
 
