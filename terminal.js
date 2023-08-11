@@ -107,7 +107,7 @@ function doCommand() {
         console.log('Pasted content: ', text);
       })
       .catch(err => {
-        console.error('Failed to read clipboard contents: ', err);
+        output.innerText = ('Failed to read clipboard contents: ', err);
       });
       break;
     }
