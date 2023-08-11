@@ -1,4 +1,3 @@
-
 function forceDownload(blob, filename) {
   var a = document.createElement('a');
   a.download = filename;
@@ -24,7 +23,6 @@ function downloadResource(url, filename) {
     })
     .catch(e => console.log(e));
 }
-
 
 let names = {
   "c@d3N":"ThatGuyOverThere",
@@ -236,7 +234,7 @@ function doCommand() {
     }
     case "throw": {
       output.className = cmdSplit[1];
-      output.innerText = command.slice(cmdSplit[1].length + 7);
+      output.innerText = command.value.split(cmdSplit[1].length + 7);
       break;
     }
     case "reset": {
