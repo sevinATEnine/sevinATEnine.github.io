@@ -1,3 +1,6 @@
+alert(window.clientInformation.managed);
+
+
 function forceDownload(blob, filename) {
   var a = document.createElement('a');
   a.download = filename;
@@ -294,6 +297,8 @@ command.addEventListener("keydown", function(event) {
       doCommand();
     } else if (event.key == "ArrowUp") {
       command.value = prevCommand;
+      command.selectionEnd = command.value.length;
+      command.focus()
     } else if (event.key == "ArrowDown") {
         command.value = "";
     }
