@@ -137,6 +137,8 @@ function doCommand() {
         } else {
           final += aliases[outputSplit[i]];
         }
+      }
+      alert(final);
       break;
     }
     case "watch-me": {
