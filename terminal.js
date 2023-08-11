@@ -89,6 +89,14 @@ function doCommand() {
     }
     break;
     }
+    case "colore": {
+      // animation: colore-colors 5s infinite;
+      document.getElementById("body").style.animation="colore-colors 5s infinite";
+      command.style.animation="colore-colors 5s infinite";
+      document.getElementById("prompt").style.animation="colore-colors 5s infinite";
+      command.style.animation="colore-colors 5s infinite";
+    }
+
     case "clear-save": {
       if (cmdSplit[1] == "hard") {
         localStorage.clear();
