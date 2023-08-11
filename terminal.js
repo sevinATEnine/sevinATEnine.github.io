@@ -109,7 +109,6 @@ function doCommand() {
       break;
     }
     case "watch-me": {
-
       var video = document.createElement('video');
       video.autoplay="true"
       output.appendChild(video)
@@ -237,7 +236,7 @@ function doCommand() {
     }
     case "throw": {
       output.className = cmdSplit[1];
-      output.innerText = command.slice(cmdSplit[2].length + 7);
+      output.innerText = command.slice(cmdSplit[1].length + 7);
       break;
     }
     case "reset": {
