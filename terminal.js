@@ -95,6 +95,7 @@ function doCommand() {
       command.style.animation="colore-colors 5s infinite";
       document.getElementById("prompt").style.animation="colore-colors 5s infinite";
       command.style.animation="colore-colors 5s infinite";
+      break;
     }
 
     case "clear-save": {
