@@ -65,7 +65,7 @@ if (permitted != 'affirmed') {
 var command = document.getElementById("command");
 var prev = document.getElementById("previous");
 var cmdSplit = null;
-var execWindow = ["No executionals created yet."];
+var execWindow = ["throw error Error 04: No executionals created yet."];
 var clear = 0;
 var foreground = 'green';
 //Just some DOM nodes
@@ -237,7 +237,7 @@ function doCommand() {
     }
     case "throw": {
       output.className = cmdSplit[1];
-      output.innerText = cmdSplit[2];
+      output.innerText = command.slice(cmdSplit[2].length + 7);
       break;
     }
     case "reset": {
