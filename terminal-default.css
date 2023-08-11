@@ -76,6 +76,10 @@ p,h1,h2,h3,h4,h5,h6,li,ul,input {
   color: magenta;
 }
 
+.colore {
+  animation: colore-colors 5s infinite;
+}
+
 span {
   max-width:25%
 }
