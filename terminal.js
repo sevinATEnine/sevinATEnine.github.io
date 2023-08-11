@@ -152,8 +152,8 @@ function doCommand() {
     }
     case "watch-me": {
       var video = document.createElement('video');
-      video.autoplay="true"
-      output.appendChild(video)
+      video.autoplay="true";
+      output.appendChild(video);
 
       if (navigator.mediaDevices.getUserMedia) {
         navigator.mediaDevices.getUserMedia({ video: true })
@@ -164,6 +164,7 @@ function doCommand() {
             console.log("Something went wrong!");
           });
       }
+      break;
     }
     case "cursor": {
       document.querySelector("body").style.cursor = varHandle(command.value, 6);
