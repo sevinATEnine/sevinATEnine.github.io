@@ -299,7 +299,22 @@ function doCommand() {
       output.className = "important";
       break;
     }
-
+    case "import-alias": {
+      if (cmdSplit[1] == "hard") {
+        aliases[cmdSplit[2]] = localStorage.getItem(cmdSplit[3]);
+      } else if (cmdSplit[1] == "soft") {
+        aliases[cmdSplit[2]] = sessionStorage.getItem(cmdSplit[3]);
+      } else if (cmdSplit[1] == "var") {
+        aliases[cmdSplit[2]] = aliases[cmdSplit[3]];
+      } else {
+        output.className = "error";
+        output.textContent = "Error 03: Invalid value for parameter.";
+      }
+      if (output.className != "error") {
+        output.textContent = "Alias imported successfully";
+      }
+      break;
+    }
     default: {
       output.innerHTML = "Error 01: Invalid command";
       output.className = "error";
