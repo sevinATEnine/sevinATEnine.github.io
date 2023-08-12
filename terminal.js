@@ -36,11 +36,7 @@ function varHandle(data, len) {
       isString = !isString;
     }
   }
-  var finalStr = "";
-  for (var i = 0; i < final.length; i++) {
-    finalStr+=final[i];
-  }
-  return finalStr;
+  return final;
 
 }
 
@@ -191,7 +187,7 @@ function doCommand() {
     break;
     }
     case "add-exec": {
-      execWindow.push(varHandle(command.value,9));
+      execWindow.push(varHandle(command.value,8));
       break;
     }
     case "ranks": {
@@ -203,7 +199,7 @@ function doCommand() {
       break;
     }
     case "alias": {
-      aliases[cmdSplit[1]] = cmdSplit[2];
+      aliases[cmdSplit[1]] = varHandle(command.value,cmdSplit[1]).length + 7;
       break;
     }
     case "exec": {
@@ -266,16 +262,12 @@ function doCommand() {
       }
       break;
     }
-    case "get-alias": {
-      output.textContent = aliases[varHandle(command.value,9)];
-      break;
-    }
     case "welcome": {
       output.innerHTML = "<ul>Welcome to the CST Command Line<li>The CST was created by (@d3n, (#@r2|3, $|m0n, and 70DD<ul>";
       break;
     }
     case "html": {
-      output.innerHTML = command.value.slice(5);
+      output.innerHTML = varHandle(command.value,4);
       output.className = "html";
       break;
     }
