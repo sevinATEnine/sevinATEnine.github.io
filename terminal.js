@@ -199,7 +199,7 @@ function doCommand() {
       break;
     }
     case "alias": {
-      aliases[cmdSplit[1]] = varHandle(command.value,cmdSplit[1]).length + 7;
+      aliases[cmdSplit[1]] = varHandle(command.value,cmdSplit[1].length + 7);
       break;
     }
     case "exec": {
