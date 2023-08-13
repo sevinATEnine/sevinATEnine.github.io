@@ -76,7 +76,7 @@ if (permitted != 'affirmed') {
   document.getElementById("prompt").textContent = "CST/"+names[sessionStorage.getItem("userTerminalCST")]+"-->";
 }//Access granted? Time to find out!
 
-var command = document.getElementById("command");
+var command = null;
 var prev = document.getElementById("previous");
 var cmdSplit = null;
 var execWindow = ["throw error Error 04: No executionals created yet."];
@@ -85,6 +85,7 @@ var foreground = 'green';
 //Just some DOM nodes
 
 function doCommand() {
+  document.getElementById("prompt").textContent = "CST/"+names[sessionStorage.getItem("userTerminalCST")]+"-->";
   command = document.getElementById("command");
   const output = document.createElement("li");
   output.className = "output";
