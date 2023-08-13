@@ -76,7 +76,7 @@ if (permitted != 'affirmed') {
   document.getElementById("prompt").textContent = "CST/"+names[sessionStorage.getItem("userTerminalCST")]+"-->";
 }//Access granted? Time to find out!
 
-var command = null;
+var command = document.getElementById("command");
 var prev = document.getElementById("previous");
 var cmdSplit = null;
 var execWindow = ["throw error Error 04: No executionals created yet."];
