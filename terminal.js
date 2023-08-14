@@ -66,6 +66,7 @@ var foreground = 'green';
 var functions = {};
 var clearMode = "";
 var clearFunc = "";
+var clearI = 0;
 //Just some variables
 
 // else if (localStorage.getItem("lockdownMode") === "active") {
@@ -337,6 +338,7 @@ function doCommand() {
     }
     case "$": {
       clear = functions[cmdSplit[1]].length;
+      clearI = 0;
       clearMode = "multiple";
       clearFunc = cmdSplit[1];
       break;
@@ -369,7 +371,8 @@ function doCommand() {
     if (clearMode == "single") {
     command.value = execWindow[execWindow.length-1];
     } else {
-    command.value = functions[clearFunc][functions[clearFunc].length - clear];
+    command.value = functions[clearFunc][clearI];
+    clearI ++;
     }
     doCommand();
   }
