@@ -79,9 +79,10 @@ if (permitted != 'affirmed') {
 var command = document.getElementById("command");
 var prev = document.getElementById("previous");
 var cmdSplit = null;
-var execWindow = ["throw error Error 04: No executionals created yet."];
+var execWindow = [];
 var clear = 0;
 var foreground = 'green';
+var functions = {};
 //Just some DOM nodes
 
 function doCommand() {
@@ -204,7 +205,12 @@ function doCommand() {
       break;
     }
     case "exec": {
-      clear = 1;
+      if (execWindow.length > 0) {
+        clear = 1;
+      } else {
+        output.textContent = "Error 04: No executables created yet.";
+        output.className = "error";
+      }
       break;
     }
     case "theme": {
@@ -314,6 +320,20 @@ function doCommand() {
       if (output.className != "error") {
         output.textContent = "Alias imported successfully";
       }
+      break;
+    }
+    case "clear-exec": {
+      execWindow = [];
+      break;
+    }
+    case "export-exec": {
+      functions[cmdSplit[1]] = execWindow;
+      execWindow = [];
+      alert(functions[cmdSplit[1]][0]);
+      break;
+    }
+    case "$": {
+      //function running code goes here later
       break;
     }
     default: {
