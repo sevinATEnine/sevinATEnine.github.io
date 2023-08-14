@@ -273,6 +273,17 @@ function doCommand() {
       }
       break;
     }
+    case "switch-user": {
+      if (sessionStorage.getItem("userTerminalCST")=="root") {
+        sessionStorage.setItem("userTerminalCST",cmdSplit[1]);
+        output.textContent = "User switched successfully.";
+        output.className = "important";
+      }else {
+        output.textContent = "Error 02: User lacking root priveleges.";
+        output.className = "error";
+      }
+      break;
+    }
     case "welcome": {
       output.innerHTML = "<ul>Welcome to the CST Command Line<li>The CST was created by (@d3n, (#@r2|3, $|m0n, and 70DD<ul>";
       break;
