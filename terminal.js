@@ -57,6 +57,17 @@ let names = {
 }//basic name definitions
 var aliases = {};
 var permitted = window.sessionStorage.getItem('permittedTerminalCST');
+var command = document.getElementById("command");
+var prev = document.getElementById("previous");
+var cmdSplit = null;
+var execWindow = [];
+var clear = 0;
+var foreground = 'green';
+var functions = {};
+var clearMode = "";
+var clearFunc = "";
+//Just some variables
+
 // else if (localStorage.getItem("lockdownMode") === "active") {
 //   if(prompt("Enter lockdown shuttoff key:")==localStorage.getItem("lockdownCST")) {
 //     alert("Lockdown mode lifted. Please reload this page.");
@@ -67,7 +78,6 @@ var permitted = window.sessionStorage.getItem('permittedTerminalCST');
 //   }
 // }
 
-
 if (permitted != 'affirmed') {
   document.getElementById('body').style.display = 'none';
   window.alert("Sorry, but you do not have permission to use the cst terminal. Please use the sign-in on our home page to gain access.");
@@ -76,14 +86,7 @@ if (permitted != 'affirmed') {
   document.getElementById("prompt").textContent = "CST/"+names[sessionStorage.getItem("userTerminalCST")]+"-->";
 }//Access granted? Time to find out!
 
-var command = document.getElementById("command");
-var prev = document.getElementById("previous");
-var cmdSplit = null;
-var execWindow = [];
-var clear = 0;
-var foreground = 'green';
-var functions = {};
-//Just some DOM nodes
+
 
 function doCommand() {
   document.getElementById("prompt").textContent = "CST/"+names[sessionStorage.getItem("userTerminalCST")]+"-->";
@@ -207,6 +210,7 @@ function doCommand() {
     case "exec": {
       if (execWindow.length > 0) {
         clear = 1;
+        clearMode =  `single`
       } else {
         output.textContent = "Error 04: No executables created yet.";
         output.className = "error";
@@ -329,11 +333,12 @@ function doCommand() {
     case "export-exec": {
       functions[cmdSplit[1]] = execWindow;
       execWindow = [];
-      alert(functions[cmdSplit[1]][0]);
       break;
     }
     case "$": {
-      //function running code goes here later
+      clear = functions[cmdSplit[1]].length;
+      clearMode = "multiple";
+      clearFunc = cmdSplit[1];
       break;
     }
     default: {
@@ -361,7 +366,11 @@ function doCommand() {
   } 
   else {
     clear -= 1;
+    if (clearMode == "single") {
     command.value = execWindow[execWindow.length-1];
+    } else {
+    command.value = functions[clearFunc][functions[clearFunc].length - clear];
+    }
     doCommand();
   }
 };
