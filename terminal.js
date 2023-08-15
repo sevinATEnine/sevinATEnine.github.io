@@ -210,7 +210,7 @@ function doCommand() {
     case "exec": {
       if (execWindow.length > 0) {
         clear = 1;
-        clearMode =  `single`
+        clearMode =  `single`;
       } else {
         output.textContent = "Error 04: No executables created yet.";
         output.className = "error";
@@ -280,7 +280,7 @@ function doCommand() {
         output.className = "important";
       }else {
         output.textContent = "Error 02: User lacking root priveleges.";
-        output.className = "error";
+        output.className = "important";
       }
       break;
     }
@@ -306,6 +306,7 @@ function doCommand() {
     })
     .catch(function() {
         output.textContent = "Error 05: failed to read battery level"
+        output.className = "error";
     });
         }
       }
@@ -353,7 +354,7 @@ function doCommand() {
       break;
     }
     case "$": {
-      clear = functions[cmdSplit[1]].length;
+      clear = (functions[cmdSplit[1]]).length;
       clearMode = "multiple";
       clearFunc = cmdSplit[1];
       break;
