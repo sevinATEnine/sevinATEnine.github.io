@@ -300,7 +300,13 @@ function doCommand() {
           break;
         }
         case "battery": {
-          output.textContent = navigator.getBattery();
+          navigator.getBattery()
+    .then(function(battery) {
+        output.textContent = (battery.level * 100) + "%";
+    })
+    .catch(function() {
+        output.textContent = "Error 05: failed to read battery level"
+    });
         }
       }
       break;
