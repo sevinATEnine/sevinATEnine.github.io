@@ -192,7 +192,7 @@ function doCommand() {
     break;
     }
     case "add-exec": {
-      execWindow.push(varHandle(command.value,8));
+      execWindow.push(command.value.slice(9));
       break;
     }
     case "ranks": {
@@ -295,12 +295,12 @@ function doCommand() {
     }
     case "get": {
       switch(cmdSplit[1]) {
-        case "mouse-position": {
-          output.textContent = `X: ${window.clientX},Y: ${window.clientY}`;
+        case "user": {
+          output.textContent = sessionStorage.getItem("userTerminalCST");
           break;
         }
-        case "managed": {
-          output.textContent = window.clientInformation.managed;
+        case "battery": {
+          output.textContent = navigator.getBattery();
         }
       }
       break;
