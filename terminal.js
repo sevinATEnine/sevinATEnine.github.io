@@ -26,6 +26,7 @@ function downloadResource(url, filename) {
 function varHandle(data, len) {
   var outputSplit = data.slice(len+1).split("|");
   var final = "";
+  var final2 = "";
   var isString = true;
   for(var i = 0; i < outputSplit.length; i++) {
     if(isString == true) {
@@ -36,9 +37,19 @@ function varHandle(data, len) {
       isString = !isString;
     }
   }
-  return final;
-
-}
+  outputSplit = final.split("\\");
+  isString = true;
+  for(var i = 0; i < outputSplit.length; i++) {
+    if(isString == true) {
+      final2 += outputSplit[i];
+      isString = !isString;
+    } else {
+      final2 += parameters[parseFloat(outputSplit[i])-1];
+      isString = !isString;
+    }
+  }
+  return final2;
+};
 
 let names = {
   "c@d3N":"ThatGuyOverThere",
@@ -56,6 +67,7 @@ let names = {
   'Ethan': 'Ethan',
 }//basic name definitions
 var aliases = {};
+var parameters = [];
 var permitted = window.sessionStorage.getItem('permittedTerminalCST');
 var command = document.getElementById("command");
 var prev = document.getElementById("previous");
@@ -354,9 +366,10 @@ function doCommand() {
       break;
     }
     case "$": {
-      clear += (functions[cmdSplit[1]]).length;
+      clear = (functions[cmdSplit[1]]).length;
       clearMode = "multiple";
       clearFunc = cmdSplit[1];
+      parameters = command.value.slice(cmdSplit[1].length + 3).split(" ");
       break;
     }
     default: {
