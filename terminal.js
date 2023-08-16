@@ -354,7 +354,7 @@ function doCommand() {
       break;
     }
     case "$": {
-      clear = (functions[cmdSplit[1]]).length;
+      clear += (functions[cmdSplit[1]]).length;
       clearMode = "multiple";
       clearFunc = cmdSplit[1];
       break;
