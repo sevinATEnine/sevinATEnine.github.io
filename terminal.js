@@ -314,7 +314,7 @@ function doCommand() {
         case "battery": {
           navigator.getBattery()
     .then(function(battery) {
-        output.textContent = (battery.level * 100) + "%";
+        output.textContent = Math.round(battery.level * 100) + "%";
     })
     .catch(function() {
         output.textContent = "Error 05: failed to read battery level"
