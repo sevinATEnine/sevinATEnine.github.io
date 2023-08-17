@@ -74,4 +74,10 @@
       if (event.key == "Enter") {
         signin();
       } 
-  })
+    });
+
+    document.getElementById('username').addEventListener("keydown", function(event) {
+      if (event.key == "Enter") {
+        signin();
+      } 
+    });
