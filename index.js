@@ -30,9 +30,9 @@
 
 
 
-    fetch('./bannedUsers.txt')
-    .then(response => response.text())
-    .then(text => console.log(text))
+    // fetch('./bannedUsers.txt')
+    // .then(response => response.text())
+    // .then(text => console.log(text))
    
     // ban-$|m0n=false,
     // ban-c@d3N=false,
@@ -47,6 +47,19 @@
     function signin() {
       password = document.getElementById('password');
       username = document.getElementById('username');
+
+      fetch('./bannedUsers.txt')
+      .then(response => response.text())
+      .then(text => function() {
+        if (text.split('\n').includes(username.values)) {
+          document.getElementById('blocked').style.display = 'block';
+          return 0;
+        }
+      });
+
+      
+
+
       if (username.value == "root") {
         document.getElementById('noroot').style.display = 'block';
         return 0;
