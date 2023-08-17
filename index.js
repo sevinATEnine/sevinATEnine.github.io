@@ -32,7 +32,7 @@
 
     fetch('./bannedUsers.txt')
     .then(response => response.text())
-    .then(text => console.log(text))
+    .then(text => console.log("|"+text+"|"))
    
     // ban-$|m0n=false,
     // ban-c@d3N=false,
