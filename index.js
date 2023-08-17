@@ -57,9 +57,7 @@
         }
       });
 
-      
-
-
+    
       if (username.value == "root") {
         document.getElementById('noroot').style.display = 'block';
         return 0;
