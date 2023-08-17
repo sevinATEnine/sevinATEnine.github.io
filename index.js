@@ -30,9 +30,9 @@
 
 
 
-    fetch('./bannedUsers.txt')
-    .then(response => response.text())
-    .then(text => console.log("|"+text+"|"))
+    // fetch('./bannedUsers.txt')
+    // .then(response => response.text())
+    // .then(text => console.log("|"+text+"|"))
    
     // ban-$|m0n=false,
     // ban-c@d3N=false,
@@ -51,6 +51,9 @@
       fetch('./bannedUsers.txt')
       .then(response => response.text())
       .then(text => function() {
+        console.log("|"+text+"|");
+        console.log("|"+username+"|");
+        console.log(text.split('\n'));
         if (text.split('\n').includes(username.values)) {
           document.getElementById('blocked').style.display = 'block';
           return 0;
