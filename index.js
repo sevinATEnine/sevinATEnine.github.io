@@ -69,3 +69,9 @@
         sessionStorage.setItem('permittedTerminalCST', 'denied');
       }
     }
+
+    document.getElementById('password').addEventListener("keydown", function(event) {
+      if (event.key == "Enter") {
+        signin();
+      } 
+  })
