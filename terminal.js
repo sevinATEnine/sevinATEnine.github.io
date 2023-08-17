@@ -77,7 +77,7 @@ var clear = 0;
 var foreground = 'green';
 var functions = {};
 var clearMode = "";
-var clearFunc = [];
+var clearFunc = "";
 //Just some variables
 
 // else if (localStorage.getItem("lockdownMode") === "active") {
@@ -369,7 +369,7 @@ function doCommand() {
     case "$": {
       clear = (functions[cmdSplit[1]]).length;
       clearMode = "multiple";
-      clearFunc.push(cmdSplit[1]);
+      clearFunc = cmdSplit[1];
       parameters = command.value.slice(cmdSplit[1].length + 3).split(" ");
       break;
     }
@@ -394,18 +394,13 @@ function doCommand() {
   prev.appendChild(output);
   prevCommand = command.value;
   if (clear === 0) {
-    clearFunc.pop();
-    if (clearFunc.length == 0) {
-    command.value = "";
-    } else {
-    clear = functions[clearFunc[clearFunc.length - 1]].length;
-    }
-  } 
+      command.value = "";
+  }
   else {
     if (clearMode == "single") {
     command.value = execWindow[execWindow.length-1];
     } else {
-    command.value = functions[clearFunc[clearFunc.length - 1]][functions[clearFunc[clearFunc.length - 1]].length - clear];
+    command.value = functions[clearFunc][functions[clearFunc].length - clear];
     }
     clear -= 1;
     doCommand();
