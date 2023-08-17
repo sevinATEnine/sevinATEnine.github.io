@@ -14,7 +14,6 @@
       'Ethan':'123',
       'root': 'go awwaaaayyyyy now!!!',
     };
-   
     // fetch('https://api.ipify.org?format=json')
 
 
