@@ -45,22 +45,23 @@
 
 
     function signin() {
-      password = document.getElementById('password');
-      username = document.getElementById('username');
+      var password = document.getElementById('password');
+      var username = document.getElementById('username');
+      var tempUser = username.value;
 
       fetch('./bannedUsers.txt')
       .then(response => response.text())
-      .then(text => function() {
-        console.log("|"+text+"|");
-        console.log("|"+username+"|");
-        console.log(text.split('\n'));
-        if (text.split('\n').includes(username.values)) {
-          document.getElementById('blocked').style.display = 'block';
-          return 0;
+      // .then(text => console.log(text.split('\n'))
+      .then(text => {
+        console.log((text.split('\n')).filter(item => item !== ''));
+        var items = text.split('\n').filter(item => item !== '');
+        console.log(tempUser);
+        console.log(items.includes(tempUser));
+        if (items.includes(tempUser)) {
+          location.href="./blocked.html";
         }
-      });
-
-    
+      })
+      
       if (username.value == "root") {
         document.getElementById('noroot').style.display = 'block';
         return 0;
