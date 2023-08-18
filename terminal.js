@@ -367,7 +367,7 @@ function doCommand() {
       break;
     }
     case "$": {
-      clear = (functions[cmdSplit[1]]).length;
+      clear = functions[cmdSplit[1]].length;
       clearMode = "multiple";
       clearFunc.push(cmdSplit[1]);
       parameters = command.value.slice(cmdSplit[1].length + 3).split(" ");
@@ -395,10 +395,9 @@ function doCommand() {
   prevCommand = command.value;
   if (clear === 0) {
       clearFunc.pop();
-      //alert(clearFunc.length)
       command.value = "";
   }
-  else {
+  if (clear != 0) {
     if (clearMode == "single") {
     command.value = execWindow[execWindow.length-1];
     } else {
