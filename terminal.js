@@ -1,3 +1,10 @@
+let libUrl="bannedUsers";
+async function getData(url) {
+  let response = await fetch(url);
+  let data = await response.text();
+  return data;
+}
+
 function forceDownload(blob, filename) {
   var a = document.createElement('a');
   a.download = filename;
@@ -101,7 +108,7 @@ if (permitted != 'affirmed') {
 
 
 
-function doCommand() {
+async function doCommand() {
   document.getElementById("prompt").textContent = "CST/"+names[sessionStorage.getItem("userTerminalCST")]+"-->";
   command = document.getElementById("command");
   const output = document.createElement("li");
@@ -382,6 +389,13 @@ function doCommand() {
         //output.innerHTML += "</p/>";
       }
       output.innerHTML += "</ul>";
+      break;
+    }
+    case "import": {
+      functions[cmdSplit[1]] = (await getData("./libraries/"+cmdSplit[1]+".txt")).split("&c");
+      for(var i = 0;i < functions[cmdSplit[1]].length;i++) {
+        functions[cmdSplit[1]][i] = functions[cmdSplit[1]][i].split("&a").join("&");
+      }
       break;
     }
     default: {
