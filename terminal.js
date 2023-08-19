@@ -373,6 +373,17 @@ function doCommand() {
       parameters = command.value.slice(cmdSplit[1].length + 3).split(" ");
       break;
     }
+    case "view-func": {
+      var funcToRead = functions[cmdSplit[1]];
+      output.innerHTML = "<ul>";
+      for(var i = 0; i < funcToRead.length;i++) {
+        output.innerHTML += "<li>"+funcToRead[i].split("&").join("&amp;").split("<").join("&lt;")+"</li>";
+        //output.innerHTML += funcToRead[i].split("<").join("&lt;").split("&").join("&amp;");
+        //output.innerHTML += "</p/>";
+      }
+      output.innerHTML += "</ul>";
+      break;
+    }
     default: {
       output.innerHTML = "Error 01: Invalid command";
       output.className = "error";
