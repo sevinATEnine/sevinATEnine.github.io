@@ -1,0 +1,1 @@
+alias userTerminalCST \1\&csave soft userTerminalCST&cthrow important User switched successfully.
