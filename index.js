@@ -14,6 +14,21 @@
       'Ethan':'123',
       'root': 'go awwaaaayyyyy now!!!',
     };
+
+    let banned = {
+      'c@d3N': false,
+      '$|m0n': false,
+      '70DD': false,
+      '$@wy3|-': false,
+      'GUesT_1.0': false,
+      'c2@r@': false,
+      'm0m': false,
+      'd@d': false,
+      'TigerShark6471': false,
+      'dev testing': false,
+      'Ethan':false,
+      'root': false,
+    };
     // fetch('https://api.ipify.org?format=json')
 
 
@@ -66,7 +81,7 @@
         document.getElementById('noroot').style.display = 'block';
         return 0;
       }
-      if (users[username.value] == password.value) {
+      if ((users[username.value] == password.value)&& (!banned[username.value])) {
         sessionStorage.setItem('permittedTerminalCST', 'affirmed');
         sessionStorage.setItem("userTerminalCST", username.value);
         document.getElementById('success').style.display = 'block';
