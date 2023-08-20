@@ -44,7 +44,7 @@ function varHandle(data, len) {
       isString = !isString;
     }
   }
-  final = final.split('&n').join('\n').split('&s').join(' ').split('&p').join('|').split('&b').join('\\').split('&a').join('&')
+  //final = final.split('&n').join('\n').split('&s').join(' ').split('&p').join('|').split('&b').join('\\').split('&a').join('&')
   outputSplit = final.split("\\");
   isString = true;
   for(var i = 0; i < outputSplit.length; i++) {
@@ -56,6 +56,7 @@ function varHandle(data, len) {
       isString = !isString;
     }
   }
+  final2 = final2.split('&n').join('\n').split('&s').join(' ').split('&p').join('|').split('&b').join('\\').split('&a').join('&')
   return final2;
 };
 
