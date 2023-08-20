@@ -393,9 +393,11 @@ async function doCommand() {
       break;
     }
     case "import": {
-      functions[cmdSplit[1]] = (await getData("./libraries/"+cmdSplit[1]+".txt")).split("&c");
-      for(var i = 0;i < functions[cmdSplit[1]].length;i++) {
-        functions[cmdSplit[1]][i] = functions[cmdSplit[1]][i].split("&a").join("&");
+      var e;
+      if (cmdSplit.length === 2) {e = 1;} else {e = 2;};
+      functions[cmdSplit[e]] = (await getData("./libraries/"+cmdSplit[1]+".txt")).split("&c");
+      for(var i = 0;i < functions[cmdSplit[e]].length;i++) {
+        functions[cmdSplit[e]][i] = functions[cmdSplit[e]][i].split("&a").join("&");
       }
       break;
     }
