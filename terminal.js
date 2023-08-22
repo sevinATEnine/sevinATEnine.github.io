@@ -52,7 +52,7 @@ function varHandle(data, len) {
       final2 += outputSplit[i];
       isString = !isString;
     } else {
-      final2 += parameters[parseFloat(outputSplit[i])-1];
+      final2 += parameters[parameters.length-1][parseFloat(outputSplit[i])-1];
       isString = !isString;
     }
   }
@@ -86,7 +86,7 @@ var clear = 0;
 var foreground = 'green';
 var functions = {};
 var clearMode = "";
-var clearFunc = [];
+var clearFunc = "";
 //Just some variables
 
 // else if (localStorage.getItem("lockdownMode") === "active") {
@@ -138,6 +138,20 @@ async function doCommand() {
       command.style.animation="colore-colors 5s infinite";
       document.getElementById("prompt").style.animation="colore-colors 5s infinite";
       command.style.animation="colore-colors 5s infinite";
+      break;
+    }
+    case "add-from": {
+      for(var i = 0;i < functions[cmdSplit[1]].length;i++) {
+        execWindow.push(functions[cmdSplit[1]][i]);
+      }
+      break;
+    }
+    case "outer": {
+      parameters.pop();
+      break;
+    }
+    case "inner": {
+      parameters.push(command.value.slice(6).split(" "));
       break;
     }
     case "copy": {
@@ -378,8 +392,8 @@ async function doCommand() {
     case "$": {
       clear = functions[cmdSplit[1]].length;
       clearMode = "multiple";
-      clearFunc.push(cmdSplit[1]);
-      parameters = command.value.slice(cmdSplit[1].length + 3).split(" ");
+      clearFunc = cmdSplit[1];
+      parameters.push(command.value.slice(cmdSplit[1].length + 3).split(" "));
       break;
     }
     case "view-func": {
@@ -423,14 +437,13 @@ async function doCommand() {
   prev.appendChild(output);
   prevCommand = command.value;
   if (clear === 0) {
-      clearFunc.pop();
       command.value = "";
   }
   if (clear != 0) {
     if (clearMode == "single") {
     command.value = execWindow[execWindow.length-1];
     } else {
-    command.value = functions[clearFunc[clearFunc.length-1]][functions[clearFunc[clearFunc.length-1]].length - clear];
+    command.value = functions[clearFunc][functions[clearFunc].length - clear];
     }
     clear -= 1;
     doCommand();
