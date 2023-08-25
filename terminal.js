@@ -344,6 +344,7 @@ async function doCommand() {
         output.textContent = "Error 05: failed to read battery level"
         output.className = "error";
     });
+      break;
         }
       }
       break;
