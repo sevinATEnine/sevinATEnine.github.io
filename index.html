@@ -11,11 +11,10 @@
       border-radius: 5px;
       height: 20px;
     }
-    button {
+    button,label {
       width: 30%;
-      height: 30px;
       margin-left: 35%;
-
+      height: 30px;
       background-color: skyblue;
       border-radius: 5px;
       color: black;
@@ -24,7 +23,11 @@
       border: none;
       text-decoration: none;
     }
-    button:hover {
+    label {
+      width:20%;
+      margin-left:40%;
+    }
+    button:hover,label:hover {
       text-decoration: underline;
     }
     a {
@@ -50,6 +53,10 @@
     body {
       background-color: rgb(218, 237, 255);
     }
+    input[type="file"] {
+      margin:10px 0pxs;
+      display:none;
+    }
   </style>
 </head>
 <body onload="initial();">
@@ -69,8 +76,10 @@
     type="password"
   /><br />
   <button id="login" onclick="signin();">Sign in</button><br>
-  <span>Or enter root data key:</span>
-  <input id="file-input" type="file" name="file" value="Or enter a root data key"/>
+  <hr/>
+  <label for="file-input">Or enter root data key:</label>
+  <input id="file-input" type="file"/>
+  <hr/>
   <center>
     <a id="login" href="./signup.html">Dont have an account? Sign up!</a>
     <br><br><br>
