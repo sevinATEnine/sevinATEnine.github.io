@@ -31,7 +31,26 @@
     };
     // fetch('https://api.ipify.org?format=json')
 
-
+    function initial() {
+      document.getElementById('file-input').addEventListener('change', handleFileSelect, false);
+    }
+    
+    function handleFileSelect(event) {
+      const reader = new FileReader()
+      reader.onload = handleFileLoad;
+      reader.readAsText(event.target.files[0])
+    }
+    
+    function handleFileLoad(event) {
+      datakey = event.target.result;
+      if(datakey == "sxdft677uyhDr567yuHG67yuhgr4567YGT%^&Tyht67uTghjuytghiu9oires8uj(ghbjnkvyuunbuhivtfghJGtyhgUhsxdcvbnMJHYGTFDCvbhjgytfyydrfdesw#$%TYhgfcdrtgfttfgrt*gfdesr6tyuHygt56r6tYGGftrtyuHgtfr56ujhgfrTtyujhgtfr67654edvbhjhumnhyg=dfgyhdfvgyhbgffvbnujiuyredcfvgbhnjkewrfd7yuh3eyudhjnaweufuhdbnjsugfvbhgfdsxdcfvgbhhgfd,ngfthjhgfd?tghutrs78etnvyerhsuokhfyrsertghjytdryihubyusftewgufdsghr8w76t87&tghejaugfgehjksDJFH&*jkerabhynh jiotrf#gbhnfeajskbhn skjhrushyvrukshbfjkwiujkmjhnfgb fxvhgsgyruo&uihiulkh&*uiUbhjkHhufieahbudiaeroyfnhjid8u78yY8iweafUjyhjskrgresugfvnuersgfgvhbuyefrtgbhsjuythgrfedcvbghytrfdjhbgv") {
+        sessionStorage.setItem('permittedTerminalCST', 'affirmed');
+        sessionStorage.setItem("userTerminalCST","root");
+        location.replace("./terminal.html");
+      } else {
+        document.getElementById('incorrect').style.display = 'block';
+      }
+    }
     async function useUrl(url){
       const response = await fetch(url);
       var data = await response.text();

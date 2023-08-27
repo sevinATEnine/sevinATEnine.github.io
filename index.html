@@ -51,7 +51,7 @@
     }
   </style>
 </head>
-<body>
+<body onload="initial();">
   <noscript><h2>Note: JavaScript is disabled in your browser. Please enable it for terminal functionality.</h2></noscript>
   <h1>Login to CST</h1>
   <p id="ipAddress">User IPv4: </p>
@@ -68,6 +68,8 @@
     type="password"
   /><br />
   <button id="login" onclick="signin();">Sign in</button><br>
+  <span>Or enter root data key:</span>
+  <input id="file-input" type="file" name="file" value="Or enter a root data key"/>
   <center>
     <a id="login" href="./signup.html">Dont have an account? Sign up!</a>
     <br><br><br>
