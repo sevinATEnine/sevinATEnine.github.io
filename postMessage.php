@@ -19,7 +19,7 @@
     die("Connection failed: " . $conn->connect_error);
   }
     if (startsWith(($_GET['username']), "[")) {
-        echo(('You are not ' . $_GET['username'] . '. Don\'t try to fake as them. ANyhting starting with [ is reserved for root.'));
+        echo(('You are not ' . $_GET['username'] . '. Don\'t try to fake as them. Anything starting with `[` is reserved for root.'));
         die();
     };
 

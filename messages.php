@@ -56,6 +56,14 @@
   <div id="messages">
   <br>
   <?php
+
+  $colors = [
+    '[SYSTEM]' => 'magenta',
+    'koala' => 'purple',
+    'Me' => 'cyan',
+    '$|m0n' => 'red',
+  ];
+
   $servername = "localhost";
   $username = "elem435_cst_usr";
   $password = "#3rm|n@2";
@@ -74,11 +82,8 @@
   if ($result->num_rows > 0) {
     // output data of each row
     while($row = $result->fetch_assoc()) {
-      if ($row["username"] == "[SYSTEM]") {
-        echo "<font color='magenta'>" . $row["username"] . "</font>: ". $row["messageContent"] . "<br>";
-      } else {
-        echo "<font color='blue'>" . $row["username"]. "</font>: ". $row["messageContent"] . "<br>";
-      }
+
+      echo "<font color='".$colors[$row['username']]."'>" . $row["username"] . "</font>: ". $row["messageContent"] . "<br>"; 
     }
   } else {
     echo "No messages";
