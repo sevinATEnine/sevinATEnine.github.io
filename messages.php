@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <head>
-  <meta http-equiv="refresh" content="5">  
   <title>CST Messages</title>
   <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
   <style>
@@ -48,8 +47,15 @@
 <body>
   <h1>CST Messages - Only works on <a href="https://hobbyrobot.com/cst/messages.php">Hobbyrobot website</a></h1>
         <a href="./index.html">Back to login</a>
-  </script>
-
+        
+        <script>
+          function autoRefresh() {
+            if (((document.getElementsByName('username')[0].value)=="") && ((document.getElementsByName('message')[0].value)=="")) {
+              window.location = window.location.href;
+            }
+          }
+          setInterval('autoRefresh()', 5000);
+        </script>
 
   <br>
   <br>
