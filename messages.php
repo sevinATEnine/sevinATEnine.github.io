@@ -63,7 +63,7 @@
     'koala' => 'purple',
     'Me' => 'cyan',
     '$|m0n' => 'red',
-    '(@d3N' => 'orange',
+    'c@d3N' => 'orange',
   ];
 
   $servername = "localhost";
