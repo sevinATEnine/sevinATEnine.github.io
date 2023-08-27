@@ -105,6 +105,9 @@ if (permitted != 'affirmed') {
   window.alert("Sorry, but you do not have permission to use the cst terminal. Please use the sign-in on our home page to gain access.");
   location.replace("./index.html");
 } else {
+  // if ((names[sessionStorage.getItem("userTerminalCST")])=="$@wy3|-") {
+  //   document.write('ERROR SAWYER DETECTED!!!!');
+  // } 
   document.getElementById("prompt").textContent = "CST/"+names[sessionStorage.getItem("userTerminalCST")]+"-->";
   command.focus();
 }//Access granted? Time to find out!
