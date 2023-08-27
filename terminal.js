@@ -418,6 +418,14 @@ async function doCommand() {
       }
       break;
     }
+    case "anti-sawyer": {
+      output.innerHTML = "Alert, Alert, Alert!!!!!! page has been compermised shutting down";
+      output.classname = "fatal-error";
+      setTimeout(function() {
+        window.location = "https://www.theannoyingsite.com";
+      }, 10000)
+      break;
+    }
     default: {
       output.innerHTML = "Error 01: Invalid command";
       output.className = "error";
