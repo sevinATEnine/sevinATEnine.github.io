@@ -13,6 +13,7 @@
       'dev testing': 'devs only',
       'Ethan':'123',
       'root': 'go awwaaaayyyyy now!!!',
+      '(@2v1n': 'is a nerd',
     };
 
     let banned = {
