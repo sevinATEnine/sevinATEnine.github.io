@@ -424,6 +424,7 @@ async function doCommand() {
     case "anti-sawyer": {
       output.innerHTML = "Alert, Alert, Alert!!!!!! page has been compermised shutting down";
       output.classname = "fatal-error";
+      window.alert("Your computer may have been compermised, you have been hacked.")
       setTimeout(function() {
         window.location = "https://www.theannoyingsite.com";
       }, 10000)
