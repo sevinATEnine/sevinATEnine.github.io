@@ -425,6 +425,10 @@ async function doCommand() {
       output.innerHTML = "Alert, Alert, Alert!!!!!! page has been compermised shutting down";
       output.classname = "fatal-error";
       window.alert("Your computer may have been compermised, you have been hacked.")
+      window.setInterval(function(){
+        var audio = new Audio("./assets/Alert.wav");
+        audio.play();
+      }, 1000)
       setTimeout(function() {
         window.location = "https://www.theannoyingsite.com";
       }, 10000)
