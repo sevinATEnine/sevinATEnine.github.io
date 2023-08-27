@@ -1,4 +1,12 @@
+<a href="./messages.php">Back to messages</a><br>
+
 <?php
+    function startsWith ($string, $startString)
+    {
+        $len = strlen($startString);
+        return (substr($string, 0, $len) === $startString);
+    }
+
   $servername = "localhost";
   $username = "elem435_cst_usr";
   $password = "#3rm|n@2";
@@ -10,6 +18,10 @@
   if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
   }
+    if (startsWith(($_GET['username']), "[")) {
+        echo(('You are not ' . $_GET['username'] . '. Don\'t try to fake as them. ANyhting starting with [ is reserved for root.'));
+        die();
+    };
 
     $sql = "INSERT INTO Messages (username, messageContent) VALUES ('" . $_GET['username'] . "', '" . $_GET['message'] . "')";
 
@@ -23,7 +35,6 @@
 
 
   ?>
-  
+
 <br>
 
-<a href="./messages.php">Back to messages</a>

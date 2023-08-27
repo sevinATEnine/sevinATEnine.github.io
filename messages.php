@@ -40,6 +40,7 @@
       overflow-x: wrap;
       background: rgb(218, 237, 230);
       width:100%;
+      cursor: pointer;
     }
   </style>
 </head>
@@ -73,7 +74,11 @@
   if ($result->num_rows > 0) {
     // output data of each row
     while($row = $result->fetch_assoc()) {
-      echo $row["username"]. ": ". $row["messageContent"] . "<br>";
+      if ($row["username"] == "[SYSTEM]") {
+        echo "<font color='magenta'>" . $row["username"] . "</font>: ". $row["messageContent"] . "<br>";
+      } else {
+        echo "<font color='blue'>" . $row["username"]. "</font>: ". $row["messageContent"] . "<br>";
+      }
     }
   } else {
     echo "No messages";
