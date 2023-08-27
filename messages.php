@@ -27,14 +27,24 @@
 
     * {
       font-family: "Lucida Console", "Menlo", "Monaco", "Courier", monospace;
+      
     }
     body {
-      background-color: rgb(218, 237, 255);
+      background: rgb(218, 237, 255);
+    }
+
+    #messages {
+      height: 400px;
+      max-height: 400px;
+      overflow-y: scroll;
+      overflow-x: wrap;
+      background: rgb(218, 237, 230);
+      width:100%;
     }
   </style>
 </head>
 <body>
-  <h1>CST Messages</h1>
+  <h1>CST Messages - Only works on <a href="https://hobbyrobot.com/cst/messages.php">Hobbyrobot website</a></h1>
         <a href="./index.html">Back to login</a>
   </script>
 
@@ -42,8 +52,8 @@
   <br>
   <br>
   <hr>
+  <div id="messages">
   <br>
-
   <?php
   $servername = "localhost";
   $username = "elem435_cst_usr";
@@ -68,20 +78,20 @@
   } else {
     echo "No messages";
   }
-
+  
   $conn->close();
-
-
-  // $sql = "CREATE DATABASE Messages";
-  // if ($conn->query($sql) === TRUE) {
-  //   echo "Database created successfully";
-  // } else {
-  //   echo "Error creating database: " . $conn->error;
-  // }
 
 
   ?>
   <br>
+  </div>
   <hr>
+  <br>
+  <h2>Post message</h2>
+  <form action="./postMessage.php" method="get">
+    Username <input placeholder="name" name="username" required><br>
+    Message <input placeholder="message" name="message" required><br>
+    <input type="submit" value="Post">
+  </form>
 
 </body>
