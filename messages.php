@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <head>
+  <meta http-equiv="refresh" content="5">  
   <title>CST Messages</title>
   <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
   <style>
