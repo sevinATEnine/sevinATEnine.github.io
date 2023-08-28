@@ -98,7 +98,7 @@
     // output data of each row
     while($row = $result->fetch_assoc()) {
 
-      echo "[" . $row['timeStamp'] . "] " . "<font color='".$colors[$row['username']]."'>" . $row["username"] . "</font>: ". $row["messageContent"] . "<br>"; 
+      echo "[" . $row["timeStamp"] . "] " . "<font color='".$colors[$row['username']]."'>" . $row["username"] . "</font>: ". $row["messageContent"] . "<br>"; 
     }
   } else {
     echo "No messages";
