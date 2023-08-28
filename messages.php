@@ -91,7 +91,7 @@
     die("Connection failed: " . $conn->connect_error);
   }
 
-  $sql = "SELECT username, messageContent, timePosted FROM Messages WHERE username IN('$|m0n','$@wy3|-', '(2@r@')";
+  $sql = "SELECT username, messageContent, timePosted FROM Messages WHERE username IN('$|m0n','$@wy3|-', '(2@r@', '(@d3N', '(#@r2|3', '')";
   $result = $conn->query($sql);
 
   if ($result->num_rows > 0) {
