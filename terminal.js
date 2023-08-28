@@ -125,6 +125,41 @@ async function doCommand() {
       output.innerHTML = "<ul><li>* Work in progress<li>welcome: Shows the welcome screen<li>help: Shows list of basic commands<li>docs: Shows all commands *<li>credits: Shows credits<li>echo: Prints text<li>quit or exit: Logs out of CST<li>kill: Kills the terminal and forwards to an empty page<li>clear: CLears the terminal<li>admin: Enters the root user<li>ranks: Displays list of ranks<li>users: Displays list of users<li>exec: Executes commands<li>alias [key] [value]: Makes alias<li>get-alias [key]: Gets the value of an alias<li>theme [bg] [fg]: Changes the theme<li>dowload [name] [url]: Dowloads a file from a url<li>echo [text]: Prints out text<li>save [hard|soft] [key]: Saves aliase to sessionstorge|localstorage<li>view-save [hard|soft] [key]: Views data saved by save command in sessionstorge|localstorage<li>clear-save [hard|soft|var]: Clears data saved by save command in sessionstorge|localstorage|variables<li>redirect [url]: Redirects to a url<li>exec: Runs a command set by add-exec<li>add-exec: Sets the exec command to execute a command<li>cursor [cursor]: Changes the cursor<li>watch-me: Makes a mirror<li>html [code]: Generates html<li>reset: Resets the terminal<li>throw [type] [text]: Throws an error<li>colore: Changes the default colors<li>anti-sawyer: VITIAL TO KEEPING SAWER OFF THE TERMINAL, WE CANNOT LET SAWYER READ THIS OR HE WILL HAVE FULL ACCESS TO EVERYTHING</ul>";
       break;
     }
+    case "read": {
+      var file = document.createElement("input")
+      file.type = "file";
+      file.click();
+      file.addEventListener("change",handleFileSelect,false)
+      function handleFileSelect(event) {
+        const reader = new FileReader()
+        reader.onload = handleFileLoad;
+        reader.readAsText(event.target.files[0])
+      }
+      
+      function handleFileLoad(event) {
+        var content = event.target.result;
+        output.textContent = "Contents of: "+file.value+":";
+        output.style.color = "white";
+        output.textContent += content;
+      }
+      break;
+    }
+    case "file": {
+      var file = document.createElement("input")
+      file.type = "file";
+      file.click();
+      file.addEventListener("change",handleFileSelect,false)
+      function handleFileSelect(event) {
+        const reader = new FileReader()
+        reader.onload = handleFileLoad;
+        reader.readAsText(event.target.files[0])
+      }
+      
+      function handleFileLoad(event) {
+        aliases[cmdSplit[1]] = event.target.result;
+      }
+      break;
+    }
     case "view-save": {
     if (varHandle(cmdSplit[1], 4) == "hard") {
       output.textContent = localStorage.getItem(cmdSplit[2]);
