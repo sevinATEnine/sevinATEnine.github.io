@@ -62,7 +62,7 @@
 
           // auto reload if both inputs are empty, as not to lose progress, and to refresh messages
           function notifacation(title, content, image, redirect) {
-            notificationShown = true;
+            notificationShown = false;
             const notifacation = new Notification(title,{
               body: content,
               icon: image
@@ -88,7 +88,6 @@
   <div id="messages">
   <br>
   <?php
-$forbidden = ["#Caden-dev","#Simon-dev"];
   $colors = [
     '[SYSTEM]' => 'magenta',
     'koala' => 'purple',
@@ -108,7 +107,7 @@ $forbidden = ["#Caden-dev","#Simon-dev"];
   if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
   }
-  $sql = "SELECT username, messageContent FROM Messages WHERE username NOT IN('".forbidden[0]."','".forbidden[1]."');
+  $sql = "SELECT username, messageContent FROM Messages";
   $result = $conn->query($sql);
 
   if ($result->num_rows > 0) {
