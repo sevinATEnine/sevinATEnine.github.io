@@ -45,7 +45,7 @@
   </style>
 </head>
 <body>
-  <h1>CST Messages - Only works on <a href="https://hobbyrobot.com/cst/messages.php">Hobbyrobot website</a></h1>
+  <h1>CST Messages - Only works on <a href="https://hobbyrobot.com/cst/secretDevChat.php">Hobbyrobot website</a></h1>
         <a href="./index.html">Back to login</a>
         
         <script>
@@ -91,14 +91,14 @@
     die("Connection failed: " . $conn->connect_error);
   }
 
-  $sql = "SELECT username, messageContent FROM Messages WHERE username IN('#Caden-dev','#Simon-dev')";
+  $sql = "SELECT username, messageContent, timePosted FROM Messages WHERE username IN('#Caden-dev','#Simon-dev')";
   $result = $conn->query($sql);
 
   if ($result->num_rows > 0) {
     // output data of each row
     while($row = $result->fetch_assoc()) {
 
-      echo "[" . $row["timeStamp"] . "] " . "<font color='".$colors[$row['username']]."'>" . $row["username"] . "</font>: ". $row["messageContent"] . "<br>"; 
+      echo "[" . $row["timePosted"] . "] " . "<font color='".$colors[$row['username']]."'>" . $row["username"] . "</font>: ". $row["messageContent"] . "<br>"; 
     }
   } else {
     echo "No messages";
