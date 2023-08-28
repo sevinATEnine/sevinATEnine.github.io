@@ -56,7 +56,8 @@
           }
           setInterval('autoRefresh()', 5000);
           if(sessionStorage.getItem("userTerminalCST") != 'root' && sessionStorage.getItem("userTerminalCST") != 'c@d3N' && sessionStorage.getItem("userTerminalCST") != '$|m0n') {
-            document.innerHTML = "Sorry, but you are not permitted in the secret  dev chat.";
+            document.style.display = "none";
+            alert("Sorry, but you are not permitted in the secret  dev chat.");
           }
         </script>
 
