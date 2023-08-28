@@ -1,4 +1,4 @@
-<a href="./messages.php">Back to messages</a><br>
+
 
 <?php
     function startsWith ($string, $startString)
@@ -27,6 +27,7 @@
 
     if ($conn->query($sql) === TRUE) {
     echo "Successfully posted";
+    echo "<a href=".$_GET['redirect'].">Back to messages</a><br>";
     } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
     }
