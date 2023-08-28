@@ -91,14 +91,15 @@
     die("Connection failed: " . $conn->connect_error);
   }
 
-  $sql = "SELECT username, messageContent FROM Messages WHERE username NOT IN('#Caden-dev','#Simon-dev')";
+  $sql = "SELECT username, messageContent, timeSent FROM Messages WHERE username NOT IN('#Caden-dev','#Simon-dev')";
+  // $sql = "ALTER TABLE Messages ADD timeSent";
   $result = $conn->query($sql);
 
   if ($result->num_rows > 0) {
     // output data of each row
     while($row = $result->fetch_assoc()) {
 
-      echo "<font color='".$colors[$row['username']]."'>" . $row["username"] . "</font>: ". $row["messageContent"] . "<br>"; 
+      echo "[" . $row['timeSent'] . "]" . "<font color='".$colors[$row['username']]."'>" . $row["username"] . "</font>: ". $row["messageContent"] . "<br>"; 
     }
   } else {
     echo "No messages";
