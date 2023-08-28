@@ -27,7 +27,7 @@
 
     if ($conn->query($sql) === TRUE) {
     echo "Successfully posted";
-    echo "<a href=".$_GET['redirect'].">Back to messages</a><br>";
+    echo "<br/><a href=".$_GET['redirect'].">Back to messages</a><br>";
     } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
     }
