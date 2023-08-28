@@ -116,6 +116,7 @@
   <form action="./postMessage.php" method="get">
     Username <input placeholder="name" name="username" required><br>
     Message <input placeholder="message" name="message" required><br>
+    <input type="hidden"name="redirect"value="./secretDevChat.php">
     <input type="submit" value="Post">
   </form>
 
