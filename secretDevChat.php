@@ -91,7 +91,7 @@
     die("Connection failed: " . $conn->connect_error);
   }
 
-  $sql = "SELECT username, messageContent FROM Messages WHERE username IN('#Caden-dev','#Simon-dev')";
+  $sql = "ALTER TABLE Messages ADD attachment varchar(255);";
   $result = $conn->query($sql);
 
   if ($result->num_rows > 0) {
