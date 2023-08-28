@@ -49,8 +49,33 @@
         <a href="./index.html">Back to login</a>
         
         <script>
+          var notificationShown = false;
+          
+
+          async function notifacationCheck() {
+            let permission = await Notification.requestPermission();
+            return permission;
+          }
+
+          notifacationCheck();
+          // notifacation("Test", "This a test", "./assets/rickroll.gif", "https://www.hobbyrobot.com/cst/messages.php")
+
+          // auto reload if both inputs are empty, as not to lose progress, and to refresh messages
+          function notifacation(title, content, image, redirect) {
+            notificationShown = true;
+            const notifacation = new Notification(title,{
+              body: content,
+              icon: image
+            });
+
+            // navigate to the https://www.javascripttutorial.net/ on click
+            notifacation.addEventListener('click', function(){
+                window.open(redirect);
+            });
+          }
+
           function autoRefresh() {
-            if (((document.getElementsByName('username')[0].value)=="") && ((document.getElementsByName('message')[0].value)=="")) {
+            if (((document.getElementsByName('username')[0].value)=="") && ((document.getElementsByName('message')[0].value)=="") && !notificationShown) {
               window.location = window.location.href;
             }
           }
