@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <head>
-  <title>CST Messages</title>
+  <title>CST Dev Messages</title>
   <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
   <style>
     input {
@@ -49,37 +49,17 @@
         <a href="./index.html">Back to login</a>
         
         <script>
-          var notificationShown = false;
-          
-
-          async function notifacationCheck() {
-            let permission = await Notification.requestPermission();
-            return permission;
+          if(sessionStorage.getItem("userTerminalCST") != 'root' && sessionStorage.getItem("userTerminalCST") != 'c@d3N' && sessionStorage.getItem("userTerminalCST") != '$|m0n') {
+            document.style.display = "none";
+            alert("Sorry, but you are not permitted in the secret  dev chat.");
           }
-
-          notifacationCheck();
-          // notifacation("Test", "This a test", "./assets/rickroll.gif", "https://www.hobbyrobot.com/cst/messages.php")
-
-          // auto reload if both inputs are empty, as not to lose progress, and to refresh messages
-          function notifacation(title, content, image, redirect) {
-            notificationShown = false;
-            const notifacation = new Notification(title,{
-              body: content,
-              icon: image
-            });
-
-            // navigate to the https://www.javascripttutorial.net/ on click
-            notifacation.addEventListener('click', function(){
-                window.open(redirect);
-            });
-          }
-
           function autoRefresh() {
-            if (((document.getElementsByName('username')[0].value)=="") && ((document.getElementsByName('message')[0].value)=="") && !notificationShown) {
+            if (((document.getElementsByName('username')[0].value)=="") && ((document.getElementsByName('message')[0].value)=="")) {
               window.location = window.location.href;
             }
           }
           setInterval('autoRefresh()', 5000);
+          
         </script>
 
   <br>
@@ -88,28 +68,36 @@
   <div id="messages">
   <br>
   <?php
-   $colors = [
+
+  $colors = [
     '[SYSTEM]' => 'magenta',
     'koala' => 'purple',
     'Me' => 'cyan',
     '$|m0n' => 'red',
     'c@d3N' => 'orange',
+    '#Caden-dev' => 'orange',
+    '#Simon-dev' => 'red',
   ];
+
   $servername = "localhost";
   $username = "elem435_cst_usr";
   $password = "#3rm|n@2";
   $dbname = "elem435_cst";
+
   // Create connection
   $conn = new mysqli($servername, $username, $password, $dbname);
   // Check connection
   if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
   }
+
   $sql = "SELECT username, messageContent FROM Messages";
   $result = $conn->query($sql);
+
   if ($result->num_rows > 0) {
     // output data of each row
     while($row = $result->fetch_assoc()) {
+
       echo "<font color='".$colors[$row['username']]."'>" . $row["username"] . "</font>: ". $row["messageContent"] . "<br>"; 
     }
   } else {
@@ -117,6 +105,7 @@
   }
   
   $conn->close();
+
 
   ?>
   <br>
