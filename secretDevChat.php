@@ -49,16 +49,17 @@
         <a href="./index.html">Back to login</a>
         
         <script>
+          if(sessionStorage.getItem("userTerminalCST") != 'root' && sessionStorage.getItem("userTerminalCST") != 'c@d3N' && sessionStorage.getItem("userTerminalCST") != '$|m0n') {
+            document.style.display = "none";
+            alert("Sorry, but you are not permitted in the secret  dev chat.");
+          }
           function autoRefresh() {
             if (((document.getElementsByName('username')[0].value)=="") && ((document.getElementsByName('message')[0].value)=="")) {
               window.location = window.location.href;
             }
           }
           setInterval('autoRefresh()', 5000);
-          if(sessionStorage.getItem("userTerminalCST") != 'root' && sessionStorage.getItem("userTerminalCST") != 'c@d3N' && sessionStorage.getItem("userTerminalCST") != '$|m0n') {
-            document.style.display = "none";
-            alert("Sorry, but you are not permitted in the secret  dev chat.");
-          }
+          
         </script>
 
   <br>
