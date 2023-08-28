@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <head>
-  <title>CST Dev Messages</title>
+  <title>CST Messages</title>
   <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
   <style>
     input {
