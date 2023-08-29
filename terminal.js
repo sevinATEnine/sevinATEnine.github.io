@@ -1,4 +1,3 @@
-let libUrl="";
 async function getData(url) {
   let response = await fetch(url);
   let data = await response.text();
@@ -78,6 +77,7 @@ let names = {
 }//basic name definitions
 var aliases = {};
 var parameters = [];
+let libUrl="";
 var permitted = window.sessionStorage.getItem('permittedTerminalCST');
 var command = document.getElementById("command");
 var prev = document.getElementById("previous");
@@ -88,6 +88,7 @@ var foreground = 'green';
 var functions = {};
 var clearMode = "";
 var clearFunc = "";
+var prevCommand = "";
 //Just some variables
 
 // else if (localStorage.getItem("lockdownMode") === "active") {
