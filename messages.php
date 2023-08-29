@@ -77,6 +77,7 @@
     'c@d3N' => 'orange',
     '#Caden-dev' => 'orange',
     '#Simon-dev' => 'red',
+    '(2@r@' => 'pink',
   ];
 
   $servername = "localhost";
