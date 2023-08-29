@@ -27,7 +27,7 @@
 
     if ($conn->query($sql) === TRUE) {
     echo "Successfully posted";
-    echo "<br/><a href=".$_GET['redirect'].">Back to messages</a><br>";
+    echo "<br/><a id='link'href=".$_GET['redirect'].">Back to messages</a><br>";
     } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
     }
@@ -36,6 +36,8 @@
 
 
   ?>
-
+<script>
+  document.getElementById("link").click();
+</script>
 <br>
 

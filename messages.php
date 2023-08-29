@@ -40,7 +40,7 @@
       overflow-x: wrap;
       background: rgb(218, 237, 230);
       width:100%;
-      cursor: pointer;
+      cursor: default;
     }
   </style>
 </head>

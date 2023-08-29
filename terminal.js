@@ -1,4 +1,3 @@
-let libUrl="";
 async function getData(url) {
   let response = await fetch(url);
   let data = await response.text();
@@ -78,6 +77,7 @@ let names = {
 }//basic name definitions
 var aliases = {};
 var parameters = [];
+let libUrl="";
 var permitted = window.sessionStorage.getItem('permittedTerminalCST');
 var command = document.getElementById("command");
 var prev = document.getElementById("previous");
@@ -88,6 +88,7 @@ var foreground = 'green';
 var functions = {};
 var clearMode = "";
 var clearFunc = "";
+var prevCommand = "";
 //Just some variables
 
 // else if (localStorage.getItem("lockdownMode") === "active") {
@@ -457,9 +458,9 @@ async function doCommand() {
       break;
     }
     case "anti-sawyer": {
-      output.innerHTML = "Alert, Alert, Alert!!!!!! page has been compermised shutting down";
+      output.innerHTML = "Alert, Alert, Alert!!!!!! page has been compromised. Shutting down...";
       output.classname = "fatal-error";
-      window.alert("Your computer may have been compermised, you have been hacked.")
+      window.alert("Your computer may have been compromised, you have been hacked.")
       var audio = new Audio("assets/Alert.wav");
       audio.play();
       break;
