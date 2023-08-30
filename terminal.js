@@ -465,10 +465,7 @@ async function doCommand() {
       break;
     }
     case "starwars-cont.": {
-    output.innerHTML("________________
-    /               \
-                        
-                        ")  
+    output.innerHTML = "________________\n/               \\";
     }
     break;
     default: {

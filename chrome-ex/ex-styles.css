@@ -1,0 +1,24 @@
+* {
+  font-family:"Lucida Console", "Menlo", "Monaco", "Courier", monospace;
+}
+div#popup-div {
+  width:25%;
+  background-color:rgb(218,237,255);
+  padding:10px;
+}
+a {
+  background-color:skyblue;
+  border-radius:4px;
+  color:black;
+  text-decoration:none;
+  width:90%;
+  margin-left:5%;
+  display:block;
+  text-align:center;
+}
+h1 {
+  text-align:center;
+}
+a:hover {
+  text-decoration:underline;
+}
