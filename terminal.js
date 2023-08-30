@@ -458,8 +458,7 @@ async function doCommand() {
       break;
     }
     case "anti-sawyer": {
-      output.innerHTML = "Alert, Alert, Alert!!!!!! page has been compromised. Shutting down...";
-      output.classname = "fatal-error";
+      output.classname = "throw fatal-error Alert, Alert, Alert!!!!!! page has been compermised. Shutting down...";
       window.alert("Your computer may have been compromised, you have been hacked.")
       var audio = new Audio("assets/Alert.wav");
       audio.play();
