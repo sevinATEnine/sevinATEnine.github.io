@@ -1,0 +1,82 @@
+<style>
+    * {
+        font-family: monospace;
+    }
+</style>
+
+<script>
+
+
+    search("chrome");
+    document.write("<br><br><br>")
+
+    for (item in window.navigator.plugins) {
+        document.write(window.navigator.plugins[item]['name']+": "+window.navigator.plugins[item]['description']+"<br>")
+    }
+
+
+    function search(location) {
+        document.write(location+" - "+typeof(eval(location))+"<br>")
+        var StringLocation = location;
+        for (item in eval(location)) {
+            document.write(("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;").repeat(((location + "." + item).split(".").length-1)) + "|---" + StringLocation+"."+item+" - "+typeof(eval(location + "." + item))+"<br>");
+            if (typeof(eval(location + "." + item))=="object") {
+                search2(((location + "." + item)))
+            }
+        }
+    }
+
+    function search2(location) {
+        var StringLocation = location;
+        for (item in eval(location)) {
+            document.write(("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;").repeat(((location + "." + item).split(".").length-1)) + "|---" + StringLocation+"."+item+" - "+typeof(eval(location + "." + item))+" = "+ eval(location + "." + item) +"<br>");
+            if (typeof(eval(location + "." + item))=="object") {
+                search2(((location + "." + item)))
+            }
+        }
+    }
+
+
+    document.write("<br>");
+    if (navigator.serviceWorker.controller) {
+        document.write('Automated');
+    } else {
+        document.write('Not automated');
+    }
+    document.write("<br>");
+    document.write("<br>");
+
+    document.write("<br>");
+    document.write("<br>");
+
+
+
+
+    
+
+</script>
+
+<script type="text/javascript">
+    txt = "<p>Browser CodeName: " + navigator.appCodeName + "</p>";
+    txt+= "<p>Browser Name: " + navigator.appName + "</p>";
+    txt+= "<p>Browser Version: " + navigator.appVersion + "</p>";
+    txt+= "<p>Cookies Enabled: " + navigator.cookieEnabled + "</p>";
+    txt+= "<p>Platform: " + navigator.platform + "</p>";
+    txt+= "<p>User-agent header: " + navigator.userAgent + "</p>";
+    document.write(txt);
+
+    document.write("<br>");
+
+    var OSName = "Unknown OS";
+    if (navigator.userAgent.indexOf("Win") != -1) OSName = "Windows";
+    if (navigator.userAgent.indexOf("Mac") != -1) OSName = "Macintosh";
+    if (navigator.userAgent.indexOf("Linux") != -1) OSName = "Linux";
+    if (navigator.userAgent.indexOf("Android") != -1) OSName = "Android";
+    if (navigator.userAgent.indexOf("like Mac") != -1) OSName = "iOS";
+    document.write('Your OS: ' + OSName);
+        
+</script>
+
+
+
+
