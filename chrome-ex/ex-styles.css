@@ -2,7 +2,7 @@
   font-family:"Lucida Console", "Menlo", "Monaco", "Courier", monospace;
 }
 div#popup-div {
-  width:25%;
+  width:90px;
   background-color:rgb(218,237,255);
   padding:10px;
 }
