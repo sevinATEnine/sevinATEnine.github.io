@@ -53,9 +53,14 @@
       'Calvin':false,
       'Guest':false,
       'S':false,
-      '123':'123',
-      'Cole':'123',
+      '123':false,
+      'Cole':false,
     };
+
+    let keys = {
+      "sxdft677uyhDr567yuHG67yuhgr4567YGT%^&Tyht67uTghjuytghiu9oires8uj(ghbjnkvyuunbuhivtfghJGtyhgUhsxdcvbnMJHYGTFDCvbhjgytfyydrfdesw#$%TYhgfcdrtgfttfgrt*gfdesr6tyuHygt56r6tYGGftrtyuHgtfr56ujhgfrTtyujhgtfr67654edvbhjhumnhyg=dfgyhdfvgyhbgffvbnujiuyredcfvgbhnjkewrfd7yuh3eyudhjnaweufuhdbnjsugfvbhgfdsxdcfvgbhhgfd,ngfthjhgfd?tghutrs78etnvyerhsuokhfyrsertghjytdryihubyusftewgufdsghr8w76t87&tghejaugfgehjksDJFH&*jkerabhynh jiotrf#gbhnfeajskbhn skjhrushyvrukshbfjkwiujkmjhnfgb fxvhgsgyruo&uihiulkh&*uiUbhjkHhufieahbudiaeroyfnhjid8u78yY8iweafUjyhjskrgresugfvnuersgfgvhbuyefrtgbhsjuythgrfedcvbghytrfdjhbgv": "root",
+
+    }
     // fetch('https://api.ipify.org?format=json')
 
     function initial() {
@@ -70,9 +75,9 @@
     
     function handleFileLoad(event) {
       datakey = event.target.result;
-      if(datakey == "sxdft677uyhDr567yuHG67yuhgr4567YGT%^&Tyht67uTghjuytghiu9oires8uj(ghbjnkvyuunbuhivtfghJGtyhgUhsxdcvbnMJHYGTFDCvbhjgytfyydrfdesw#$%TYhgfcdrtgfttfgrt*gfdesr6tyuHygt56r6tYGGftrtyuHgtfr56ujhgfrTtyujhgtfr67654edvbhjhumnhyg=dfgyhdfvgyhbgffvbnujiuyredcfvgbhnjkewrfd7yuh3eyudhjnaweufuhdbnjsugfvbhgfdsxdcfvgbhhgfd,ngfthjhgfd?tghutrs78etnvyerhsuokhfyrsertghjytdryihubyusftewgufdsghr8w76t87&tghejaugfgehjksDJFH&*jkerabhynh jiotrf#gbhnfeajskbhn skjhrushyvrukshbfjkwiujkmjhnfgb fxvhgsgyruo&uihiulkh&*uiUbhjkHhufieahbudiaeroyfnhjid8u78yY8iweafUjyhjskrgresugfvnuersgfgvhbuyefrtgbhsjuythgrfedcvbghytrfdjhbgv") {
+      if(keys[datakey]!="" && keys[datakey]!=undefined && keys[datakey]!=null) {
         sessionStorage.setItem('permittedTerminalCST', 'affirmed');
-        sessionStorage.setItem("userTerminalCST","root");
+        sessionStorage.setItem("userTerminalCST",keys[datakey]);
         location.replace("./terminal.html");
       } else {
         document.getElementById('incorrect').style.display = 'block';
