@@ -14,6 +14,19 @@
       'Ethan':'123',
       'root': 'go awwaaaayyyyy now!!!',
       '(@2v1n': 'is a nerd',
+      'Calvin':'123',
+      'Charlie':'123',
+      'Ethan':'123',
+      'Luke':'123',
+      'Luka':'123',
+      'Nico':'123',
+      'Samil':'123',
+      'Shaurya':'123',
+      'Calvin':'123',
+      'Guest':'123',
+      'S':'123',
+      '123':'123',
+      'Cole':'123',
     };
 
     let banned = {
@@ -29,6 +42,19 @@
       'dev testing': false,
       'Ethan':false,
       'root': false,
+      'Calvin':false,
+      'Charlie':false,
+      'Ethan':false,
+      'Luke':false,
+      'Luka':false,
+      'Nico':false,
+      'Samil':false,
+      'Shaurya':false,
+      'Calvin':false,
+      'Guest':false,
+      'S':false,
+      '123':'123',
+      'Cole':'123',
     };
     // fetch('https://api.ipify.org?format=json')
 
