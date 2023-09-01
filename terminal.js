@@ -91,24 +91,20 @@ var clearFunc = "";
 var prevCommand = "";
 //Just some variables
 
-// else if (localStorage.getItem("lockdownMode") === "active") {
-//   if(prompt("Enter lockdown shuttoff key:")==localStorage.getItem("lockdownCST")) {
-//     alert("Lockdown mode lifted. Please reload this page.");
-//     localStorage.setItem("lockdownMode", false);
-//   } else {
-//     alert("Access denied.");
-//     location.href = "./index.html";
-//   }
-// }
-
 if (permitted != 'affirmed') {
   document.getElementById('body').style.display = 'none';
   window.alert("Sorry, but you do not have permission to use the cst terminal. Please use the sign-in on our home page to gain access.");
   location.replace("./index.html");
 } else {
-  // if ((names[sessionStorage.getItem("userTerminalCST")])=="$@wy3|-") {
-  //   document.write('ERROR SAWYER DETECTED!!!!');
-  // } 
+  if (localStorage.getItem("lockdownMode") === "active") {
+  if(prompt("Enter lockdown shuttoff key:")==localStorage.getItem("lockdownCST")) {
+    alert("Lockdown mode lifted. Please reload this page.");
+    localStorage.setItem("lockdownMode", false);
+  } else {
+    alert("Access denied.");
+    location.href = "./index.html";
+  }
+}
   document.getElementById("prompt").textContent = "CST/"+names[sessionStorage.getItem("userTerminalCST")]+"-->";
   command.focus();
 }//Access granted? Time to find out!
