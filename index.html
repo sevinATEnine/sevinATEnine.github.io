@@ -170,10 +170,24 @@
   <form action="submitIssue.php" method="get">
     Username <input name="issueUser" type="text" class="issueInput"><br>
     Message <input name="issueBody" type="text" class="issueInput"><br>
-    <input type="submit" value="Submit" class="issueInput">
+    <input type="submit" value="Submit" class="issueInput" id="submitIssueButton">
 
-    
   </form>
+
+  <script>
+    if ((new Date().getDate())==(parseInt((JSON.parse(window.localStorage.getItem('issuesSubmited')))['expires']))) {
+      window.localStorage.setItem('issuesSubmited', JSON.stringify({"times":0, "expires": new Date().getDate()}))
+    }
+
+    if ((parseInt((JSON.parse(window.localStorage.getItem('issuesSubmited')))['times']))>2) {
+      document.getElementById('submitIssueButton').disabled = true;
+      
+    } else {
+      document.getElementById('submitIssueButton').disabled = false;
+    }
+    document.write(((parseInt((JSON.parse(window.localStorage.getItem('issuesSubmited')))['times']))+"/3 issues submited today"))
+
+  </script>
 
 </body>
 

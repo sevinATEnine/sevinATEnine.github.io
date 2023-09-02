@@ -13,6 +13,6 @@
 ?>
 
 <script>
+   window.localStorage.setItem('issuesSubmited', JSON.stringify({"times":((parseInt((JSON.parse(window.localStorage.getItem('issuesSubmited')))['times']))+1), "expires": new Date().getDate()+1}))
    window.location = "./index.html";
-
 </script>
