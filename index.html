@@ -11,6 +11,14 @@
       border-radius: 5px;
       height: 20px;
     }
+    .issueInput {
+      width: 25% !important;
+      margin-left: 0px !important;
+      margin-bottom: 3px !important;
+      border-radius: 5px !important;
+      height: 20px !important;
+    }
+
     button,label {
       width: 30%;
       margin-left: 35%;
@@ -151,6 +159,22 @@
 
   <script src="./index.js">
   </script>
+
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <h1>Submit issue</h1>
+  <form action="submitIssue.php" method="get">
+    Username <input name="issueUser" type="text" class="issueInput"><br>
+    Message <input name="issueBody" type="text" class="issueInput"><br>
+    <input type="submit" value="Submit" class="issueInput">
+
+    
+  </form>
+
 </body>
 
 
