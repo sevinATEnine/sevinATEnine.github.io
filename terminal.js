@@ -147,6 +147,11 @@ async function doCommand() {
       }
       break;
     }
+    case "filter": {
+      output.innerHTML = (await (await fetch("https://hobbyrobot.com/cst/filterText.php?text="+command.value.slice(7))).text());
+
+      break;
+    }
     case "file": {
       var file = document.createElement("input")
       file.type = "file";
