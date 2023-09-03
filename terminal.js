@@ -170,6 +170,9 @@ async function doCommand() {
       p.remove();
       break;
     }
+    case "/*/": {
+      return 0;
+    }
     case "view-save": {
     if (varHandle(cmdSplit[1], -1) == "hard") {
       output.textContent = localStorage.getItem(cmdSplit[2]);

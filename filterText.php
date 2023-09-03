@@ -3,9 +3,6 @@ function ReplaceBadWords($comment){
     $badword = array();
     $replacementword = array();
     $words = array("poo","poop", "pee", "pee-pee", "turd", "doo", "doo-doo");
-    foreach ($words as $word) {
-        echo($word."<br>");
-    };
     foreach ($words as $key => $word) {
     $badword[$key] = $word;
     $replacementword[$key] = addStars($word);
