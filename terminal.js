@@ -29,7 +29,10 @@ function downloadResource(url, filename) {
     })
     .catch(e => console.log(e));
 }
-function varHandle(data, len) {
+function ampHandle(data) {
+  return data.split('&n').join('\n').split('&s').join(' ').split('&p').join('|').split('&b').join('\\').split('&a').join('&');
+};
+function varHandle(data, len, mode = false) {
   var outputSplit = data.slice(len+1).split("|");
   var final = "";
   var final2 = "";
@@ -55,7 +58,9 @@ function varHandle(data, len) {
       isString = !isString;
     }
   }
-  final2 = final2.split('&n').join('\n').split('&s').join(' ').split('&p').join('|').split('&b').join('\\').split('&a').join('&')
+  if(mode === true) {
+    final2 = ampHandle(final2)
+  }
   return final2;
 };
 
@@ -159,7 +164,7 @@ async function doCommand() {
     }
     case "js": {
       var p = document.createElement("button");
-      p.setAttribute("onclick", varHandle(command.value,2));
+      p.setAttribute("onclick", varHandle(command.value,2,true));
       document.body.appendChild(p);
       p.click();
       p.remove();
@@ -199,7 +204,7 @@ async function doCommand() {
       break;
     }
     case "copy": {
-      window.navigator.clipboard.writeText(varHandle(command.value, 4));
+      window.navigator.clipboard.writeText(varHandle(command.value, 4,true));
       break;
     }
     case "view-copy": {
@@ -228,7 +233,7 @@ async function doCommand() {
       break;
     }
     case "echo": {
-      output.innerText = varHandle(command.value,4);
+      output.innerText = varHandle(command.value,4,true);
       break;
     }
     case "watch-me": {
@@ -248,11 +253,11 @@ async function doCommand() {
       break;
     }
     case "cursor": {
-      document.querySelector("body").style.cursor = varHandle(command.value, 6);
+      document.querySelector("*").style.cursor = varHandle(command.value, 6);
       break;
     }
     case "redirect": {
-      location.replace(varHandle(command.value,8));
+      location.replace(varHandle(command.value,8,true));
       break;
     }
     case "quit": {
@@ -284,7 +289,7 @@ async function doCommand() {
       break;
     }
     case "alias": {
-      aliases[cmdSplit[1]] = varHandle(command.value,cmdSplit[1].length + 6);
+      aliases[cmdSplit[1]] = varHandle(command.value,cmdSplit[1].length + 6,true);
       break;
     }
     case "exec": {
@@ -369,7 +374,7 @@ async function doCommand() {
       break;
     }
     case "html": {
-      output.innerHTML = varHandle(command.value,4);
+      output.innerHTML = varHandle(command.value,4,true);
       output.className = "html";
       break;
     }
@@ -380,7 +385,7 @@ async function doCommand() {
           break;
         }
         case "battery": {
-          navigator.getBattery()
+          await navigator.getBattery()
     .then(function(battery) {
         output.textContent = Math.round(battery.level * 100) + "%";
     })
