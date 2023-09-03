@@ -2,7 +2,7 @@
 function ReplaceBadWords($comment){
     $badword = array();
     $replacementword = array();
-    $sqlOutput = array(implode("|", explode("\n", file_get_contents('https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/badwordslist/badwords.txt'))));
+    $sqlOutput = explode("\n", file_get_contents('https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/badwordslist/badwords.txt'));
     $wordlist = join("|",$sqlOutput); // replace with the list of bad words from attached rar file
     $words = explode("|", $wordlist);
     foreach ($words as $key => $word) {
