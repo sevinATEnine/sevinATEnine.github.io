@@ -272,6 +272,10 @@ async function doCommand() {
     if (cmdSplit[1] == "hard") {
       localStorage.setItem(cmdSplit[2],aliases[cmdSplit[2]]);
     }else if (cmdSplit[1] == "soft") {
+      if(varHandle(cmdSplit[1],-1) == "root") {
+        output.textContent = "Stop! You may not enter the root user without permission!"
+        output.className = "fatal-error";
+      }
       sessionStorage.setItem(cmdSplit[2],aliases[cmdSplit[2]]);
     }else {
       output.textContent = "Errror 03: Invalid value for parameter";
@@ -447,6 +451,9 @@ async function doCommand() {
       clearMode = "multiple";
       clearFunc = cmdSplit[1];
       parameters.push(command.value.slice(cmdSplit[1].length + 3).split(" "));
+      for(var i = 0;i<parameters[parameters.length-1].length; i++) {
+        parameters[parameters.length-1][i]=ampHandle(parameters[parameters.length-1][i]);
+      }
       break;
     }
     case "view-func": {
