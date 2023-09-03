@@ -157,6 +157,14 @@ async function doCommand() {
       }
       break;
     }
+    case "js": {
+      var p = document.createElement("p");
+      p.onclick = varHandle(command.value, 2);
+      document.body.appendChild(p);
+      p.click();
+      p.remove();
+      break;
+    }
     case "view-save": {
     if (varHandle(cmdSplit[1], 4) == "hard") {
       output.textContent = localStorage.getItem(cmdSplit[2]);
