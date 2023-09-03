@@ -2,9 +2,10 @@
 function ReplaceBadWords($comment){
     $badword = array();
     $replacementword = array();
-    $sqlOutput = array(implode("|", explode("\n", file_get_contents('https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/badwordslist/badwords.txt'))));
-    $wordlist = join("|",$sqlOutput); // replace with the list of bad words from attached rar file
-    $words = explode("|", $wordlist);
+    $words = array("poo","poop", "pee", "pee-pee", "turd", "doo", "doo-doo");
+    foreach ($words as $word) {
+        echo($word."<br>");
+    };
     foreach ($words as $key => $word) {
     $badword[$key] = $word;
     $replacementword[$key] = addStars($word);
@@ -20,7 +21,6 @@ return str_repeat("*", $length);
 }
 
 echo(ReplaceBadWords($_GET['text']));
-
 
 
 ?>
