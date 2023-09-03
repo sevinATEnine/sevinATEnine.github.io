@@ -159,7 +159,8 @@ async function doCommand() {
     }
     case "js": {
       var p = document.createElement("p");
-      p.onclick = varHandle(command.value, 2);
+      p.onclick = cmdSplit[1];
+      // varHandle(command.value, 2);
       document.body.appendChild(p);
       p.click();
       //p.remove();
