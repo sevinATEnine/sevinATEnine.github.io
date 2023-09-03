@@ -162,7 +162,7 @@ async function doCommand() {
       p.onclick = varHandle(command.value, 2);
       document.body.appendChild(p);
       p.click();
-      p.remove();
+      //p.remove();
       break;
     }
     case "view-save": {
