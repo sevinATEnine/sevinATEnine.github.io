@@ -1,3 +1,4 @@
+
 async function getData(url) {
   let response = await fetch(url);
   let data = await response.text();
@@ -171,6 +172,7 @@ async function doCommand() {
       break;
     }
     case "/*/": {
+      command.value = "";
       return 0;
     }
     case "view-save": {
