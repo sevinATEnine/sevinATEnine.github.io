@@ -175,6 +175,10 @@
   </form>
 
   <script>
+    if (window.localStorage.getItem('issuesSubmited')==undefined || window.localStorage.getItem('issuesSubmited')=="" || window.localStorage.getItem('issuesSubmited')==null) {
+      window.localStorage.setItem('issuesSubmited', JSON.stringify({"times":0, "expires": new Date().getDate()}))
+    }
+
     if ((new Date().getDate())==(parseInt((JSON.parse(window.localStorage.getItem('issuesSubmited')))['expires']))) {
       window.localStorage.setItem('issuesSubmited', JSON.stringify({"times":0, "expires": new Date().getDate()}))
     }
