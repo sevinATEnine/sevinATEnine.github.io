@@ -167,9 +167,9 @@ async function doCommand() {
       break;
     }
     case "view-save": {
-    if (varHandle(cmdSplit[1], 4) == "hard") {
+    if (varHandle(cmdSplit[1], -1) == "hard") {
       output.textContent = localStorage.getItem(cmdSplit[2]);
-    }else if (varHandle(cmdSplit[1],4) == "soft") {
+    }else if (varHandle(cmdSplit[1],-1) == "soft") {
       output.textContent = sessionStorage.getItem(cmdSplit[2]);
     }else {
       output.textContent = "Error 03: Invalid Parameter";
