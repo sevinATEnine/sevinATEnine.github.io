@@ -32,6 +32,7 @@
     let banned = {
       'c@d3N': false,
       '$|m0n': false,
+      '$@wy3|-':false,
       '70DD': false,
       '$@wy3|-': false,
       'GUesT_1.0': false,
@@ -111,12 +112,12 @@
 
 
 
-    function signin() {
+    async function signin() {
       var password = document.getElementById('password');
       var username = document.getElementById('username');
       var tempUser = username.value;
 
-      fetch('./bannedUsers.txt')
+      await fetch('./bannedUsers.txt')
       .then(response => response.text())
       // .then(text => console.log(text.split('\n'))
       .then(text => {
@@ -128,12 +129,23 @@
           location.href="./blocked.html";
         }
       })
+      var lockdownModeEnabled = false;
+      await fetch('./getLockdown.php')
+        .then(response => response.text())
+        .then(text => {
+          if(text=="true") {
+            sessionStorage.setItem('permittedTerminalCST', 'denied');
+            location = "./lockdown.html";
+            lockdownModeEnabled = true;
+            return 0;
+          };
+      });
       
       if (username.value == "root") {
         document.getElementById('noroot').style.display = 'block';
         return 0;
       }
-      if ((users[username.value] == password.value)&& (!banned[username.value])) {
+      if ((users[username.value] == password.value)&& (!banned[username.value]) && !lockdownModeEnabled) {
         sessionStorage.setItem('permittedTerminalCST', 'affirmed');
         sessionStorage.setItem("userTerminalCST", username.value);
         document.getElementById('success').style.display = 'block';
