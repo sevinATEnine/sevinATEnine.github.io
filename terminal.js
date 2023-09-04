@@ -123,9 +123,31 @@ async function doCommand() {
   const output = document.createElement("li");
   output.className = "output";
   cmdSplit = command.value.split(" ");
-  switch ((cmdSplit[0])) {
+  if (cmdSplit[0] == 'if') {
+    var ifToAdd = document.createElement("li")
+    ifToAdd.textContent = "CST/"+names[sessionStorage.getItem("userTerminalCST")]+"-->"+command.value;
+    prev.appendChild(ifToAdd)
+    var conditional = command.value.split(">>")[0].slice(3);
+    if (conditional.split(" ")[1] == "==") {
+      if(ampHandle(varHandle(conditional.split(" ")[0])) == ampHandle(varHandle(conditional.split(" ")[2]))) {
+      command.value = command.value.slice(6 + conditional.length)
+      } else {
+        command.value = "";
+        return 0;
+      }
+    } else if (conditional.split(" ")[1] == "!=" || conditional.split(" ")[1] == "<>") {
+      if(ampHandle(varHandle(conditional.split(" ")[0])) != ampHandle(varHandle(conditional.split(" ")[2]))) {
+      command.value = command.value.slice(6 + conditional.length)
+      } else {
+        command.value = "";
+        return 0;
+      }
+    }
+    cmdSplit = command.value.split(" ");
+  }
+  switch (cmdSplit[0]) {
     case "help": {
-      output.innerHTML = "<ul><li>* Work in progress<li>welcome: Shows the welcome screen<li>help: Shows list of basic commands<li>docs: Shows all commands *<li>credits: Shows credits<li>echo: Prints text<li>quit or exit: Logs out of CST<li>kill: Kills the terminal and forwards to an empty page<li>clear: CLears the terminal<li>admin: Enters the root user<li>ranks: Displays list of ranks<li>users: Displays list of users<li>exec: Executes commands<li>alias [key] [value]: Makes alias<li>get-alias [key]: Gets the value of an alias<li>theme [bg] [fg]: Changes the theme<li>dowload [name] [url]: Dowloads a file from a url<li>echo [text]: Prints out text<li>save [hard|soft] [key]: Saves aliase to sessionstorge|localstorage<li>view-save [hard|soft] [key]: Views data saved by save command in sessionstorge|localstorage<li>clear-save [hard|soft|var]: Clears data saved by save command in sessionstorge|localstorage|variables<li>redirect [url]: Redirects to a url<li>exec: Runs a command set by add-exec<li>add-exec: Sets the exec command to execute a command<li>cursor [cursor]: Changes the cursor<li>watch-me: Makes a mirror<li>html [code]: Generates html<li>reset: Resets the terminal<li>throw [type] [text]: Throws an error<li>colore: Changes the default colors<li>file[name]: stores a file to alias of 'name'.<li>read: reads a file<li>anti-sawyer: VITIAL TO KEEPING SAWER OFF THE TERMINAL, WE CANNOT LET SAWYER READ THIS OR HE WILL HAVE FULL ACCESS TO EVERYTHING</ul>";
+      output.innerHTML = "<ul><li>* Work in progress<li>welcome: Shows the welcome screen<li>help: Shows list of basic commands<li>docs: Shows all commands *<li>credits: Shows credits<li>echo: Prints text<li>quit or exit: Logs out of CST<li>kill: Kills the terminal and forwards to an empty page<li>clear: CLears the terminal<li>admin: Enters the root user<li>ranks: Displays list of ranks<li>users: Displays list of users<li>exec: Executes commands<li>alias [key] [value]: Makes alias<li>get-alias [key]: Gets the value of an alias<li>theme [bg] [fg]: Changes the theme<li>dowload [name] [url]: Dowloads a file from a url<li>echo [text]: Prints out text<li>save [hard|soft] [key]: Saves aliase to sessionstorge|localstorage<li>view-save [hard|soft] [key]: Views data saved by save command in sessionstorge|localstorage<li>clear-save [hard|soft|var]: Clears data saved by save command in sessionstorge|localstorage|variables<li>redirect [url]: Redirects to a url<li>exec: Runs a command set by add-exec<li>add-exec: Sets the exec command to execute a command<li>cursor [cursor]: Changes the cursor<li>watch-me: Makes a mirror<li>html [code]: Generates html<li>reset: Resets the terminal<li>throw [type] [text]: Throws an error<li>colore: Changes the default colors<li>file[name]: stores a file to alias of 'name'.<li>read: reads a file<li>anti-sawyer: VITAL TO KEEPING SAWER OFF THE TERMINAL, WE CANNOT LET SAWYER READ THIS OR HE WILL HAVE FULL ACCESS TO EVERYTHING</ul>";
       break;
     }
     case "read": {
@@ -205,6 +227,12 @@ async function doCommand() {
       }
       break;
     }
+    case "add-from-if": {
+      for(var i = 0;i < functions[cmdSplit[1]].length;i++) {
+        execWindow.push("if "+command.value.slice(13 + cmdSplit[1].length)+" >> "+functions[cmdSplit[1]][i]);
+      }
+      break;
+    }
     case "outer": {
       parameters.pop();
       break;
@@ -279,9 +307,10 @@ async function doCommand() {
     if (cmdSplit[1] == "hard") {
       localStorage.setItem(cmdSplit[2],aliases[cmdSplit[2]]);
     }else if (cmdSplit[1] == "soft") {
-      if(varHandle(cmdSplit[1],-1) == "root") {
+      if(aliases[cmdSplit[2]] == "root" && cmdSplit[2] == "userTerminalCST") {
         output.textContent = "Stop! You may not enter the root user without permission!"
         output.className = "fatal-error";
+        break;
       }
       sessionStorage.setItem(cmdSplit[2],aliases[cmdSplit[2]]);
     }else {
