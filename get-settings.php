@@ -17,7 +17,7 @@ $result = $conn->query($sql);
 // 
 // INSERT INTO settings (item, contents) VALUES ('lockdownMode', 'false')
 
-echo $result;
+// echo $result;
 if ($result->num_rows > 0) {
   // output data of each row
   while($row = $result->fetch_assoc()) {
