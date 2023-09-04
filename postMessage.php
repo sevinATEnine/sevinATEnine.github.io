@@ -22,8 +22,8 @@
         echo(('You are not ' . $_GET['username'] . '. Don\'t try to fake as them. Anything starting with `[` is reserved for root.'));
         die();
     };
-  $message = $_GET['message'];
-    $sql = "INSERT INTO Messages (username, messageContent) VALUES ('" . $_GET['username'] . "', '" . join(explode($message,"'"),"/'") . "')";
+    $message = $_GET['message'];
+    $sql = "INSERT INTO Messages (username, messageContent) VALUES ('" . $_GET['username'] . "', '" . $message . "')";
 
     if ($conn->query($sql) === TRUE) {
     echo "Successfully posted";
