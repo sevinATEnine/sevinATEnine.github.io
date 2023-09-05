@@ -133,14 +133,24 @@ async function doCommand() {
       command.value = command.value.slice(6 + conditional.length)
       } else {
         command.value = "";
-        return 0;
       }
     } else if (conditional.split(" ")[1] == "!=" || conditional.split(" ")[1] == "<>") {
       if(ampHandle(varHandle(conditional.split(" ")[0])) != ampHandle(varHandle(conditional.split(" ")[2]))) {
       command.value = command.value.slice(6 + conditional.length);
       } else {
         command.value = "";
-        return 0;
+      }
+    } else if (conditional.split(" ")[1] == ">") {
+      if(parseFloat(ampHandle(varHandle(conditional.split(" ")[0]))) > parseFloat(ampHandle(varHandle(conditional.split(" ")[2])))) {
+        command.value = command.value.slice(6 + conditional.length);
+      } else {
+        command.value = "";
+      }
+    } else if (conditional.split(" ")[1] == "<") {
+      if(parseFloat(ampHandle(varHandle(conditional.split(" ")[0]))) < parseFloat(ampHandle(varHandle(conditional.split(" ")[2])))) {
+        command.value = command.value.slice(6 + conditional.length);
+      } else {
+        command.value = "";
       }
     }
     cmdSplit = command.value.split(" ");
