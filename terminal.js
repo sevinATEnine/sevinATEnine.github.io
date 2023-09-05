@@ -1,4 +1,3 @@
-
 async function getData(url) {
   let response = await fetch(url);
   let data = await response.text();
@@ -128,29 +127,63 @@ async function doCommand() {
     ifToAdd.textContent = "CST/"+names[sessionStorage.getItem("userTerminalCST")]+"-->"+command.value;
     prev.appendChild(ifToAdd)
     var conditional = command.value.split(">>")[0].slice(3);
-    if (conditional.split(" ")[1] == "==") {
+    switch(conditional.split(" ")[1]) {
+      case "==": {}
+      case "=": {
       if(ampHandle(varHandle(conditional.split(" ")[0])) == ampHandle(varHandle(conditional.split(" ")[2]))) {
-      command.value = command.value.slice(6 + conditional.length)
+        command.value = command.value.slice(6 + conditional.length)
       } else {
         command.value = "";
       }
-    } else if (conditional.split(" ")[1] == "!=" || conditional.split(" ")[1] == "<>") {
+      break;
+      }
+      case "!=": {}
+      case "<>": {
       if(ampHandle(varHandle(conditional.split(" ")[0])) != ampHandle(varHandle(conditional.split(" ")[2]))) {
-      command.value = command.value.slice(6 + conditional.length);
-      } else {
-        command.value = "";
-      }
-    } else if (conditional.split(" ")[1] == ">") {
-      if(parseFloat(ampHandle(varHandle(conditional.split(" ")[0]))) > parseFloat(ampHandle(varHandle(conditional.split(" ")[2])))) {
         command.value = command.value.slice(6 + conditional.length);
       } else {
         command.value = "";
       }
-    } else if (conditional.split(" ")[1] == "<") {
+      break;
+      }
+      case ">": {
+      if(parseFloat(ampHandle(varHandle(conditional.split(" ")[0]))) > parseFloat(ampHandle(varHandle(conditional.split(" ")[2])))) {
+        command.value = command.value.slice(6 + conditional.length);
+      } else {
+        command.value = ""; 
+      }
+      break;
+      }
+      case "<": {
       if(parseFloat(ampHandle(varHandle(conditional.split(" ")[0]))) < parseFloat(ampHandle(varHandle(conditional.split(" ")[2])))) {
         command.value = command.value.slice(6 + conditional.length);
       } else {
         command.value = "";
+      }
+      break;
+      }
+      case "<=": {}
+      case "!>": {
+      if(parseFloat(ampHandle(varHandle(conditional.split(" ")[0]))) <= parseFloat(ampHandle(varHandle(conditional.split(" ")[2])))) {
+        command.value = command.value.slice(6 + conditional.length);
+      } else {
+        command.value = "";
+      }
+      break;
+      }
+      case ">=": {}
+      case "!<": {
+      if(parseFloat(ampHandle(varHandle(conditional.split(" ")[0]))) >= parseFloat(ampHandle(varHandle(conditional.split(" ")[2])))) {
+        command.value = command.value.slice(6 + conditional.length);
+      } else {
+        command.value = "";
+      }
+      break;
+      }
+      default: {
+        output.textContent = "Error 06: Invalid comparison operator.";
+        output.className = "error";
+        return 0;
       }
     }
     cmdSplit = command.value.split(" ");
@@ -577,5 +610,3 @@ command.addEventListener("keydown", function(event) {
         command.value = "";
     }
 })
-
-
