@@ -1,3 +1,4 @@
+var batteryl = null;
 /****************************************************************************************************
 
 The following document is owned by:
@@ -27,6 +28,28 @@ function forceDownload(blob, filename) {
 }
 
 // Current blob size limit is around 500MB for browsers
+function retrieve(input) {
+  switch (input) {
+    case 'user': {
+      return sessionStorage.getItem('userTerminalCST');
+      break;
+    }
+    case 'battery': {
+      navigator.getBattery()
+        .then(function (battery) {
+          output.textContent = Math.round(battery.level * 100) + '%';
+          batteryl = Math.round(battery.level * 100) + '%'
+          
+        })
+        .catch(function () {
+          output.textContent = 'Error 05: failed to read battery level';
+          output.className = 'error';
+        });
+        
+      break;
+    }
+  }
+}
 function downloadResource(url, filename) {
   if (!filename) filename = url.split('\\').pop().split('/').pop();
   fetch(url, {
@@ -554,15 +577,17 @@ async function doCommand() {
           break;
         }
         case 'battery': {
-          await navigator
-            .getBattery()
+          navigator.getBattery()
             .then(function (battery) {
               output.textContent = Math.round(battery.level * 100) + '%';
+              batteryl = Math.round(battery.level * 100) + '%'
+              
             })
             .catch(function () {
               output.textContent = 'Error 05: failed to read battery level';
               output.className = 'error';
             });
+            
           break;
         }
       }
@@ -571,6 +596,7 @@ async function doCommand() {
     case 'throw': {
       output.className = cmdSplit[1];
       output.innerText = command.value.slice(cmdSplit[1].length + 7);
+      output.textContent = batteryl;
       break;
     }
     case 'reset': {
