@@ -62,7 +62,7 @@ tr:nth-child(even) {
 ?>
 
 <table>
-    <tr><th></th>/tr>
+    <tr><th>Item</th><th>Stock</th><th>Price</th></tr>
 <?php
 $servername = "localhost";
 $username = "elem435_cst_usr";
@@ -78,18 +78,28 @@ if ($conn->connect_error) {
 
 // $sql = "CREATE TABLE Stock(ItemName text, Ammount int, Price int)";
 $sql = "SELECT * FROM Stock";
+// $sql = "DELETE FROM Stock";
+// $sql = "INSERT INTO Stock VALUES('Test 3',5,20)";
+
 $result = $conn->query($sql);
 
 // echo $result;
 if ($result->num_rows > 0) {
   // output data of each row
   while($row = $result->fetch_assoc()) {
-    echo("<tr><th>".$row);
+    echo "<tr><td>".$row['ItemName']."</td><td>".$row['Ammount']."</td><td>".$row['Price']."</td></tr>";
   }
 } else {
-  echo "<tr><td>[NONE]</td><td>[NONE]</td><td>[NONE]</td></tr>";
 }
 $conn->close();
 ?>
 
 </table>
+<br>
+<hr>
+<br>
+<h1>Execute SQL - Table is named 'Stock'</h1>
+<form action="./change-stock.php">
+  <input name="sqlCode"><br><br>
+  <input type="submit">
+</form>
