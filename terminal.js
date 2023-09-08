@@ -594,7 +594,7 @@ async function doCommand() {
         aliases[cmdSplit[2]] = aliases[cmdSplit[3]];
       } else if (cmdSplit[1] == 'get') {
         if (cmdSplit[3] == "battery") {
-          navigator.getBattery()
+          await navigator.getBattery()
         .then(function (battery) {
           aliases[cmdSplit[2]] = Math.round(battery.level * 100);
           
