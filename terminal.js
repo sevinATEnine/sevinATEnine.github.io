@@ -1,4 +1,3 @@
-var batteryl = null;
 /****************************************************************************************************
 
 The following document is owned by:
@@ -11,7 +10,7 @@ Other files linked to this repository, with the exception of some of the assets,
 the same criteria.
 
 ****************************************************************************************************/
-
+var tempData = null;
 async function getData(url) {
   let response = await fetch(url);
   let data = await response.text();
@@ -31,21 +30,11 @@ function forceDownload(blob, filename) {
 function retrieve(input) {
   switch (input) {
     case 'user': {
-      return sessionStorage.getItem('userTerminalCST');
+      tempData = sessionStorage.getItem('userTerminalCST');
       break;
     }
     case 'battery': {
-      navigator.getBattery()
-        .then(function (battery) {
-          output.textContent = Math.round(battery.level * 100) + '%';
-          batteryl = Math.round(battery.level * 100) + '%'
-          
-        })
-        .catch(function () {
-          output.textContent = 'Error 05: failed to read battery level';
-          output.className = 'error';
-        });
-        
+      tempData = "Battery temporarily unavailable."
       break;
     }
   }
@@ -571,32 +560,14 @@ async function doCommand() {
       break;
     }
     case 'get': {
-      switch (cmdSplit[1]) {
-        case 'user': {
-          output.textContent = sessionStorage.getItem('userTerminalCST');
-          break;
-        }
-        case 'battery': {
-          navigator.getBattery()
-            .then(function (battery) {
-              output.textContent = Math.round(battery.level * 100) + '%';
-              batteryl = Math.round(battery.level * 100) + '%'
-              
-            })
-            .catch(function () {
-              output.textContent = 'Error 05: failed to read battery level';
-              output.className = 'error';
-            });
-            
-          break;
-        }
-      }
+      retrieve(cmdSplit[1]);
+      output.textContent = tempData;
       break;
     }
     case 'throw': {
       output.className = cmdSplit[1];
       output.innerText = command.value.slice(cmdSplit[1].length + 7);
-      output.textContent = batteryl;
+      // output.textContent = batteryl;
       break;
     }
     case 'reset': {
@@ -610,6 +581,10 @@ async function doCommand() {
       output.className = 'important';
       break;
     }
+    case 'drop-alias': {
+      delete aliases[cmdSplit[1]]
+      break;
+    }
     case 'import-alias': {
       if (cmdSplit[1] == 'hard') {
         aliases[cmdSplit[2]] = localStorage.getItem(cmdSplit[3]);
@@ -617,6 +592,21 @@ async function doCommand() {
         aliases[cmdSplit[2]] = sessionStorage.getItem(cmdSplit[3]);
       } else if (cmdSplit[1] == 'var') {
         aliases[cmdSplit[2]] = aliases[cmdSplit[3]];
+      } else if (cmdSplit[1] == 'get') {
+        if (cmdSplit[3] == "battery") {
+          navigator.getBattery()
+        .then(function (battery) {
+          aliases[cmdSplit[2]] = Math.round(battery.level * 100);
+          
+        })
+        .catch(function () {
+          output.textContent = 'Error 05: failed to read battery level';
+          output.className = 'error';
+        });
+        } else {
+        retrieve(cmdSplit[3]);
+        aliases[cmdSplit[2]] = tempData;
+      }
       } else {
         output.className = 'error';
         output.textContent = 'Error 03: Invalid value for parameter.';
