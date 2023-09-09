@@ -45,6 +45,35 @@ the same criteria.
     body {
       background-color: rgb(218, 237, 255);
     }
+    button {
+        width: fit-content;
+        height: 30px;
+        background-color: burlywood;
+        border-radius: 5px;
+        color: white;
+        cursor: pointer;
+        padding: 5px;
+        border: none;
+        text-decoration: none;
+    }
+    #commands {
+        width: 95% !important;
+        height: fit-content !important;
+        padding: 20px;
+    }
+    #output {
+        width: 95% !important;
+        height: 600px !important;
+        overflow: scroll;
+        padding: 20px;
+        background:lightgreen !important;
+    }
+    .active {
+        background-color: burlywood;
+    }
+    .not-active {
+        background-color: grey;
+    }
   </style>
 </head>
 <body>
@@ -61,8 +90,8 @@ the same criteria.
         $password = $_POST['password'];
         if ($username=="TBD") {
             if ($password=="TBD") {
-                echo("> Login successfull with: ".$username."@<span id='passwordLoggedInWith'>".str_repeat("*",strlen($password))."</span> (");
-                echo("<a onclick=\"document.getElementById('passwordLoggedInWith').innerHTML='".$password."'; window.setTimeout(function(){ document.getElementById('passwordLoggedInWith').innerHTML='".str_repeat("*",strlen($password))."'},1000); \">Show password</a>)");
+                echo("> Login successfull with: ".$username."@<span id='passwordLoggedInWith'>".str_repeat("*",strlen($password))."</span> ");
+                echo("<a onclick=\"document.getElementById('passwordLoggedInWith').innerHTML='".$password."'; window.setTimeout(function(){ document.getElementById('passwordLoggedInWith').innerHTML='".str_repeat("*",strlen($password))."'},1000); \">Show password</a><br>");
             } else {
                 echo("<br>");
                 die("> Invalid username/password");
@@ -73,6 +102,50 @@ the same criteria.
         }
     
     ?>
+
+    > Initializing... <br>
+    > Loading assets... <br>
+    > Successfull initialized <br><br>
+    
+    <center>
+    <div id="commands">
+        <button class="active"     onclick="document.querySelector('.active').className='not-active';this.className='active'; setOutput(this.innerHTML);">Home</button> 
+        <button class="not-active" onclick="document.querySelector('.active').className='not-active';this.className='active'; setOutput(this.innerHTML);">Get settings</button>
+        <button class="not-active" onclick="document.querySelector('.active').className='not-active';this.className='active'; setOutput(this.innerHTML);">Change settings</button>
+        <button class="not-active" onclick="document.querySelector('.active').className='not-active';this.className='active'; setOutput(this.innerHTML);">Change lockdown</button>
+    </div>
+    </center>
+    <br>
+    <center>
+    <div id="output">
+    </div>
+    </center>
+
+
+    <script>
+        setOutput('Home');
+        function setOutput(outDataType) {
+            out = document.querySelector('#output');
+            switch (outDataType) {
+                case "Home":
+                    out.innerHTML = "Home";
+                    break;
+                case "Get settings":
+                    out.innerHTML = "Get settings";
+                    break;
+                case "Change settings":
+                    out.innerHTML = "Change settings";
+                    break;
+                default: {
+                    out.innerHTML = "An error occured";
+                    
+                }
+            }
+        }
+    </script>
+
+
+
     
         
 </body>
