@@ -48,7 +48,7 @@ the same criteria.
     button {
         width: fit-content;
         height: 30px;
-        background-color: burlywood;
+        background-color: lightseagreen;
         border-radius: 5px;
         color: white;
         cursor: pointer;
@@ -67,6 +67,7 @@ the same criteria.
         overflow: scroll;
         padding: 20px;
         background:lightgreen !important;
+        text-align: left !important;
     }
     .active {
         background-color: burlywood;
@@ -112,32 +113,65 @@ the same criteria.
         <button class="active"     onclick="document.querySelector('.active').className='not-active';this.className='active'; setOutput(this.innerHTML);">Home</button> 
         <button class="not-active" onclick="document.querySelector('.active').className='not-active';this.className='active'; setOutput(this.innerHTML);">Get settings</button>
         <button class="not-active" onclick="document.querySelector('.active').className='not-active';this.className='active'; setOutput(this.innerHTML);">Change settings</button>
-        <button class="not-active" onclick="document.querySelector('.active').className='not-active';this.className='active'; setOutput(this.innerHTML);">Change lockdown</button>
     </div>
     </center>
     <br>
     <center>
     <div id="output">
+        
     </div>
     </center>
 
 
     <script>
         setOutput('Home');
-        function setOutput(outDataType) {
-            out = document.querySelector('#output');
+        async function submitData() {
+            var out = document.querySelector('#output');
+            var names =  document.querySelectorAll('.change-settings-name');
+            var values =  document.querySelectorAll('.change-settings-value');
+            for (let i = 0; i < names.length; i++) {
+                out.innerHTML += (names[i].innerHTML + ": " + values[i].value+"<br>");
+                await fetch(('./change-setting.php?setting='+names[i].innerHTML+'&value='+values[i].value+'&auth=!312645root.com/eat~'))
+                .then(response => response.text())
+                .then(text => {
+                    out.innerHTML += (text+"<br>");
+                });
+            }
+
+        };
+
+        async function setOutput(outDataType) {
+            var out = document.querySelector('#output');
             switch (outDataType) {
                 case "Home":
-                    out.innerHTML = "Home";
+                    out.innerHTML = "<h1>Home</h1><br>Welcome to the admin panel";
+                    
+                break;
                     break;
                 case "Get settings":
-                    out.innerHTML = "Get settings";
+                    out.innerHTML = "<h1>Get settings</h1><br>> Loading<br>";
+                    await fetch('./get-settings.php')
+                    .then(response => response.text())
+                    .then(text => {
+                        out.innerHTML += ("> Received<br>"+text+"<br>");
+                    });
                     break;
                 case "Change settings":
-                    out.innerHTML = "Change settings";
+                    out.innerHTML = "<h1>Change settings</h1><br>> Loading<br>";
+                    await fetch('./get-settings.php')
+                    .then(response => response.text())
+                    .then(text => {
+                        out.innerHTML += ("> Received<br>");
+                        (text.split("\n").filter(element => element != "")).forEach(element => {
+                            out.innerHTML+=("<span class='change-settings-name'>"+element.replaceAll('<br>', '').split(": ")[0]+"</span> <input class='change-settings-value' value='"+element.replaceAll('<br>', '').split(": ")[1]+"'><br>");
+                        });
+                    });
+
+                    
+                    out.innerHTML += ("<button onclick='submitData();'>Submit</button><br>");
                     break;
                 default: {
-                    out.innerHTML = "An error occured";
+                    out.innerHTML = "<h1>404 Page not found</h1>";
                     
                 }
             }
