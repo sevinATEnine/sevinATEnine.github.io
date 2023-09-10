@@ -22,7 +22,3 @@ echo $result;
 
 $conn->close();
 ?>
-
-<script>
-    window.location.replace("./manage-stock.php");
-</script>

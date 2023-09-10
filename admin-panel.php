@@ -113,6 +113,8 @@ the same criteria.
         <button class="active"     onclick="document.querySelector('.active').className='not-active';this.className='active'; setOutput(this.innerHTML);">Home</button> 
         <button class="not-active" onclick="document.querySelector('.active').className='not-active';this.className='active'; setOutput(this.innerHTML);">Get settings</button>
         <button class="not-active" onclick="document.querySelector('.active').className='not-active';this.className='active'; setOutput(this.innerHTML);">Change settings</button>
+        <button class="not-active" onclick="document.querySelector('.active').className='not-active';this.className='active'; setOutput(this.innerHTML);">Run SQL</button>
+
     </div>
     </center>
     <br>
@@ -143,12 +145,21 @@ the same criteria.
         async function setOutput(outDataType) {
             var out = document.querySelector('#output');
             switch (outDataType) {
-                case "Home":
+                case "Home" : {
                     out.innerHTML = "<h1>Home</h1><br>Welcome to the admin panel";
+                
                     
                 break;
+                }
+                case "Run SQL": {
+                    out.innerHTML = "<h1Run SQL</h1><br>> Loading<br>";
+                    out.innerHTML += ("<form action='runSql.php'></form>");
+                    
+                                        
+                break;
+                }
                     break;
-                case "Get settings":
+                case "Get settings": {
                     out.innerHTML = "<h1>Get settings</h1><br>> Loading<br>";
                     await fetch('./get-settings.php')
                     .then(response => response.text())
@@ -156,7 +167,8 @@ the same criteria.
                         out.innerHTML += ("> Received<br>"+text+"<br>");
                     });
                     break;
-                case "Change settings":
+                }
+                case "Change settings": {
                     out.innerHTML = "<h1>Change settings</h1><br>> Loading<br>";
                     await fetch('./get-settings.php')
                     .then(response => response.text())
@@ -170,6 +182,7 @@ the same criteria.
                     
                     out.innerHTML += ("<button onclick='submitData();'>Submit</button><br>");
                     break;
+                }
                 default: {
                     out.innerHTML = "<h1>404 Page not found</h1>";
                     
