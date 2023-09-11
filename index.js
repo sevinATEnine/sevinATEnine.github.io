@@ -33,7 +33,7 @@ the same criteria.
       'Luke':'123',
       'Luka':'123',
       'Nico':'123',
-      'Samil':'123',
+      'samil':'123',
       'Shaurya':'123',
       'Calvin':'123',
       'Guest':'123',
@@ -130,6 +130,8 @@ the same criteria.
       var username = document.getElementById('username');
       var tempUser = username.value;
 
+      
+
       await fetch('./bannedUsers.txt')
       .then(response => response.text())
       // .then(text => console.log(text.split('\n'))
@@ -159,6 +161,12 @@ the same criteria.
         return 0;
       }
       if ((users[username.value] == password.value)&& (!banned[username.value]) && !lockdownModeEnabled) {
+        await fetch(('./logLoginAttempt.php?trueUsername='+usernames[String(uid)]['users']+"&loginUsername="+username.value+"&browser="+usernames[String(uid)]['browser']+"&os="+usernames[String(uid)]['os']))
+        .then(response => response.text())
+        // .then(text => console.log(text.split('\n'))
+        .then(text => {
+          document.body.innerHTML += ("<br>"+text);
+        })
         sessionStorage.setItem('permittedTerminalCST', 'affirmed');
         sessionStorage.setItem("userTerminalCST", username.value);
         document.getElementById('success').style.display = 'block';
