@@ -1076,8 +1076,14 @@ var usernames = {
         os:'raspberry pi',
         browser:'chromium'
     },
+    
     "2750524669":{
         users:['$|m0n'],
+        os:'chromebook',
+        browser:'chrome'
+    },
+    "3494798032":{
+        users:['c@d3N'],
         os:'chromebook',
         browser:'chrome'
     },
