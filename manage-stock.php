@@ -99,7 +99,7 @@ $conn->close();
 <hr>
 <br>
 <h1>Execute SQL - Table is named 'Stock'</h1>
-<form action="./change-stock.php">
+<form action="./runSql.php">
   <input name="sqlCode"><br><br>
   <input type="submit">
 </form>

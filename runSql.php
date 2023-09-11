@@ -16,9 +16,17 @@ if ($conn->connect_error) {
 // $sql = "DELETE FROM Stock";
 // $sql = "INSERT INTO Stock VALUES('Test 3',5,20)";
 
+try {
 $result = $conn->query($_GET['sqlCode']);
+} catch(Exception $e) {
+  echo('Error: '. $e->getMessage());
+}
 
+try {
 echo $result;
+} catch(Exception $e) {
+  echo('Error: '. $e->getMessage());
+}
 
 $conn->close();
 ?>

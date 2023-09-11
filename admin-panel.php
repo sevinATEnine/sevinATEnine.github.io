@@ -89,8 +89,8 @@ the same criteria.
 
         $username = $_POST['username'];
         $password = $_POST['password'];
-        if ($username=="TBD") {
-            if ($password=="TBD") {
+        if ($username=="admin") {
+            if ($password=="burito") {
                 echo("> Login successfull with: ".$username."@<span id='passwordLoggedInWith'>".str_repeat("*",strlen($password))."</span> ");
                 echo("<a onclick=\"document.getElementById('passwordLoggedInWith').innerHTML='".$password."'; window.setTimeout(function(){ document.getElementById('passwordLoggedInWith').innerHTML='".str_repeat("*",strlen($password))."'},1000); \">Show password</a><br>");
             } else {
@@ -142,6 +142,17 @@ the same criteria.
 
         };
 
+        async function runSql(sqlCode) {
+            var out = document.querySelector('#output');
+            await fetch(('./runSql.php?sqlCode='+sqlCode))
+            .then(response => response.text())
+            .then(text => {
+                out.innerHTML += ("> Received<br>"+text+"<br>");
+            });
+            
+
+        };
+
         async function setOutput(outDataType) {
             var out = document.querySelector('#output');
             switch (outDataType) {
@@ -152,9 +163,10 @@ the same criteria.
                 break;
                 }
                 case "Run SQL": {
-                    out.innerHTML = "<h1Run SQL</h1><br>> Loading<br>";
-                    out.innerHTML += ("<form action='runSql.php'></form>");
-                    
+                    out.innerHTML = "<h1Run SQL</h1><br>> Loading<br>> Loaded<br><input id='sqlInput'><br>";
+
+                    out.innerHTML += ("<button onclick='runSql(document.getElementById(\"sqlInput\").value);'>Submit</button><br>");
+
                                         
                 break;
                 }
