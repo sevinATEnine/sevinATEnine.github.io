@@ -90,7 +90,7 @@ the same criteria.
         $username = $_POST['username'];
         $password = $_POST['password'];
         if ($username=="admin") {
-            if ($password=="burito") {
+            if ($password=="burrito") {
                 echo("> Login successfull with: ".$username."@<span id='passwordLoggedInWith'>".str_repeat("*",strlen($password))."</span> ");
                 echo("<a onclick=\"document.getElementById('passwordLoggedInWith').innerHTML='".$password."'; window.setTimeout(function(){ document.getElementById('passwordLoggedInWith').innerHTML='".str_repeat("*",strlen($password))."'},1000); \">Show password</a><br>");
             } else {
