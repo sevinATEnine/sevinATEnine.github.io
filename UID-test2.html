@@ -14,7 +14,7 @@ if (typeof(Storage) !== "undefined" && typeof(Storage) !== undefined && typeof(S
     //localstorage.setItem('UID', String(Math.random()));
   //}
     if(localStorage.UID=="" || localStorage.UID==null || localStorage.UID=="undefined" || localStorage.UID==undefined) {
-        localStorage.UID = String(Math.round(Math.random()*10000000000));
+        localStorage.UID = String(Math.round(Math.random()*1000000000000));
     }
     document.write(localStorage.UID+"<br>");
     document.write(UIDs[localStorage.UID]);
