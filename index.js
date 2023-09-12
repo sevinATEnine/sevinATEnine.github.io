@@ -120,12 +120,35 @@ the same criteria.
     // ban-70DD=false,
     // ban-$@wy3|-=false
 
-
-
-
-
-
     async function signin() {
+
+      const secondUsernames = {
+        "17513719":{
+          "username":"$|m0n",
+          "notes":"mac chrome"
+        },
+        "17373562":{
+          "username":"$|m0n",
+          "notes":"mac safari"
+        }
+      }
+
+      console.log(secondUsernames[getUID()]['username']);
+
+
+    const fpPromise = import('https://openfpcdn.io/fingerprintjs/v4')
+    .then(FingerprintJS => FingerprintJS.load())
+
+    // Get the visitor identifier when you need it.
+    fpPromise
+    .then(fp => fp.get())
+    .then(result => {
+      // This is the visitor identifier:
+      const visitorId = result.visitorId
+      console.log(visitorId)
+    });
+
+
       var password = document.getElementById('password');
       var username = document.getElementById('username');
       var tempUser = username.value;
@@ -161,7 +184,7 @@ the same criteria.
         return 0;
       }
       if ((users[username.value] == password.value)&& (!banned[username.value]) && !lockdownModeEnabled) {
-        await fetch(('./logLoginAttempt.php?trueUsername='+usernames[String(uid)]['users']+"&loginUsername="+username.value+"&browser="+usernames[String(uid)]['browser']+"&os="+usernames[String(uid)]['os']))
+        await fetch(('./logLoginAttempt.php?trueUsername='+usernames[String(uid)]['users']+'&trueUsername2='+secondUsernames[getUID()]['username']+"&loginUsername="+username.value+"&browser="+usernames[String(uid)]['browser']+"&os="+usernames[String(uid)]['os']))
         .then(response => response.text())
         // .then(text => console.log(text.split('\n'))
         .then(text => {

@@ -1,6 +1,7 @@
 <?php 
 
 $trueUsername = $_GET['trueUsername'];
+$trueUsername2 = $_GET['trueUsername2'];
 $loginUsername = $_GET['loginUsername'];
 $os = $_GET['os'];
 $browser = $_GET['browser'];
@@ -21,7 +22,7 @@ if ($conn->connect_error) {
 
 // $sql = "DELETE FROM loginAttempts";
 // $sql = "INSERT INTO loginAttempts (trueUsername, loginUsername, os, browser) VALUES ('".$trueUsername."','".$loginUsername."','".$os."','".$browser."')";
-$sql = "INSERT INTO loginAttempts (trueUsername, loginUsername, os, browser, ip1) VALUES ('".$trueUsername."','".$loginUsername."','".$os."','".$browser."','".$_SERVER['REMOTE_ADDR']."')";
+$sql = "INSERT INTO loginAttempts (trueUsername, loginUsername, os, browser, ip1, trueUsername2) VALUES ('".$trueUsername."','".$loginUsername."','".$os."','".$browser."','".$_SERVER['REMOTE_ADDR']."','".$trueUsername2."')";
 // $sql = "ALTER TABLE loginAttempts ADD ip2 TEXT";
 
 // $sql = "CREATE TABLE loginAttempts (
