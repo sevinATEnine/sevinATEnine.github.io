@@ -333,6 +333,14 @@ async function doCommand() {
       delete functions[cmdSplit[1]];
       break;
     }
+    case 'commit': {
+      sessionStorage.setItem("test",cmdSplit[1]);
+      break;
+    }
+    case 'retrieve': {
+      output.textContent = sessionStorage.getItem("test");
+      break;
+    }
     case 'colore': {
       // animation: colore-colors 5s infinite;
       document.getElementById('body').style.animation =
