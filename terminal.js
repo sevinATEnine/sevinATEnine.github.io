@@ -329,6 +329,10 @@ async function doCommand() {
       }
       break;
     }
+    case 'drop-func': {
+      delete functions[cmdSplit[1]];
+      break;
+    }
     case 'colore': {
       // animation: colore-colors 5s infinite;
       document.getElementById('body').style.animation =
