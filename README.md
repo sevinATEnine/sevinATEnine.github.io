@@ -1,4 +1,5 @@
 # CST Command Line
+> An in-browser command line
 
 The CST is the the CST Command Line stands for c@d3N, $|m0n, 70DD. It is currently in version 1.0.9.12.23
 
