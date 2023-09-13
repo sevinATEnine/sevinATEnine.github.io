@@ -124,13 +124,17 @@ the same criteria.
 
       const secondUsernames = {
         "17513719":{
-          "username":"$|m0n",
+          "username":["$|m0n"],
           "notes":"mac chrome"
         },
         "17373562":{
-          "username":"$|m0n",
+          "username":["$|m0n", "$@wy3|-"],
           "notes":"mac safari"
-        }
+        },
+        "17378395":{
+          "username":["$@wy3|-"],
+          "notes":"mac chrome"
+        },
       }
 
       console.log(secondUsernames[getUID()]['username']);

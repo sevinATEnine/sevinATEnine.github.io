@@ -1,5 +1,7 @@
 <script src="./getUIDjs.js"></script>
+<script src="./getBrowserFingerprint.js"></script>
 <script>
     document.write(uid+"<br>");
+    document.write(getUID()+"<br>")
     document.write(usernames[String(uid)]['users'].join(", ")+" browsing with "+usernames[String(uid)]['browser']+" on a "+usernames[String(uid)]['os']);
 </script>

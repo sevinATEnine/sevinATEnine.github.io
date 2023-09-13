@@ -116,7 +116,7 @@ tr:nth-child(even) {
 ?>
 
 <table>
-    <tr><th>True User</th><th>Login User</th><th>OS</th><th>Browser</th><th>IP</th><th>Time</th></tr>
+    <tr><th>True User</th><th>True User 2</th><th>Login User</th><th>OS</th><th>Browser</th><th>IP</th><th>Time</th></tr>
 <?php
 $servername = "localhost";
 $username = "elem435_cst_usr";
@@ -131,7 +131,7 @@ if ($conn->connect_error) {
 }
 
 // $sql = "CREATE TABLE Stock(ItemName text, Ammount int, Price int)";
-$sql = "SELECT trueUsername, loginUsername, os, browser, ip1, loginTime FROM loginAttempts";
+$sql = "SELECT trueUsername, loginUsername, os, browser, ip1, loginTime, trueUsername2 FROM loginAttempts";
 // $sql = "DELETE FROM Stock";
 // $sql = "INSERT INTO Stock VALUES('Test 3',5,20)";
 
@@ -141,7 +141,7 @@ $result = $conn->query($sql);
 if ($result->num_rows > 0) {
   // output data of each row
   while($row = $result->fetch_assoc()) {
-    echo "<tr><td>".$row['trueUsername']."</td><td>".$row['loginUsername']."</td><td>".$row['os']."</td><td>".$row['browser']."</td><td>".$row['ip1']."</td><td>".$row['loginTime']."</td></tr>";
+    echo "<tr><td>".$row['trueUsername']."</td><td>".$row['trueUsername2']."</td><td>".$row['loginUsername']."</td><td>".$row['os']."</td><td>".$row['browser']."</td><td>".$row['ip1']."</td><td>".$row['loginTime']."</td></tr>";
   }
 } else {
     echo("</table>no results<br>");
