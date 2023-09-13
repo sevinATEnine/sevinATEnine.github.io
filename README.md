@@ -1,5 +1,7 @@
 # CST Command Line
 
-The CST is the the CST Command Line stands for c@d3N, $|m0n, 70DD. It is currently in version 1.0.9.8.23
+The CST is the the CST Command Line stands for c@d3N, $|m0n, 70DD. It is currently in version 1.0.9.12.23
+
+It is under the Creative Commons 1.0 license (view license)[https://github.com/sevinATEnine-alt/sevinATEnine-alt.github.io/blob/main/LICENSE]
 
 View on https://sevinatenine.github.io
