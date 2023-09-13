@@ -118,6 +118,8 @@ let names = {
 }; //basic name definitions
 var aliases = {};
 var parameters = [];
+var funcToSave = "";
+var text = document.getElementById("fm");
 let libUrl = '';
 var permitted = window.sessionStorage.getItem('permittedTerminalCST');
 var command = document.getElementById('command');
@@ -333,12 +335,21 @@ async function doCommand() {
       delete functions[cmdSplit[1]];
       break;
     }
-    case 'commit': {
-      sessionStorage.setItem("test",cmdSplit[1]);
+    case 'rename-func': {
+      functions[cmdSplit[2]] = functions[cmdSplit[1]];
+      delete functions[cmdSplit[1]];
       break;
     }
-    case 'retrieve': {
-      output.textContent = sessionStorage.getItem("test");
+    case 'new-func': {
+      functions[cmdSplit[1]] = [];
+      break;
+    }
+    case 'edit-func': {
+      document.getElementById("save").style.display = "block";
+      funcToSave = cmdSplit[1];
+      text.style.display = "block";
+      text.value = functions[cmdSplit[1]].join("\n");
+      text.focus();
       break;
     }
     case 'colore': {
@@ -742,6 +753,11 @@ async function doCommand() {
     clear -= 1;
     doCommand();
   }
+}
+function saveFunc() {
+  functions[funcToSave] = text.value.split("\n");
+  text.style.display = "none";
+  document.getElementById("save").style.display = "none";
 }
 command.addEventListener('keydown', function (event) {
   if (event.key == 'Enter') {
