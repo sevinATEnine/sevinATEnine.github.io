@@ -27,6 +27,13 @@ function forceDownload(blob, filename) {
 }
 
 // Current blob size limit is around 500MB for browsers
+function saveFunc() {
+  functions[funcToSave] = text.value.split("\n");
+  hideEdit();
+}
+function hideEdit() {
+  document.getElementById("editor").style.display = "none";
+}
 function retrieve(input) {
   switch (input) {
     case 'user': {
@@ -342,12 +349,14 @@ async function doCommand() {
     }
     case 'new-func': {
       functions[cmdSplit[1]] = [];
+      funcToSave = cmdSplit[1]
+      document.getElementById("editor").style.display = "block";
+      text.focus();
       break;
     }
     case 'edit-func': {
-      document.getElementById("save").style.display = "block";
+      document.getElementById("editor").style.display = "block";
       funcToSave = cmdSplit[1];
-      text.style.display = "block";
       text.value = functions[cmdSplit[1]].join("\n");
       text.focus();
       break;
@@ -753,11 +762,6 @@ async function doCommand() {
     clear -= 1;
     doCommand();
   }
-}
-function saveFunc() {
-  functions[funcToSave] = text.value.split("\n");
-  text.style.display = "none";
-  document.getElementById("save").style.display = "none";
 }
 command.addEventListener('keydown', function (event) {
   if (event.key == 'Enter') {
