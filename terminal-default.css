@@ -48,12 +48,15 @@ textarea {
   height:30vw;
   width:100%;
 }
-#save {
+#save,#cancel {
   color:white;
   background-color:black;
   border:none;
   outline:none;
   cursor:pointer;
+}
+#cancel {
+  color:red;
 }
 input::spelling-error {
   text-decoration:none;
