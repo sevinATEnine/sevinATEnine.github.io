@@ -16,20 +16,30 @@ the same criteria.
   <head>
     <title>CST Command Line</title>
     <link rel="stylesheet" href="terminal-default.css" />
-    <link rel="stylesheet" href=""id="theme"/>
-    <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
-    <meta charset="UTF-8">
+    <link rel="stylesheet" href="" id="theme" />
+    <link rel="icon" type="image/x-icon" href="./assets/favicon.ico" />
+    <meta charset="UTF-8" />
     <title>CST Terminal-Web</title>
   </head>
-  <body id="body"style="background-color:black;">
+  <body id="body" style="background-color: black">
     <ul id="previous">
-      <li class = "comment">// Welcome to CST open source terminal.<br/>// Version: 1.0.8.18.23<br/>// Type help for a list of basic commands</li>
-
+      <li class="comment">
+        // Welcome to CST open source terminal.<br />// Version: 1.0.8.18.23<br />//
+        Type help for a list of basic commands
+      </li>
     </ul>
-    <textarea id="fm"style="display:none;"></textarea>
-    <button id="save"style="display:none;"onclick="saveFunc();">SAVE</button>
+    <div id="editor" style="display: none">
+      <textarea id="fm"></textarea>
+      <button id="save"onclick="saveFunc();">
+        SAVE
+      </button>
+      <button id="cancel"onclick="hideEdit();">
+        CANCEL
+      </button>
+    </div>
     <br/>
-    <span id="prompt"></span><input type="text"id="command"style="background-color:black;">
+    <span id="prompt"></span
+    ><input type="text" id="command" style="background-color: black" />
     <script src="terminal.js"></script>
   </body>
 </html>
