@@ -9,10 +9,16 @@ const arrDefault = [
     ']', '{', '}', '\\', '|', ';', ':', '"', "'", ',', '<',
     '.', '>', '/', '?', '`', '~'
 ];
+function encrypt() {
 var input = document.getElementById("input").value;
 var key = document.getElementById("key").value;
 var key2 = key;
 var output = "";
 while(key2.length < input.length) {
     key2 += key;
+}
+for(var i = 0; i < input.length; i++) {
+    output += arrDefault[(arrDefault.indexOf(input[i])+arrDefault.indexOf(key2[i])) % arrDefault.length]
+}
+alert(output)
 }
