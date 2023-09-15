@@ -9,9 +9,10 @@ const arrDefault = [
     ']', '{', '}', '\\', '|', ';', ':', '"', "'", ',', '<',
     '.', '>', '/', '?', '`', '~'
 ];
-
-
-
-for (var number = 0; number <= 6634204312890625; number++) {
-    console.log(arrDefault[(String(number).padStart(16, "0"))]);
+var input = document.getElementById("input").value;
+var key = document.getElementById("key").value;
+var key2 = key;
+var output = "";
+while(key2.length < input.length) {
+    key2 += key;
 }
