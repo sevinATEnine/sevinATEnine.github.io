@@ -7,7 +7,7 @@ const arrDefault = [
     '3', '4', '5', '6', '7', '8', '9', '!', '@', '#', '$',
     '%', '^', '&', '*', '(', ')', '-', '_', '+', '=', '[',
     ']', '{', '}', '\\', '|', ';', ':', '"', "'", ',', '<',
-    '.', '>', '/', '?', '`', '~'
+    '.', '>', '/', '?', '`', '~',' '
 ];
 function encrypt() {
 var input = document.getElementById("input").value;
@@ -20,5 +20,5 @@ while(key2.length < input.length) {
 for(var i = 0; i < input.length; i++) {
     output += arrDefault[(arrDefault.indexOf(input[i])+arrDefault.indexOf(key2[i])) % arrDefault.length]
 }
-alert(output)
+document.getElementById("output").textContent = output;
 }
