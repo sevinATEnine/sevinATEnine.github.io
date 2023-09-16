@@ -93,6 +93,7 @@ the same criteria.
     }
     .adImg {
       width:100%;
+      cursor: pointer;
     }
     .adCloseButton {
       position: fixed;
@@ -262,7 +263,24 @@ the same criteria.
   <iframe src="./devConsole.html" title="DEV Console" width="99%" height="400px"></iframe>
 
 
-  <div class="adBox" id="ad1"><img src="./assets/ads/2.webp" class="adImg"><button onclick="document.getElementById('ad1').style.visibility='hidden'" class="adCloseButton">X</button></div>
+  <div class="adBox" id="ad1"><img src="./assets/ads/2.webp" onclick="window.location.href='https://tenor.com/search/rick-roll-gifs';" class="adImg"></div>
+
+  <script>
+
+    if (window.localStorage.showAds=="false"){
+      document.getElementsByClassName('adBox')[0].style.visibility="hidden";
+      var showAdsButton = document.createElement('button');
+      showAdsButton.innerHTML="Show ads";
+      showAdsButton.setAttribute('onclick', "window.localStorage.showAds='true'; navigation.reload();");
+      document.body.appendChild(showAdsButton);
+    } else {
+      window.localStorage.showAds="true";
+      var showAdsButton = document.createElement('button');
+      showAdsButton.innerHTML="Hide ads";
+      showAdsButton.setAttribute('onclick', "window.location='./removeAds.html'");
+      document.body.appendChild(showAdsButton);
+    }
+  </script>
   
 </body>
 
