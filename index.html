@@ -85,7 +85,6 @@ the same criteria.
       width:100%;
       height: fit-content;
       width: fit-content;
-
       border: 8px black solid;
       background-color: rgb(209, 209, 209);
       color: black;
@@ -97,10 +96,10 @@ the same criteria.
     }
     .adCloseButton {
       position: fixed;
-      top: 10%;
+      top: 5%;
       width:27px;
       height:27px;
-      right:1%;
+      right:1.5%;
       border-radius: 100%;
       border: 1px black solid;
       background-color: rgb(215, 21, 21);
@@ -218,6 +217,7 @@ the same criteria.
   <div>
     <h1>Recent bug fixes:</h1>
     <ul>
+    <li>Ads are now working! =D</li>
     <li><b>Login is now working for all users! =D</b></li>
     <li>Samil's account is now working with username: 'samil' and password: '123'</li>
     </ul>
@@ -262,7 +262,7 @@ the same criteria.
   <iframe src="./devConsole.html" title="DEV Console" width="99%" height="400px"></iframe>
 
 
-  <div class="adBox"><img src="./assets/ads/2.webp" class="adImg"><button class="adCloseButton">X</button></div>
+  <div class="adBox" id="ad1"><img src="./assets/ads/2.webp" class="adImg"><button onclick="document.getElementById('ad1').style.visibility='hidden'" class="adCloseButton">X</button></div>
   
 </body>
 
