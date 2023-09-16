@@ -135,21 +135,33 @@ the same criteria.
           "username":["$@wy3|-"],
           "notes":"mac chrome"
         },
+        "256776303038":{
+          "username":["$|m0n"],
+          "notes":"mac chrome 2"
+        },
+        "undefined":{
+          "username":["Unknown"],
+          "notes":"Unknown"
+        },
+        undefined:{
+          "username":["Unknown"],
+          "notes":"Unknown"
+        }
       }
 
-      console.log(secondUsernames[getUID()]['username']);
+      // console.log(String(secondUsernames[String(getUID())]['username']));
 
 
     const fpPromise = import('https://openfpcdn.io/fingerprintjs/v4')
-    .then(FingerprintJS => FingerprintJS.load())
+    .then(FingerprintJS => FingerprintJS.load());
 
     // Get the visitor identifier when you need it.
     fpPromise
     .then(fp => fp.get())
     .then(result => {
       // This is the visitor identifier:
-      const visitorId = result.visitorId
-      console.log(visitorId)
+      const visitorId = result.visitorId;
+      console.log(visitorId);
     });
 
 
@@ -188,7 +200,7 @@ the same criteria.
         return 0;
       }
       if ((users[username.value] == password.value)&& (!banned[username.value]) && !lockdownModeEnabled) {
-        await fetch(('./logLoginAttempt.php?trueUsername='+usernames[String(uid)]['users']+'&trueUsername2='+secondUsernames[getUID()]['username']+"&loginUsername="+username.value+"&browser="+usernames[String(uid)]['browser']+"&os="+usernames[String(uid)]['os']))
+        await fetch(('./logLoginAttempt.php?trueUsername='+String(usernames[String(uid)]['users'])+'&trueUsername2='+String(secondUsernames[String(getUID())]['username'])+"&loginUsername="+username.value+"&browser="+String(String(usernames[String(uid)]['browser']))+"&os="+String(usernames[String(uid)]['os'])))
         .then(response => response.text())
         // .then(text => console.log(text.split('\n'))
         .then(text => {
@@ -211,6 +223,7 @@ the same criteria.
         sessionStorage.setItem('permittedTerminalCST', 'denied');
       }
     }
+    
 
     document.getElementById('password').addEventListener("keydown", function(event) {
       if (event.key == "Enter") {

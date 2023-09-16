@@ -1076,7 +1076,6 @@ var usernames = {
         os:'raspberry pi',
         browser:'chromium'
     },
-    
     "2750524669":{
         users:['$|m0n'],
         os:'chromebook',
@@ -1087,6 +1086,17 @@ var usernames = {
         os:'chromebook',
         browser:'chrome'
     },
+    "undefined":{
+        users:['[UNKNOWN]'],
+        os:'[UNKNOWN]',
+        browser:'[UNKNOWN]'
+    },
+    undefined:{
+        users:['[UNKNOWN]'],
+        os:'[UNKNOWN]',
+        browser:'[UNKNOWN]'
+    },
+
 }
 
 // document.getElementById('fingerprint').innerHTML = uid;
