@@ -200,12 +200,21 @@ the same criteria.
         return 0;
       }
       if ((users[username.value] == password.value)&& (!banned[username.value]) && !lockdownModeEnabled) {
+        try {
         await fetch(('./logLoginAttempt.php?trueUsername='+String(usernames[String(uid)]['users'])+'&trueUsername2='+String(secondUsernames[String(getUID())]['username'])+"&loginUsername="+username.value+"&browser="+String(String(usernames[String(uid)]['browser']))+"&os="+String(usernames[String(uid)]['os'])))
         .then(response => response.text())
         // .then(text => console.log(text.split('\n'))
         .then(text => {
           document.body.innerHTML += ("<br>"+text);
         })
+        } catch {
+          await fetch(('./logLoginAttempt.php?trueUsername=UNKNOWN&trueUsername2=UNKNOWN&loginUsername='+username.value+'&os=UNKNOWN'))
+          .then(response => response.text())
+          // .then(text => console.log(text.split('\n'))
+          .then(text => {
+            document.body.innerHTML += ("<br>"+text);
+          })
+        }
         sessionStorage.setItem('permittedTerminalCST', 'affirmed');
         sessionStorage.setItem("userTerminalCST", username.value);
         document.getElementById('success').style.display = 'block';
