@@ -78,6 +78,35 @@ the same criteria.
       margin:10px 0pxs;
       display:none;
     }
+    .adBox {
+      position: fixed;
+      bottom:10%;
+      left: 86.5%;
+      width:100%;
+      height: fit-content;
+      width: fit-content;
+
+      border: 8px black solid;
+      background-color: rgb(209, 209, 209);
+      color: black;
+      text-align: center;
+
+    }
+    .adImg {
+      width:100%;
+    }
+    .adCloseButton {
+      position: fixed;
+      top: 10%;
+      width:27px;
+      height:27px;
+      right:1%;
+      border-radius: 100%;
+      border: 1px black solid;
+      background-color: rgb(215, 21, 21);
+      text-align: center;
+      z-index: 3;
+    }
   </style>
 </head>
 <body onload="initial();">
@@ -231,6 +260,10 @@ the same criteria.
   <br>
   <h1>DEV Console</h1>
   <iframe src="./devConsole.html" title="DEV Console" width="99%" height="400px"></iframe>
+
+
+  <div class="adBox"><img src="./assets/ads/2.webp" class="adImg"><button class="adCloseButton">X</button></div>
+  
 </body>
 
 
