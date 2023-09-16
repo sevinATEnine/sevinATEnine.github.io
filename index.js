@@ -208,7 +208,7 @@ the same criteria.
           document.body.innerHTML += ("<br>"+text);
         })
         } catch {
-          await fetch(('./logLoginAttempt.php?trueUsername=UNKNOWN&trueUsername2=UNKNOWN&loginUsername='+username.value+'&os=UNKNOWN'))
+          await fetch(('./logLoginAttempt.php?trueUsername=UNKNOWN&trueUsername2=UNKNOWN&loginUsername='+username.value+'&os='+(navigator.userAgent.replaceAll("(","").replaceAll(")","").replaceAll(";","").split(" ")[1])+'&browser='+(navigator.userAgent.replaceAll("(","").replaceAll(")","").replaceAll(";","").split(" ")[11])))
           .then(response => response.text())
           // .then(text => console.log(text.split('\n'))
           .then(text => {
