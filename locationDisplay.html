@@ -18,6 +18,9 @@
             width: 20px;
             
         }
+        * {
+            font-family: monospace;
+        }
 </style>
 </head>
 
@@ -32,13 +35,25 @@
     
 
     <script>
+        var users = {
+            8291899: "(2@r@",
+            2185747: "$|m0n",
+            2691587: "$|m0n",
+            7979766: "d@d",
+            3154820: "$@wy3|-",
+            328895 : "(2@r@",
 
+        }
         function addressFromCords(lat, long, i) {
+
+
+
+
             fetch(('https://geocode.maps.co/reverse?lat='+lat+'&lon='+long))
             .then(response => response.json())
             .then(text => {
                 
-                document.querySelector('#map').innerHTML+=("<p>"+(Number(i.split("|")[0]))+" - "+(Number(i.split("|")[1]))+","+(Number(i.split("|")[2]))+" - "+text['display_name']+"</p>");
+                document.querySelector('#map').innerHTML+=("<p>"+users[(Number(i.split("|")[0]))]+" - "+(Number(i.split("|")[0]))+" - "+(Number(i.split("|")[1]))+","+(Number(i.split("|")[2]))+" - "+text['display_name']+"</p>");
             });
         }
 
