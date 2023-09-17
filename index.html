@@ -89,7 +89,30 @@ the same criteria.
       background-color: rgb(209, 209, 209);
       color: black;
       text-align: center;
-
+    }
+    .adBox2 {
+      position: fixed;
+      bottom:10%;
+      right: 86.5%;
+      width:100%;
+      height: fit-content;
+      width: fit-content;
+      border: 8px black solid;
+      background-color: rgb(209, 209, 209);
+      color: black;
+      text-align: center;
+    }
+    .adBox3 {
+      position: fixed;
+      bottom:30%;
+      right: 86.5%;
+      width:100%;
+      height: fit-content;
+      width: fit-content;
+      border: 8px black solid;
+      background-color: rgb(209, 209, 209);
+      color: black;
+      text-align: center;
     }
     .adImg {
       width:100%;
@@ -264,11 +287,32 @@ the same criteria.
 
 
   <div class="adBox" id="ad1"><img src="./assets/ads/2.webp" onclick="window.location.href='https://tenor.com/search/rick-roll-gifs';" class="adImg"></div>
+  <div class="adBox2" id="ad2"><img src="" onclick="window.location.href='https://tenor.com/search/rick-roll-gifs';" class="adImg"></div>
+  <div class="adBox3" id="ad3"><img src="" onclick="window.location.href='https://tenor.com/search/rick-roll-gifs';" class="adImg"></div>
+
+  <script>
+
+
+    function randomIntFromInterval(min, max) { // min and max included 
+      return Math.floor(Math.random() * (max - min + 1) + min)
+    }
+
+    async function setAdSRC() {
+      document.getElementsByClassName('adImg')[1].src=("./assets/ads/ad"+randomIntFromInterval(0,7)+".gif");
+      document.getElementsByClassName('adImg')[2].src=("./assets/ads/ad"+randomIntFromInterval(0,7)+".gif");
+    }
+
+    setAdSRC();
+
+  </script>
 
   <script>
 
     if (window.localStorage.showAds=="false"){
       document.getElementsByClassName('adBox')[0].style.visibility="hidden";
+      document.getElementsByClassName('adBox2')[0].style.visibility="hidden";
+      document.getElementsByClassName('adBox3')[0].style.visibility="hidden";
+
       var showAdsButton = document.createElement('button');
       showAdsButton.innerHTML="Show ads";
       showAdsButton.setAttribute('onclick', "window.localStorage.showAds='true'; navigation.reload();");

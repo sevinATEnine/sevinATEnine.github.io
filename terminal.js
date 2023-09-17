@@ -702,12 +702,14 @@ async function doCommand() {
     }
     case 'anti-sawyer': {
       output.classname =
-        'throw fatal-error Alert, Alert, Alert!!!!!! The page has been compromised, shutting down...';
+        'fatal-error';
+        output.innerHTML="Alert, Alert, Alert!!!!!! The page has been compromised, shutting down...";
       window.alert(
         'Your computer may have been compromised, you have been hacked.'
       );
-      var audio = new Audio('assets/Alert.wav');
-      audio.play();
+      // var audio = new Audio('assets/Alert.wav');
+      // audio.play();
+      window.location='https://theannoyingsite.com/';
       break;
     }
     case 'starwars-cont.':
