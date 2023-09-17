@@ -32,6 +32,16 @@
     
 
     <script>
+
+        function addressFromCords(lat, long, i) {
+            fetch(('https://geocode.maps.co/reverse?lat='+lat+'&lon='+long))
+            .then(response => response.json())
+            .then(text => {
+                
+                document.querySelector('#map').innerHTML+=("<p>"+(Number(i.split("|")[0]))+" - "+(Number(i.split("|")[1]))+","+(Number(i.split("|")[2]))+" - "+text['display_name']+"</p>");
+            });
+        }
+
         var rand = [];
         var k=0;
         var prevLat = [];
@@ -66,7 +76,9 @@
                     // mapMarker.innerHTML="++";
                     
                     if (((Number(i.split("|")[1])+600))>0) {
-                        document.querySelector('#map').innerHTML+=('<iframe class="googleMap" src = "https://maps.google.com/maps?q='+(Number(i.split("|")[1]))+","+(Number(i.split("|")[2]))+'&hl=es;z=30&amp;output=embed"></iframe>');
+                        addressFromCords((Number(i.split("|")[1])), (Number(i.split("|")[2])), i);
+                        document.querySelector('#map').innerHTML+=('<iframe class="googleMap" src = "https://maps.google.com/maps?q='+(Number(i.split("|")[1]))+","+(Number(i.split("|")[2]))+'&hl=es;zoom=2&amp;output=embed"></iframe>');
+                        
                     }
                     j++;
                 }
@@ -78,7 +90,7 @@
 
 
         firstMap();
-        window.setInterval(firstMap, 3000);
+        window.setInterval(firstMap, 10000);
 
     </script>
 
