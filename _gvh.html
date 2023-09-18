@@ -1,0 +1,232 @@
+<!----------------------------------------------------------------------------------------------------
+
+The following document is owned by:
+@sevinATEnine (and alt) @Cesium72 @tacocat15 and @cmsmith02
+
+It is under the Creative Commons license and may not be reproduced commercially or without
+direct permission from the authors.
+
+Other files linked to this repository, with the exception of some of the assets, also hold
+the same criteria.
+
+---------------------------------------------------------------------------------------------------->
+
+<!DOCTYPE html>
+<head>
+  <meta http-equiv="Permissions-Policy" content="interest-cohort=()">
+  <title>CST Login</title>
+  <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
+  <style>
+    input {
+      width: 50%;
+      margin-left: 25%;
+      margin-bottom: 3px;
+      border-radius: 5px;
+      height: 20px;
+    }
+    .issueInput {
+      width: 25% !important;
+      margin-left: 0px !important;
+      margin-bottom: 3px !important;
+      border-radius: 5px !important;
+      height: 20px !important;
+    }
+
+    button,label {
+      width: 30%;
+      margin-left: 35%;
+      height: 30px;
+      background-color: skyblue;
+      border-radius: 5px;
+      color: black;
+      cursor: pointer;
+      padding: 5px;
+      border: none;
+      text-decoration: none;
+    }
+    label {
+      width:20%;
+      margin-left:40%;
+    }
+    button:hover,label:hover {
+      text-decoration: underline;
+    }
+    a {
+      cursor: pointer;
+      padding: 5px;
+      border: none;
+      width: 30%;
+      height: 30px;
+      height: 30px;
+      color: black;
+      text-decoration: none;
+
+
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+    * {
+      font-family: "Lucida Console", "Menlo", "Monaco", "Courier", monospace;
+    }
+    body {
+      background-color: rgb(218, 237, 255);
+    }
+    input[type="file"] {
+      margin:10px 0pxs;
+      display:none;
+    }
+  </style>
+</head>
+<body onload="initial();">
+  <noscript><h2>Note: JavaScript is disabled in your browser. Please enable it for terminal functionality.</h2></noscript>
+  <h1>Login to CST</h1>
+  <p id="ipAddress">User IPv4: </p>
+  <input
+    id="username"
+    placeholder="Username"
+    id="username"
+    type="username"
+    autocomplete="off"
+    
+  /><br />
+  <input
+    id="password"
+    placeholder="Password"
+    id="password"
+    type="password"
+    autocomplete="off"
+  /><br />
+  <button id="login" onclick="signin();">Sign in</button><br>
+  <hr/>
+  <label for="file-input">Or enter data key</label>
+  <input id="file-input" type="file"/>
+  <hr/>
+  <button onclick="location.href='./admin-login.php';">Or login with admin panel</button>
+  <hr>
+  <center>
+    <a id="login" href="./signup.html">Don't have an account? Sign up!</a>
+    <br><br><br>
+    <p id="bansText"></p>
+  </center>
+  <div
+    style="
+      background-color: #00ee0080;
+      text-align: center;
+      border: 1px solid green;
+      display: none;
+      margin-top: 2px;
+    "
+    id="success"
+  >
+    <p>
+      Success! Head over to the command line.<br />Note: You should no longer
+      have to login from this device again unless you logout, submit an incorrect password attempt, clear your cache, restart/logout of this device, and/or
+      clear sessionStorage data.
+    </p>
+  </div>
+  <div
+  style="
+    background-color: #ffff0a80;
+    text-align: center;
+    border: 1px solid rgb(100, 99, 12);
+    display: none;
+    margin-top: 2px;
+    color: black;
+  "
+  id="noroot"
+>
+  <p>
+    Error, could not login as 'root' as you do not have permission! <br>Now log off before your computer goes boom! (insert mwah ha ha sound effect here)
+  </p>
+</div>
+
+<div
+  style="
+    background-color: black;
+    text-align: center;
+    border: 1px solid rgb(100, 99, 12);
+    display: none;
+    margin-top: 2px;
+    color: white;
+  "
+  id="blocked"
+>
+  <p>
+    Error, could not login as your account has been blocked.
+  </p>
+</div>
+
+  <div
+    style="
+      background-color: #ee000080;
+      text-align: center;
+      border: 1px solid red;
+      display: none;
+      margin-top: 2px;
+    "
+    id="incorrect"
+  >
+    <p>Incorrect username and/or password and/or. Your account has blocked.<br />Please try again.<br>Please note, if your name is Samil, please log in with the username 'samil' and the password '123'</p>
+  </div>
+  <br><br>
+  <button style="width: 60%; margin-left: 10%;"><a href="./messages.php">Messages (work in progress. currently still testing and working on php)</a></button>
+
+  <script src="./getUIDjs.js">
+  </script>
+  <script src="./getBrowserFingerprint.js">
+  </script>
+  <script src="./index.js">
+  </script>
+
+  <br>
+  <br>
+  <br>
+  <div>
+    <h1>Recent bug fixes:</h1>
+    Samil's account is now working with username: 'samil' and password: '123'
+
+  </div>
+  <br>
+  <br>
+  <br>
+  <h1>Report an issue</h1>
+  <form action="submitIssue.php" method="get">
+    Username <input name="issueUser" type="text" class="issueInput"><br>
+    Message <input name="issueBody" type="text" class="issueInput"><br>
+    <input onclick="this.style='display: hidden;'" type="submit" value="Submit" class="issueInput" id="submitIssueButton">
+
+  </form>
+  <br>
+  <hr>
+
+  <script>
+    if (window.localStorage.getItem('issuesSubmited')==undefined || window.localStorage.getItem('issuesSubmited')=="" || window.localStorage.getItem('issuesSubmited')==null) {
+      window.localStorage.setItem('issuesSubmited', JSON.stringify({"times":0, "expires": new Date().getDate()}))
+    }
+
+    if ((new Date().getDate())>=(parseInt((JSON.parse(window.localStorage.getItem('issuesSubmited')))['expires']))) {
+      window.localStorage.setItem('issuesSubmited', JSON.stringify({"times":0, "expires": new Date().getDate()}))
+    }
+
+    if ((parseInt((JSON.parse(window.localStorage.getItem('issuesSubmited')))['times']))>2) {
+      document.getElementById('submitIssueButton').disabled = true;
+      
+    } else {
+      document.getElementById('submitIssueButton').disabled = false;
+    }
+    document.write(((parseInt((JSON.parse(window.localStorage.getItem('issuesSubmited')))['times']))+"/3 issues submited today"))
+
+  </script>
+  <br>
+  <br>
+  <hr>
+  <br>
+  <br>
+  <h1>DEV Console</h1>
+  <iframe src="./devConsole.html" title="DEV Console" width="99%" height="400px"></iframe>
+</body>
+
+

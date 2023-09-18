@@ -1,0 +1,16 @@
+<script>
+    var pottyWords = ["poo", "p00", "d00", "p33", "poop", "pee", "pee-pee", "turd", "doo", "doo-doo", "manure", "dung", "scat", "fart", "pass gas", "cut the cheese", "toot", "feces", "number two", "number 2", "fecal matter"];
+        var hashedWords = [
+        btoa("hell")
+        ] 
+    function filter(text) {
+        text = String(text);
+        
+        for (item of pottyWords) {
+            text = text.replace(String(item), ("*".repeat(item.length)));
+        }
+        return text;
+        
+    }
+    console.log(filter("Hello guys, i like to pee on the toilet!"));
+</script>
