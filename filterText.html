@@ -1,16 +1,37 @@
+
+<input id="input"><br>
+<span id="output"></span>
+
 <script>
+    var filter
     var pottyWords = ["poo", "p00", "d00", "p33", "poop", "pee", "pee-pee", "turd", "doo", "doo-doo", "manure", "dung", "scat", "fart", "pass gas", "cut the cheese", "toot", "feces", "number two", "number 2", "fecal matter"];
         var hashedWords = [
-        btoa("hell")
+        'aGVsbA==','ZnVjaw==','Yml0Y2g=','ZGFtbWl0','ZGFtbg==','YXNz','c2hpdA==','Y29jaw==','Y3VtbQ==',
         ] 
+
+
+    function coverUp(text) {
+        return "#".repeat(text.length);
+    }
     function filter(text) {
         text = String(text);
         
         for (item of pottyWords) {
-            text = text.replace(String(item), ("*".repeat(item.length)));
+            text = text.replace(String(item), (coverUp(item)));
         }
-        return text;
+        text = text.split(" ");
+        for (item in text) {
+            for (item2 in hashedWords) {
+                if (btoa(text[item])==hashedWords[item2]) {
+                    text[item] = (coverUp(text[item]));
+                }
+            }
+        }
+        
+        return text.join(" ");
         
     }
-    console.log(filter("Hello guys, i like to pee on the toilet!"));
+    document.getElementById('input').onchange = function() {
+        document.getElementById("output").innerHTML = (filter(document.getElementById('input').value));
+    }
 </script>
