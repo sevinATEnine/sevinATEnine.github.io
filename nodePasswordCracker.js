@@ -34,7 +34,7 @@ function decrypt() {
         key2 += key;
     }
     for(var i = 0; i < input.length; i++) {
-        output += arrDefault[(arrDefault.indexOf(input[i])-arrDefault.indexOf(key2[i])) % arrDefault.length]
+        output += arrDefault[((arrDefault.indexOf(input[i])-arrDefault.indexOf(key2[i])) % arrDefault.length > 0)?(arrDefault.indexOf(input[i])-arrDefault.indexOf(key2[i])) % arrDefault.length : arrDefault.length + (arrDefault.indexOf(input[i])-arrDefault.indexOf(key2[i]))]
     }
     document.getElementById("output").textContent = output;
     }   
