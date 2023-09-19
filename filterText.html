@@ -1,17 +1,32 @@
 
-<input id="input"><br>
-<span id="output"></span>
+
+<head>
+    <style>
+        * {
+            font-family: monospace;
+        }
+    </style>
+</head>
+
+<b>Input: </b><input id="input"><br>
+<b>Output: </b><span id="output"></span>
 
 <script>
-    var filter
+    var filterWords = ["!","#","$","@","%","&","*","!","#","$","@","%","&","*","!","#","$","@","%","&","*",]
     var pottyWords = ["poo", "p00", "d00", "p33", "poop", "pee", "pee-pee", "turd", "doo", "doo-doo", "manure", "dung", "scat", "fart", "pass gas", "cut the cheese", "toot", "feces", "number two", "number 2", "fecal matter"];
         var hashedWords = [
-        'aGVsbA==','ZnVjaw==','Yml0Y2g=','ZGFtbWl0','ZGFtbg==','YXNz','c2hpdA==','Y29jaw==','Y3VtbQ==',
+        'aGVsbA==','ZnVjaw==','Yml0Y2g=','ZGFtbWl0','ZGFtbg==','YXNz','c2hpdA==','Y29jaw==','Y3VtbQ==','ZGljaw=='
         ] 
 
 
     function coverUp(text) {
-        return "#".repeat(text.length);
+        var returnText = "";
+        var i=0;
+        while (i<text.length) {
+            returnText+= filterWords[i];
+            i++;
+        }
+        return returnText;
     }
     function filter(text) {
         text = String(text);
@@ -19,6 +34,7 @@
         for (item of pottyWords) {
             text = text.replace(String(item), (coverUp(item)));
         }
+        
         text = text.split(" ");
         for (item in text) {
             for (item2 in hashedWords) {
