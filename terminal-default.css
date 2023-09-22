@@ -45,7 +45,7 @@ input, textarea {
   color:green;
 }
 textarea {
-  height:30vw;
+  height:80vh;
   width:100%;
 }
 #save,#cancel {

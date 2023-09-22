@@ -1,3 +1,0 @@
-alias userTerminalCST \1\
-save soft userTerminalCST
-throw important User switched successfully.
