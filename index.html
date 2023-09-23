@@ -57,11 +57,14 @@ the same criteria.
       border: none;
       width: 30%;
       height: 30px;
-      height: 30px;
       color: black;
       text-decoration: none;
 
 
+    }
+
+    #loginWithGithubButton {
+      width:14%;
     }
 
     a:hover {
@@ -196,6 +199,8 @@ the same criteria.
     <center><div id="buttonDiv"></div></center>
   </body>
 </html>
+  <hr>
+    <center><a onclick="loginWithGithub();"><img id="loginWithGithubButton" src="./assets/github-button.png"></a></center>
   <hr>
   <center>
     <a id="login" href="./signup.html">Don't have an account? Sign up!</a>
@@ -362,6 +367,13 @@ the same criteria.
       showAdsButton.innerHTML="Hide ads";
       showAdsButton.setAttribute('onclick', "window.location='./removeAds.html'");
       document.body.appendChild(showAdsButton);
+    }
+  </script>
+
+  <script>
+    var loc = window.location.href+'';
+    if (loc.indexOf('http://')==0){
+        window.location.href = loc.replace('http://','https://');
     }
   </script>
   

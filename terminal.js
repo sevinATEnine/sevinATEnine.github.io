@@ -141,6 +141,33 @@ var clearFunc = '';
 var prevCommand = '';
 //Just some variables
 
+
+var parts = window.location.search.substr(1).split("&");
+      var $_GET = {};
+      for (var i = 0; i < parts.length; i++) {
+          var temp = parts[i].split("=");
+          $_GET[decodeURIComponent(temp[0])] = decodeURIComponent(temp[1]);
+      }
+
+  console.log($_GET);
+  try {
+    if ($_GET.code.length > 5) {
+      permitted='affirmed';
+    }
+  } catch {
+
+  }
+
+
+
+//#############################################//
+
+  // permitted='affirmed';
+
+//#############################################//
+
+
+  
 if (permitted != 'affirmed') {
   document.getElementById('body').style.display = 'none';
   window.alert(

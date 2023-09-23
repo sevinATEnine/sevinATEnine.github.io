@@ -11,6 +11,14 @@ the same criteria.
 
 ****************************************************************************************************/
 
+
+
+  function loginWithGithub() {
+    window.location = 'https://github.com/login/oauth/authorize?client_id=3d48caccf78efb63a147';  
+  }
+
+
+
     var password = null;
     var username = null;
     let users = {
