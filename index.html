@@ -160,6 +160,32 @@ the same criteria.
   <hr>
   <button onclick="location.href='./getLoginAttempts.php'">Or check out the recent login attempts</button>
   <hr>
+  <html>
+  <body>
+    <script src="https://accounts.google.com/gsi/client" async></script>
+    <script>
+      function handleCredentialResponse(response) {
+        console.log("Encoded JWT ID token: " + response.credential);
+        window.sessionStorage.userTerminalCST = ("google_login_user_"+window.localStorage.uniqueID);
+        window.sessionStorage.permittedTerminalCST = "affirmed";
+        window.location="./terminal.html";
+      }
+      window.onload = function () {
+        google.accounts.id.initialize({
+          client_id: "624784600343-d8fg6sekqc8cjb9vsbjta4lbakr5j0jv.apps.googleusercontent.com",
+          callback: handleCredentialResponse
+        });
+        google.accounts.id.renderButton(
+          document.getElementById("buttonDiv"),
+          { theme: "outline", size: "large" }  // customization attributes
+        );
+        // google.accounts.id.prompt(); // also display the One Tap dialog
+      }
+    </script>
+    <div id="buttonDiv"></div>
+  </body>
+</html>
+  <hr>
   <center>
     <a id="login" href="./signup.html">Don't have an account? Sign up!</a>
     <br><br><br>
