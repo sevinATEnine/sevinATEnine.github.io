@@ -2,11 +2,56 @@
 <html>
   <head>
     <title>CST Function Manager</title>
+    <style>
+    table {
+            border-collapse: collapse;
+            width: 100%;
+            
+        }
+          
+        th, td {
+            text-align: left;
+            padding: 8px;
+            border:1px black solid;
+        }
+
+        th {
+          background-color: grey;
+        }
+          
+        tbody:nth-child(odd) {
+            background-color: rgb(200, 200, 200);
+        }
+    </style>
   </head>
   <body onload="init();"> 
+    <h1>sessionStorage</h1>
+    <table id="sessionStorageTable">
+      <tr>
+        <th>Item</th>
+        <th>Value</th>
+      </tr>
+    </table>
+    <h1>localStorage</h1>
+    <table id="localStorageTable">
+      <tr>
+        <th>Item</th>
+        <th>Value</th>
+      </tr>
+    </table>
+
       <script>
         function init() {
-          alert(sessionStorage.getItem("test"));
+          var loopThrough = Object.keys(sessionStorage);
+          var sessionStorageTable = document.getElementById('sessionStorageTable');
+          for (item in loopThrough) {
+            sessionStorageTable.innerHTML+=("<tr><td>"+loopThrough[item]+"</td><td>"+sessionStorage[loopThrough[item]]+"</td></tr>");
+          }
+          var loopThrough = Object.keys(localStorage);
+          var localStorageTable = document.getElementById('localStorageTable');
+          for (item in loopThrough) {
+            localStorageTable.innerHTML+=("<tr><td>"+loopThrough[item]+"</td><td>"+localStorage[loopThrough[item]]+"</td></tr>");
+          }
         }
       </script>
   </body>
