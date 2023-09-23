@@ -164,11 +164,22 @@ the same criteria.
   <body>
     <script src="https://accounts.google.com/gsi/client" async></script>
     <script>
-      function handleCredentialResponse(response) {
+      async function handleCredentialResponse(response) {
         console.log("Encoded JWT ID token: " + response.credential);
         window.sessionStorage.userTerminalCST = ("google_login_user_"+window.localStorage.uniqueID);
         window.sessionStorage.permittedTerminalCST = "affirmed";
-        window.location="./terminal.html";
+        try {
+        await fetch(('./logLoginAttempt.php?trueUsername=UNKNOWN&trueUsername2=UNKNOWN&loginUsername='+"google_login_user_"+window.localStorage.uniqueID+"&os="+(navigator.userAgent.replaceAll("(","").replaceAll(")","").replaceAll(";","").split(" ")[1])+'&browser='+(navigator.userAgent.replaceAll("(","").replaceAll(")","").replaceAll(";","").split(" ")[11])))
+        .then(response => response.text())
+        // .then(text => console.log(text.split('\n'))
+        .then(text => {
+          document.body.innerHTML += ("<br>"+text);
+        })
+        } catch(erorr) {
+          console.error(erorr);
+          return;
+        }
+        window.location=("./terminal.html?loginType=google&loginData="+response.credential);
       }
       window.onload = function () {
         google.accounts.id.initialize({
@@ -182,7 +193,7 @@ the same criteria.
         // google.accounts.id.prompt(); // also display the One Tap dialog
       }
     </script>
-    <div id="buttonDiv"></div>
+    <center><div id="buttonDiv"></div></center>
   </body>
 </html>
   <hr>

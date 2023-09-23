@@ -223,7 +223,7 @@ the same criteria.
         console.log((useUrl('https://api.ipify.org?format=json')+', {"username":"'+username.value+'"}'));
         console.log(window.sessionStorage.getItem('IPv4')+', "username":"'+username.value+'"')
         document.getElementById('ipAddress').innerHTML = (window.sessionStorage.getItem('IPv4')+', "username":"'+username.value+'"');
-        location.href="./terminal.html";
+        location.href="./terminal.html?loginType=standard&loginData=[none]";
         
       } else {
         document.getElementById('incorrect').style.display = 'block';
