@@ -1,8 +1,36 @@
 <head>
-
-</head>
-<body>
+    <style>
+        * {
+            font-family: monospace;
+        }
+    </style>
     <script>
+
+
+        function getRandomInt(min, max) {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+        function decimalToASCII(decimal) {
+        return String.fromCharCode(decimal);
+        }
+
+
+        window.setInterval(function(){
+            if (document.getElementById('lenOfCode').value==''||document.getElementById('lenOfCode').value==null) {
+                document.getElementById('lenOfCode').value='16';
+            }
+
+            if (Number(document.getElementById('lenOfCode').value)<16) {
+                document.getElementById('lenOfCode').value='16';
+            }
+            setCode();
+        }, 1000)
+        function setCode() {
+            document.getElementById('out').innerHTML = ( genCode(Number(document.getElementById('lenOfCode').value))+"<br>"+genCode2(Number(document.getElementById('lenOfCode').value)) );
+        }
 
         function stringToHash(string) {
                     
@@ -19,14 +47,30 @@
                     return hash;
         }
 
-        function genCode() {
+        function genCode(len) {
             var code = 0;
             for (item of navigator.userAgent) {
                 code+=item.charCodeAt();
             }
             code+=Date.now();
             code+=(Math.random()*10000000000000000)+(Math.random()*10000000000000000)+(Math.random()*10000000000000000)+(Math.random()*10000000000000000)+(Math.random()*10000000000000000);
-            return ((btoa(stringToHash(btoa(code))))).padStart(256, ((btoa(stringToHash(btoa(code))))));
+            return ((btoa(stringToHash(btoa(code))))).padStart(len, ((btoa(stringToHash(btoa(code))))));
+        }
+        function genCode2(len) {
+            var code = "";
+            var randomNumber = "";
+            var i=0;
+            while (i<len) {
+                randomNumber = getRandomInt(32,125);
+                code+=decimalToASCII(randomNumber);
+                i++;
+            }
+            return code;
         }
     </script>
+</head>
+<body>
+    
+    <span>Generate code with length of </span><input id="lenOfCode" type="number" min="16"><br>
+    <span id="out"></span>
 </body>
