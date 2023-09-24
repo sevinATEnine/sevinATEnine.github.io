@@ -85,7 +85,7 @@ const arrDefault = [
     ']', '{', '}', '\\', '|', ';', ':', '"', "'", ',', '<',
     '.', '>', '/', '?', '`', '~',' '
 ];
-function encrypt() {
+function encrypt(data, key) {
 var key2 = key;
 var outputA = "";
 if(key.length != 0) {
