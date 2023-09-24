@@ -199,7 +199,7 @@ async function doCommand() {
   const output = document.createElement('li');
   output.className = 'output';
   cmdSplit = command.value.split(' ');
-  if (cmdSplit[0] == 'if') {
+  while (cmdSplit[0] == 'if') {
     var ifToAdd = document.createElement('li');
     ifToAdd.textContent =
       'CST/' +
