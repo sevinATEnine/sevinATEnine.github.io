@@ -539,6 +539,10 @@ async function doCommand() {
       }
       break;
     }
+    case 'encrypt': {
+      output.textContent = await getData('./pgp2.html?info='+encodeURI(command.value.slice(9+cmdSplit[1].length))+"&key="+encodeURI(cmdSplit[1])+"&ed=encrypt")
+      break;
+    }
     case 'theme': {
       document.getElementById('body').style.backgroundColor = cmdSplit[1];
       command.style.background = cmdSplit[1];
