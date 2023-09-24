@@ -74,30 +74,41 @@ function ampHandle(data) {
     .split('&a')
     .join('&');
 }
+const arrDefault = [
+    'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K',
+    'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V',
+    'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g',
+    'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r',
+    's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2',
+    '3', '4', '5', '6', '7', '8', '9', '!', '@', '#', '$',
+    '%', '^', '&', '*', '(', ')', '-', '_', '+', '=', '[',
+    ']', '{', '}', '\\', '|', ';', ':', '"', "'", ',', '<',
+    '.', '>', '/', '?', '`', '~',' '
+];
 function encrypt() {
 var key2 = key;
-var output = "";
+var outputA = "";
 if(key.length != 0) {
 while(key2.length < input.length) {
     key2 += key;
 }
 for(var i = 0; i < input.length; i++) {
-    output += arrDefault[(arrDefault.indexOf(input[i])+arrDefault.indexOf(key2[i])) % arrDefault.length]
+    outputA += arrDefault[(arrDefault.indexOf(input[i])+arrDefault.indexOf(key2[i])) % arrDefault.length]
 }
-return output;
+return outputA;
 }
 }
 function decrypt(input, key) {
     var key2 = key;
-    var output = "";
+    var outputA = "";
     if(key.length != 0) {
     while(key2.length < input.length) {
         key2 += key;
     }
     for(var i = 0; i < input.length; i++) {
-        output += arrDefault[((arrDefault.indexOf(input[i])-arrDefault.indexOf(key2[i])) % arrDefault.length > 0)?(arrDefault.indexOf(input[i])-arrDefault.indexOf(key2[i])) % arrDefault.length : arrDefault.length + (arrDefault.indexOf(input[i])-arrDefault.indexOf(key2[i]))]
+        outputA += arrDefault[((arrDefault.indexOf(input[i])-arrDefault.indexOf(key2[i])) % arrDefault.length > 0)?(arrDefault.indexOf(input[i])-arrDefault.indexOf(key2[i])) % arrDefault.length : arrDefault.length + (arrDefault.indexOf(input[i])-arrDefault.indexOf(key2[i]))]
     }
-    return output;
+    return outputA;
     }   
 }
 function varHandle(data, len, mode = false) {
@@ -149,17 +160,6 @@ let names = {
   'Ethan': 'Ethan',
   '(@2v1n': 'NEEEEERRRRRRDDDDD',
 }; //basic name definitions
-const arrDefault = [
-    'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K',
-    'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V',
-    'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g',
-    'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r',
-    's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2',
-    '3', '4', '5', '6', '7', '8', '9', '!', '@', '#', '$',
-    '%', '^', '&', '*', '(', ')', '-', '_', '+', '=', '[',
-    ']', '{', '}', '\\', '|', ';', ':', '"', "'", ',', '<',
-    '.', '>', '/', '?', '`', '~',' '
-];
 var aliases = {};
 var parameters = [];
 var funcToSave = "";
@@ -577,11 +577,11 @@ async function doCommand() {
       break;
     }
     case 'encrypt': {
-      output.innerHTML = encrypt(command.value.slice(9 + cmdSplit[1]), cmdSplit[1])
+      output.textContent = encrypt(command.value.slice(9 + cmdSplit[1].length), cmdSplit[1])
       break;
     }
-    case 'encrypt': {
-      output.innerHTML = decrypt(command.value.slice(9 + cmdSplit[1]), cmdSplit[1])
+    case 'decrypt': {
+      output.textContent = decrypt(command.value.slice(9 + cmdSplit[1].length), cmdSplit[1])
       break;
     }
     case 'theme': {
