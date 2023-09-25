@@ -106,13 +106,13 @@ function decrypt(input, key) {
         key2 += key;
     }
     for(var i = 0; i < input.length; i++) {
-        outputA += arrDefault[((arrDefault.indexOf(input[i])-arrDefault.indexOf(key2[i])) % arrDefault.length > 0)?(arrDefault.indexOf(input[i])-arrDefault.indexOf(key2[i])) % arrDefault.length : arrDefault.length + (arrDefault.indexOf(input[i])-arrDefault.indexOf(key2[i]))]
+        outputA += arrDefault[((arrDefault.indexOf(input[i])-arrDefault.indexOf(key2[i])) % arrDefault.length >= 0)?(arrDefault.indexOf(input[i])-arrDefault.indexOf(key2[i])) % arrDefault.length : arrDefault.length + (arrDefault.indexOf(input[i])-arrDefault.indexOf(key2[i]))]
     }
     return outputA;
     }   
 }
 function varHandle(data, len, mode = false) {
-  var outputSplit = data.slice(len + 1).split('|');
+  var outputSplit = data.slice(len + 1).split('\\');
   var final = '';
   var final2 = '';
   var isString = true;
@@ -121,20 +121,19 @@ function varHandle(data, len, mode = false) {
       final += outputSplit[i];
       isString = !isString;
     } else {
-      final += aliases[outputSplit[i]];
+      final += parameters[parameters.length - 1][parseFloat(outputSplit[i]) - 1];
       isString = !isString;
     }
   }
   //final = final.split('&n').join('\n').split('&s').join(' ').split('&p').join('|').split('&b').join('\\').split('&a').join('&')
-  outputSplit = final.split('\\');
+  outputSplit = final.split('|');
   isString = true;
   for (var i = 0; i < outputSplit.length; i++) {
     if (isString == true) {
       final2 += outputSplit[i];
       isString = !isString;
     } else {
-      final2 +=
-        parameters[parameters.length - 1][parseFloat(outputSplit[i]) - 1];
+      final2 += aliases[outputSplit[i]];
       isString = !isString;
     }
   }
