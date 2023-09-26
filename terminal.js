@@ -514,6 +514,13 @@ async function doCommand() {
       document.querySelector('*').style.cursor = varHandle(command.value, 6);
       break;
     }
+    case 'open': {
+      var a = document.createElement('a');
+      a.href = cmdSplit[1];
+      a.target = '_blank';
+      a.click();
+      break;
+    }
     case 'redirect': {
       location.replace(varHandle(command.value, 8, true));
       break;
