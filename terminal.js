@@ -106,7 +106,7 @@ function decrypt(input, key) {
         key2 += key;
     }
     for(var i = 0; i < input.length; i++) {
-        outputA += arrDefault[((arrDefault.indexOf(input[i])-arrDefault.indexOf(key2[i])) % arrDefault.length >= 0)?(arrDefault.indexOf(input[i])-arrDefault.indexOf(key2[i])) % arrDefault.length : arrDefault.length + (arrDefault.indexOf(input[i])-arrDefault.indexOf(key2[i]))]
+        outputA += arrDefault[(arrDefault.indexOf(input[i])+arrDefault.indexOf(key2[i])) % arrDefault.length];
     }
     return outputA;
     }   
