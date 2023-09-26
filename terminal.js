@@ -702,6 +702,8 @@ async function doCommand() {
         aliases[cmdSplit[2]] = sessionStorage.getItem(cmdSplit[3]);
       } else if (cmdSplit[1] == 'var') {
         aliases[cmdSplit[2]] = aliases[cmdSplit[3]];
+      } else if (cmdSplit[1] == 'encrypt') {
+        aliases[cmdSplit[2]] = encrypt(command.value.slice(22 + cmdSplit[2].length), cmdSplit[2]);
       } else if (cmdSplit[1] == 'get') {
         if (cmdSplit[3] == "battery") {
           await navigator.getBattery()
