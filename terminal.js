@@ -374,7 +374,7 @@ async function doCommand() {
       }
 
       function handleFileLoad(event) {
-        aliases[cmdSplit[1]] = event.target.result;
+        aliases[varHandle(cmdSplit[1], -1, true)] = event.target.result;
       }
       break;
     }
@@ -402,25 +402,25 @@ async function doCommand() {
       break;
     }
     case 'drop-func': {
-      delete functions[cmdSplit[1]];
+      delete functions[varHandle(cmdSplit[1], -1, true)];
       break;
     }
     case 'rename-func': {
-      functions[cmdSplit[2]] = functions[cmdSplit[1]];
-      delete functions[cmdSplit[1]];
+      functions[varHandle(cmdSplit[2], -1, true)] = functions[varHandle(cmdSplit[1], -1, true)];
+      delete functions[varHandle(cmdSplit[1], -1, true)];
       break;
     }
     case 'new-func': {
-      functions[cmdSplit[1]] = [];
-      funcToSave = cmdSplit[1]
+      functions[varHandle(cmdSplit[1], -1, true)] = [];
+      funcToSave = varHandle(cmdSplit[1], -1, true)
       document.getElementById("editor").style.display = "block";
       text.focus();
       break;
     }
     case 'edit-func': {
       document.getElementById("editor").style.display = "block";
-      funcToSave = cmdSplit[1];
-      text.value = functions[cmdSplit[1]].join("\n");
+      funcToSave = varHandle(cmdSplit[1], -1, true);
+      text.value = functions[varHandle(cmdSplit[1], -1, true)].join("\n");
       text.focus();
       break;
     }
@@ -435,18 +435,18 @@ async function doCommand() {
       break;
     }
     case 'add-from': {
-      for (var i = 0; i < functions[cmdSplit[1]].length; i++) {
-        execWindow.push(functions[cmdSplit[1]][i]);
+      for (var i = 0; i < functions[varHandle(cmdSplit[1], -1, true)].length; i++) {
+        execWindow.push(functions[varHandle(cmdSplit[1], -1, true)][i]);
       }
       break;
     }
     case 'add-from-if': {
-      for (var i = 0; i < functions[cmdSplit[1]].length; i++) {
+      for (var i = 0; i < functions[varHandle(cmdSplit[1], -1, true)].length; i++) {
         execWindow.push(
           'if ' +
             command.value.slice(13 + cmdSplit[1].length) +
             ' >> ' +
-            functions[cmdSplit[1]][i]
+            functions[varHandle(cmdSplit[1], -1, true)][i]
         );
       }
       break;
@@ -456,7 +456,7 @@ async function doCommand() {
       break;
     }
     case 'inner': {
-      parameters.push(command.value.slice(6).split(' '));
+      parameters.push(varHandle(command.value, 5, true).split(' '));
       break;
     }
     case 'copy': {
@@ -464,7 +464,7 @@ async function doCommand() {
       break;
     }
     case 'view-copy': {
-      navigator.clipboard
+      await navigator.clipboard
         .readText()
         .then((text) => {
           output.innerText = text;
@@ -516,7 +516,7 @@ async function doCommand() {
     }
     case 'open': {
       var a = document.createElement('a');
-      a.href = cmdSplit[1];
+      a.href = varHandle(cmdSplit[1], -1, true);
       a.target = '_blank';
       a.click();
       break;
@@ -531,19 +531,19 @@ async function doCommand() {
       break;
     }
     case 'save': {
-      if (cmdSplit[1] == 'hard') {
-        localStorage.setItem(cmdSplit[2], aliases[cmdSplit[2]]);
-      } else if (cmdSplit[1] == 'soft') {
+      if (varHandle(cmdSplit[1], -1, true) == 'hard') {
+        localStorage.setItem(varHandle(cmdSplit[2], -1, true), aliases[varHandle(cmdSplit[2], -1, true)]);
+      } else if (varHandle(cmdSplit[1], -1, true) == 'soft') {
         if (
-          aliases[cmdSplit[2]] == 'root' &&
-          cmdSplit[2] == 'userTerminalCST'
+          aliases[varHandle(cmdSplit[2], -1, true)] == 'root' &&
+          varHandle(cmdSplit[2], -1, true) == 'userTerminalCST'
         ) {
           output.textContent =
             'Stop! You may not enter the root user without permission!';
           output.className = 'fatal-error';
           break;
         }
-        sessionStorage.setItem(cmdSplit[2], aliases[cmdSplit[2]]);
+        sessionStorage.setItem(varHandle(cmdSplit[2], -1, true), aliases[varHandle(cmdSplit[2], -1, true)]);
       } else {
         output.textContent = 'Errror 03: Invalid value for parameter';
         output.className = 'error';
@@ -565,7 +565,7 @@ async function doCommand() {
       break;
     }
     case 'alias': {
-      aliases[cmdSplit[1]] = varHandle(
+      aliases[varHandle(cmdSplit[1], -1, true)] = varHandle(
         command.value,
         cmdSplit[1].length + 6,
         true
@@ -583,17 +583,17 @@ async function doCommand() {
       break;
     }
     case 'encrypt': {
-      output.textContent = encrypt(command.value.slice(9 + cmdSplit[1].length), cmdSplit[1])
+      output.textContent = encrypt(varHandle(command.value, 8 + varHandle(cmdSplit[1], -1, true).length, true), varHandle(cmdSplit[1], -1, true))
       break;
     }
     case 'decrypt': {
-      output.textContent = decrypt(command.value.slice(9 + cmdSplit[1].length), cmdSplit[1])
+      output.textContent = decrypt(varHandle(command.value, 8 + varHandle(cmdSplit[1], -1, true).length, true), varHandle(cmdSplit[1], -1, true))
       break;
     }
     case 'theme': {
-      document.getElementById('body').style.backgroundColor = cmdSplit[1];
-      command.style.background = cmdSplit[1];
-      foreground = cmdSplit[2];
+      document.getElementById('body').style.backgroundColor = varHandle(cmdSplit[1], -1, true);
+      command.style.background = varHandle(cmdSplit[1], -1, true);
+      foreground = varHandle(cmdSplit[2], -1, true);
       document.getElementById('prompt').style.color = foreground;
       command.style.color = foreground;
       break;
@@ -633,14 +633,14 @@ async function doCommand() {
       break;
     }
     case 'download': {
-      downloadResource(cmdSplit[1]);
+      downloadResource(varHandle(cmdSplit[1], -1, true));
       break;
     }
     case 'lockdown': {
       if (sessionStorage.getItem('userTerminalCST') == 'root') {
         output.textContent = 'Lockdown mode activated.';
         output.className = 'important';
-        localStorage.setItem('lockdownCST', cmdSplit[1]);
+        localStorage.setItem('lockdownCST', varHandle(cmdSplit[1], -1, true));
         localStorage.setItem('lockdownMode', 'active');
       } else {
         output.textContent = 'Error 02: User lacking root priveleges.';
@@ -650,7 +650,7 @@ async function doCommand() {
     }
     case 'switch-user': {
       if (sessionStorage.getItem('userTerminalCST') == 'root') {
-        sessionStorage.setItem('userTerminalCST', cmdSplit[1]);
+        sessionStorage.setItem('userTerminalCST', varHandle(cmdSplit[1], -1, true));
         output.textContent = 'User switched successfully.';
         output.className = 'important';
       } else {
@@ -669,14 +669,9 @@ async function doCommand() {
       output.className = 'html';
       break;
     }
-    case 'get': {
-      retrieve(cmdSplit[1]);
-      output.textContent = tempData;
-      break;
-    }
     case 'throw': {
-      output.className = cmdSplit[1];
-      output.innerText = command.value.slice(cmdSplit[1].length + 7);
+      output.className = varHandle(cmdSplit[1], -1, true);
+      output.innerText = varHandle(command.value, varHandle(cmdSplit[1], -1, true).length + 6, true);
       // output.textContent = batteryl;
       break;
     }
@@ -692,25 +687,25 @@ async function doCommand() {
       break;
     }
     case 'drop-alias': {
-      delete aliases[cmdSplit[1]]
+      delete aliases[varHandle(cmdSplit[1], -1, true)]
       break;
     }
     case 'import-alias': {
-      if (cmdSplit[1] == 'hard') {
-        aliases[cmdSplit[2]] = localStorage.getItem(cmdSplit[3]);
-      } else if (cmdSplit[1] == 'soft') {
-        aliases[cmdSplit[2]] = sessionStorage.getItem(cmdSplit[3]);
-      } else if (cmdSplit[1] == 'var') {
-        aliases[cmdSplit[2]] = aliases[cmdSplit[3]];
-      } else if (cmdSplit[1] == 'encrypt') {
-        aliases[cmdSplit[2]] = encrypt(command.value.slice(23 + cmdSplit[2].length + cmdSplit[3].length), cmdSplit[3]);
-      } else if (cmdSplit[1] == 'decrypt') {
-        aliases[cmdSplit[2]] = decrypt(command.value.slice(23 + cmdSplit[2].length + cmdSplit[3].length), cmdSplit[3]);
-      } else if (cmdSplit[1] == 'get') {
-        if (cmdSplit[3] == "battery") {
+      if (varHandle(cmdSplit[1], -1, true) == 'hard') {
+        aliases[varHandle(cmdSplit[2], -1, true)] = localStorage.getItem(varHandle(cmdSplit[3], -1, true));
+      } else if (varHandle(cmdSplit[1], -1, true) == 'soft') {
+        aliases[varHandle(cmdSplit[2], -1, true)] = sessionStorage.getItem(varHandle(cmdSplit[3], -1, true));
+      } else if (varHandle(cmdSplit[1], -1, true) == 'var') {
+        aliases[varHandle(cmdSplit[2], -1, true)] = aliases[varHandle(cmdSplit[3], -1, true)];
+      } else if (varHandle(cmdSplit[1], -1, true) == 'encrypt') {
+        aliases[varHandle(cmdSplit[2], -1, true)] = encrypt(varHandle(command.value, 22 + varHandle(cmdSplit[2], -1, true) + varHandle(cmdSplit[3], -1, true).length, true), varHandle(cmdSplit[3], -1, true));
+      } else if (varHandle(cmdSplit[1], -1, true) == 'decrypt') {
+        aliases[varHandle(cmdSplit[2], -1, true)] = decrypt(varHandle(command.value, 22 + varHandle(cmdSplit[2], -1, true) + varHandle(cmdSplit[3], -1, true).length, true), varHandle(cmdSplit[3], -1, true));
+      } else if (varHandle(cmdSplit[1], -1, true) == 'get') {
+        if (varHandle(cmdSplit[3], -1, true) == "battery") {
           await navigator.getBattery()
         .then(function (battery) {
-          aliases[cmdSplit[2]] = Math.round(battery.level * 100);
+          aliases[varHandle(cmdSplit[2], -1, true)] = Math.round(battery.level * 100);
           
         })
         .catch(function () {
@@ -718,16 +713,15 @@ async function doCommand() {
           output.className = 'error';
         });
         } else {
-        retrieve(cmdSplit[3]);
-        aliases[cmdSplit[2]] = tempData;
+        retrieve(varHandle(cmdSplit[3], -1, true));
+        aliases[varHandle(cmdSplit[2], -1, true)] = tempData;
       }
       } else {
         output.className = 'error';
         output.textContent = 'Error 03: Invalid value for parameter.';
+        break;
       }
-      if (output.className != 'error') {
-        output.textContent = 'Alias imported successfully';
-      }
+      output.textContent = 'Alias imported successfully';
       break;
     }
     case 'clear-exec': {
@@ -735,14 +729,14 @@ async function doCommand() {
       break;
     }
     case 'export-exec': {
-      functions[cmdSplit[1]] = execWindow;
+      functions[varHandle(cmdSplit[1], -1, true)] = execWindow;
       execWindow = [];
       break;
     }
     case '$': {
-      clear = functions[cmdSplit[1]].length;
+      clear = functions[varHandle(cmdSplit[1], -1, true)].length;
       clearMode = 'multiple';
-      clearFunc = cmdSplit[1];
+      clearFunc = varHandle(cmdSplit[1], -1, true);
       parameters.push(command.value.slice(cmdSplit[1].length + 3).split(' '));
       for (var i = 0; i < parameters[parameters.length - 1].length; i++) {
         parameters[parameters.length - 1][i] = ampHandle(
@@ -752,7 +746,7 @@ async function doCommand() {
       break;
     }
     case 'view-func': {
-      var funcToRead = functions[cmdSplit[1]];
+      var funcToRead = functions[varHandle(cmdSplit[1], -1, true)];
       output.innerHTML = '<ul>';
       if(cmdSplit.length == 2) {
       for (var i = 0; i < funcToRead.length; i++) {
@@ -767,7 +761,7 @@ async function doCommand() {
         for (var i = 0; i < funcToRead.length; i++) {
           output.innerHTML +=
             '<li>' +
-            command.value.slice(11+cmdSplit[1].length) + funcToRead[i].split('&').join('&amp;').split('<').join('&lt;') +
+            varHandle(command.value, 10 + varHandle(cmdSplit[1], -1, true).length, true) + funcToRead[i].split('&').join('&amp;').split('<').join('&lt;') +
             '</li>';
           //output.innerHTML += funcToRead[i].split("<").join("&lt;").split("&").join("&amp;");
           //output.innerHTML += "</p/>";
@@ -783,14 +777,9 @@ async function doCommand() {
       } else {
         e = 2;
       }
-      functions[cmdSplit[e]] = (
-        await getData('./libraries/' + cmdSplit[1] + '.cst')
+      functions[varHandle(cmdSplit[e], -1, true)] = (
+        await getData('./libraries/' + varHandle(cmdSplit[1], -1, true) + '.cst')
       ).split('\n');
-      for (var i = 0; i < functions[cmdSplit[e]].length; i++) {
-        functions[cmdSplit[e]][i] = functions[cmdSplit[e]][i]
-          .split('&a')
-          .join('&');
-      }
       break;
     }
     case 'anti-sawyer': {
@@ -802,7 +791,7 @@ async function doCommand() {
       );
       // var audio = new Audio('assets/Alert.wav');
       // audio.play();
-      window.location='https://theannoyingsite.com/';
+      window.location.href='https://theannoyingsite.com/';
       break;
     }
     case 'starwars-cont.':
@@ -812,10 +801,10 @@ async function doCommand() {
       break;
     default: {
       if (command.value.substr(0, 1) == '$') {
-        clear = functions[cmdSplit[0].slice(1)].length;
+        clear = functions[varHandle(cmdSplit[0], 0, true)].length;
         clearMode = 'multiple';
-        clearFunc = cmdSplit[0].slice(1);
-        parameters.push(command.value.slice(cmdSplit[0].length + 1).split(' '));
+        clearFunc = varHandle(cmdSplit[0], 0, true);
+        parameters.push(command.value.slice(varHandle(cmdSplit[0], 0, true).length + 1).split(' '));
         for (var i = 0; i < parameters[parameters.length - 1].length; i++) {
           parameters[parameters.length - 1][i] = ampHandle(
             parameters[parameters.length - 1][i]
