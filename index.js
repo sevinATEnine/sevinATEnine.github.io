@@ -88,6 +88,12 @@ the same criteria.
 
     function initial() {
       document.getElementById('file-input').addEventListener('change', handleFileSelect, false);
+
+      //           Custom Menu            \\
+
+      
+
+
     }
     
     function handleFileSelect(event) {

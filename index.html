@@ -13,10 +13,31 @@ the same criteria.
 
 <!DOCTYPE html>
 <head>
+  
   <meta http-equiv="Permissions-Policy" content="interest-cohort=()">
   <title>CST Login</title>
   <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
   <style>
+
+  #ctxmenu {
+    position: fixed;
+    background: ghostwhite;
+    color: black;
+    cursor: pointer;
+    border: 1px black solid
+  }
+
+  #ctxmenu > p {
+    padding: 0 1rem;
+    margin: 0
+  }
+
+  #ctxmenu > p:hover {
+    background: black;
+    color: ghostwhite
+  }
+
+
   #appleid-signin > div > div > svg {  
     height: 50px;  
     width: 100%;  
@@ -409,12 +430,62 @@ the same criteria.
     }
   </script>
 
+
+  <script>
+  if (document.addEventListener) {
+    document.addEventListener('contextmenu', function(e) {
+      try {
+      document.body.removeChild(document.querySelectorAll('.contextMenuOveride')[0]);
+    } catch {}
+      var menuOpened=document.createElement('div');
+      menuOpened.innerHTML="hi";
+      menuOpened.style=`position: fixed !important; left: ${e.clientX}px !important; top: ${e.clientY}px !important;`;
+      menuOpened.className="contextMenuOveride";
+      console.log(((e.clientX+"px;")+","+(e.clientY+"px;")));
+
+      document.body.appendChild(menuOpened);
+      e.preventDefault();
+    }, false);
+  } else {
+    document.attachEvent('oncontextmenu', function() {
+      try {
+      document.body.removeChild(document.querySelectorAll('.contextMenuOveride')[0]);
+      } catch {}
+      var menuOpened=document.createElement('div');
+      menuOpened.innerHTML="hi";
+      menuOpened.style=`position: fixed !important; left: ${e.clientX}px !important; top: ${e.clientY}px !important;`;
+      menuOpened.className="contextMenuOveride";
+      console.log(((e.clientX+"px;")+","+(e.clientY+"px;")));
+
+      document.body.appendChild(menuOpened);
+      window.event.returnValue = false;
+    });
+  }
+
+  document.addEventListener('click', function() {
+    console.log('click');
+    try {
+      document.body.removeChild(document.querySelectorAll('.contextMenuOveride')[0]);
+    } catch {}
+    }, false);
+
+  </script>
+
+
   <script>
     var loc = window.location.href+'';
     if (loc.indexOf('http://')==0){
         window.location.href = loc.replace('http://','https://');
     }
+    if (loc.indexOf('http://')==0){
+        window.location.href = loc.replace('http://','https://');
+    }
+    
   </script>
+
+
+
+
   
 </body>
 
