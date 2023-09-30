@@ -438,7 +438,8 @@ the same criteria.
       document.body.removeChild(document.querySelectorAll('.contextMenuOveride')[0]);
     } catch {}
       var menuOpened=document.createElement('div');
-      menuOpened.innerHTML="hi";
+      menuOpened.innerHTML="<p>Option 1</p><p>Option 2</p><p>Option 3</p>";
+      menuOpened.id="ctxmenu";
       menuOpened.style=`position: fixed !important; left: ${e.clientX}px !important; top: ${e.clientY}px !important;`;
       menuOpened.className="contextMenuOveride";
       console.log(((e.clientX+"px;")+","+(e.clientY+"px;")));
@@ -452,7 +453,8 @@ the same criteria.
       document.body.removeChild(document.querySelectorAll('.contextMenuOveride')[0]);
       } catch {}
       var menuOpened=document.createElement('div');
-      menuOpened.innerHTML="hi";
+      menuOpened.id="ctxmenu";
+      menuOpened.innerHTML="<p>Option 1</p><p>Option 2</p><p>Option 3</p>";
       menuOpened.style=`position: fixed !important; left: ${e.clientX}px !important; top: ${e.clientY}px !important;`;
       menuOpened.className="contextMenuOveride";
       console.log(((e.clientX+"px;")+","+(e.clientY+"px;")));
