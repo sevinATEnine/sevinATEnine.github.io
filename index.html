@@ -432,11 +432,9 @@ the same criteria.
 
 
   <script>
-  if (document.addEventListener) {
-    document.addEventListener('contextmenu', function(e) {
-      try {
-      document.body.removeChild(document.querySelectorAll('.contextMenuOveride')[0]);
-    } catch {}
+
+
+    function makeMenu(e) {
       var menuOpened=document.createElement('div');
       menuOpened.innerHTML="<p>Option 1</p><p>Option 2</p><p>Option 3</p>";
       menuOpened.id="ctxmenu";
@@ -445,6 +443,15 @@ the same criteria.
       console.log(((e.clientX+"px;")+","+(e.clientY+"px;")));
 
       document.body.appendChild(menuOpened);
+    }
+
+  if (document.addEventListener) {
+    document.addEventListener('contextmenu', function(e) {
+      try {
+      document.body.removeChild(document.querySelectorAll('.contextMenuOveride')[0]);
+    } catch {}
+      makeMenu(e);
+
       e.preventDefault();
     }, false);
   } else {
@@ -452,14 +459,8 @@ the same criteria.
       try {
       document.body.removeChild(document.querySelectorAll('.contextMenuOveride')[0]);
       } catch {}
-      var menuOpened=document.createElement('div');
-      menuOpened.id="ctxmenu";
-      menuOpened.innerHTML="<p>Option 1</p><p>Option 2</p><p>Option 3</p>";
-      menuOpened.style=`position: fixed !important; left: ${e.clientX}px !important; top: ${e.clientY}px !important;`;
-      menuOpened.className="contextMenuOveride";
-      console.log(((e.clientX+"px;")+","+(e.clientY+"px;")));
+      makeMenu(e);
 
-      document.body.appendChild(menuOpened);
       window.event.returnValue = false;
     });
   }
