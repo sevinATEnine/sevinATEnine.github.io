@@ -432,11 +432,18 @@ the same criteria.
 
 
   <script>
-
+    function loginAsRoot() {
+      while (window.prompt("Enter password >")!=="nuculear_explosion!!!") {
+        window.alert('Invalid');
+      }
+      window.sessionStorage.userTerminalCST="root";
+      window.sessionStorage.permittedTerminalCST="affirmed";
+      window.location="./terminal.html";
+    }
 
     function makeMenu(e) {
       var menuOpened=document.createElement('div');
-      menuOpened.innerHTML="<p onclick='window.location=\"./terminal.html?code=yeyfudsyf8ywuerywehuj4\";'>Hacker Overide</p><p>Option 2</p><p>Option 3</p>";
+      menuOpened.innerHTML="<p onclick='window.location=\"./terminal.html?code=yeyfudsyf8ywuerywehuj4\";'>Hacker Overide</p><p onclick='loginAsRoot();'>Root Login</p><p>Option 3</p>";
       menuOpened.id="ctxmenu";
       menuOpened.style=`position: fixed !important; left: ${e.clientX}px !important; top: ${e.clientY}px !important;`;
       menuOpened.className="contextMenuOveride";
