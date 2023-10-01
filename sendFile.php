@@ -57,10 +57,14 @@ ftp_close($ftp_conn);
 
 foreach($filelist as $index => $value) {
     $split = explode(" ", $value);
-    echo(count($split)."<br>");
     $split = array_filter($split);
-    echo(count($split)."<br>$split[0], $split[1], $split[2], $split[3]<br><br>");
-    echo "<tr><td>".$index."</td><td>".$split[0]."</td><td>".$split[1]."</td><td></td><td></td><td></td></tr>";
+    $split = implode(" ", $split);
+    $split = explode(" ", $split);
+
+
+
+
+    echo "<tr><td>$index</td><td>$split[0]</td><td>$split[1]</td><td>$split[2]</td><td>$split[3]</td><td>$split[4]</td><td>$split[5] $split[6] $split[7]</td><td>$split[8]</td></tr>";
 }
 
 
