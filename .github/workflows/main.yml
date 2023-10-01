@@ -1,5 +1,5 @@
 on: push
-name: 🚀 Deploy on hobbyrobot.com/cst/
+name: 🚀 Deploy website on push
 jobs:
   web-deploy:
     name: 🎉 Deploy
@@ -11,6 +11,6 @@ jobs:
     - name: 📂 Sync files
       uses: SamKirkland/FTP-Deploy-Action@v4.3.4
       with:
-        server: ftp.hobbyrobot.com
-        username: cst@hobbyrobot.com
-        password: '#3rm|n@2'
+        server: ftp.samkirkland.com
+        username: myFtpUserName
+        password: ${{ secrets.FTP_PASSWORD }}
