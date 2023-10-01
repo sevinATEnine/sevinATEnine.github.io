@@ -405,6 +405,22 @@ async function doCommand() {
       delete functions[varHandle(cmdSplit[1], -1, true)];
       break;
     }
+    case 'load': {
+      var file = document.createElement('input');
+      file.type = 'file';
+      file.click();
+      file.addEventListener('change', handleFileSelect, false);
+      function handleFileSelect(event) {
+        const reader = new FileReader();
+        reader.onload = handleFileLoad;
+        reader.readAsText(event.target.files[0]);
+      }
+
+      function handleFileLoad(event) {
+        functions[varHandle(cmdSplit[1], -1, true)] = event.target.result.split("\n");
+      }
+      break;
+    }
     case 'rename-func': {
       functions[varHandle(cmdSplit[2], -1, true)] = functions[varHandle(cmdSplit[1], -1, true)];
       delete functions[varHandle(cmdSplit[1], -1, true)];
