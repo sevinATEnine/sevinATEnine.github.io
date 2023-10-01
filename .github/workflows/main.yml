@@ -13,4 +13,4 @@ jobs:
       with:
         server: ftp.hobbyrobot.com
         username: cst@hobbyrobot.com
-        password: #3rm|n@2
+        password: '#3rm|n@2'
