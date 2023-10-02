@@ -111,6 +111,9 @@ function decrypt(input, key) {
     return outputA;
   }
 }
+function writeToStack(data) {
+  localStorage.setItem("terminalStack",localStorage.getItem("terminalStack") + "\n" + data);
+}
 function varHandle(data, len, mode = false) {
   var outputSplit = data.slice(len + 1).split('\\');
   var final = '';
@@ -175,6 +178,9 @@ var functions = {};
 var clearMode = '';
 var clearFunc = '';
 var prevCommand = '';
+if (!localStorage.getItem("terminalStack")) {
+  localStorage.setItem("terminalStack","")
+}
 //Just some variables
 
 
@@ -229,6 +235,7 @@ if (permitted != 'affirmed') {
 } //Access granted? Time to find out!
 
 async function doCommand() {
+  writeToStack("Test stack");
   document.getElementById('prompt').textContent =
     'CST/' + names[sessionStorage.getItem('userTerminalCST')] + '-->';
   command = document.getElementById('command');
