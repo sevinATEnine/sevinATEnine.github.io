@@ -15,7 +15,7 @@
     <script>
       var stack = document.getElementById("stack");
       function updateStack() {
-        stack.textContent = localStorage.getItem("terminalStack");
+        stack.textContent = localStorage.getItem("terminalStack").split("&").join("&amp;").split("<").join("&lt;").split("\n").join("<br/>");
         window.setTimeout(updateStack, 50);
       }
       updateStack();
