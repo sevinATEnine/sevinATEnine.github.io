@@ -111,12 +111,39 @@ function decrypt(input, key) {
     return outputA;
   }
 }
+
+
+
+
+/// STACK HANDELING \\\
+
+
 function writeToStack(data, type = "output") {
   localStorage.setItem("terminalStack",localStorage.getItem("terminalStack") + "|" + encodeURI("<span class='"+type+"'>"+data+"</span>"));
 }
 function clearStack() {
   localStorage.setItem("terminalStack", "");
 }
+
+function updateStackWithLatestData() {
+  clearStack()
+  writeToStack("Initialized", "important");
+  writeToStack("");
+  writeToStack(("Used memory (usedJSHeapSize): "+performance.memory.usedJSHeapSize));
+  writeToStack(("Total memory (totalJSHeapSize): "+performance.memory.totalJSHeapSize));
+  writeToStack(("Memory size limit (jsHeapSizeLimit): "+performance.memory.jsHeapSizeLimit));
+  writeToStack(("Device ram: "+navigator.deviceMemory));
+}
+
+window.setInterval(updateStackWithLatestData, 75);
+
+
+
+
+
+
+
+
 function varHandle(data, len, mode = false) {
   var outputSplit = data.slice(len + 1).split('\\');
   var final = '';
