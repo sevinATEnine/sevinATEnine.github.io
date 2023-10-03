@@ -178,9 +178,6 @@ var functions = {};
 var clearMode = '';
 var clearFunc = '';
 var prevCommand = '';
-if (!localStorage.getItem("terminalStack")) {
-  localStorage.setItem("terminalStack","")
-}
 //Just some variables
 
 
@@ -646,12 +643,19 @@ async function doCommand() {
     case '': {
       break;
     }
+    case 'reset-stack': {
+      break;
+    }
     case 'admin': {
       output.innerHTML = "<img src='./assets/rickroll.gif'>";
       break;
     }
     case 'download': {
       downloadResource(varHandle(cmdSplit[1], -1, true));
+      break;
+    }
+    case 'reset-stack': {
+      localStorage.setItem("terminalStack",encodeURI("<span class='output'>Stack reset.</span>"))
       break;
     }
     case 'lockdown': {
