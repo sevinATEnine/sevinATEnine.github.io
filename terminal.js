@@ -114,6 +114,9 @@ function decrypt(input, key) {
 function writeToStack(data, type = "output") {
   localStorage.setItem("terminalStack",localStorage.getItem("terminalStack") + "|" + encodeURI("<span class='"+type+"'>"+data+"</span>"));
 }
+function clearStack() {
+  localStorage.setItem("terminalStack", "");
+}
 function varHandle(data, len, mode = false) {
   var outputSplit = data.slice(len + 1).split('\\');
   var final = '';
