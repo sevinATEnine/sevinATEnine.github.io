@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Terminal Stack</title>
+    <style>
+      body {
+      font-family:monospace;
+      background-color:black;
+      color:white;
+      }
+    </style>
+  </head>
+  <body>
+    <p id="stack"></p>
+    <script>
+      var stack = document.getElementById("stack");
+      function updateStack() {
+        stack.innerHTML = localStorage.getItem("terminalStack").split("&c").map((data) => data.split("&").join("&amp;").split("<").join("&lt;").split("\n").join("<br/>"));
+        window.setTimeout(updateStack, 50);
+      }
+      updateStack();
+    </script>
+  </body>
+</html>

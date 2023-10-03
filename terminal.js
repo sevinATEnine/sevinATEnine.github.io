@@ -75,41 +75,44 @@ function ampHandle(data) {
     .join('&');
 }
 const arrDefault = [
-    'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K',
-    'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V',
-    'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g',
-    'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r',
-    's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2',
-    '3', '4', '5', '6', '7', '8', '9', '!', '@', '#', '$',
-    '%', '^', '&', '*', '(', ')', '-', '_', '+', '=', '[',
-    ']', '{', '}', '\\', '|', ';', ':', '"', "'", ',', '<',
-    '.', '>', '/', '?', '`', '~',' '
+  'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K',
+  'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V',
+  'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g',
+  'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r',
+  's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2',
+  '3', '4', '5', '6', '7', '8', '9', '!', '@', '#', '$',
+  '%', '^', '&', '*', '(', ')', '-', '_', '+', '=', '[',
+  ']', '{', '}', '\\', '|', ';', ':', '"', "'", ',', '<',
+  '.', '>', '/', '?', '`', '~', ' '
 ];
 function encrypt(input, key) {
-    var key2 = key;
-    var outputA = "";
-    if(key.length != 0) {
-    while(key2.length < input.length) {
-        key2 += key;
+  var key2 = key;
+  var outputA = "";
+  if (key.length != 0) {
+    while (key2.length < input.length) {
+      key2 += key;
     }
-    for(var i = 0; i < input.length; i++) {
-        outputA += arrDefault[((arrDefault.indexOf(input[i])-arrDefault.indexOf(key2[i])) % arrDefault.length >= 0)?(arrDefault.indexOf(input[i])-arrDefault.indexOf(key2[i])) % arrDefault.length : arrDefault.length + (arrDefault.indexOf(input[i])-arrDefault.indexOf(key2[i]))]
+    for (var i = 0; i < input.length; i++) {
+      outputA += arrDefault[((arrDefault.indexOf(input[i]) - arrDefault.indexOf(key2[i])) % arrDefault.length >= 0) ? (arrDefault.indexOf(input[i]) - arrDefault.indexOf(key2[i])) % arrDefault.length : arrDefault.length + (arrDefault.indexOf(input[i]) - arrDefault.indexOf(key2[i]))]
     }
     return outputA;
-    }   
+  }
 }
 function decrypt(input, key) {
-    var key2 = key;
-    var outputA = "";
-    if(key.length != 0) {
-    while(key2.length < input.length) {
-        key2 += key;
+  var key2 = key;
+  var outputA = "";
+  if (key.length != 0) {
+    while (key2.length < input.length) {
+      key2 += key;
     }
-    for(var i = 0; i < input.length; i++) {
-        outputA += arrDefault[(arrDefault.indexOf(input[i])+arrDefault.indexOf(key2[i])) % arrDefault.length];
+    for (var i = 0; i < input.length; i++) {
+      outputA += arrDefault[(arrDefault.indexOf(input[i]) + arrDefault.indexOf(key2[i])) % arrDefault.length];
     }
     return outputA;
-    }   
+  }
+}
+function writeToStack(data) {
+  localStorage.setItem("terminalStack",localStorage.getItem("terminalStack") + "&c" + data);
 }
 function varHandle(data, len, mode = false) {
   var outputSplit = data.slice(len + 1).split('\\');
@@ -175,35 +178,38 @@ var functions = {};
 var clearMode = '';
 var clearFunc = '';
 var prevCommand = '';
+if (!localStorage.getItem("terminalStack")) {
+  localStorage.setItem("terminalStack","")
+}
 //Just some variables
 
 
 var parts = window.location.search.substr(1).split("&");
-      var $_GET = {};
-      for (var i = 0; i < parts.length; i++) {
-          var temp = parts[i].split("=");
-          $_GET[decodeURIComponent(temp[0])] = decodeURIComponent(temp[1]);
-      }
+var $_GET = {};
+for (var i = 0; i < parts.length; i++) {
+  var temp = parts[i].split("=");
+  $_GET[decodeURIComponent(temp[0])] = decodeURIComponent(temp[1]);
+}
 
-  console.log($_GET);
-  try {
-    if ($_GET.code.length > 5) {
-      permitted='affirmed';
-    }
-  } catch {
-
+console.log($_GET);
+try {
+  if ($_GET.code.length > 5) {
+    permitted = 'affirmed';
   }
+} catch {
+
+}
 
 
 
 //#############################################//
 
-  // permitted='affirmed';
+// permitted='affirmed';
 
 //#############################################//
 
 
-  
+
 if (permitted != 'affirmed') {
   document.getElementById('body').style.display = 'none';
   window.alert(
@@ -229,6 +235,7 @@ if (permitted != 'affirmed') {
 } //Access granted? Time to find out!
 
 async function doCommand() {
+  writeToStack("Test stack");
   document.getElementById('prompt').textContent =
     'CST/' + names[sessionStorage.getItem('userTerminalCST')] + '-->';
   command = document.getElementById('command');
@@ -353,13 +360,7 @@ async function doCommand() {
       break;
     }
     case 'filter': {
-      output.innerHTML = await (
-        await fetch(
-          'https://hobbyrobot.com/cst/filterText.php?text=' +
-            command.value.slice(7)
-        )
-      ).text();
-
+      output.innerHTML = await fetch('https://hobbyrobot.com/cst/filterText.php?text=' + command.value.slice(7)).text();
       break;
     }
     case 'file': {
@@ -405,6 +406,22 @@ async function doCommand() {
       delete functions[varHandle(cmdSplit[1], -1, true)];
       break;
     }
+    case 'load': {
+      var file = document.createElement('input');
+      file.type = 'file';
+      file.click();
+      file.addEventListener('change', handleFileSelect, false);
+      function handleFileSelect(event) {
+        const reader = new FileReader();
+        reader.onload = handleFileLoad;
+        reader.readAsText(event.target.files[0]);
+      }
+
+      function handleFileLoad(event) {
+        functions[varHandle(cmdSplit[1], -1, true)] = event.target.result.split("\n");
+      }
+      break;
+    }
     case 'rename-func': {
       functions[varHandle(cmdSplit[2], -1, true)] = functions[varHandle(cmdSplit[1], -1, true)];
       delete functions[varHandle(cmdSplit[1], -1, true)];
@@ -444,9 +461,9 @@ async function doCommand() {
       for (var i = 0; i < functions[varHandle(cmdSplit[1], -1, true)].length; i++) {
         execWindow.push(
           'if ' +
-            command.value.slice(13 + cmdSplit[1].length) +
-            ' >> ' +
-            functions[varHandle(cmdSplit[1], -1, true)][i]
+          command.value.slice(13 + cmdSplit[1].length) +
+          ' >> ' +
+          functions[varHandle(cmdSplit[1], -1, true)][i]
         );
       }
       break;
@@ -704,18 +721,18 @@ async function doCommand() {
       } else if (varHandle(cmdSplit[1], -1, true) == 'get') {
         if (varHandle(cmdSplit[3], -1, true) == "battery") {
           await navigator.getBattery()
-        .then(function (battery) {
-          aliases[varHandle(cmdSplit[2], -1, true)] = Math.round(battery.level * 100);
-          
-        })
-        .catch(function () {
-          output.textContent = 'Error 05: failed to read battery level';
-          output.className = 'error';
-        });
+            .then(function (battery) {
+              aliases[varHandle(cmdSplit[2], -1, true)] = Math.round(battery.level * 100);
+
+            })
+            .catch(function () {
+              output.textContent = 'Error 05: failed to read battery level';
+              output.className = 'error';
+            });
         } else {
-        retrieve(varHandle(cmdSplit[3], -1, true));
-        aliases[varHandle(cmdSplit[2], -1, true)] = tempData;
-      }
+          retrieve(varHandle(cmdSplit[3], -1, true));
+          aliases[varHandle(cmdSplit[2], -1, true)] = tempData;
+        }
       } else {
         output.className = 'error';
         output.textContent = 'Error 03: Invalid value for parameter.';
@@ -748,20 +765,20 @@ async function doCommand() {
     case 'view-func': {
       var funcToRead = functions[varHandle(cmdSplit[1], -1, true)];
       output.innerHTML = '<ul>';
-      if(cmdSplit.length == 2) {
-      for (var i = 0; i < funcToRead.length; i++) {
-        output.innerHTML +=
-          '<li>' +
-          funcToRead[i].split('&').join('&amp;').split('<').join('&lt;') +
-          '</li>';
-        //output.innerHTML += funcToRead[i].split("<").join("&lt;").split("&").join("&amp;");
-        //output.innerHTML += "</p/>";
-      }
+      if (cmdSplit.length == 2) {
+        for (var i = 0; i < funcToRead.length; i++) {
+          output.innerHTML +=
+            '<li>' +
+            funcToRead[i].split('&').join('&amp;').split('<').join('&lt;') +
+            '</li>';
+          //output.innerHTML += funcToRead[i].split("<").join("&lt;").split("&").join("&amp;");
+          //output.innerHTML += "</p/>";
+        }
       } else {
         for (var i = 0; i < funcToRead.length; i++) {
           output.innerHTML +=
             '<li>' +
-            varHandle(command.value, 10 + varHandle(cmdSplit[1], -1, true).length, true) + funcToRead[i].split('&').join('&amp;').split('<').join('&lt;') +
+            command.value.slice(11 + cmdSplit[1].length) + funcToRead[i].split('&').join('&amp;').split('<').join('&lt;') +
             '</li>';
           //output.innerHTML += funcToRead[i].split("<").join("&lt;").split("&").join("&amp;");
           //output.innerHTML += "</p/>";
@@ -785,13 +802,13 @@ async function doCommand() {
     case 'anti-sawyer': {
       output.classname =
         'fatal-error';
-        output.innerHTML="Alert, Alert, Alert!!!!!! The page has been compromised, shutting down...";
+      output.innerHTML = "Alert, Alert, Alert!!!!!! The page has been compromised, shutting down...";
       window.alert(
         'Your computer may have been compromised, you have been hacked.'
       );
       // var audio = new Audio('assets/Alert.wav');
       // audio.play();
-      window.location.href='https://theannoyingsite.com/';
+      window.location.href = 'https://theannoyingsite.com/';
       break;
     }
     case 'starwars-cont.':
