@@ -10,6 +10,11 @@ Other files linked to this repository, with the exception of some of the assets,
 the same criteria.
 
 ****************************************************************************************************/
+
+
+
+
+
 var tempData = null;
 async function getData(url) {
   let response = await fetch(url);
@@ -115,6 +120,10 @@ function decrypt(input, key) {
 
 
 
+
+
+
+
 /// STACK HANDELING \\\
 
 
@@ -127,15 +136,25 @@ function clearStack() {
 
 function updateStackWithLatestData() {
   clearStack()
-  writeToStack("Initialized", "important");
+  writeToStack("> Initialized...", "important");
+  writeToStack("> Receiving data...");
   writeToStack("");
+  writeToStack(("Data [last updated on "+new Date()+"]:"), "info");
   writeToStack(("Used memory (usedJSHeapSize): "+performance.memory.usedJSHeapSize));
   writeToStack(("Total memory (totalJSHeapSize): "+performance.memory.totalJSHeapSize));
   writeToStack(("Memory size limit (jsHeapSizeLimit): "+performance.memory.jsHeapSizeLimit));
   writeToStack(("Device ram: "+navigator.deviceMemory));
 }
 
+
+
+
+
 window.setInterval(updateStackWithLatestData, 75);
+
+
+
+
 
 
 
@@ -786,14 +805,18 @@ async function doCommand() {
       break;
     }
     case '$': {
-      clear = functions[varHandle(cmdSplit[1], -1, true)].length;
-      clearMode = 'multiple';
-      clearFunc = varHandle(cmdSplit[1], -1, true);
-      parameters.push(command.value.slice(cmdSplit[1].length + 3).split(' '));
-      for (var i = 0; i < parameters[parameters.length - 1].length; i++) {
-        parameters[parameters.length - 1][i] = ampHandle(
-          parameters[parameters.length - 1][i]
-        );
+      try {
+        clear = functions[varHandle(cmdSplit[1], -1, true)].length;
+        clearMode = 'multiple';
+        clearFunc = varHandle(cmdSplit[1], -1, true);
+        parameters.push(command.value.slice(cmdSplit[1].length + 3).split(' '));
+        for (var i = 0; i < parameters[parameters.length - 1].length; i++) {
+          parameters[parameters.length - 1][i] = ampHandle(
+            parameters[parameters.length - 1][i]
+          );
+        }
+      } catch(error) {
+        output.innerHTML = ("Error 7: Invalid function");
       }
       break;
     }
