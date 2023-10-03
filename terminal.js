@@ -251,13 +251,6 @@ function updateStackWithLatestData() {
   writeToStack(("Device language: "+navigator.language));
   writeToStack(("Device online: "+navigator.onLine));
   writeToStack(("Cookies enabled: "+navigator.cookieEnabled));
-  writeToStack(("Aliases: "+aliasesList));
-  writeToStack(("Functions: "+functionsList));
-  writeToStack(("Previous command: "+prevCommand));
-  writeToStack("<hr>");
-  writeToStack(("Command history:"));
-  writeToStack((""));
-  writeToStack((commandHistory));
 
 
   var aliasesList = "";
@@ -268,6 +261,17 @@ function updateStackWithLatestData() {
   for (item in functions) {
     functionsList += (item+"="+functions[item]+"; ")
   }
+
+  writeToStack(("Aliases: "+aliasesList));
+  writeToStack(("Functions: "+functionsList));
+  writeToStack(("Previous command: "+prevCommand));
+  writeToStack("<hr>");
+  writeToStack(("Command history:"));
+  writeToStack((""));
+  writeToStack((commandHistory));
+
+
+  
 
 
 
