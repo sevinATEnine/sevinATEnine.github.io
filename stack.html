@@ -48,7 +48,7 @@
         // stack.innerHTML = localStorage.getItem("terminalStack").split("&c").map((data) => data.split("&").join("&amp;").split("<").join("&lt;").split("\n").join("<br/>"));
         var output = localStorage.getItem("terminalStack").split("|").map(decodeURI).join("<br/>");
         stack.innerHTML = (output);
-        window.setTimeout(updateStack, 50);
+        window.setTimeout(updateStack, 75);
       }
       updateStack();
     </script>

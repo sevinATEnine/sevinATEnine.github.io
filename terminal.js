@@ -120,49 +120,6 @@ function decrypt(input, key) {
 
 
 
-
-
-
-
-/// STACK HANDELING \\\
-
-
-function writeToStack(data, type = "output") {
-  localStorage.setItem("terminalStack",localStorage.getItem("terminalStack") + "|" + encodeURI("<span class='"+type+"'>"+data+"</span>"));
-}
-function clearStack() {
-  localStorage.setItem("terminalStack", "");
-}
-
-function updateStackWithLatestData() {
-  clearStack()
-  writeToStack("> Initialized...", "important");
-  writeToStack("> Receiving data...");
-  writeToStack("");
-  writeToStack(("Data [last updated on "+new Date()+"]:"), "info");
-  writeToStack(("Used memory (usedJSHeapSize): "+performance.memory.usedJSHeapSize));
-  writeToStack(("Total memory (totalJSHeapSize): "+performance.memory.totalJSHeapSize));
-  writeToStack(("Memory size limit (jsHeapSizeLimit): "+performance.memory.jsHeapSizeLimit));
-  writeToStack(("Device ram: "+navigator.deviceMemory));
-}
-
-
-
-
-
-window.setInterval(updateStackWithLatestData, 75);
-
-
-
-
-
-
-
-
-
-
-
-
 function varHandle(data, len, mode = false) {
   var outputSplit = data.slice(len + 1).split('\\');
   var final = '';
@@ -256,6 +213,88 @@ try {
 
 
 
+
+
+
+
+
+
+
+
+
+/// STACK HANDELING \\\
+
+
+
+var commandHistory = "";
+
+
+function writeToStack(data, type = "output") {
+  localStorage.setItem("terminalStack",localStorage.getItem("terminalStack") + "|" + encodeURI("<span class='"+type+"'>"+data+"</span>"));
+}
+function clearStack() {
+  localStorage.setItem("terminalStack", "");
+}
+
+function updateStackWithLatestData() {
+  clearStack()
+  writeToStack("> Initialized...", "important");
+  writeToStack("> Receiving data...");
+  writeToStack("");
+  writeToStack(("Data [last updated on "+new Date()+"]:"), "info");
+  writeToStack(("User: "+sessionStorage.userTerminalCST));
+  writeToStack(("Authorized?: "+sessionStorage.permittedTerminalCST));
+  writeToStack(("Used memory (usedJSHeapSize): "+performance.memory.usedJSHeapSize));
+  writeToStack(("Total memory (totalJSHeapSize): "+performance.memory.totalJSHeapSize));
+  writeToStack(("Memory size limit (jsHeapSizeLimit): "+performance.memory.jsHeapSizeLimit));
+  writeToStack(("Device ram: "+navigator.deviceMemory));
+  writeToStack(("Device language: "+navigator.language));
+  writeToStack(("Device online: "+navigator.onLine));
+  writeToStack(("Cookies enabled: "+navigator.cookieEnabled));
+  writeToStack(("Aliases: "+aliasesList));
+  writeToStack(("Functions: "+functionsList));
+  writeToStack(("Previous command: "+prevCommand));
+  writeToStack("<hr>");
+  writeToStack(("Command history:"));
+  writeToStack((""));
+  writeToStack((commandHistory));
+
+
+  var aliasesList = "";
+  for (item in aliases) {
+    aliasesList += (item+"="+aliases[item]+"; ")
+  }
+  var functionsList = "";
+  for (item in functions) {
+    functionsList += (item+"="+functions[item]+"; ")
+  }
+
+
+
+
+
+
+
+}
+
+
+
+
+
+window.setInterval(updateStackWithLatestData, 75);
+
+
+
+
+
+
+
+
+
+
+
+
+
 if (permitted != 'affirmed') {
   document.getElementById('body').style.display = 'none';
   window.alert(
@@ -281,7 +320,19 @@ if (permitted != 'affirmed') {
 } //Access granted? Time to find out!
 
 async function doCommand() {
-  writeToStack("Running command...");
+
+
+
+  /// ADD TO HISTORY \\\
+
+
+  commandHistory += ("> "+document.getElementById('command').value+"<br>");
+
+
+
+
+
+
   document.getElementById('prompt').textContent =
     'CST/' + names[sessionStorage.getItem('userTerminalCST')] + '-->';
   command = document.getElementById('command');
@@ -921,7 +972,6 @@ async function doCommand() {
     clear -= 1;
     doCommand();
   }
-  writeToStack("Command has run.");
 }
 command.addEventListener('keydown', function (event) {
   if (event.key == 'Enter') {
