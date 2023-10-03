@@ -111,8 +111,8 @@ function decrypt(input, key) {
     return outputA;
   }
 }
-function writeToStack(data) {
-  localStorage.setItem("terminalStack",localStorage.getItem("terminalStack") + "|" + encodeURI("<span class='output'>"+data+"</span>"));
+function writeToStack(data, type = "output") {
+  localStorage.setItem("terminalStack",localStorage.getItem("terminalStack") + "|" + encodeURI("<span class='"+type+"'>"+data+"</span>"));
 }
 function varHandle(data, len, mode = false) {
   var outputSplit = data.slice(len + 1).split('\\');
@@ -235,7 +235,7 @@ if (permitted != 'affirmed') {
 } //Access granted? Time to find out!
 
 async function doCommand() {
-  writeToStack("Test stack");
+  writeToStack("Running command...");
   document.getElementById('prompt').textContent =
     'CST/' + names[sessionStorage.getItem('userTerminalCST')] + '-->';
   command = document.getElementById('command');
@@ -243,6 +243,7 @@ async function doCommand() {
   output.className = 'output';
   cmdSplit = command.value.split(' ');
   while (cmdSplit[0] == 'if') {
+    writeToStack("Executing if statement...");
     var ifToAdd = document.createElement('li');
     ifToAdd.textContent =
       'CST/' +
@@ -863,6 +864,7 @@ async function doCommand() {
     clear -= 1;
     doCommand();
   }
+  writeToStack("Command has run.");
 }
 command.addEventListener('keydown', function (event) {
   if (event.key == 'Enter') {
