@@ -40,7 +40,6 @@ $login = ftp_login($ftp_conn, $ftp_username, $ftp_userpass) or die("Could not lo
 $filelist = ftp_rawlist($ftp_conn, "/");
 
 
-
 // then do something...
 
 // close connection
