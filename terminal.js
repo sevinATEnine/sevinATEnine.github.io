@@ -112,7 +112,7 @@ function decrypt(input, key) {
   }
 }
 function writeToStack(data) {
-  localStorage.setItem("terminalStack",localStorage.getItem("terminalStack") + "|" + encodeURI(data));
+  localStorage.setItem("terminalStack",localStorage.getItem("terminalStack") + "|" + encodeURI("<span class='output'>"+data+"</span>"));
 }
 function varHandle(data, len, mode = false) {
   var outputSplit = data.slice(len + 1).split('\\');
