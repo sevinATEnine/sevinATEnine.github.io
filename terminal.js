@@ -641,7 +641,7 @@ async function doCommand() {
         break;
       }
       break;
-      writeToStack(cmdSplit[1]" storage cleared.");
+      writeToStack(cmdSplit[1]+" storage cleared.");
     }
     case 'echo': {
       output.innerText = varHandle(command.value, 4, true);
