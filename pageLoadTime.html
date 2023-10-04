@@ -1,3 +1,15 @@
 <script>
-document.write(let pageloadtime = time.loadEventStart - time.navigationStart);
+    try {
+        let pageLoadTime = performance.timing.loadEventStart - performance.timing.navigationStart;
+    } catch(error) {
+        window.alert(error);
+    }
+  
+    document.write(performance.timing.loadEventStart+"<br>");
+    document.write(performance.timing.navigationStart+"<br>");
+    document.write(Date.now()+"<br>");
+    document.write(Date.now()-performance.timing.navigationStart+"<br>");
+
+
+
 </script>
