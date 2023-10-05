@@ -285,7 +285,7 @@ function updateStackWithLatestData() {
 
 
 
-window.setInterval(updateStackWithLatestData, 75);
+window.setInterval(updateStackWithLatestData, 200);
 
 
 
