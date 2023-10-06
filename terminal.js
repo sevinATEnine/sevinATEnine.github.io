@@ -1021,6 +1021,11 @@ async function doCommand() {
         output.innerHTML = ("Error 07: Invalid function");
         output.className = "error"
       }
+    } else {
+        output.textContent = "Error 01: Invalid command.";
+        output.className = "error";
+    }
+    break;
     }
   }
   const add = document.createElement('li');
