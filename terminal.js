@@ -1010,19 +1010,16 @@ async function doCommand() {
       break;
     default: {
       if (command.value.substr(0, 1) == '$') {
-        clear = functions[varHandle(cmdSplit[0], 0, true)].length;
+        try {
+        clear = functions[varHandle(cmdSplit[0].slice(1), -1, true)].length;
         clearMode = 'multiple';
-        clearFunc = varHandle(cmdSplit[0], 0, true);
-        parameters.push(command.value.slice(varHandle(cmdSplit[0], 0, true).length + 1).split(' '));
-        for (var i = 0; i < parameters[parameters.length - 1].length; i++) {
-          parameters[parameters.length - 1][i] = ampHandle(
-            parameters[parameters.length - 1][i]
-          );
-        }
+        clearFunc = varHandle(cmdSplit[0].slice(1), -1, true);
+        parameters.push(command.value.slice(cmdSplit[0].length + 1).split(' '));
+        parameters[parameters.length - 1].map((i) => (ampHandle(i)))
         writeToStack("Function execution initiating...");
-      } else {
-        output.innerHTML = 'Error 01: Invalid command';
-        output.className = 'error';
+      } catch(error) {
+        output.innerHTML = ("Error 07: Invalid function");
+        output.className = "error"
       }
     }
   }
