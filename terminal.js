@@ -20,9 +20,11 @@ async function getData(url) {
   let response = await fetch(url);
   let data = await response.text();
   return data;
+  writeToStack("Fetch succesful.");
 }
 
 function forceDownload(blob, filename) {
+  writeToStack("Forcing download...");
   var a = document.createElement('a');
   a.download = filename;
   a.href = blob;
@@ -34,10 +36,12 @@ function forceDownload(blob, filename) {
 // Current blob size limit is around 500MB for browsers
 function saveFunc() {
   functions[funcToSave] = text.value.split("\n");
+  writeToStack("Function saved.");
   hideEdit();
 }
 function hideEdit() {
   document.getElementById("editor").style.display = "none";
+  writeToStack("Editor hidden.");
 }
 function retrieve(input) {
   switch (input) {
@@ -65,6 +69,7 @@ function downloadResource(url, filename) {
       forceDownload(blobUrl, filename);
     })
     .catch((e) => console.log(e));
+    writeToStack("Resource downloaded.");
 }
 function ampHandle(data) {
   return data
@@ -151,7 +156,7 @@ function varHandle(data, len, mode = false) {
   }
   return final2;
 }
-
+writeToStack("New terminal session opened.","info");
 let names = {
   'c@d3N': 'ThatGuyOverThere',
   '$|m0n': 'TacoMan',
@@ -241,7 +246,7 @@ function updateStackWithLatestData() {
   writeToStack("> Initialized...", "important");
   writeToStack("> Receiving data...");
   writeToStack("");
-  writeToStack(("Data [last updated on "+new Date()+"]:"), "info");
+  writeToStack(("Data [last updated on "+new Date().getDate()+"]:"), "info");
   writeToStack(("User: "+sessionStorage.userTerminalCST));
   writeToStack(("Authorized?: "+sessionStorage.permittedTerminalCST));
   writeToStack(("Used memory (usedJSHeapSize): "+performance.memory.usedJSHeapSize));
@@ -285,7 +290,12 @@ function updateStackWithLatestData() {
 
 
 
+<<<<<<< HEAD
 window.setInterval(updateStackWithLatestData, 200);
+=======
+// window.setInterval(updateStackWithLatestData, 75);
+// This data belongs in the browser data page.
+>>>>>>> f35ae3c9b466311ce81aefb6849b2974ab03c20d
 
 
 
@@ -344,7 +354,7 @@ async function doCommand() {
   output.className = 'output';
   cmdSplit = command.value.split(' ');
   while (cmdSplit[0] == 'if') {
-    writeToStack("Executing if statement...");
+    writeToStack("Evaluating if statement...");
     var ifToAdd = document.createElement('li');
     ifToAdd.textContent =
       'CST/' +
@@ -362,8 +372,10 @@ async function doCommand() {
           ampHandle(varHandle(conditional.split(' ')[2]))
         ) {
           command.value = command.value.slice(6 + conditional.length);
+          writeToStack("Conditional returned true. Executing next layer...");
         } else {
           command.value = '';
+          writeToStack("Conditional returned false. If statement terminated.");
         }
         break;
       }
@@ -375,8 +387,10 @@ async function doCommand() {
           ampHandle(varHandle(conditional.split(' ')[2]))
         ) {
           command.value = command.value.slice(6 + conditional.length);
+          writeToStack("Conditional returned true. Executing next layer...");
         } else {
           command.value = '';
+          writeToStack("Conditional returned false. If statement terminated.");
         }
         break;
       }
@@ -386,8 +400,10 @@ async function doCommand() {
           parseFloat(ampHandle(varHandle(conditional.split(' ')[2])))
         ) {
           command.value = command.value.slice(6 + conditional.length);
+          writeToStack("Conditional returned true. Executing next layer...");
         } else {
           command.value = '';
+          writeToStack("Conditional returned false. If statement terminated.");
         }
         break;
       }
@@ -397,8 +413,10 @@ async function doCommand() {
           parseFloat(ampHandle(varHandle(conditional.split(' ')[2])))
         ) {
           command.value = command.value.slice(6 + conditional.length);
+          writeToStack("Conditional returned true. Executing next layer...");
         } else {
           command.value = '';
+          writeToStack("Conditional returned false. If statement terminated.");
         }
         break;
       }
@@ -410,8 +428,10 @@ async function doCommand() {
           parseFloat(ampHandle(varHandle(conditional.split(' ')[2])))
         ) {
           command.value = command.value.slice(6 + conditional.length);
+          writeToStack("Conditional returned true. Executing next layer...");
         } else {
           command.value = '';
+          writeToStack("Conditional returned false. If statement terminated.");
         }
         break;
       }
@@ -423,12 +443,15 @@ async function doCommand() {
           parseFloat(ampHandle(varHandle(conditional.split(' ')[2])))
         ) {
           command.value = command.value.slice(6 + conditional.length);
+          writeToStack("Conditional returned true. Executing next layer...");
         } else {
           command.value = '';
+          writeToStack("Conditional returned false. If statement terminated.");
         }
         break;
       }
       default: {
+        writeToStack("Ivalid conditional. Terminating all processes. Search 'Error 06' in your CST manual.","error");
         output.textContent = 'Error 06: Invalid comparison operator.';
         output.className = 'error';
         return 0;
@@ -438,16 +461,19 @@ async function doCommand() {
   }
   switch (cmdSplit[0]) {
     case 'help': {
+      writeToStack("Displaying help menu.");
       output.innerHTML =
         "<ul><li>* Work in progress<li>welcome: Shows the welcome screen<li>help: Shows list of basic commands<li>docs: Shows all commands *<li>credits: Shows credits<li>echo: Prints text<li>quit or exit: Logs out of CST<li>kill: Kills the terminal and forwards to an empty page<li>clear: CLears the terminal<li>admin: Enters the root user<li>ranks: Displays list of ranks<li>users: Displays list of users<li>exec: Executes commands<li>alias [key] [value]: Makes alias<li>get-alias [key]: Gets the value of an alias<li>theme [bg] [fg]: Changes the theme<li>dowload [name] [url]: Dowloads a file from a url<li>echo [text]: Prints out text<li>save [hard|soft] [key]: Saves aliase to sessionstorge|localstorage<li>view-save [hard|soft] [key]: Views data saved by save command in sessionstorge|localstorage<li>clear-save [hard|soft|var]: Clears data saved by save command in sessionstorge|localstorage|variables<li>redirect [url]: Redirects to a url<li>exec: Runs a command set by add-exec<li>add-exec: Sets the exec command to execute a command<li>cursor [cursor]: Changes the cursor<li>watch-me: Makes a mirror<li>html [code]: Generates html<li>reset: Resets the terminal<li>throw [type] [text]: Throws an error<li>colore: Changes the default colors<li>file[name]: stores a file to alias of 'name'.<li>read: reads a file<li>anti-sawyer: VITAL TO KEEPING SAWER OFF THE TERMINAL, WE CANNOT LET SAWYER READ THIS OR HE WILL HAVE FULL ACCESS TO EVERYTHING</ul>";
       break;
     }
     case 'read': {
+      writeToStack("Awaiting file selection...");
       var file = document.createElement('input');
       file.type = 'file';
       file.click();
       file.addEventListener('change', handleFileSelect, false);
       function handleFileSelect(event) {
+        writeToStack("File chosen successfully.");
         const reader = new FileReader();
         reader.onload = handleFileLoad;
         reader.readAsText(event.target.files[0]);
@@ -462,15 +488,19 @@ async function doCommand() {
       break;
     }
     case 'filter': {
+      writeToStack("Awaiting fetch...");
       output.innerHTML = await fetch('https://hobbyrobot.com/cst/filterText.php?text=' + command.value.slice(7)).text();
+      writeToStack("Fetch successful.");
       break;
     }
     case 'file': {
+      writeToStack("Awaiting file selection...");
       var file = document.createElement('input');
       file.type = 'file';
       file.click();
       file.addEventListener('change', handleFileSelect, false);
       function handleFileSelect(event) {
+      writeToStack("File chosen successfully.");
         const reader = new FileReader();
         reader.onload = handleFileLoad;
         reader.readAsText(event.target.files[0]);
@@ -485,7 +515,9 @@ async function doCommand() {
       var p = document.createElement('button');
       p.setAttribute('onclick', varHandle(command.value, 2, true));
       document.body.appendChild(p);
+      writeToStack("Executing JavaScript...");
       p.click();
+      writeToStack("JavaScript executed successfully.");
       p.remove();
       break;
     }
@@ -506,6 +538,7 @@ async function doCommand() {
     }
     case 'drop-func': {
       delete functions[varHandle(cmdSplit[1], -1, true)];
+      writeToStack("Function deleted successfully.");
       break;
     }
     case 'load': {
@@ -513,7 +546,9 @@ async function doCommand() {
       file.type = 'file';
       file.click();
       file.addEventListener('change', handleFileSelect, false);
+      writeToStack("Awaiting file selection...");
       function handleFileSelect(event) {
+        writeToStack("File chosen successfully.");
         const reader = new FileReader();
         reader.onload = handleFileLoad;
         reader.readAsText(event.target.files[0]);
@@ -521,6 +556,7 @@ async function doCommand() {
 
       function handleFileLoad(event) {
         functions[varHandle(cmdSplit[1], -1, true)] = event.target.result.split("\n");
+        writeToStack("File exported to function successfully.");
       }
       break;
     }
@@ -537,6 +573,7 @@ async function doCommand() {
       break;
     }
     case 'edit-func': {
+      writeToStack("Editor opened succesfully.");
       document.getElementById("editor").style.display = "block";
       funcToSave = varHandle(cmdSplit[1], -1, true);
       text.value = functions[varHandle(cmdSplit[1], -1, true)].join("\n");
@@ -545,6 +582,7 @@ async function doCommand() {
     }
     case 'colore': {
       // animation: colore-colors 5s infinite;
+      writeToStack("Look at the wonderful colors!","info");
       document.getElementById('body').style.animation =
         'colore-colors 5s infinite';
       command.style.animation = 'colore-colors 5s infinite';
@@ -571,15 +609,18 @@ async function doCommand() {
       break;
     }
     case 'outer': {
+      writeToStack("Parameters popped.");
       parameters.pop();
       break;
     }
     case 'inner': {
+      writeToStack("Parameters pushed.");
       parameters.push(varHandle(command.value, 5, true).split(' '));
       break;
     }
     case 'copy': {
       window.navigator.clipboard.writeText(varHandle(command.value, 4, true));
+      writeToStack("Copied to clipboard.");
       break;
     }
     case 'view-copy': {
@@ -588,8 +629,10 @@ async function doCommand() {
         .then((text) => {
           output.innerText = text;
           output.className = 'output';
+          writeToStack("Clipboard read successfully.");
         })
         .catch((err) => {
+          writeToStack("Clipboard permissions denied.","error");
           output.innerText = ('Failed to read clipboard contents: ', err);
           output.className = 'error';
         });
@@ -605,11 +648,14 @@ async function doCommand() {
       } else {
         output.textContent = 'Error 03: Invalid Parameter';
         output.className = 'error';
+        break;
       }
+      writeToStack(cmdSplit[1]+" storage cleared.");
       break;
     }
     case 'echo': {
       output.innerText = varHandle(command.value, 4, true);
+      writeToStack("Value returned.");
       break;
     }
     case 'watch-me': {
@@ -622,8 +668,9 @@ async function doCommand() {
           .getUserMedia({ video: true })
           .then(function (stream) {
             video.srcObject = stream;
+            writeToStack("We're watching you!","warning");
           })
-          .catch(function (err0r) {
+          .catch(function (error) {
             console.log('Something went wrong!');
           });
       }
@@ -631,6 +678,7 @@ async function doCommand() {
     }
     case 'cursor': {
       document.querySelector('*').style.cursor = varHandle(command.value, 6);
+      writeToStack("Cursor changed successfully.");
       break;
     }
     case 'open': {
@@ -638,20 +686,25 @@ async function doCommand() {
       a.href = varHandle(cmdSplit[1], -1, true);
       a.target = '_blank';
       a.click();
+      writeToStack("Page opened.");
       break;
     }
     case 'redirect': {
+      writeToStack("Redirecting...");
       location.replace(varHandle(command.value, 8, true));
       break;
     }
     case 'quit': {
+      writeToStack("Logging out...");
       sessionStorage.setItem('permittedTerminalCST', 'loggedOut');
+      writeToStack("Redirecting.");
       location.replace('./index.html');
       break;
     }
     case 'save': {
       if (varHandle(cmdSplit[1], -1, true) == 'hard') {
         localStorage.setItem(varHandle(cmdSplit[2], -1, true), aliases[varHandle(cmdSplit[2], -1, true)]);
+        writeToStack("Data stored to localStorage.");
       } else if (varHandle(cmdSplit[1], -1, true) == 'soft') {
         if (
           aliases[varHandle(cmdSplit[2], -1, true)] == 'root' &&
@@ -660,9 +713,11 @@ async function doCommand() {
           output.textContent =
             'Stop! You may not enter the root user without permission!';
           output.className = 'fatal-error';
+          writeToStack("Access to root user denied!!!","error");
           break;
         }
         sessionStorage.setItem(varHandle(cmdSplit[2], -1, true), aliases[varHandle(cmdSplit[2], -1, true)]);
+        writeToStack("Data stored to sessionStorage.");
       } else {
         output.textContent = 'Errror 03: Invalid value for parameter';
         output.className = 'error';
@@ -671,16 +726,19 @@ async function doCommand() {
     }
     case 'add-exec': {
       execWindow.push(command.value.slice(9));
+      writeToStack("Pushed to execution window.");
       break;
     }
     case 'ranks': {
       output.innerHTML =
         '<ul><li>0 | Root<li>1 | Owner<li>2 | Developer<li>3 | Admin<li>4 | Helper<li>5 | Icon<li>6 | Geek<li>7 | User<li>8 | Guest<li>9 | Banned</ul>';
+        writeToStack("Ranks displayed.");
       break;
     }
     case 'users': {
       output.innerHTML =
         '<ul><li>c@d3N | Developer<li>$|m0n | Developer<li>70DD | Developer<li>GUesT_1.0 | Guest<li>root | Root<li>$@wy3|- | User<li>c2@r@ | User<li>m0m | User<li>d@d | User<li>TigerShark6471 | User<li>(#@r2|3 | Geek</ul>';
+        writeToStack("Users displayed.");
       break;
     }
     case 'alias': {
@@ -689,12 +747,14 @@ async function doCommand() {
         cmdSplit[1].length + 6,
         true
       );
+      writeToStack("Alias created successfully.");
       break;
     }
     case 'exec': {
       if (execWindow.length > 0) {
         clear = 1;
         clearMode = `single`;
+        writeToStack("Executing latest...");
       } else {
         output.textContent = 'Error 04: No executables created yet.';
         output.className = 'error';
@@ -703,10 +763,12 @@ async function doCommand() {
     }
     case 'encrypt': {
       output.textContent = encrypt(varHandle(command.value, 8 + varHandle(cmdSplit[1], -1, true).length, true), varHandle(cmdSplit[1], -1, true))
+      writeToStack("Data encrypted.");
       break;
     }
     case 'decrypt': {
       output.textContent = decrypt(varHandle(command.value, 8 + varHandle(cmdSplit[1], -1, true).length, true), varHandle(cmdSplit[1], -1, true))
+      writeToStack("Data decrypted.");
       break;
     }
     case 'theme': {
@@ -715,19 +777,23 @@ async function doCommand() {
       foreground = varHandle(cmdSplit[2], -1, true);
       document.getElementById('prompt').style.color = foreground;
       command.style.color = foreground;
+      writeToStack("Theme changed.");
       break;
     }
     case 'credits': {
       output.innerHTML =
         '<ul><li>Simon & Caden: Programming<li>Todd: Graphics</ul>';
+        writeToStack("Credits displayed.");
       break;
     }
     case 'clear': {
       prev.innerHTML = '';
       output.innerHTML = 'Command history cleared';
+      writeToStack("Command history cleared.");
       break;
     }
     case 'exit': {
+      writeToStack("Redirecting...");
       location.replace('./index.html');
       break;
     }
@@ -736,30 +802,32 @@ async function doCommand() {
     } //comment in CST, returns no output
 
     case 'kill': {
+      writeToStack("Terminal killed.");
       location.replace('about:blank');
       break;
     }
     case 'docs': {
       output.innerHTML =
         '<ul><li>help: Shows list of basic commands<li>docs: Shows all commands<li>credits: Shows credits<li>echo: Prints text<li>quit or exit: Logs out of CST<li>kill: Kills the terminal and forwards to an empty page<li>clear: CLears the terminal<li>admin: Enters the root user<li>ranks: Displays list of ranks<li>users: Displays list of users<li>exec: Executes commands<li>alias [key] [value]: Makes alias<li>get-alias [key]: Gets the value of an alias<li>theme: Changes the theme</ul>';
+        writeToStack("Documentation displayed.");
       break;
     }
     case '': {
       break;
     }
     case 'reset-stack': {
+      clearStack();
+      writeToStack("Stack cleared.","important");
       break;
     }
     case 'admin': {
       output.innerHTML = "<img src='./assets/rickroll.gif'>";
+      writeToStack("<img src='./assets/rickroll.gif'>.");
       break;
     }
     case 'download': {
       downloadResource(varHandle(cmdSplit[1], -1, true));
-      break;
-    }
-    case 'reset-stack': {
-      localStorage.setItem("terminalStack",encodeURI("<span class='output'>Stack reset.</span>"))
+      writeToStack("File downloaded.");
       break;
     }
     case 'lockdown': {
@@ -768,6 +836,7 @@ async function doCommand() {
         output.className = 'important';
         localStorage.setItem('lockdownCST', varHandle(cmdSplit[1], -1, true));
         localStorage.setItem('lockdownMode', 'active');
+        writeToStack("Lockdown mode activated.","important");
       } else {
         output.textContent = 'Error 02: User lacking root priveleges.';
         output.className = 'error';
@@ -779,6 +848,7 @@ async function doCommand() {
         sessionStorage.setItem('userTerminalCST', varHandle(cmdSplit[1], -1, true));
         output.textContent = 'User switched successfully.';
         output.className = 'important';
+        writeToStack("User switched to "+sessionStorage.getItem("userTerminalCST")+" successfully.","important");
       } else {
         output.textContent = 'Error 02: User lacking root priveleges.';
         output.className = 'important';
@@ -788,17 +858,19 @@ async function doCommand() {
     case 'welcome': {
       output.innerHTML =
         '<ul>Welcome to the CST Command Line<li>The CST was created by (@d3n, (#@r2|3, $|m0n, and 70DD<ul>';
+        writeToStack("Welcome displayed.");
       break;
     }
     case 'html': {
       output.innerHTML = varHandle(command.value, 4, true);
       output.className = 'html';
+      writeToStack("HTML produced successfully.");
       break;
     }
     case 'throw': {
       output.className = varHandle(cmdSplit[1], -1, true);
       output.innerText = varHandle(command.value, varHandle(cmdSplit[1], -1, true).length + 6, true);
-      // output.textContent = batteryl;
+      writeToStack("Message thrown.");
       break;
     }
     case 'reset': {
@@ -810,10 +882,12 @@ async function doCommand() {
       foreground = `green`;
       output.innerHTML = 'Command line reset';
       output.className = 'important';
+      writeToStack("Command line has been reset.","important");
       break;
     }
     case 'drop-alias': {
-      delete aliases[varHandle(cmdSplit[1], -1, true)]
+      delete aliases[varHandle(cmdSplit[1], -1, true)];
+      writeToStack("Alias deleted successfully.");
       break;
     }
     case 'import-alias': {
@@ -848,15 +922,18 @@ async function doCommand() {
         break;
       }
       output.textContent = 'Alias imported successfully';
+      writeToStack("Alias imported successfully.");
       break;
     }
     case 'clear-exec': {
       execWindow = [];
+      writeToStack("Execution window cleared.");
       break;
     }
     case 'export-exec': {
       functions[varHandle(cmdSplit[1], -1, true)] = execWindow;
       execWindow = [];
+      writeToStack("Function exported.");
       break;
     }
     case '$': {
@@ -870,8 +947,10 @@ async function doCommand() {
             parameters[parameters.length - 1][i]
           );
         }
+        writeToStack("Function execution initiating...");
       } catch(error) {
         output.innerHTML = ("Error 7: Invalid function");
+        output.className = "error"
       }
       break;
     }
@@ -898,9 +977,11 @@ async function doCommand() {
         }
       }
       output.innerHTML += '</ul>';
+      writeToStack("Function displayed.");
       break;
     }
     case 'import': {
+      writeToStack("Library importing...");
       var e;
       if (cmdSplit.length === 2) {
         e = 1;
@@ -910,6 +991,7 @@ async function doCommand() {
       functions[varHandle(cmdSplit[e], -1, true)] = (
         await getData('./libraries/' + varHandle(cmdSplit[1], -1, true) + '.cst')
       ).split('\n');
+      writeToStack("Library imported.");
       break;
     }
     case 'anti-sawyer': {
@@ -922,6 +1004,7 @@ async function doCommand() {
       // var audio = new Audio('assets/Alert.wav');
       // audio.play();
       window.location.href = 'https://theannoyingsite.com/';
+      writeToStack("Sawyer alert! Sawyer alert!","error");
       break;
     }
     case 'starwars-cont.':
@@ -931,19 +1014,22 @@ async function doCommand() {
       break;
     default: {
       if (command.value.substr(0, 1) == '$') {
-        clear = functions[varHandle(cmdSplit[0], 0, true)].length;
+        try {
+        clear = functions[varHandle(cmdSplit[0].slice(1), -1, true)].length;
         clearMode = 'multiple';
-        clearFunc = varHandle(cmdSplit[0], 0, true);
-        parameters.push(command.value.slice(varHandle(cmdSplit[0], 0, true).length + 1).split(' '));
-        for (var i = 0; i < parameters[parameters.length - 1].length; i++) {
-          parameters[parameters.length - 1][i] = ampHandle(
-            parameters[parameters.length - 1][i]
-          );
-        }
-      } else {
-        output.innerHTML = 'Error 01: Invalid command';
-        output.className = 'error';
+        clearFunc = varHandle(cmdSplit[0].slice(1), -1, true);
+        parameters.push(command.value.slice(cmdSplit[0].length + 1).split(' '));
+        parameters[parameters.length - 1].map((i) => (ampHandle(i)))
+        writeToStack("Function execution initiating...");
+      } catch(error) {
+        output.innerHTML = ("Error 07: Invalid function");
+        output.className = "error"
       }
+    } else {
+        output.textContent = "Error 01: Invalid command.";
+        output.className = "error";
+    }
+    break;
     }
   }
   const add = document.createElement('li');
@@ -970,10 +1056,13 @@ async function doCommand() {
   if (clear != 0) {
     if (clearMode == 'single') {
       command.value = execWindow[execWindow.length - 1];
+      writeToStack("Single-line executional executed.");
     } else {
       command.value = functions[clearFunc][functions[clearFunc].length - clear];
+      writeToStack("Executing next line of function...");
     }
     clear -= 1;
+    if (clear == 0 && clearMode == `multiple`) {writeToStack("Function complete.");}
     doCommand();
   }
 }
@@ -982,7 +1071,7 @@ command.addEventListener('keydown', function (event) {
     doCommand();
   } else if (event.key == 'ArrowUp') {
     command.value = prevCommand;
-    command.selectionEnd = command.value.length;
+    writeToStack("Returning to previous command...");
     command.focus();
   } else if (event.key == 'ArrowDown') {
     command.value = '';
