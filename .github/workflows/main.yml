@@ -1,8 +1,8 @@
 on: push
-name: 🚀 Deploy website on push
+name: Deploy to hobbyrobot.com/cst
 jobs:
   web-deploy:
-    name: 🎉 Deploy
+    name: 🎉 Deploy to hobbyrobot
     runs-on: ubuntu-latest
     steps:
     - name: 🚚 Get latest code
@@ -14,3 +14,4 @@ jobs:
         server: ftp.hobbyrobot.com
         username: cst@hobbyrobot.com
         password: ${{ secrets.FTP_PASSWORD }}
+    - name: Something pointless!!!
