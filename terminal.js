@@ -247,29 +247,6 @@ clearStack();
 writeToStack('Initialized', 'important');
 
 
-<<<<<<< HEAD
-// window.setInterval(updateStackWithLatestData, 200);
-=======
-  
-
-
-
-
-
-
-
-}
-
-
-
-
-
->>>>>>> c399626970aee20683586a5b6b48f1f269e75e33
-// window.setInterval(updateStackWithLatestData, 75);
-// This data belongs in the browser data page.
-
-
-
 
 
 
@@ -1003,8 +980,9 @@ async function doCommand() {
 
 
   /// ADD TO STACK \\\
+
   if(output.className != "error") {
-    writeToStack('[Command executed with no errors]');
+    writeToStack('[Command executed with no errors]', 'info');
   } else {
     writeToStack(('Command executed with the following errors:<br>'+output.innerHTML), 'error');
   }
