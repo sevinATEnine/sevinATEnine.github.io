@@ -247,7 +247,24 @@ clearStack();
 writeToStack('Initialized', 'important');
 
 
+<<<<<<< HEAD
 // window.setInterval(updateStackWithLatestData, 200);
+=======
+  
+
+
+
+
+
+
+
+}
+
+
+
+
+
+>>>>>>> c399626970aee20683586a5b6b48f1f269e75e33
 // window.setInterval(updateStackWithLatestData, 75);
 // This data belongs in the browser data page.
 
