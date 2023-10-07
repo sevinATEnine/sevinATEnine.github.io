@@ -241,61 +241,15 @@ function clearStack() {
   localStorage.setItem("terminalStack", "");
 }
 
-function updateStackWithLatestData() {
-  clearStack()
-  writeToStack("> Initialized...", "important");
-  writeToStack("> Receiving data...");
-  writeToStack("");
-  writeToStack(("Data [last updated on "+new Date().getDate()+"]:"), "info");
-  writeToStack(("User: "+sessionStorage.userTerminalCST));
-  writeToStack(("Authorized?: "+sessionStorage.permittedTerminalCST));
-  writeToStack(("Used memory (usedJSHeapSize): "+performance.memory.usedJSHeapSize));
-  writeToStack(("Total memory (totalJSHeapSize): "+performance.memory.totalJSHeapSize));
-  writeToStack(("Memory size limit (jsHeapSizeLimit): "+performance.memory.jsHeapSizeLimit));
-  writeToStack(("Device ram: "+navigator.deviceMemory));
-  writeToStack(("Device language: "+navigator.language));
-  writeToStack(("Device online: "+navigator.onLine));
-  writeToStack(("Cookies enabled: "+navigator.cookieEnabled));
 
 
-  var aliasesList = "";
-  for (item in aliases) {
-    aliasesList += (item+"="+aliases[item]+"; ")
-  }
-  var functionsList = "";
-  for (item in functions) {
-    functionsList += (item+"="+functions[item]+"; ")
-  }
-
-  writeToStack(("Aliases: "+aliasesList));
-  writeToStack(("Functions: "+functionsList));
-  writeToStack(("Previous command: "+prevCommand));
-  writeToStack("<hr>");
-  writeToStack(("Command history:"));
-  writeToStack((""));
-  writeToStack((commandHistory));
+clearStack();
+writeToStack('Initialized', 'important');
 
 
-  
-
-
-
-
-
-
-
-}
-
-
-
-
-
-<<<<<<< HEAD
-window.setInterval(updateStackWithLatestData, 200);
-=======
+// window.setInterval(updateStackWithLatestData, 200);
 // window.setInterval(updateStackWithLatestData, 75);
 // This data belongs in the browser data page.
->>>>>>> f35ae3c9b466311ce81aefb6849b2974ab03c20d
 
 
 
@@ -339,11 +293,8 @@ async function doCommand() {
 
   /// ADD TO HISTORY \\\
 
-
-  commandHistory += ("> "+document.getElementById('command').value+"<br>");
-
-
-
+  writeToStack("<hr>")
+  writeToStack(("Running command: "+document.getElementById('command').value));
 
 
 
@@ -1032,6 +983,17 @@ async function doCommand() {
     break;
     }
   }
+
+
+  /// ADD TO STACK \\\
+  if(output.className != "error") {
+    writeToStack('[Command executed with no errors]');
+  } else {
+    writeToStack(('Command executed with the following errors:<br>'+output.innerHTML), 'error');
+  }
+
+
+
   const add = document.createElement('li');
   add.textContent =
     'CST/' +
