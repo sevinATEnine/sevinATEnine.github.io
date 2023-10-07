@@ -290,12 +290,8 @@ function updateStackWithLatestData() {
 
 
 
-<<<<<<< HEAD
-window.setInterval(updateStackWithLatestData, 200);
-=======
 // window.setInterval(updateStackWithLatestData, 75);
 // This data belongs in the browser data page.
->>>>>>> f35ae3c9b466311ce81aefb6849b2974ab03c20d
 
 
 
