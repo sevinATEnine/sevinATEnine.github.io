@@ -34,19 +34,19 @@ const consoleOutput = (text = "[NONE]", logType='info', logAuthor = window.locat
     return [`%cCST%c${logType}%c${logAuthor} %c${text}`, style.leftPrefix, style.centerPrefix, style.rightPrefix, style.blank];
     };
 
-function customLog(text = "[NONE]", logType='info', logAuthor = window.location.href.split('/')[(window.location.href.split('/').length)-1]) {
+function customLog(text = "[NONE]", logType='info', logAuthor = window.location.href.split('/')[(window.location.href.split('/').length)-1].split("?")[0]) {
     console.log(consoleOutput(text, logType, logAuthor)[0], consoleOutput(text, logType, logAuthor)[1], consoleOutput(text, logType, logAuthor)[2], consoleOutput(text, logType, logAuthor)[3], consoleOutput(text, logType, logAuthor)[4]);
 }
 
-function customError(text = "[NONE]", logType='error', logAuthor = window.location.href.split('/')[(window.location.href.split('/').length)-1]) {
+function customError(text = "[NONE]", logType='error', logAuthor = window.location.href.split('/')[(window.location.href.split('/').length)-1].split("?")[0]) {
     console.log(consoleOutput(text, logType, logAuthor)[0], consoleOutput(text, logType, logAuthor)[1], consoleOutput(text, logType, logAuthor)[2], consoleOutput(text, logType, logAuthor)[3], consoleOutput(text, logType, logAuthor)[4]);
 }
 
-function customWarn(text = "[NONE]", logType='warning', logAuthor = window.location.href.split('/')[(window.location.href.split('/').length)-1]) {
+function customWarn(text = "[NONE]", logType='warning', logAuthor = window.location.href.split('/')[(window.location.href.split('/').length)-1].split("?")[0]) {
     console.log(consoleOutput(text, logType, logAuthor)[0], consoleOutput(text, logType, logAuthor)[1], consoleOutput(text, logType, logAuthor)[2], consoleOutput(text, logType, logAuthor)[3], consoleOutput(text, logType, logAuthor)[4]);
 }
 
-function customPlain(text = "[NONE]", logType='plain', logAuthor = window.location.href.split('/')[(window.location.href.split('/').length)-1]) {
+function customPlain(text = "[NONE]", logType='plain', logAuthor = window.location.href.split('/')[(window.location.href.split('/').length)-1].split("?")[0]) {
     console.log(consoleOutput(text, logType, logAuthor)[0], consoleOutput(text, logType, logAuthor)[1], consoleOutput(text, logType, logAuthor)[2], consoleOutput(text, logType, logAuthor)[3], consoleOutput(text, logType, logAuthor)[4]);
 }
 
