@@ -1,4 +1,7 @@
-document.getElementById('currentProfilePicture').src = localStorage.profilePicture;
+if (String(getProfilePicture()).length < 20) {
+  setDefaultProfilePicture();
+}
+document.getElementById('currentProfilePicture').src = getProfilePicture();
 
 
 let uploadButton = document.getElementById("upload-button");
