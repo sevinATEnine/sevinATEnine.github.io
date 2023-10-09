@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+	<head>
+    	<title>HTML Editor - CST</title>
+    </head>
+  <body>
+  	<button style="color:green;"onclick="run()">Run code</button>
+    <br/>
+  	<textarea id="code"></textarea>
+    <script>
+    document.getElementById("code").focus();
+      function run() {
+        var myWindow = window.open("", "");
+        myWindow.document.write(document.getElementById("code").value);
+      }
+    </script>
+  </body>
+</html>
