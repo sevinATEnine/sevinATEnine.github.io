@@ -1,7 +1,8 @@
 if (String(getProfilePicture()).length < 20) {
   setDefaultProfilePicture();
+  saveProfilePictureToServer();
 }
-document.getElementById('currentProfilePicture').src = getProfilePicture();
+document.getElementById('currentProfilePicture').src = retrieveProfilePictureFromServer();
 
 
 let uploadButton = document.getElementById("upload-button");

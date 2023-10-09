@@ -15,5 +15,5 @@ function saveProfilePictureToServer() {
 }
 
 function retrieveProfilePictureFromServer() {
-    return "Error-could not retrieve";
+    return getProfilePicture();
 }
