@@ -1,4 +1,3 @@
-
 document.getElementById('currentProfilePicture').src = localStorage.profilePicture;
 
 
@@ -24,7 +23,8 @@ const fileHandler = (file, name, type) => {
     let img = document.createElement("img");
     img.src = reader.result;
     console.log(reader.result);
-    window.localStorage.profilePicture=reader.result;
+    setProfilePicture(reader.result);
+    saveProfilePictureToServer();
     imageContainer.appendChild(img);
     imageContainer.innerHTML += `<figcaption>${name}</figcaption>`;
     imageDisplay.appendChild(imageContainer);
