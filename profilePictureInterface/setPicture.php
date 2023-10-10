@@ -1,27 +1,37 @@
 <?php
 
-echo "userName:(".$_POST['userName'].")<br>";
-echo "pictureData:(".$_POST['pictureData'].")<br>";
+Header('Content-type: application/json');
+
+if (strlen($_POST['userName'])<1) {
+    die('{"status": "error: please enter userName via. POST"}');
+} else if (strlen($_POST['pictureData'])<1) {
+    die('{"status": "error: please enter pictureData via. POST"}');
+}
 
 
-// $servername = "localhost";
-// $username = "elem435_cst_usr";
-// $password = "#3rm|n@2";
-// $dbname = "elem435_cst";
 
-// // Create connection
-// $conn = new mysqli($servername, $username, $password, $dbname);
-// // Check connection
-// if ($conn->connect_error) {
-//   die("Connection failed: " . $conn->connect_error);
-// }
+$servername = "localhost";
+$username = "elem435_cst_usr";
+$password = "#3rm|n@2";
+$dbname = "elem435_cst";
 
-// $sql = "UPDATE userData SET username='".$_POST['userName']."',profilePicture='".$_POST['pictureData']."',notes=(SELECT notes FROM userData WHERE username='".$_POST['userName']."') WHERE username='".$_POST['userName']."';";
-// $result = $conn->query($sql);
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
+}
 
-// // echo $result;
+$sql = "UPDATE userData SET username='".$_POST['userName']."',profilePicture='".$_POST['pictureData']."',notes=(SELECT notes FROM userData WHERE username='".$_POST['userName']."') WHERE username='".$_POST['userName']."';";
+$result = $conn->query($sql);
+
 // echo $result;
-// $conn->close();
+if ($result===1) {
+    echo('{"status": "success"}');
+} else {
+    echo('{"status": "fail"}');
+}
+$conn->close();
 
 
 ?>

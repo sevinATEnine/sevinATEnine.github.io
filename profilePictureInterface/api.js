@@ -11,7 +11,28 @@ function getProfilePicture() {
 }
 
 function saveProfilePictureToServer() {
-    return "Error-could not save";
+
+    // POST request using fetch()
+    fetch("../setPicture.php", {
+        
+    // Adding method type
+    method: "POST",
+
+    // Adding body or contents to send
+    body: '{"userName": "$|m0n", "pictureData": "test"}',
+
+    // Adding headers to the request
+    headers: {
+        "Content-type": "application/json; charset=UTF-8"
+    }
+    })
+
+    // Converting to JSON
+    .then(response => response.json())
+
+    // Displaying results to console
+    .then(json => console.log(json));
+
 }
 
 function retrieveProfilePictureFromServer() {
