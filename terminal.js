@@ -405,6 +405,9 @@ async function doCommand() {
     cmdSplit = command.value.split(' ');
   }
   switch (cmdSplit[0]) {
+    case 'self-exec' {
+      break;
+    }
     case 'help': {
       writeToStack("Displaying help menu.");
       output.innerHTML =
@@ -937,6 +940,18 @@ async function doCommand() {
         await getData('./libraries/' + varHandle(cmdSplit[1], -1, true) + '.cst')
       ).split('\n');
       writeToStack("Library imported.");
+      if (functions[cmdSplit[e]].map((inp) => (inp.split(" ")[0]).includes("self-exec")) {
+        try {
+        clear = functions[cmdSplit[e]].length;
+        clearMode = 'multiple';
+        clearFunc = cmdSplit[e];
+        parameters.push([]);
+        writeToStack("Function execution initiating...");
+      } catch(error) {
+        output.innerHTML = ("Error 7: Invalid function");
+        output.className = "error"
+      }
+      }
       break;
     }
     case 'anti-sawyer': {
