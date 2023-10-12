@@ -1,3 +1,4 @@
+self-exec
 add-exec js aliases["random"] = Math.floor(Math.random()*5)+1
 export-exec restart
 add-exec if \1\ == |random| >> throw important You guessed it!
@@ -5,4 +6,4 @@ add-exec if \1\ > |random| >> throw important Too high!
 add-exec if \1\ < |random| >> throw important Too low!
 add-from-if restart \1\ == |random|
 export-exec guess
-$ restart
+$restart
