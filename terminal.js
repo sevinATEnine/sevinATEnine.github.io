@@ -505,6 +505,13 @@ async function doCommand() {
       function handleFileLoad(event) {
         functions[varHandle(cmdSplit[1], -1, true)] = event.target.result.split("\n");
         writeToStack("File exported to function successfully.");
+        if (functions[cmdSplit[e]].map((inp) => (inp.split(" ")[0])).includes("self-exec")) {
+          clear = functions[cmdSplit[e]].length;
+          clearMode = 'multiple';
+          clearFunc = cmdSplit[e];
+          parameters.push(functions[cmdSplit[e]][functions[cmdSplit[e]].map((inp) => (inp.split(" ")[0])).indexOf("self-exec")].slice(10).split(" ").map((inp) => (ampHandle(inp))));
+          writeToStack("Function execution initiating...");
+        }
       }
       break;
     }
@@ -946,8 +953,6 @@ async function doCommand() {
         clearFunc = cmdSplit[e];
         parameters.push(functions[cmdSplit[e]][functions[cmdSplit[e]].map((inp) => (inp.split(" ")[0])).indexOf("self-exec")].slice(10).split(" ").map((inp) => (ampHandle(inp))));
         writeToStack("Function execution initiating...");
-        output.innerHTML = ("Error 07: Invalid function");
-        output.className = "error"
       }
       break;
     }
