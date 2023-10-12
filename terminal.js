@@ -227,7 +227,7 @@ try {
 
 
 
-/// STACK HANDELING \\\
+/// STACK HANDLING \\\
 
 
 
@@ -405,7 +405,7 @@ async function doCommand() {
     cmdSplit = command.value.split(' ');
   }
   switch (cmdSplit[0]) {
-    case 'self-exec' {
+    case 'self-exec': {
       break;
     }
     case 'help': {
@@ -940,10 +940,11 @@ async function doCommand() {
         await getData('./libraries/' + varHandle(cmdSplit[1], -1, true) + '.cst')
       ).split('\n');
       writeToStack("Library imported.");
-      if (functions[cmdSplit[e]].includes("self-exec")) {
+      if (functions[cmdSplit[e]].map((inp) => (inp.split(" ")[0])).includes("self-exec")) {
         clear = functions[cmdSplit[e]].length;
         clearMode = 'multiple';
         clearFunc = cmdSplit[e];
+        parameters.push(functions[cmdSplit[e]][functions[cmdSplit[e]].map((inp) => (inp.split(" ")[0])).indexOf("self-exec")].slice(10).split(" ").map((inp) => (ampHandle(inp))));
         writeToStack("Function execution initiating...");
         output.innerHTML = ("Error 07: Invalid function");
         output.className = "error"
