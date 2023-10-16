@@ -1040,6 +1040,7 @@ async function doCommand(cmd) {
   }
 }
 command.addEventListener('keydown', function (event) {
+  event.preventDefault();
   if (event.key == 'Enter') {
     doCommand(command.value);
   } else if (event.key == 'ArrowUp') {
