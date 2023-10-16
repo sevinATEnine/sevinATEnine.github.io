@@ -1061,9 +1061,12 @@ command.addEventListener('keydown', function (event) {
     command.focus();
   } else if (event.key == 'ArrowDown') {
     event.preventDefault();
-    if(historyIdx + 1 < prevCommands.length) {
+    if(historyIdx < prevCommands.length) {
     historyIdx++;
     command.value = prevCommands[historyIdx];
+    if(command.value == "undefined") {
+      command.value = "";
+    }
     }
   } else if (event.ctrlKey && event.key == ".") {
     event.preventDefault();
@@ -1088,6 +1091,6 @@ command.addEventListener('keydown', function (event) {
     event.preventDefault();
     doCommand(localStorage.getItem("custom"));
   } else if(event.key.length == 1){
-  prevCommands[historyIdx] = command.value + event.key;
+  prevCommands[prevCommands.length-1] = command.value + event.key;
   }
 });
