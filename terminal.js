@@ -1065,5 +1065,10 @@ command.addEventListener('keydown', function (event) {
     event.preventDefault();
     window.open("./terminal.html");
     prev.innerHTML += "<li class='important'>New terminal opened.</li>";
+  }else if (event.ctrlKey && event.key == "w") {
+    event.preventDefault();
+    if(window.confirm("Close terminal?") == true) {
+      window.close();
+    }
   }
 });
