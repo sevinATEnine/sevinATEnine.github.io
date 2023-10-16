@@ -1036,14 +1036,15 @@ async function doCommand(cmd) {
   }
   if (clear != 0) {
     if (clearMode == 'single') {
-      doCommand(execWindow[execWindow.length - 1])
+      command.value = execWindow[execWindow.length - 1];
       writeToStack("Single-line executional executed.");
     } else {
-      clear -= 1;
-      doCommand(functions[clearFunc][functions[clearFunc].length - clear + 1]);
+      command.value = functions[clearFunc][functions[clearFunc].length - clear];
       writeToStack("Executing next line of function...");
     }
+    clear -= 1;
     if (clear == 0 && clearMode == `multiple`) {writeToStack("Function complete.");}
+    doCommand(command.value);
   }
 }
 command.addEventListener('keydown', function (event) {
