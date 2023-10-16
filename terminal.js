@@ -1079,7 +1079,7 @@ command.addEventListener('keydown', function (event) {
     if(window.confirm("Close terminal?") == true) {
       window.close();
     }
-  }else if (event.ctrlKey && event.shiftKey && numKeys.includes(event.key) == true) {
+  }else if (event.ctrlKey && numKeys.includes(event.key) == true) {
     event.preventDefault();
     doCommand(localStorage.getItem("commands").split("&x")[numKeys.indexOf(event.key)]);
   }
