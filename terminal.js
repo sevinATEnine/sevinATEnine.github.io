@@ -1061,7 +1061,7 @@ command.addEventListener('keydown', function (event) {
     command.focus();
   } else if (event.key == 'ArrowDown') {
     event.preventDefault();
-    if(historyIdx < prevCommands.length) {
+    if(historyIdx + 1 < prevCommands.length) {
     historyIdx++;
     command.value = prevCommands[historyIdx];
     }
@@ -1087,7 +1087,7 @@ command.addEventListener('keydown', function (event) {
   }else if (event.ctrlKey && event.key == "m") {
     event.preventDefault();
     doCommand(localStorage.getItem("custom"));
-  } else {
+  } else if(event.key.length == 1){
   prevCommands[historyIdx] = command.value + event.key;
   }
 });
