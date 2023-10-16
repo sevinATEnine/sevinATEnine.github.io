@@ -1056,5 +1056,8 @@ command.addEventListener('keydown', function (event) {
     if (typeof command.selectionStart == "number") {
       command.selectionStart = command.selectionEnd = 0;
   }
+  }else if (event.ctrlKey && event.key == "/") {
+    window.open("./terminal.html");
+    prev.innerHTML += "<li class='important'>New terminal opened.</li>";
   }
 });
