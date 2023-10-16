@@ -188,7 +188,8 @@ var foreground = 'green';
 var functions = {};
 var clearMode = '';
 var clearFunc = '';
-var prevCommand = '';
+var prevCommands = [""];
+var historyIdx = 0;
 var numCaps = ["!","@","#","$","%","^","&","*","(",")"];
 //Just some variables
 if(localStorage.getItem("custom") === null) {
@@ -233,8 +234,6 @@ try {
 /// STACK HANDLING \\\
 
 
-
-var commandHistory = "";
 
 
 function writeToStack(data, type = "output") {
@@ -1030,7 +1029,8 @@ async function doCommand(cmd) {
     output.style.color = foreground;
   }
   prev.appendChild(output);
-  prevCommand = cmd;
+  prevCommands.push(cmd);
+  historyIdx++;
   if (clear === 0) {
     command.value = '';
   }
@@ -1053,12 +1053,18 @@ command.addEventListener('keydown', function (event) {
     doCommand(command.value);
   } else if (event.key == 'ArrowUp') {
     event.preventDefault();
-    command.value = prevCommand;
+    if(historyIdx > 0) {
+    historyIdx--;
+    command.value = prevCommands[historyIdx];
+    }
     writeToStack("Returning to previous command...");
     command.focus();
   } else if (event.key == 'ArrowDown') {
     event.preventDefault();
-    command.value = '';
+    if(historyIdx < prevCommands.length) {
+    historyIdx++;
+    command.value = prevCommands[historyIdx];
+    }
   } else if (event.ctrlKey && event.key == ".") {
     event.preventDefault();
     if (typeof command.selectionStart == "number") {
@@ -1082,4 +1088,5 @@ command.addEventListener('keydown', function (event) {
     event.preventDefault();
     doCommand(localStorage.getItem("custom"));
   }
+  prevCommands[historyIdx] = command.value;
 });
