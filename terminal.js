@@ -189,8 +189,11 @@ var functions = {};
 var clearMode = '';
 var clearFunc = '';
 var prevCommand = '';
+var numCaps = ["!","@","#","$","%","^","&","*","(",")"];
 //Just some variables
-
+if(localStorage.getItem("commands") === null) {
+  localStorage.setItem("commands","&x&x&x&x&x&x&x&x&x");
+}
 
 var parts = window.location.search.substr(1).split("&");
 var $_GET = {};
@@ -935,6 +938,12 @@ async function doCommand(cmd) {
       writeToStack("Function displayed.");
       break;
     }
+    case 'custom': {
+      cmds = localStorage.getItem("commands").split("&x");
+      cmds[parseInt(cmdSplit[1])] = command.value.slice(9);
+      localStorage.setItem("commands",cmds.join("&x"));
+      break;
+    }
     case 'import': {
       writeToStack("Library importing...");
       var e;
@@ -1070,5 +1079,8 @@ command.addEventListener('keydown', function (event) {
     if(window.confirm("Close terminal?") == true) {
       window.close();
     }
+  }else if (event.ctrlKey && event.shiftKey && numKeys.includes(event.key) == true) {
+    event.preventDefault();
+    doCommand(localStorage.getItem("commands").split("&x")[numKeys.indexOf(event.key)]);
   }
 });
