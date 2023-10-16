@@ -1040,24 +1040,29 @@ async function doCommand(cmd) {
   }
 }
 command.addEventListener('keydown', function (event) {
-  event.preventDefault();
   if (event.key == 'Enter') {
+    event.preventDefault();
     doCommand(command.value);
   } else if (event.key == 'ArrowUp') {
+    event.preventDefault();
     command.value = prevCommand;
     writeToStack("Returning to previous command...");
     command.focus();
   } else if (event.key == 'ArrowDown') {
+    event.preventDefault();
     command.value = '';
   } else if (event.ctrlKey && event.key == ".") {
+    event.preventDefault();
     if (typeof command.selectionStart == "number") {
       command.selectionStart = command.selectionEnd = command.value.length;
   }
   }else if (event.ctrlKey && event.key == ",") {
+    event.preventDefault();
     if (typeof command.selectionStart == "number") {
       command.selectionStart = command.selectionEnd = 0;
   }
   }else if (event.ctrlKey && event.key == "/") {
+    event.preventDefault();
     window.open("./terminal.html");
     prev.innerHTML += "<li class='important'>New terminal opened.</li>";
   }
