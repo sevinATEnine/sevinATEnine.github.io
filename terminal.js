@@ -1087,6 +1087,7 @@ command.addEventListener('keydown', function (event) {
   }else if (event.ctrlKey && event.key == "m") {
     event.preventDefault();
     doCommand(localStorage.getItem("custom"));
+  } else {
+  prevCommands[historyIdx] = command.value + event.key;
   }
-  prevCommands[historyIdx] = command.value + command.value[command.value.length-1];
 });
