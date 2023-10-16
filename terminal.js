@@ -95,7 +95,7 @@ const arrDefault = [
   ']', '{', '}', '\\', '|', ';', ':', '"', "'", ',', '<',
   '.', '>', '/', '?', '`', '~', ' '
 ];
-function encrypt(input, key) {
+function decrypt(input, key) {
   var key2 = key;
   var outputA = "";
   if (key.length != 0) {
@@ -108,7 +108,7 @@ function encrypt(input, key) {
     return outputA;
   }
 }
-function decrypt(input, key) {
+function encrypt(input, key) {
   var key2 = key;
   var outputA = "";
   if (key.length != 0) {
