@@ -846,21 +846,21 @@ async function doCommand() {
       break;
     }
     case 'import-alias': {
-      if (varHandle(cmdSplit[1], -1, true) == 'hard') {
-        aliases[varHandle(cmdSplit[2], -1, true)] = localStorage.getItem(varHandle(cmdSplit[3], -1, true));
-      } else if (varHandle(cmdSplit[1], -1, true) == 'soft') {
-        aliases[varHandle(cmdSplit[2], -1, true)] = sessionStorage.getItem(varHandle(cmdSplit[3], -1, true));
-      } else if (varHandle(cmdSplit[1], -1, true) == 'var') {
-        aliases[varHandle(cmdSplit[2], -1, true)] = aliases[varHandle(cmdSplit[3], -1, true)];
-      } else if (varHandle(cmdSplit[1], -1, true) == 'encrypt') {
-        aliases[varHandle(cmdSplit[2], -1, true)] = encrypt(varHandle(command.value, 22 + varHandle(cmdSplit[2], -1, true) + varHandle(cmdSplit[3], -1, true).length, true), varHandle(cmdSplit[3], -1, true));
+      if (varHandle(cmdSplit[2], -1, true) == 'hard') {
+        aliases[varHandle(cmdSplit[1], -1, true)] = localStorage.getItem(varHandle(cmdSplit[3], -1, true));
+      } else if (varHandle(cmdSplit[2], -1, true) == 'soft') {
+        aliases[varHandle(cmdSplit[1], -1, true)] = sessionStorage.getItem(varHandle(cmdSplit[3], -1, true));
+      } else if (varHandle(cmdSplit[2], -1, true) == 'var') {
+        aliases[varHandle(cmdSplit[1], -1, true)] = aliases[varHandle(cmdSplit[3], -1, true)];
+      } else if (varHandle(cmdSplit[2], -1, true) == 'encrypt') {
+        aliases[varHandle(cmdSplit[1], -1, true)] = encrypt(command.value.slice(23+cmdSplit[1].length+cmdSplit[3].length), varHandle(cmdSplit[3], -1, true));
       } else if (varHandle(cmdSplit[1], -1, true) == 'decrypt') {
-        aliases[varHandle(cmdSplit[2], -1, true)] = decrypt(varHandle(command.value, 22 + varHandle(cmdSplit[2], -1, true) + varHandle(cmdSplit[3], -1, true).length, true), varHandle(cmdSplit[3], -1, true));
-      } else if (varHandle(cmdSplit[1], -1, true) == 'get') {
+        aliases[varHandle(cmdSplit[1], -1, true)] = decrypt(command.value.slice(23+cmdSplit[1].length+cmdSplit[3].length), varHandle(cmdSplit[3], -1, true));
+      } else if (varHandle(cmdSplit[2], -1, true) == 'get') {
         if (varHandle(cmdSplit[3], -1, true) == "battery") {
           await navigator.getBattery()
             .then(function (battery) {
-              aliases[varHandle(cmdSplit[2], -1, true)] = Math.round(battery.level * 100);
+              aliases[varHandle(cmdSplit[1], -1, true)] = Math.round(battery.level * 100);
 
             })
             .catch(function () {
@@ -869,7 +869,7 @@ async function doCommand() {
             });
         } else {
           retrieve(varHandle(cmdSplit[3], -1, true));
-          aliases[varHandle(cmdSplit[2], -1, true)] = tempData;
+          aliases[varHandle(cmdSplit[1], -1, true)] = tempData;
         }
       } else {
         output.className = 'error';
