@@ -1092,5 +1092,7 @@ command.addEventListener('keydown', function (event) {
     doCommand(localStorage.getItem("custom"));
   } else if(event.key.length == 1){
   prevCommands[prevCommands.length-1] = command.value + event.key;
+  }else if(event.key == "Backspace"){
+  prevCommands[prevCommands.length-1] = command.value.slice(-1);
   }
 });
