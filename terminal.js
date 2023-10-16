@@ -1088,5 +1088,5 @@ command.addEventListener('keydown', function (event) {
     event.preventDefault();
     doCommand(localStorage.getItem("custom"));
   }
-  prevCommands[historyIdx] = command.value;
+  prevCommands[historyIdx] = command.value + command.value[command.value.length-1];
 });
