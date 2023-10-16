@@ -1039,10 +1039,10 @@ async function doCommand(cmd) {
       doCommand(execWindow[execWindow.length - 1])
       writeToStack("Single-line executional executed.");
     } else {
-      doCommand(functions[clearFunc][functions[clearFunc].length - clear]);
+      clear -= 1;
+      doCommand(functions[clearFunc][functions[clearFunc].length - clear + 1]);
       writeToStack("Executing next line of function...");
     }
-    clear -= 1;
     if (clear == 0 && clearMode == `multiple`) {writeToStack("Function complete.");}
   }
 }
