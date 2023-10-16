@@ -1041,7 +1041,7 @@ async function doCommand(cmd) {
 }
 command.addEventListener('keydown', function (event) {
   if (event.key == 'Enter') {
-    doCommand();
+    doCommand(command.value);
   } else if (event.key == 'ArrowUp') {
     command.value = prevCommand;
     writeToStack("Returning to previous command...");
