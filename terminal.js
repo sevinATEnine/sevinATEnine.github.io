@@ -125,7 +125,7 @@ function encrypt(input, key) {
 
 
 
-function varHandle(data, len, mode = false) {
+function varHandle(data, len = -1, mode = false) {
   var outputSplit = data.slice(len + 1).split('\\');
   var final = '';
   var final2 = '';
@@ -140,6 +140,7 @@ function varHandle(data, len, mode = false) {
     }
   }
   //final = final.split('&n').join('\n').split('&s').join(' ').split('&p').join('|').split('&b').join('\\').split('&a').join('&')
+  if(final.split(" ")[1] != "|:ARR|") {
   outputSplit = final.split('|');
   isString = true;
   for (var i = 0; i < outputSplit.length; i++) {
@@ -147,10 +148,20 @@ function varHandle(data, len, mode = false) {
       final2 += outputSplit[i];
       isString = !isString;
     } else {
-      final2 += aliases[outputSplit[i]];
+      var temp = aliases[outputSplit[i]].split(":");
+      for(var i = 1; i < temp.length; i++) {
+        temp = temp[0][i];
+      }
+      final2 += temp;
       isString = !isString;
     }
   }
+} else {
+  final.reverse();
+  final.pop();
+  final.reverse();
+  return final.split(" ").map((t) => (varHandle(t, -1, true)));
+}
   if (mode === true) {
     final2 = ampHandle(final2);
   }
@@ -190,7 +201,6 @@ var clearMode = '';
 var clearFunc = '';
 var prevCommands = [""];
 var historyIdx = 0;
-var numCaps = ["!","@","#","$","%","^","&","*","(",")"];
 //Just some variables
 if(localStorage.getItem("custom") === null) {
   localStorage.setItem("custom","");
