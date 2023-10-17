@@ -2,14 +2,140 @@
 <html>
     <head>
         <title>CST Docs - Home</title>
-        <!--Add styling and stuff-->
-    </head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+        body {
+          font-family: "Lato", sans-serif;
+        }
+        .menuBarUl > a {
+            font-size: 15px !important;
+            padding: 1px 8px 3px 16px !important;
+            color: #9d9898 !important;
+
+        }
+        .menuBarUl {
+            padding: 1px 8px 9px 16px !important;
+        }
+
+        
+        
+        .sidenav {
+          height: 100%;
+          width: 250px;
+          position: fixed;
+          z-index: 1;
+          top: 0;
+          left: 0;
+          background-color: #111;
+          overflow-x: hidden;
+          padding-top: 20px;
+        }
+        
+        .sidenav a {
+          padding: 6px 8px 3px 16px;
+          text-decoration: none;
+          font-size: 20px;
+          color: #ddd5d5;
+          display: block;
+        }
+        
+        .sidenav a:hover {
+          color: #f1f1f1;
+        }
+        section {
+            background-color: #1f1f1f;
+        }
+        
+        .main {
+          margin-left: 250px; /* Same as the width of the sidenav */
+          font-size: 20px; /* Increased text to enable scrolling */
+          padding: 0px 10px;
+        }
+        .dataOutputDisplay {
+            display: none;
+            font-size: 15px !important;
+        }
+        .dataOutputDisplay:target {
+            display: block;
+        }
+        
+        @media screen and (max-height: 450px) {
+          .sidenav {padding-top: 13px;}
+          .sidenav a {font-size: 18px;}
+        }
+        </style>
+        </head>
+        <script>
+            if(window.location.hash) {
+
+            } else {
+                window.location=(window.location.href+'#intro');
+            }
+        </script>
     <body>
-        <h1>CST Docs</h1>
-        <h2>Click on a topic below:</h2>
-        <hr/>
-        <a href="./echo.html">The echo command</a>
-        <a href="./throw.html">The throw command</a>
+        <div class="sidenav">
+
+            <section>
+                <a href="#intro">Introduction</a>
+                <ul class="menuBarUl">
+                    <a href="#intro-first">First code</a>
+                    <a href="#intro-uses">Uses</a>
+
+                </ul>
+            </section>
+
+
+            <section>
+                <a href="#advanced">Advanced</a>
+                <ul class="menuBarUl">
+
+                </ul>
+            </section>
+
+            <section>
+                <a href="#data-handeling">Data Hendeling</a>
+                <ul class="menuBarUl">
+
+                </ul>
+            </section>
+            
+          </div>
+
+        <div class="main">
+            <h1>CST Docs</h1>
+            <hr/>
+            <div id="intro" class="dataOutputDisplay">
+                <h1>Intro</h1>
+                <hr>
+                <p>Welcome to CST!</p>
+            </div>
+            <div id="intro-first" class="dataOutputDisplay">
+                <h1>Intro</h1>
+                <hr>
+                <h2>First Code</h2>
+                <p>Today you will learn how to run your first lines of code.</p>
+            </div>
+            <div id="intro-uses" class="dataOutputDisplay">
+                <h1>Intro</h1>
+                <hr>
+                <h2>Uses</h2>
+                <p>The CST Command Line has many uses:
+                    <ul>
+                        <li>For fun</li>
+                    </ul>
+                </p>
+            </div>
+            <div id="advanced" class="dataOutputDisplay">
+                <h1>Advanced</h1>
+                <hr>
+            </div>
+            <div id="data-handeling" class="dataOutputDisplay">
+                <h1>Data Handeling</h1>
+                <hr>
+                
+            </div>
+
+        </div>
         <!--Add more links later-->
     </body>
 </html>

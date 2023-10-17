@@ -150,7 +150,17 @@ function varHandle(data, len = -1, mode = false) {
     } else {
       if(outputSplit[i].includes(":")) {
       var temp = outputSplit[i].split(":");
-      temp = aliases[temp[0]][parseInt(temp[1])];
+      console.log(temp);
+
+      try {
+        temp = aliases[temp[0]][parseInt(temp[1])];
+        
+      } catch {
+        temp = "Invalid";
+      }
+      console.log(temp);
+
+
       final2 += temp;
       } else {
         final2 += aliases[outputSplit[i]];
