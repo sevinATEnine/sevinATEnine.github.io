@@ -140,7 +140,7 @@ function varHandle(data, len = -1, mode = false) {
     }
   }
   //final = final.split('&n').join('\n').split('&s').join(' ').split('&p').join('|').split('&b').join('\\').split('&a').join('&')
-  if(final.split(" ")[1] != "|:ARR|") {
+  if(final.split(" ")[0] != "|:ARR|") {
   outputSplit = final.split('|');
   isString = true;
   for (var i = 0; i < outputSplit.length; i++) {
@@ -150,7 +150,7 @@ function varHandle(data, len = -1, mode = false) {
     } else {
       var temp = aliases[outputSplit[i]].split(":");
       for(var i = 1; i < temp.length; i++) {
-        temp = temp[0][i];
+        temp = aliases[temp[0]][i];
       }
       final2 += temp;
       isString = !isString;
