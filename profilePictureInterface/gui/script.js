@@ -130,7 +130,7 @@ function uploadBarRun(val) {
     border-radius: 0.3em;
     margin: 0 auto 1em auto;
     cursor: pointer;`;
-    home.href="../index.html";
+    home.href=".../index.html";
     container.appendChild(home);
   }
 }

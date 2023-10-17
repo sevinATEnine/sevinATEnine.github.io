@@ -95,7 +95,7 @@ const arrDefault = [
   ']', '{', '}', '\\', '|', ';', ':', '"', "'", ',', '<',
   '.', '>', '/', '?', '`', '~', ' '
 ];
-function encrypt(input, key) {
+function decrypt(input, key) {
   var key2 = key;
   var outputA = "";
   if (key.length != 0) {
@@ -108,7 +108,7 @@ function encrypt(input, key) {
     return outputA;
   }
 }
-function decrypt(input, key) {
+function encrypt(input, key) {
   var key2 = key;
   var outputA = "";
   if (key.length != 0) {
@@ -125,7 +125,7 @@ function decrypt(input, key) {
 
 
 
-function varHandle(data, len, mode = false) {
+function varHandle(data, len = -1, mode = false) {
   var outputSplit = data.slice(len + 1).split('\\');
   var final = '';
   var final2 = '';
@@ -140,6 +140,7 @@ function varHandle(data, len, mode = false) {
     }
   }
   //final = final.split('&n').join('\n').split('&s').join(' ').split('&p').join('|').split('&b').join('\\').split('&a').join('&')
+  if(final.split(" ")[0] != "|:ARR|") {
   outputSplit = final.split('|');
   isString = true;
   for (var i = 0; i < outputSplit.length; i++) {
@@ -147,10 +148,22 @@ function varHandle(data, len, mode = false) {
       final2 += outputSplit[i];
       isString = !isString;
     } else {
-      final2 += aliases[outputSplit[i]];
+      if(outputSplit[i].includes(":") {
+      var temp = outputSplit[i].split(":");
+      temp = aliases[temp[0]][parseInt(temp[1])];
+      final2 += temp;
+      } else {
+        final2 += aliases[outputSplit[i]];
+      }
       isString = !isString;
     }
   }
+} else {
+  final.reverse();
+  final.pop();
+  final.reverse();
+  return final.split(" ").map((t) => (varHandle(t, -1, true)));
+}
   if (mode === true) {
     final2 = ampHandle(final2);
   }
@@ -188,9 +201,12 @@ var foreground = 'green';
 var functions = {};
 var clearMode = '';
 var clearFunc = '';
-var prevCommand = '';
+var prevCommands = [""];
+var historyIdx = 0;
 //Just some variables
-
+if(localStorage.getItem("custom") === null) {
+  localStorage.setItem("custom","");
+}
 
 var parts = window.location.search.substr(1).split("&");
 var $_GET = {};
@@ -230,8 +246,6 @@ try {
 /// STACK HANDLING \\\
 
 
-
-var commandHistory = "";
 
 
 function writeToStack(data, type = "output") {
@@ -281,7 +295,7 @@ if (permitted != 'affirmed') {
   command.focus();
 } //Access granted? Time to find out!
 
-async function doCommand() {
+async function doCommand(cmd) {
 
 
 
@@ -297,7 +311,7 @@ async function doCommand() {
   command = document.getElementById('command');
   const output = document.createElement('li');
   output.className = 'output';
-  cmdSplit = command.value.split(' ');
+  cmdSplit = cmd.split(' ');
   while (cmdSplit[0] == 'if') {
     writeToStack("Evaluating if statement...");
     var ifToAdd = document.createElement('li');
@@ -305,9 +319,9 @@ async function doCommand() {
       'CST/' +
       names[sessionStorage.getItem('userTerminalCST')] +
       '-->' +
-      command.value;
+      cmd;
     prev.appendChild(ifToAdd);
-    var conditional = command.value.split('>>')[0].slice(3);
+    var conditional = cmd.split('>>')[0].slice(3);
     switch (conditional.split(' ')[1]) {
       case '==': {
       }
@@ -316,10 +330,10 @@ async function doCommand() {
           ampHandle(varHandle(conditional.split(' ')[0])) ==
           ampHandle(varHandle(conditional.split(' ')[2]))
         ) {
-          command.value = command.value.slice(6 + conditional.length);
+          cmd = cmd.slice(6 + conditional.length);
           writeToStack("Conditional returned true. Executing next layer...");
         } else {
-          command.value = '';
+          cmd = '';
           writeToStack("Conditional returned false. If statement terminated.");
         }
         break;
@@ -331,10 +345,10 @@ async function doCommand() {
           ampHandle(varHandle(conditional.split(' ')[0])) !=
           ampHandle(varHandle(conditional.split(' ')[2]))
         ) {
-          command.value = command.value.slice(6 + conditional.length);
+          cmd = cmd.slice(6 + conditional.length);
           writeToStack("Conditional returned true. Executing next layer...");
         } else {
-          command.value = '';
+          cmd = '';
           writeToStack("Conditional returned false. If statement terminated.");
         }
         break;
@@ -344,10 +358,10 @@ async function doCommand() {
           parseFloat(ampHandle(varHandle(conditional.split(' ')[0]))) >
           parseFloat(ampHandle(varHandle(conditional.split(' ')[2])))
         ) {
-          command.value = command.value.slice(6 + conditional.length);
+          cmd = cmd.slice(6 + conditional.length);
           writeToStack("Conditional returned true. Executing next layer...");
         } else {
-          command.value = '';
+          cmd = '';
           writeToStack("Conditional returned false. If statement terminated.");
         }
         break;
@@ -357,10 +371,10 @@ async function doCommand() {
           parseFloat(ampHandle(varHandle(conditional.split(' ')[0]))) <
           parseFloat(ampHandle(varHandle(conditional.split(' ')[2])))
         ) {
-          command.value = command.value.slice(6 + conditional.length);
+          cmd = cmd.slice(6 + conditional.length);
           writeToStack("Conditional returned true. Executing next layer...");
         } else {
-          command.value = '';
+          cmd = '';
           writeToStack("Conditional returned false. If statement terminated.");
         }
         break;
@@ -372,10 +386,10 @@ async function doCommand() {
           parseFloat(ampHandle(varHandle(conditional.split(' ')[0]))) <=
           parseFloat(ampHandle(varHandle(conditional.split(' ')[2])))
         ) {
-          command.value = command.value.slice(6 + conditional.length);
+          cmd = cmd.slice(6 + conditional.length);
           writeToStack("Conditional returned true. Executing next layer...");
         } else {
-          command.value = '';
+          cmd = '';
           writeToStack("Conditional returned false. If statement terminated.");
         }
         break;
@@ -387,10 +401,10 @@ async function doCommand() {
           parseFloat(ampHandle(varHandle(conditional.split(' ')[0]))) >=
           parseFloat(ampHandle(varHandle(conditional.split(' ')[2])))
         ) {
-          command.value = command.value.slice(6 + conditional.length);
+          cmd = cmd.slice(6 + conditional.length);
           writeToStack("Conditional returned true. Executing next layer...");
         } else {
-          command.value = '';
+          cmd = '';
           writeToStack("Conditional returned false. If statement terminated.");
         }
         break;
@@ -402,7 +416,7 @@ async function doCommand() {
         return 0;
       }
     }
-    cmdSplit = command.value.split(' ');
+    cmdSplit = cmd.split(' ');
   }
   switch (cmdSplit[0]) {
     case 'self-exec': {
@@ -437,7 +451,7 @@ async function doCommand() {
     }
     case 'filter': {
       writeToStack("Awaiting fetch...");
-      output.innerHTML = await fetch('https://hobbyrobot.com/cst/filterText.php?text=' + command.value.slice(7)).text();
+      output.innerHTML = await fetch('https://hobbyrobot.com/cst/filterText.php?text=' + cmd.slice(7)).text();
       writeToStack("Fetch successful.");
       break;
     }
@@ -461,7 +475,7 @@ async function doCommand() {
     }
     case 'js': {
       var p = document.createElement('button');
-      p.setAttribute('onclick', varHandle(command.value, 2, true));
+      p.setAttribute('onclick', varHandle(cmd, 2, true));
       document.body.appendChild(p);
       writeToStack("Executing JavaScript...");
       p.click();
@@ -556,7 +570,7 @@ async function doCommand() {
       for (var i = 0; i < functions[varHandle(cmdSplit[1], -1, true)].length; i++) {
         execWindow.push(
           'if ' +
-          command.value.slice(13 + cmdSplit[1].length) +
+          cmd.slice(13 + cmdSplit[1].length) +
           ' >> ' +
           functions[varHandle(cmdSplit[1], -1, true)][i]
         );
@@ -570,11 +584,11 @@ async function doCommand() {
     }
     case 'inner': {
       writeToStack("Parameters pushed.");
-      parameters.push(varHandle(command.value, 5, true).split(' '));
+      parameters.push(varHandle(cmd, 5, true).split(' '));
       break;
     }
     case 'copy': {
-      window.navigator.clipboard.writeText(varHandle(command.value, 4, true));
+      window.navigator.clipboard.writeText(varHandle(cmd, 4, true));
       writeToStack("Copied to clipboard.");
       break;
     }
@@ -609,7 +623,7 @@ async function doCommand() {
       break;
     }
     case 'echo': {
-      output.innerText = varHandle(command.value, 4, true);
+      output.innerText = varHandle(cmd, 4, true);
       writeToStack("Value returned.");
       break;
     }
@@ -632,7 +646,7 @@ async function doCommand() {
       break;
     }
     case 'cursor': {
-      document.querySelector('*').style.cursor = varHandle(command.value, 6);
+      document.querySelector('*').style.cursor = varHandle(cmd, 6);
       writeToStack("Cursor changed successfully.");
       break;
     }
@@ -646,7 +660,7 @@ async function doCommand() {
     }
     case 'redirect': {
       writeToStack("Redirecting...");
-      location.replace(varHandle(command.value, 8, true));
+      location.replace(varHandle(cmd, 8, true));
       break;
     }
     case 'quit': {
@@ -680,7 +694,7 @@ async function doCommand() {
       break;
     }
     case 'add-exec': {
-      execWindow.push(command.value.slice(9));
+      execWindow.push(cmd.slice(9));
       writeToStack("Pushed to execution window.");
       break;
     }
@@ -698,7 +712,7 @@ async function doCommand() {
     }
     case 'alias': {
       aliases[varHandle(cmdSplit[1], -1, true)] = varHandle(
-        command.value,
+        cmd,
         cmdSplit[1].length + 6,
         true
       );
@@ -717,12 +731,12 @@ async function doCommand() {
       break;
     }
     case 'encrypt': {
-      output.textContent = encrypt(varHandle(command.value, 8 + varHandle(cmdSplit[1], -1, true).length, true), varHandle(cmdSplit[1], -1, true))
+      output.textContent = encrypt(varHandle(cmd, 8 + varHandle(cmdSplit[1], -1, true).length, true), varHandle(cmdSplit[1], -1, true))
       writeToStack("Data encrypted.");
       break;
     }
     case 'decrypt': {
-      output.textContent = decrypt(varHandle(command.value, 8 + varHandle(cmdSplit[1], -1, true).length, true), varHandle(cmdSplit[1], -1, true))
+      output.textContent = decrypt(varHandle(cmd, 8 + varHandle(cmdSplit[1], -1, true).length, true), varHandle(cmdSplit[1], -1, true))
       writeToStack("Data decrypted.");
       break;
     }
@@ -817,14 +831,14 @@ async function doCommand() {
       break;
     }
     case 'html': {
-      output.innerHTML = varHandle(command.value, 4, true);
+      output.innerHTML = varHandle(cmd, 4, true);
       output.className = 'html';
       writeToStack("HTML produced successfully.");
       break;
     }
     case 'throw': {
       output.className = varHandle(cmdSplit[1], -1, true);
-      output.innerText = varHandle(command.value, varHandle(cmdSplit[1], -1, true).length + 6, true);
+      output.innerText = varHandle(cmd, varHandle(cmdSplit[1], -1, true).length + 6, true);
       writeToStack("Message thrown.");
       break;
     }
@@ -846,21 +860,21 @@ async function doCommand() {
       break;
     }
     case 'import-alias': {
-      if (varHandle(cmdSplit[1], -1, true) == 'hard') {
-        aliases[varHandle(cmdSplit[2], -1, true)] = localStorage.getItem(varHandle(cmdSplit[3], -1, true));
-      } else if (varHandle(cmdSplit[1], -1, true) == 'soft') {
-        aliases[varHandle(cmdSplit[2], -1, true)] = sessionStorage.getItem(varHandle(cmdSplit[3], -1, true));
-      } else if (varHandle(cmdSplit[1], -1, true) == 'var') {
-        aliases[varHandle(cmdSplit[2], -1, true)] = aliases[varHandle(cmdSplit[3], -1, true)];
-      } else if (varHandle(cmdSplit[1], -1, true) == 'encrypt') {
-        aliases[varHandle(cmdSplit[2], -1, true)] = encrypt(varHandle(command.value, 22 + varHandle(cmdSplit[2], -1, true) + varHandle(cmdSplit[3], -1, true).length, true), varHandle(cmdSplit[3], -1, true));
+      if (varHandle(cmdSplit[2], -1, true) == 'hard') {
+        aliases[varHandle(cmdSplit[1], -1, true)] = localStorage.getItem(varHandle(cmdSplit[3], -1, true));
+      } else if (varHandle(cmdSplit[2], -1, true) == 'soft') {
+        aliases[varHandle(cmdSplit[1], -1, true)] = sessionStorage.getItem(varHandle(cmdSplit[3], -1, true));
+      } else if (varHandle(cmdSplit[2], -1, true) == 'var') {
+        aliases[varHandle(cmdSplit[1], -1, true)] = aliases[varHandle(cmdSplit[3], -1, true)];
+      } else if (varHandle(cmdSplit[2], -1, true) == 'encrypt') {
+        aliases[varHandle(cmdSplit[1], -1, true)] = encrypt(cmd.slice(23+cmdSplit[1].length+cmdSplit[3].length), varHandle(cmdSplit[3], -1, true));
       } else if (varHandle(cmdSplit[1], -1, true) == 'decrypt') {
-        aliases[varHandle(cmdSplit[2], -1, true)] = decrypt(varHandle(command.value, 22 + varHandle(cmdSplit[2], -1, true) + varHandle(cmdSplit[3], -1, true).length, true), varHandle(cmdSplit[3], -1, true));
-      } else if (varHandle(cmdSplit[1], -1, true) == 'get') {
+        aliases[varHandle(cmdSplit[1], -1, true)] = decrypt(cmd.slice(23+cmdSplit[1].length+cmdSplit[3].length), varHandle(cmdSplit[3], -1, true));
+      } else if (varHandle(cmdSplit[2], -1, true) == 'get') {
         if (varHandle(cmdSplit[3], -1, true) == "battery") {
           await navigator.getBattery()
             .then(function (battery) {
-              aliases[varHandle(cmdSplit[2], -1, true)] = Math.round(battery.level * 100);
+              aliases[varHandle(cmdSplit[1], -1, true)] = Math.round(battery.level * 100);
 
             })
             .catch(function () {
@@ -869,7 +883,7 @@ async function doCommand() {
             });
         } else {
           retrieve(varHandle(cmdSplit[3], -1, true));
-          aliases[varHandle(cmdSplit[2], -1, true)] = tempData;
+          aliases[varHandle(cmdSplit[1], -1, true)] = tempData;
         }
       } else {
         output.className = 'error';
@@ -896,7 +910,7 @@ async function doCommand() {
         clear = functions[varHandle(cmdSplit[1], -1, true)].length;
         clearMode = 'multiple';
         clearFunc = varHandle(cmdSplit[1], -1, true);
-        parameters.push(command.value.slice(cmdSplit[1].length + 3).split(' '));
+        parameters.push(cmd.slice(cmdSplit[1].length + 3).split(' '));
         for (var i = 0; i < parameters[parameters.length - 1].length; i++) {
           parameters[parameters.length - 1][i] = ampHandle(
             parameters[parameters.length - 1][i]
@@ -925,7 +939,7 @@ async function doCommand() {
         for (var i = 0; i < funcToRead.length; i++) {
           output.innerHTML +=
             '<li>' +
-            command.value.slice(11 + cmdSplit[1].length) + funcToRead[i].split('&').join('&amp;').split('<').join('&lt;') +
+            cmd.slice(11 + cmdSplit[1].length) + funcToRead[i].split('&').join('&amp;').split('<').join('&lt;') +
             '</li>';
           //output.innerHTML += funcToRead[i].split("<").join("&lt;").split("&").join("&amp;");
           //output.innerHTML += "</p/>";
@@ -933,6 +947,10 @@ async function doCommand() {
       }
       output.innerHTML += '</ul>';
       writeToStack("Function displayed.");
+      break;
+    }
+    case 'custom': {
+      localStorage.setItem("custom",command.value.slice(7));
       break;
     }
     case 'import': {
@@ -975,12 +993,12 @@ async function doCommand() {
       }
       break;
     default: {
-      if (command.value.substr(0, 1) == '$') {
+      if (cmd.substr(0, 1) == '$') {
         try {
         clear = functions[varHandle(cmdSplit[0].slice(1), -1, true)].length;
         clearMode = 'multiple';
         clearFunc = varHandle(cmdSplit[0].slice(1), -1, true);
-        parameters.push(command.value.slice(cmdSplit[0].length + 1).split(' '));
+        parameters.push(cmd.slice(cmdSplit[0].length + 1).split(' '));
         parameters[parameters.length - 1].map((i) => (ampHandle(i)))
         writeToStack("Function execution initiating...");
       } catch(error) {
@@ -1011,9 +1029,9 @@ async function doCommand() {
     'CST/' +
     names[sessionStorage.getItem('userTerminalCST')] +
     '-->' +
-    command.value;
+    cmd;
   add.className = 'output';
-  if (command.value.split(' ')[0] == '//') {
+  if (cmd.split(' ')[0] == '//') {
     add.className = 'comment';
   } else {
     add.style.color = foreground;
@@ -1023,7 +1041,8 @@ async function doCommand() {
     output.style.color = foreground;
   }
   prev.appendChild(output);
-  prevCommand = command.value;
+  prevCommands.push(cmd);
+  historyIdx++;
   if (clear === 0) {
     command.value = '';
   }
@@ -1037,17 +1056,55 @@ async function doCommand() {
     }
     clear -= 1;
     if (clear == 0 && clearMode == `multiple`) {writeToStack("Function complete.");}
-    doCommand();
+    doCommand(command.value);
   }
 }
 command.addEventListener('keydown', function (event) {
   if (event.key == 'Enter') {
-    doCommand();
+    event.preventDefault();
+    doCommand(command.value);
   } else if (event.key == 'ArrowUp') {
-    command.value = prevCommand;
+    event.preventDefault();
+    if(historyIdx > 0) {
+    historyIdx--;
+    command.value = prevCommands[historyIdx];
+    }
     writeToStack("Returning to previous command...");
     command.focus();
   } else if (event.key == 'ArrowDown') {
-    command.value = '';
+    event.preventDefault();
+    if(historyIdx < prevCommands.length) {
+    historyIdx++;
+    command.value = prevCommands[historyIdx];
+    if(command.value == "undefined") {
+      command.value = "";
+    }
+    }
+  } else if (event.ctrlKey && event.key == ".") {
+    event.preventDefault();
+    if (typeof command.selectionStart == "number") {
+      command.selectionStart = command.selectionEnd = command.value.length;
+  }
+  }else if (event.ctrlKey && event.key == ",") {
+    event.preventDefault();
+    if (typeof command.selectionStart == "number") {
+      command.selectionStart = command.selectionEnd = 0;
+  }
+  }else if (event.ctrlKey && event.key == "/") {
+    event.preventDefault();
+    window.open("./terminal.html");
+    prev.innerHTML += "<li class='important'>New terminal opened.</li>";
+  }else if (event.ctrlKey && event.key == "w") {
+    event.preventDefault();
+    if(window.confirm("Close terminal?") == true) {
+      window.close();
+    }
+  }else if (event.ctrlKey && event.key == "m") {
+    event.preventDefault();
+    doCommand(localStorage.getItem("custom"));
+  } else if(event.key.length == 1){
+  prevCommands[prevCommands.length-1] = command.value + event.key;
+  }else if(event.key == "Backspace"){
+  prevCommands[prevCommands.length-1] = command.value.substr(0,command.value.length - 1);
   }
 });
