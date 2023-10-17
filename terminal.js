@@ -148,7 +148,7 @@ function varHandle(data, len = -1, mode = false) {
       final2 += outputSplit[i];
       isString = !isString;
     } else {
-      if(outputSplit[i].includes(":") {
+      if(outputSplit[i].includes(":")) {
       var temp = outputSplit[i].split(":");
       temp = aliases[temp[0]][parseInt(temp[1])];
       final2 += temp;
