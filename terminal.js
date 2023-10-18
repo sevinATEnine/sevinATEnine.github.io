@@ -155,7 +155,7 @@ function varHandle(data, len = -1, mode = false) {
       temp.pop();
       temp.reverse();
       while(temp.length > 0) {
-        root = root[parseInt(temp[0])]
+        root = root[parseInt(temp[0],10)-1]
         temp.reverse();
         temp.pop();
         temp.reverse();
