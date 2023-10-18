@@ -733,11 +733,19 @@ async function doCommand(cmd) {
       break;
     }
     case 'alias': {
+      if(cmdSplit[1].includes(":")) {
+        aliases[varHandle(cmdSplit[1].split(":")[0], -1, true)][parseInt(cmdSplit[1].split(":")[1])] = varHandle(
+        cmd,
+        cmdSplit[1].length + 6,
+        true
+      );
+      }else {
       aliases[varHandle(cmdSplit[1], -1, true)] = varHandle(
         cmd,
         cmdSplit[1].length + 6,
         true
       );
+      }
       writeToStack("Alias created successfully.");
       break;
     }
