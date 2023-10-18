@@ -150,8 +150,17 @@ function varHandle(data, len = -1, mode = false) {
     } else {
       if(outputSplit[i].includes(":")) {
       var temp = outputSplit[i].split(":");
-      temp = aliases[temp[0]][parseInt(temp[1]) -1];
-      final2 += temp;
+      var root = aliases[temp[0]];
+      temp.reverse();
+      temp.pop();
+      temp.reverse();
+      while(temp.length > 0) {
+        root = root[parseInt(temp[0])]
+        temp.reverse();
+        temp.pop();
+        temp.reverse();
+      }
+      final2 += root;
       } else {
         final2 += aliases[outputSplit[i]];
       }
@@ -470,6 +479,10 @@ async function doCommand(cmd) {
       }
       break;
     }
+    case 'push': {
+      aliases[cmdSplit[1]].push(cmd.slice(6 + cmdSplit[1].length));
+      break;
+    }
     case 'js': {
       var p = document.createElement('button');
       p.setAttribute('onclick', varHandle(cmd, 2, true));
@@ -572,6 +585,10 @@ async function doCommand(cmd) {
           functions[varHandle(cmdSplit[1], -1, true)][i]
         );
       }
+      break;
+    }
+    case 'pop-exec': {
+      execWindow.pop();
       break;
     }
     case 'outer': {
@@ -947,7 +964,7 @@ async function doCommand(cmd) {
       break;
     }
     case 'custom': {
-      localStorage.setItem("custom",command.value.slice(7));
+      localStorage.setItem("custom",cmd.slice(7));
       break;
     }
     case 'import': {
