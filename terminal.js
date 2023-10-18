@@ -1128,5 +1128,11 @@ command.addEventListener('keydown', function (event) {
   prevCommands[prevCommands.length-1] = command.value + event.key;
   }else if(event.key == "Backspace"){
   prevCommands[prevCommands.length-1] = command.value.substr(0,command.value.length - 1);
+  }else if (event.ctrlKey && event.key == "q") {
+    event.preventDefault();
+    doCommand("quit");
+  }else if (event.ctrlKey && event.key == "M" && event.shiftKey) {
+    event.preventDefault();
+    command.value = localStorage.getItem("custom");
   }
 });
