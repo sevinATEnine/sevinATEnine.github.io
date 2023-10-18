@@ -139,7 +139,6 @@ function varHandle(data, len = -1, mode = false) {
       isString = !isString;
     }
   }
-  //final = final.split('&n').join('\n').split('&s').join(' ').split('&p').join('|').split('&b').join('\\').split('&a').join('&')
   if(final.split(" ")[0] != "|:ARR|") {
   outputSplit = final.split('|');
   isString = true;
@@ -154,11 +153,8 @@ function varHandle(data, len = -1, mode = false) {
       temp.reverse();
       temp.pop();
       temp.reverse();
-      while(temp.length > 0) {
-        root = root[parseInt(temp[0],10)-1]
-        temp.reverse();
-        temp.pop();
-        temp.reverse();
+      for(var i of temp) {
+        root = root[parseInt(i)-1];
       }
       final2 += root;
       } else {
@@ -734,7 +730,7 @@ async function doCommand(cmd) {
     }
     case 'alias': {
       if(cmdSplit[1].includes(":")) {
-        aliases[varHandle(cmdSplit[1].split(":")[0], -1, true)][parseInt(cmdSplit[1].split(":")[1])] = varHandle(
+        aliases[varHandle(cmdSplit[1].split(":")[0], -1, true)][parseInt(cmdSplit[1].split(":")[1]) - 1] = varHandle(
         cmd,
         cmdSplit[1].length + 6,
         true
