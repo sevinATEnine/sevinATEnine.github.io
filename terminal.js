@@ -166,11 +166,6 @@ function varHandle(data, len = -1, mode = false) {
   }
   return final2;
 }
-  if (mode === true) {
-    final2 = ampHandle(final2);
-  }
-  return final2;
-}
 writeToStack("New terminal session opened.","info");
 let names = {
   'c@d3N': 'ThatGuyOverThere',
