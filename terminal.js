@@ -483,6 +483,14 @@ async function doCommand(cmd) {
       aliases[cmdSplit[1]].push(cmd.slice(6 + cmdSplit[1].length));
       break;
     }
+    case 'pop': {
+      aliases[cmdSplit[1]].pop();
+      break;
+    }
+    case 'reverse': {
+      aliases[cmdSplit[1]].reverse();
+      break;
+    }
     case 'js': {
       var p = document.createElement('button');
       p.setAttribute('onclick', varHandle(cmd, 2, true));
