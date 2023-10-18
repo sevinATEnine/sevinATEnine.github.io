@@ -150,17 +150,7 @@ function varHandle(data, len = -1, mode = false) {
     } else {
       if(outputSplit[i].includes(":")) {
       var temp = outputSplit[i].split(":");
-      console.log(temp);
-
-      try {
-        temp = aliases[temp[0]][parseInt(temp[1])];
-        
-      } catch {
-        temp = "Invalid";
-      }
-      console.log(temp);
-
-
+      temp = aliases[temp[0]][parseInt(temp[1]) -1];
       final2 += temp;
       } else {
         final2 += aliases[outputSplit[i]];
@@ -169,10 +159,12 @@ function varHandle(data, len = -1, mode = false) {
     }
   }
 } else {
-  final.reverse();
-  final.pop();
-  final.reverse();
-  return final.split(" ").map((t) => (varHandle(t, -1, true)));
+  return final.slice(7).split(" ").map((t) => (varHandle(t, -1, true)));
+}
+  if (mode === true) {
+    final2 = ampHandle(final2);
+  }
+  return final2;
 }
   if (mode === true) {
     final2 = ampHandle(final2);
