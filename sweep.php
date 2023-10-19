@@ -1,3 +1,3 @@
 <?php 
-echo shell_exec('ping -c 1 10.0.0.1 2>&1');
+echo shell_exec('ping -c 1 161.97.25.15 2>&1');
 ?>
