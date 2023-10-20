@@ -3,7 +3,9 @@
 
 The CST is the the CST Command Line stands for c@d3N, $|m0n, 70DD. It is currently in version 1.0.10.16.23
 
-It is under the Creative Commons 1.0 license [View license here](https://github.com/sevinATEnine-alt/sevinATEnine-alt.github.io/blob/main/LICENSE)
+It is under the Creative Commons 1.0 license [View license here](https://github.com/sevinATEnine-alt/sevinATEnine-alt.github.io/blob/main/LICENSE.md)
+
+View security liscence [here](https://github.com/sevinATEnine-alt/sevinATEnine-alt.github.io/blob/main/SECURITY.md)
 
 ### We have now added new featues:
 
