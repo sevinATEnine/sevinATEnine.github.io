@@ -189,6 +189,7 @@ let names = {
   '(@2v1n': 'NEEEEERRRRRRDDDDD',
 }; //basic name definitions
 var aliases = {};
+var pages = {};
 var parameters = [];
 var funcToSave = "";
 var text = document.getElementById("fm");
@@ -475,6 +476,10 @@ async function doCommand(cmd) {
       }
       break;
     }
+    case 'close': {
+      pages[cmdSplit[1]].close();
+      break;
+    }
     case 'push': {
       aliases[cmdSplit[1]].push(cmd.slice(6 + cmdSplit[1].length));
       break;
@@ -669,10 +674,11 @@ async function doCommand(cmd) {
       break;
     }
     case 'open': {
-      var a = document.createElement('a');
-      a.href = varHandle(cmdSplit[1], -1, true);
-      a.target = '_blank';
-      a.click();
+      if(cmdSplit.length == 2) {
+        window.open(cmdSplit[1]);
+      }else {
+        pages[cmdSplit[2]] = window.open(cmdSplit[1]);
+      }
       writeToStack("Page opened.");
       break;
     }
