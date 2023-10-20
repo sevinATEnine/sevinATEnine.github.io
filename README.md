@@ -5,6 +5,8 @@ The CST is the the CST Command Line stands for c@d3N, $|m0n, 70DD. It is current
 
 It is under the Creative Commons 1.0 license [View license here](https://github.com/sevinATEnine-alt/sevinATEnine-alt.github.io/blob/main/LICENSE)
 
+View security liscence [here](https://github.com/sevinATEnine-alt/sevinATEnine-alt.github.io/blob/main/SECURITY)
+
 ### We have now added new featues:
 
 - GitHub automatically uploads new code, on push to https://hobbyrobot.com/cst/index.html via. FTP
