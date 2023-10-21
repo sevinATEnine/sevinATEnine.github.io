@@ -17,7 +17,7 @@ the same criteria.
 /*
 OPEN THE STACK:
 */
-window.open('./stack.html');
+pages[".STACK"] = window.open('./stack.html');
 
 
 
@@ -165,7 +165,11 @@ function varHandle(data, len = -1, mode = false) {
       }
       final2 += root;
       } else {
-        final2 += aliases[outputSplit[i]];
+        if(typeof aliases[outputSplit[i]] != "string") {
+          return aliases[outputSplit[i]]
+        } else {
+          final2 += aliases[outputSplit[i]];
+        }
       }
       isString = !isString;
     }
