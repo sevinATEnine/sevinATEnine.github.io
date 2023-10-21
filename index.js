@@ -21,33 +21,33 @@ the same criteria.
 
     var password = null;
     var username = null;
-    let users = {
-      'c@d3N': '(0d3r_4_L1FE',
-      '$|m0n': 'Dev',
-      '70DD': 'yesn\'t',
-      '$@wy3|-': 'dogecoin',
-      'c2@r@': 'unicute',
-      'm0m': '0m0',
-      'd@d': 'ipv4',
-      'TigerShark6471': '13243546',
-      'dev_testing': 'devs only',
-      'Ethan':'123',
-      'root': 'go awwaaaayyyyy now!!!',
-      '(@2v1n': 'is a nerd',
-      'Calvin':'123',
-      'Charlie':'123',
-      'Ethan':'123',
-      'Luke':'123',
-      'Luka':'123',
-      'Nico':'123',
-      'samil':'123',
-      'Shaurya':'123',
-      'Calvin':'123',
-      'Guest':'123',
-      'S':'123',
-      '123':'123',
-      'Cole':'123',
-    };
+    // let users = {
+    //   'c@d3N': '(0d3r_4_L1FE',
+    //   '$|m0n': 'Dev',
+    //   '70DD': 'yesn\'t',
+    //   '$@wy3|-': 'dogecoin',
+    //   'c2@r@': 'unicute',
+    //   'm0m': '0m0',
+    //   'd@d': 'ipv4',
+    //   'TigerShark6471': '13243546',
+    //   'dev_testing': 'devs only',
+    //   'Ethan':'123',
+    //   'root': 'go awwaaaayyyyy now!!!',
+    //   '(@2v1n': 'is a nerd',
+    //   'Calvin':'123',
+    //   'Charlie':'123',
+    //   'Ethan':'123',
+    //   'Luke':'123',
+    //   'Luka':'123',
+    //   'Nico':'123',
+    //   'samil':'123',
+    //   'Shaurya':'123',
+    //   'Calvin':'123',
+    //   'Guest':'123',
+    //   'S':'123',
+    //   '123':'123',
+    //   'Cole':'123',
+    // };
 
     let banned = {
       'c@d3N': false,
@@ -84,7 +84,17 @@ the same criteria.
       "08v5n7w0ebt86r be6tnw47e85ri7 uygtw67qygkrt67ewygqhfsuyt76ugkrwhlasyot6crgkefhwyit6auyt7i6qerwuy a7bv68teiqwyuadstoiyugesdxhgoiuadfyoba7fiwvoye87rudshvwberi7uydthw48eirusbgo8w t7eri ot78riduytoieg7t86wy4eulr7645o7rtyeow86t78reysgip6erliudisdju50f3h948er7g6958w7noetirubwy4 958eruthwe78riutyo48eriudto7yuhriy8p78yiuhliyo7yluio67yliuhliy78pb reitbuywertid ;uei;hrt;urwjuhbnhyhnjujmiujnmuewrypt io uerpwoitwjtrhuyuiewr87ty9iuhk.jiur8rhjkiu8uieo897uih897riuyhi89uihelrpt7h8 iuept89iueper8t9uoiufuprofdgks.jgdksflgj;id lstfujgs.rtret rjtkyj;rtkyjr;tkljyrkltjytlkr jy krtl jykrtlyjkrltjyklrtj lnk": {"user":"c@d3N", "info":"Login for Caden"},
     }
     // fetch('https://api.ipify.org?format=json')
+    var users = {};
 
+    const init = async () => {
+      var response = await fetch("./users.json");
+      var data = await response.json();
+      users = data;
+    };
+    
+    (async () => {
+      await init();
+    })();
     function initial() {
       document.getElementById('file-input').addEventListener('change', handleFileSelect, false);
 
@@ -134,7 +144,6 @@ the same criteria.
     // ban-$@wy3|-=false
 
     async function signin() {
-
       const secondUsernames = {
         "17513719":{
           "username":["$|m0n"],
@@ -212,7 +221,8 @@ the same criteria.
         document.getElementById('noroot').style.display = 'block';
         return 0;
       }
-      if ((users[username.value] == password.value)&& (!banned[username.value]) && !lockdownModeEnabled) {
+      var userData = users[username.value];
+      if ((userData != undefined && userData["password"] == document.getElementById("password").value)&& (!banned[username.value]) && !lockdownModeEnabled) {
         try {
         await fetch(('./logLoginAttempt.php?trueUsername='+String(usernames[String(uid)]['users'])+'&trueUsername2='+String(secondUsernames[String(getUID())]['username'])+"&loginUsername="+username.value+"&browser="+String(String(usernames[String(uid)]['browser']))+"&os="+String(usernames[String(uid)]['os'])))
         .then(response => response.text())
