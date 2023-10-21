@@ -14,6 +14,13 @@ the same criteria.
 
 
 
+/*
+OPEN THE STACK:
+*/
+window.open('./stack.html');
+
+
+
 
 var tempData = null;
 async function getData(url) {
