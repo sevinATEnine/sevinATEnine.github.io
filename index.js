@@ -26,7 +26,6 @@ the same criteria.
       '$|m0n': 'Dev',
       '70DD': 'yesn\'t',
       '$@wy3|-': 'dogecoin',
-      'GUesT_1.0': 'GU35T_D3V3L0P3R',
       'c2@r@': 'unicute',
       'm0m': '0m0',
       'd@d': 'ipv4',
