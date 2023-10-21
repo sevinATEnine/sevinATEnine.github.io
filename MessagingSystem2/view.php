@@ -37,13 +37,19 @@ the same criteria.
         padding: 5px;
         width: fit-content;
         height: fit-content;
-
         border: 2px solid grey;
     }
     span {
         border-right: 1px solid black;
         padding: 5px;
         margin-right: 5px;
+    }
+    .messageArea {
+      height: 530px !important;
+      min-width: 500px;
+      width: fit-content;
+      border: 1px solid grey;
+      overflow: scroll !important;
     }
     
   </style>
@@ -64,7 +70,7 @@ the same criteria.
   }
   $roomId = $_GET['roomId'];
 
-  echo "<h1>CST New Messaging System - Room #$roomId</h1><a href='./browse.php'>Back</a><hr>";
+  echo "<h1>CST New Messaging System - Room #$roomId</h1><a href='./browse.php'>Back</a><hr><div class='messageArea'>";
 
   $sql = "SELECT * FROM messages2 WHERE roomId = $roomId";
   $result = $conn->query($sql);
@@ -82,6 +88,7 @@ the same criteria.
   $conn->close();
   echo "<script>var chatroomId=$roomId;</script>"
   ?>
+  </div>
     <form action="./postMessage.php">
         <h3>Post Message</h3>
         <hr>
