@@ -1,5 +1,7 @@
-#include <stdio.h>
-#include <string.h>
+#include <iostream>
+#include <cstring>
+using namespace std;
+
   struct users {
   char username[16];
   char password[32];
@@ -18,20 +20,26 @@ int UID;
 char cmd[64];
 void runCmd() {
     printf("CST/%s-->",u[UID].name);
-    scanf("%s",&cmd);
+    cin >> cmd;
+    if(strcmp(cmd,"help") == 0) {
+        cout << "help menu\n";
+    } else {
+        cout << "nothing\n";
+    }
     runCmd();
 }
-void main() {
-    printf("Enter your username: ");
-    scanf("%s",&user);
-    printf("Enter your password: ");
-    scanf("%s",&pass);
-    printf("Enter your UID: ");
-    scanf("%d",&UID);
+int main() {
+    cout << "Enter your username:";
+    cin >> user;
+    cout << "Enter your password: ";
+    cin >> pass;
+    cout << "Enter your UID: ";
+    cin >> UID;
     if (strcmp(user,u[UID].username)==0 && strcmp(pass,u[UID].password)==0) {
-        printf("Logged in as: %s\n",u[UID].name);
+        cout << "Logged in as: " << u[UID].name << "\n";
         runCmd();
     } else {
-        printf("Username and or password entered incorrectly.");
+        cout << "Username, password, and/or UID entered incorrectly.";
     }
+    return 0;
 };
