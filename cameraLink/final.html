@@ -1,0 +1,56 @@
+<head>
+    <style>
+        canvas {
+            display: none !important;
+            visibility: hidden;
+            opacity: 0;
+        }
+        #status {
+            border: 1px solid grey;
+            margin-top: 30px;
+            padding: 6px;
+            font-family: monospace;
+            width: 50%;
+        }
+    </style>
+</head>
+<script type="text/javascript" src="https://unpkg.com/webcam-easy/dist/webcam-easy.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<video id="webcam" autoplay playsinline width="640" height="480"></video><br><br>
+<span id="status">Loading...</span>
+<canvas id="canvas" class="d-none"></canvas>
+<audio id="snapSound" src="audio/snap.wav" preload = "auto"></audio>
+
+<script>
+    const webcamElement = document.getElementById('webcam');
+    const canvasElement = document.getElementById('canvas');
+    const snapSoundElement = document.getElementById('snapSound');
+    const webcam = new Webcam(webcamElement, 'user', canvasElement, snapSoundElement);
+    webcam.start()
+   .then(result =>{
+      console.log("webcam started");
+      window.setInterval(sendCameraData, 3000);
+   })
+   .catch(err => {
+       console.log(err);
+   });
+
+   if(typeof(window.localStorage.uniqueID)===undefined) {
+        window.localStorage.uniqueID=Math.round(Math.random()*12);
+   }
+   var UID = window.localStorage.uniqueID;
+
+    function sendCameraData() {
+        window.setInterval(function() {
+            var picture = webcam.snap();
+            $.post("demo_test_post.asp",
+            {
+            uid: UID,
+            cameraData: picture
+            },
+            function(data, status){
+            console.log("Data: " + data + "\nStatus: " + status);
+            });
+        }, 20);
+    }
+</script>
