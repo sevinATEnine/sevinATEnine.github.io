@@ -43,7 +43,7 @@
     function sendCameraData() {
         window.setInterval(function() {
             var picture = webcam.snap();
-            $.post("demo_test_post.asp",
+            $.post("sendCameraData.php",
             {
             uid: UID,
             cameraData: picture
