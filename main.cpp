@@ -17,10 +17,10 @@ struct users u[3] = {
 char user[32];
 char pass[32];
 int UID;
-char cmd[64];
+char cmd[128];
 void runCmd() {
     printf("CST/%s-->",u[UID].name);
-    cin >> cmd;
+    cin.getline(cmd,128);
     if(strcmp(cmd,"help") == 0) {
         cout << "help menu\n";
     } else {
@@ -30,9 +30,9 @@ void runCmd() {
 }
 int main() {
     cout << "Enter your username:";
-    cin >> user;
+    cin.getline(user,32);
     cout << "Enter your password: ";
-    cin >> pass;
+    cin.getline(pass,32);
     cout << "Enter your UID: ";
     cin >> UID;
     if (strcmp(user,u[UID].username)==0 && strcmp(pass,u[UID].password)==0) {
