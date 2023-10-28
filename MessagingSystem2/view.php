@@ -31,6 +31,8 @@ the same criteria.
     form {
         position: fixed;
         top:70%;
+        height:30%;
+        z-index:1;
     }
     div {
         border-radius: 5px;
@@ -45,7 +47,7 @@ the same criteria.
         margin-right: 5px;
     }
     .messageArea {
-      height: 530px !important;
+      height: 70%;
       min-width: 500px;
       width: fit-content;
       border: 1px solid grey;
