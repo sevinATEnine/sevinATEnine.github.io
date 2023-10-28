@@ -18,8 +18,8 @@
   $ipAddress = $_SERVER['REMOTE_ADDR'];
 
 
+  /// Check IPs \\\
 
-  echo "Posting message...<br>";
 
   $sql = "SELECT * FROM bannedMessageIPs WHERE ipAddress = '$ipAddress'";
   $result = $conn->query($sql);
@@ -32,7 +32,11 @@
     echo "Ip clear!";
   }
 
-  echo $result." ".$conn -> error;
+  
+  /// Post message \\\
+
+
+  echo "Posting message...<br>";
 
   $sql = "INSERT INTO messages2 (sender, message, roomId) VALUES ('$usernameGet', '$messageGet', $roomId)";
   $result = $conn->query($sql);
