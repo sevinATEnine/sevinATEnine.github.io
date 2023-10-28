@@ -47,10 +47,11 @@ the same criteria.
         margin-right: 5px;
     }
     .messageArea {
-      height: 70% !important;
-      min-width: 500px;
-      width: fit-content;
-      border: 1px solid grey;
+      height: 500px !important;
+      min-width: 500px !important;
+      max-width: 99% !important;
+      width: fit-content !important;
+      border: 1px solid grey !important;
       overflow: scroll !important;
     }
     
