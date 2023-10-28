@@ -44,5 +44,10 @@ the same criteria.
 </head>
 <body>
   <div onclick="window.location='./view.php?roomId=1'">Room 1</div><div onclick="window.location='./view.php?roomId=2'">Room 2</div><div onclick="window.location='./view.php?roomId=3'">Room 3</div><div onclick="window.location='./view.php?roomId=4'">Room 4</div>
-
+  <br><hr>
+  <h3>Login To Message Admin</h3>
+  <form action='./banIp.php' method='post'>
+    Username <input name='loginUsername'><br>
+    Password <input name='loginPassword'>
+  </form>
 </body>
