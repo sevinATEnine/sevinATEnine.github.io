@@ -14,12 +14,12 @@ if($username == 'SYSTEM_MASTER_MESSAGE_IP_ROOT_ADMIN') {
 ?>
 <hr>
 <div>
-    <div id='out'></div>
+    <form id='out' action='./removeIp.php' method='post'></form>
     <script>
         main();
         async function main() {
             var out=document.getElementById('out');
-            out.innerHTML = "<h3>Banned Ips</h3><textarea id='outTextarea'>";
+            out.innerHTML = "<h3>Banned Ips</h3><textarea id='outTextarea' name='bannedIps'>";
             var outTextarea = document.getElementById('outTextarea');
                     await fetch('./getIps.php')
                     .then(response => response.text())
@@ -27,7 +27,7 @@ if($username == 'SYSTEM_MASTER_MESSAGE_IP_ROOT_ADMIN') {
                         outTextarea.innerHTML += (text); 
                     });
 
-                    out.innerHTML += (`</textarea><br><button onclick='submitData(${textarea.value});'>Submit</button><br>`);
+                    out.innerHTML += (`</textarea><br><input type='submit' value='Ban IPs'><br>`);
         }
         function submitData(data) {
             // tbd
