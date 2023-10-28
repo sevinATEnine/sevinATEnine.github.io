@@ -47,7 +47,7 @@ the same criteria.
         margin-right: 5px;
     }
     .messageArea {
-      height: 70%;
+      height: 70% !important;
       min-width: 500px;
       width: fit-content;
       border: 1px solid grey;
