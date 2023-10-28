@@ -107,6 +107,7 @@ the same criteria.
           var output=text;
 
           // Regex \\
+          // 'chars['+String(chars.indexOf('_'))+'] + '+'chars['+String(chars.indexOf('_'))+'] + '+'chars['+String(chars.indexOf('_'))+'] + '+'chars['+String(chars.indexOf('_'))+']'
           var chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789`-=~_+!@#$%^&*()[]{}\\|/.,<>?";
           chars = chars.split('');
           
