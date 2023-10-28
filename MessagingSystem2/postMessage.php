@@ -15,10 +15,24 @@
   $usernameGet = ($_GET['username']." (".$_SERVER['REMOTE_ADDR']).")";
   $messageGet = $_GET['message'];
   $roomId = $_GET['roomId'];
+  $ipAddress = $_SERVER['REMOTE_ADDR'];
 
 
 
   echo "Posting message...<br>";
+
+  $sql = "SELECT * FROM bannedMessageIPs WHERE ipAddress = '$ipAddress'";
+  $result = $conn->query($sql);
+
+  if ($result->num_rows > 0) {
+    // output data of each row
+    die("IP $ipAddress, is banned from posting messages");
+
+  } else {
+    echo "Ip clear!";
+  }
+
+  echo $result." ".$conn -> error;
 
   $sql = "INSERT INTO messages2 (sender, message, roomId) VALUES ('$usernameGet', '$messageGet', $roomId)";
   $result = $conn->query($sql);
