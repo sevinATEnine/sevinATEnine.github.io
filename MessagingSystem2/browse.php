@@ -48,6 +48,7 @@ the same criteria.
   <h3>Login To Message Admin</h3>
   <form action='./banIp.php' method='post'>
     Username <input name='loginUsername'><br>
-    Password <input name='loginPassword'>
+    Password <input name='loginPassword'><br>
+    <input type='submit' value='Login'>
   </form>
 </body>
