@@ -93,15 +93,30 @@ the same criteria.
         <h3>Post Message</h3>
         <hr>
         <label for="username">Username</label><br>
-        <input type="text" id="username" name="username" placeholder="John Doe" required><br>
+        <input type="text" id="username" name="username" placeholder="John Doe" oninput="this.value=chatFilter(this.value);" required><br>
         <label for="message">Message:</label><br>
-        <input type="text" id="message" name="message" placeholder="What's up?" required>
+        <input type="text" id="message" name="message" placeholder="What's up?" oninput="this.value=chatFilter(this.value);" required>
         <input type="text" id="roomId" name="roomId" value="?" style='display: none;'><br><br>
         <input type="submit" value="Submit">
     </form>
 
     <script>
         document.getElementById('roomId').value = chatroomId;
+
+        function chatFilter(text) {
+          var output=text;
+
+          // Regex \\
+          var chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789`-=~_+!@#$%^&*()[]{}\\|/.,<>?";
+          chars = chars.split('');
+          
+          var badWords = ['balls', '69', '420', (chars[5] + chars[20] + chars[2] + chars[10])];
+          for (word of badWords) {
+            output = output.replace((eval('/'+String(word)+'/gi')), ('*'.repeat(word.length)));
+          }
+
+          return output;
+        }
     </script>
 
 

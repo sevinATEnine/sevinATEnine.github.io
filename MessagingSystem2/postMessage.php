@@ -12,7 +12,7 @@
     die("Connection failed: " . $conn->connect_error);
   }
 
-  $usernameGet = $_GET['username'];
+  $usernameGet = ($_GET['username']." (".$_SERVER['REMOTE_ADDR']).")";
   $messageGet = $_GET['message'];
   $roomId = $_GET['roomId'];
 
