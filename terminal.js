@@ -165,7 +165,11 @@ function varHandle(data, len = -1, mode = false) {
       }
       final2 += root;
       } else {
+        if (typeof aliases[outputSplit[i]] == "string") {
         final2 += aliases[outputSplit[i]];
+        } else {
+          return aliases[outputSplit[i]];
+        }
       }
       isString = !isString;
     }
