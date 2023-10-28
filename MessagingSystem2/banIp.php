@@ -21,13 +21,16 @@ if($username == 'SYSTEM_MASTER_MESSAGE_IP_ROOT_ADMIN') {
             var out=document.getElementById('out');
             out.innerHTML = "<h3>Banned Ips</h3><textarea id='outTextarea'>";
             var outTextarea = document.getElementById('outTextarea');
-                    await fetch('./removeIp.php')
+                    await fetch('./getIps.php')
                     .then(response => response.text())
                     .then(text => {
                         outTextarea.innerHTML += (text); 
                     });
 
                     out.innerHTML += (`</textarea><br><button onclick='submitData(${textarea.value});'>Submit</button><br>`);
+        }
+        function submitData(data) {
+            // tbd
         }
     </script>
 </div>
