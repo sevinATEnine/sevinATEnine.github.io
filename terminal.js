@@ -464,13 +464,6 @@ async function doCommand() {
       audio.play();
       break;
     }
-    case "starwars-cont.": {
-    output.innerHTML("________________
-    /               \
-                        
-                        ")  
-    }
-    break;
     default: {
       output.innerHTML = "Error 01: Invalid command";
       output.className = "error";
