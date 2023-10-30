@@ -32,10 +32,12 @@ the same criteria.
     }
 
     #top {
-        height:20vh;
+        height:15vh;
         position:absolute;
         top:0px;
         left:0px;
+        width:100%;
+        border:none;
     }
     div {
         border-radius: 5px;
@@ -51,14 +53,14 @@ the same criteria.
     }
     form {
         position: fixed;
-        top:82%;
-        height:30%;
+        top:60%;
+        height:40%;
         z-index:1;
     }
     .messageArea {
-      height: 60vh !important;
+      height: 45vh !important;
       position:absolute;
-      margin-top:21vh;
+      margin-top:15vh;
       min-width: 500px !important;
       max-width: 99% !important;
       width: fit-content !important;
