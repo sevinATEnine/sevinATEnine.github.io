@@ -17,6 +17,9 @@ the same criteria.
   <title>CST New Messaging system</title>
   <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
   <style>
+    body {
+      overflow-y:scroll !important;
+    }
     input {
       width: 400px;
       margin-bottom: 3px;
@@ -28,11 +31,11 @@ the same criteria.
         background-color: ghostwhite;
     }
 
-    form {
-        position: fixed;
-        top:70%;
-        height:30%;
-        z-index:1;
+    #top {
+        height:20vh;
+        position:absolute;
+        top:0px;
+        left:0px;
     }
     div {
         border-radius: 5px;
@@ -46,8 +49,16 @@ the same criteria.
         padding: 5px;
         margin-right: 5px;
     }
+    form {
+        position: fixed;
+        top:82%;
+        height:30%;
+        z-index:1;
+    }
     .messageArea {
-      height: 500px !important;
+      height: 60vh !important;
+      position:absolute;
+      margin-top:21vh;
       min-width: 500px !important;
       max-width: 99% !important;
       width: fit-content !important;
@@ -73,7 +84,7 @@ the same criteria.
   }
   $roomId = $_GET['roomId'];
 
-  echo "<h1>CST New Messaging System - Room #$roomId</h1><a href='./browse.php'>Back</a><hr><div class='messageArea'>";
+  echo "<div id='top'><h1>CST New Messaging System - Room #$roomId</h1><a href='./browse.php'>Back</a><hr></div><div class='messageArea'>";
 
   $sql = "SELECT * FROM messages2 WHERE roomId = $roomId";
   $result = $conn->query($sql);
