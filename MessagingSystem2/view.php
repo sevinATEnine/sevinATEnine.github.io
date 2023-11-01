@@ -53,12 +53,12 @@ the same criteria.
     }
     form {
         position: fixed;
-        top:60%;
+        top:80%;
         height:40%;
         z-index:1;
     }
     .messageArea {
-      height: 700px;
+      height: 550px;
       position:absolute;
       margin-top:15vh;
       min-width: 500px !important;
