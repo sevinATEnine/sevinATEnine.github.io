@@ -14,10 +14,7 @@ the same criteria.
 
 
 
-/*
-OPEN THE STACK:
-*/
-window.open('./stack.html');
+
 
 
 
@@ -199,7 +196,9 @@ let names = {
   'Ethan': 'Ethan',
   '(@2v1n': 'NEEEEERRRRRRDDDDD',
 }; //basic name definitions
-var aliases = {};
+var aliases = {
+'STACK':window.open('./stack.html'),
+};
 var parameters = [];
 var funcToSave = "";
 var text = document.getElementById("fm");
