@@ -199,6 +199,7 @@ let names = {
 var aliases = {
 'STACK':window.open('./stack.html'),
 };
+var tempAliases = {};
 var parameters = [];
 var funcToSave = "";
 var text = document.getElementById("fm");
@@ -486,6 +487,14 @@ async function doCommand(cmd) {
     }
     case 'close': {
       aliases[cmdSplit[1]].close();
+      break;
+    }
+    case 'session': {
+      tempAliases = aliases;
+      break;
+    }
+    case 'rollback': {
+      aliases = tempAliases;
       break;
     }
     case 'push': {
