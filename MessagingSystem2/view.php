@@ -118,6 +118,9 @@ the same criteria.
 
     <script>
         document.getElementById('roomId').value = chatroomId;
+        
+        var objDiv = document.querySelector('.messageArea');
+        objDiv.scrollTop = objDiv.scrollHeight;
 
         function chatFilter(text) {
           var output=text;
