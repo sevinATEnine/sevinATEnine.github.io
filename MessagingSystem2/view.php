@@ -58,7 +58,7 @@ the same criteria.
         z-index:1;
     }
     .messageArea {
-      height: 45vh !important;
+      height: 700px;
       position:absolute;
       margin-top:15vh;
       min-width: 500px !important;
@@ -118,7 +118,7 @@ the same criteria.
 
     <script>
         document.getElementById('roomId').value = chatroomId;
-        
+
         var objDiv = document.querySelector('.messageArea');
         objDiv.scrollTop = objDiv.scrollHeight;
 
