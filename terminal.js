@@ -308,7 +308,7 @@ if (permitted != 'affirmed') {
 } //Access granted? Time to find out!
 
 async function doCommand(cmd) {
-
+var time = 0;
 
 
   /// ADD TO HISTORY \\\
@@ -495,6 +495,10 @@ async function doCommand(cmd) {
     }
     case 'rollback': {
       aliases = tempAliases;
+      break;
+    }
+    case 'delay': {
+      time = parseInt(cmdSplit[1]);
       break;
     }
     case 'push': {
@@ -1104,7 +1108,7 @@ async function doCommand(cmd) {
     }
     clear -= 1;
     if (clear == 0 && clearMode == `multiple`) {writeToStack("Function complete.");}
-    doCommand(command.value);
+    window.setTimeout((() => {doCommand(command.value)}),time);
   }
 }
 command.addEventListener('keydown', function (event) {
