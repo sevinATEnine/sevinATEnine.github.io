@@ -117,6 +117,16 @@ the same criteria.
     </form>
 
     <script>
+        function genText(word) {
+          var chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789`-=~_+!@#$%^&*()[]{}\\|/.,<>?";
+          chars = chars.split('');
+          var output = [];
+          for (i of word) {
+            output.push("chars["+chars.indexOf(i)+"]");
+          }
+          return output.join(" + ");
+        }
+
         document.getElementById('roomId').value = chatroomId;
 
         var objDiv = document.querySelector('.messageArea');
@@ -129,8 +139,10 @@ the same criteria.
           // 'chars['+String(chars.indexOf('_'))+'] + '+'chars['+String(chars.indexOf('_'))+'] + '+'chars['+String(chars.indexOf('_'))+'] + '+'chars['+String(chars.indexOf('_'))+']'
           var chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789`-=~_+!@#$%^&*()[]{}\\|/.,<>?";
           chars = chars.split('');
+
           
-          var badWords = ['balls', '69', '420', (chars[5] + chars[20] + chars[2] + chars[10])];
+          
+          var badWords = [(chars[7] + chars[4] + chars[11] + chars[11]), (chars[18] + chars[7] + chars[8] + chars[19]), (chars[1] + chars[8] + chars[19] + chars[2] + chars[7]), (chars[3] + chars[8] + chars[2] + chars[10]), (chars[2] + chars[14] + chars[2] + chars[10]), (chars[2] + chars[20] + chars[12] + chars[12]), (chars[15] + chars[4] + chars[13] + chars[8] + chars[18]), (chars[1] + chars[0] + chars[11] + chars[11]), (chars[58] + chars[61]), (chars[56] + chars[54] + chars[52]), (chars[18] + chars[4] + chars[23]), (chars[1] + chars[17] + chars[4] + chars[0] + chars[18] + chars[19]), (chars[1] + chars[14] + chars[14] + chars[1]), (chars[0] + chars[18] + chars[18] + chars[7] + chars[14] + chars[11] + chars[4]), (chars[5] + chars[20] + chars[2] + chars[10]), (chars[13] + chars[8] + chars[6] + chars[6] + chars[4] + chars[17]), (chars[3] + chars[0] + chars[12] + chars[13]), (chars[17] + chars[4] + chars[19] + chars[0] + chars[17] + chars[3])];
           for (word of badWords) {
             output = output.replace((eval('/'+String(word)+'/gi')), ('*'.repeat(word.length)));
           }
