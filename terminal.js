@@ -162,10 +162,10 @@ function varHandle(data, len = -1, mode = false) {
       }
       final2 += root;
       } else {
-        if (typeof aliases[outputSplit[i]] == "string") {
-        final2 += aliases[outputSplit[i]];
-        } else {
+        if (typeof aliases[outputSplit[i]] == "object") {
           return aliases[outputSplit[i]];
+        } else {
+          final2 += aliases[outputSplit[i]];
         }
       }
       isString = !isString;
