@@ -1,0 +1,44 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            
+            * {
+                color: green;
+                background-color: black;
+                font-family: monospace;
+                font-size: 18px;
+            }
+            h1 {
+                font-size: 32px;
+            }
+
+            img {
+                border: 1px solid grey;
+                border-radius: 10px;
+            }
+        </style>
+    </head>
+<body>
+<h1>Commit History</h1>
+<p id="demo">Loading...</p>
+
+<script>
+getText('https://api.github.com/repos/sevinATEnine-alt/sevinATEnine-alt.github.io/commits?per_page=200');
+
+async function getText(file) {
+  let myObject = await fetch(file);
+  let myText = await myObject.text();
+  document.getElementById("demo").innerHTML='';
+  for(i in JSON.parse(myText)) {
+    var data = JSON.parse(myText)[i];
+    console.log(data);
+    document.getElementById("demo").innerHTML += (`[${String(data.commit.committer.date).replace('T', ' ').replace('Z', '')}] `+`<img src='${data.author.avatar_url}' width=20px>&nbsp;<strong>`+data.author.login+`</strong>: ${data.commit.message }<br>`);
+
+    }
+}
+</script>
+
+</body>
+</html>
