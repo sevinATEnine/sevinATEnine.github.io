@@ -124,7 +124,7 @@ the same criteria.
           for (i of word) {
             output.push("chars["+chars.indexOf(i)+"]");
           }
-          return output.join(" + ");
+          return "(" + output.join(" + ")+")";
         }
 
         document.getElementById('roomId').value = chatroomId;
