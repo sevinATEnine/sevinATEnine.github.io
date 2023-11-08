@@ -501,6 +501,10 @@ var time = 0;
       time = parseInt(cmdSplit[1]);
       break;
     }
+    case 'skip': {
+      clear -= parseInt(cmdSplit[1]);
+      break;
+    }
     case 'push': {
       aliases[cmdSplit[1]].push(cmd.slice(6 + cmdSplit[1].length));
       break;
