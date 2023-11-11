@@ -693,6 +693,11 @@ var time = 0;
       }
       break;
     }
+    case 'html': {
+      aliases[cmdSplit[2]] = window.open(varHandle(cmdSplit[1],-1,true));
+      aliases[cmdSplit[2]].document.write(varHandle(cmdSplit[2],-1,true))
+      break;
+    }
     case 'cursor': {
       document.querySelector('*').style.cursor = varHandle(cmd, 6);
       writeToStack("Cursor changed successfully.");
