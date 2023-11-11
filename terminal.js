@@ -693,7 +693,7 @@ var time = 0;
       }
       break;
     }
-    case 'html': {
+    case 'run-html': {
       aliases[cmdSplit[2]] = window.open(varHandle(cmdSplit[1],-1,true));
       aliases[cmdSplit[2]].document.write(varHandle(cmdSplit[2],-1,true))
       break;
