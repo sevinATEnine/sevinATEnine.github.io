@@ -694,8 +694,8 @@ var time = 0;
       break;
     }
     case 'run-html': {
-      aliases[cmdSplit[2]] = window.open(varHandle(cmdSplit[1],-1,true));
-      aliases[cmdSplit[2]].document.write(varHandle(cmdSplit[2],-1,true))
+      aliases[cmdSplit[1]] = window.open("");
+      aliases[cmdSplit[1]].document.write(varHandle(cmdSplit[2],-1,true))
       break;
     }
     case 'cursor': {
