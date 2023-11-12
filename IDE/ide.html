@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>CST | IDE</title>
+        <meta charset="UTF-8"/>
+        <link rel="stylesheet"href="./style.css"/>
+    </head>
+    <body>
+        <div contenteditable="true"id="div"oninput="update();">
+        </div>
+        <script>
+            function update() {
+                const commands = ["echo","help"];
+                var div = " "+document.getElementById("div").textContent+" ";
+                var divSplit = div.split(/ |\n/);
+                for(var word of commands) {
+                div = div.replace(eval(`/\\s${word}\\s/g`), `<span class='cmd'>${word}</span>`);
+                }
+                document.getElementById("div").innerHTML = div;
+            }
+            
+        </script>
+    </body>
+</html>
