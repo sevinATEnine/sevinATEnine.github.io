@@ -7,10 +7,11 @@
     </head>
     <body>
         <div contenteditable="true"id="div"oninput="update();">
+            echo hi
         </div>
         <script>
             function update() {
-                const commands = ["echo","help"];
+                const commands = ["echo","help","self-exec","read","filter","file","close","delay","skip","push","pop","reverse","js","view-save","load","rename","new-func","edit-func","colore","add-from","add-from-if","pop-exec","outer","inner","copy","view-copy","clear-save","watch-me","run-html","cursor","open","redirect","quit","save","add-exec","ranks","users","alias","exec","encrypt","decrypt","theme","credits","clear","exit","kill","docs","reset-stack","admin","download","lockdown","switch-user","welcome","html","throw","reset","drop","import-alias","clear-exec","export-exec","view-func","custom","import","anti-sawyer","starwars-cont."];
                 var div = " "+document.getElementById("div").textContent+" ";
                 var divSplit = div.split(/ |\n/);
                 for(var word of commands) {
@@ -18,7 +19,7 @@
                 }
                 document.getElementById("div").innerHTML = div;
             }
-            
+            update();
         </script>
     </body>
 </html>

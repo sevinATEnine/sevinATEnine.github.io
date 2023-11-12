@@ -489,14 +489,6 @@ var time = 0;
       aliases[cmdSplit[1]].close();
       break;
     }
-    case 'session': {
-      tempAliases = aliases;
-      break;
-    }
-    case 'rollback': {
-      aliases = tempAliases;
-      break;
-    }
     case 'delay': {
       time = parseInt(cmdSplit[1]);
       break;
@@ -542,11 +534,6 @@ var time = 0;
       }
       break;
     }
-    case 'drop-func': {
-      delete aliases[varHandle(cmdSplit[1], -1, true)];
-      writeToStack("Function deleted successfully.");
-      break;
-    }
     case 'load': {
       var file = document.createElement('input');
       file.type = 'file';
@@ -573,7 +560,7 @@ var time = 0;
       }
       break;
     }
-    case 'rename-func': {
+    case 'rename': {
       aliases[varHandle(cmdSplit[2], -1, true)] = aliases[varHandle(cmdSplit[1], -1, true)];
       delete aliases[varHandle(cmdSplit[1], -1, true)];
       break;
@@ -915,7 +902,7 @@ var time = 0;
       writeToStack("Command line has been reset.","important");
       break;
     }
-    case 'drop-alias': {
+    case 'drop': {
       delete aliases[varHandle(cmdSplit[1], -1, true)];
       writeToStack("Alias deleted successfully.");
       break;
