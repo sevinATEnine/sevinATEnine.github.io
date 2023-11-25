@@ -166,6 +166,76 @@ the same criteria.
   <noscript><h2>Note: JavaScript is disabled in your browser. Please enable it for terminal functionality.</h2></noscript>
   <h1>Login to CST</h1>
   <p>Terminal last updated <span id="lastUpdatedOn">today.</span></p>
+  <script>
+    window.setInterval(updateTime, 1000);
+    
+    function updateTime() {
+
+    getText('https://api.github.com/repos/sevinATEnine-alt/sevinATEnine-alt.github.io/commits?per_page=1');
+
+    async function getText(file) {
+      var xhr = new XMLHttpRequest();
+      xhr.open("GET", file);
+      xhr.onload = function() {
+        if (xhr.status === 200) {
+          // The request was successful.
+          var content = new Date((JSON.parse(String(xhr.responseText))[0].commit.author.date));
+          // console.log(content);
+          document.getElementById('lastUpdatedOn').innerHTML=timeText(content, new Date)
+        } else {
+          // The request failed.
+        }
+      };
+      xhr.send();
+    }
+
+    function timeText(a,b) {
+      var monthDiff = Math.abs(a.getMonth() - b.getMonth());
+      var dayDiff = Math.abs(a.getDay() - b.getDay());
+      var hourDiff = Math.abs(a.getHours() - b.getHours());
+      var minuteDiff = Math.abs(a.getMinutes() - b.getMinutes());
+      var secondDiff = Math.abs(a.getSeconds() - b.getSeconds());
+      var outString = 'right now';
+      // console.log(monthDiff);
+      // console.log(dayDiff);
+      // console.log(hourDiff);
+      // console.log(minuteDiff);
+      // console.log(secondDiff);
+
+      if (monthDiff > 1) {
+        outString = `${monthDiff} months ago.`;
+      } else if (monthDiff === 1) {
+        outString = `a month ago.`;
+      } else {
+
+        if (dayDiff > 1) {
+          outString = `${dayDiff} days ago.`;
+        } else if (dayDiff === 1) {
+          outString = `a day ago.`;
+        } else {
+
+          if (hourDiff > 1) {
+            outString = `${hourDiff} hours ago.`;
+          } else if (hourDiff === 1) {
+            outString = `an hour ago.`;
+          } else {
+
+            if (minuteDiff > 1) {
+              outString = `${minuteDiff} minutes ago.`;
+            } else if (minuteDiff === 1) {
+              outString = `a minute ago.`;
+            } else {
+              var outString = 'less than a minute ago';
+            }
+          }
+        }
+      }
+
+      return outString;
+    }
+  }
+
+  </script>
   <input
     id="username"
     placeholder="Username"
