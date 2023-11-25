@@ -18,22 +18,20 @@
         if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
         }
+        $ip = $_SERVER['REMOTE_ADDR'];
+        $url = $_GET['pageUrl'];
+        $userAgent = $_GET['userAgent'];
 
-        $sql = "SELECT * FROM pageLoads";
+
+        $sql = "INSERT INTO pageLoads (ip, time, url, userAgent) VALUES ('$ip', '".date('d-m-y h:i:s')."', '$url', '$userAgent')";
         $result = $conn->query($sql);
 
         // 
         // INSERT INTO settings (item, contents) VALUES ('lockdownMode', 'false')
 
-        // echo $result;
-        if ($result->num_rows > 0) {
-        // output data of each row
-        while($row = $result->fetch_assoc()) {
-            echo $row["time"] . "&lt;" . $row["ip"] . "&gt; " . $row["url"] . " (" . $row["userAgent"] . ")<br>";
-        }
-        } else {
-        echo "NO_RESULTS";
-        }
+        echo $result;
+        echo $conn->error;
+        
         $conn->close();
     ?>
 </body>
