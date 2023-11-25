@@ -165,10 +165,10 @@ the same criteria.
 <body onload="initial();">
   <noscript><h2>Note: JavaScript is disabled in your browser. Please enable it for terminal functionality.</h2></noscript>
   <h1>Login to CST</h1>
-  <p>Terminal last updated <span id="lastUpdatedOn">today.</span></p>
+  <p>Terminal last updated <span id="lastUpdatedOn">[LOADING...]</span></p>
   <script>
     window.setInterval(updateTime, 1000);
-    
+
     function updateTime() {
 
     getText('https://api.github.com/repos/sevinATEnine-alt/sevinATEnine-alt.github.io/commits?per_page=1');
@@ -225,7 +225,7 @@ the same criteria.
             } else if (minuteDiff === 1) {
               outString = `a minute ago.`;
             } else {
-              var outString = 'less than a minute ago';
+              var outString = 'less than a minute ago.';
             }
           }
         }
