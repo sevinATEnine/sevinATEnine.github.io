@@ -244,7 +244,9 @@ the same criteria.
         document.getElementsByTagName('button')[0].onclick = '';
         console.log((useUrl('https://api.ipify.org?format=json')+', {"username":"'+username.value+'"}'));
         console.log(window.sessionStorage.getItem('IPv4')+', "username":"'+username.value+'"')
-        document.getElementById('ipAddress').innerHTML = (window.sessionStorage.getItem('IPv4')+', "username":"'+username.value+'"');
+        try {
+          document.getElementById('ipAddress').innerHTML = (window.sessionStorage.getItem('IPv4')+', "username":"'+username.value+'"');
+        }catch{}
         location.href="./terminal.html?loginType=standard&loginData=[none]";
         
       } else {
