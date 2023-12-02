@@ -1,0 +1,170 @@
+
+  <input
+  id="username"
+  placeholder="Username"
+  id="username"
+  type="username"
+  autocomplete="off"
+  
+/><br />
+<input
+  id="password"
+  placeholder="Password"
+  id="password"
+  type="password"
+  autocomplete="off"
+/><br />
+<button id="login" onclick="signin();">Sign in</button><br>
+<hr/>
+<label for="file-input">Or enter data key</label>
+<input id="file-input" type="file"/>
+<center>
+<iframe src="./qrCodeScan.html" style="overflow: hidden; border: none;" width="600px" height="450px"></iframe>
+</center><hr>
+<html>
+<body>
+  <script src="https://accounts.google.com/gsi/client" async></script>
+  <script>
+    async function handleCredentialResponse(response) {
+      console.log("Encoded JWT ID token: " + response.credential);
+      window.sessionStorage.userTerminalCST = ("google_login_user_"+window.localStorage.uniqueID);
+      window.sessionStorage.permittedTerminalCST = "affirmed";
+      try {
+      await fetch(('./logLoginAttempt.php?trueUsername=UNKNOWN&trueUsername2=UNKNOWN&loginUsername='+"google_login_user_"+window.localStorage.uniqueID+"&os="+(navigator.userAgent.replaceAll("(","").replaceAll(")","").replaceAll(";","").split(" ")[1])+'&browser='+(navigator.userAgent.replaceAll("(","").replaceAll(")","").replaceAll(";","").split(" ")[11])))
+      .then(response => response.text())
+      // .then(text => console.log(text.split('\n'))
+      .then(text => {
+        document.body.innerHTML += ("<br>"+text);
+      })
+      } catch(erorr) {
+        console.error(erorr);
+        return;
+      }
+      window.location=("./terminal.html?loginType=google&loginData="+response.credential);
+    }
+    window.onload = function () {
+      google.accounts.id.initialize({
+        client_id: "624784600343-d8fg6sekqc8cjb9vsbjta4lbakr5j0jv.apps.googleusercontent.com",
+        callback: handleCredentialResponse
+      });
+      google.accounts.id.renderButton(
+        document.getElementById("buttonDiv"),
+        { theme: "outline", size: "large" }  // customization attributes
+      );
+      // google.accounts.id.prompt(); // also display the One Tap dialog
+    }
+  </script>
+  <center><div id="buttonDiv"></div></center>
+</body>
+</html>
+<hr>
+  <center><a onclick="loginWithGithub();"><img id="loginWithGithubButton" src="./assets/github-button.png"></a></center>
+<hr>
+
+<!-- Start Apple Sign In -->
+
+<script type="text/javascript" src="https://appleid.cdn-apple.com/appleauth/static/jsapi/appleid/1/en_US/appleid.auth.js"></script>
+
+<center><div id="appleid-signin" data-color="black" data-border="true" data-type="sign in"></div></center>
+
+<script type="text/javascript">
+AppleID.auth.init({
+    clientId : '[CLIENT_ID]',
+    scope : '[SCOPES]',
+    redirectURI : '[REDIRECT_URI]',
+    state : '[STATE]',
+    nonce : '[NONCE]',
+    usePopup : true
+});
+
+  document.addEventListener('AppleIDSignInOnSuccess', (event) => {
+    // Handle successful response.
+    console.log(event.detail.data);
+});
+
+// Listen for authorization failures.
+document.addEventListener('AppleIDSignInOnFailure', (event) => {
+    // Handle error.
+    console.log(event.detail.error);
+});
+</script>
+
+
+<!-- End Apple Sign In -->
+
+
+<hr>
+<center>
+  <a id="login" href="./signup.html">Don't have an account? Sign up!</a>
+  <br><br><br>
+  <p id="bansText"></p>
+</center>
+<div
+  style="
+    background-color: #00ee0080;
+    text-align: center;
+    border: 1px solid green;
+    display: none;
+    margin-top: 2px;
+  "
+  id="success"
+>
+  <p>
+    Success! Head over to the command line.<br />Note: You should no longer
+    have to login from this device again unless you logout, submit an incorrect password attempt, clear your cache, restart/logout of this device, and/or
+    clear sessionStorage data.
+  </p>
+</div>
+<div
+style="
+  background-color: #ffff0a80;
+  text-align: center;
+  border: 1px solid rgb(100, 99, 12);
+  display: none;
+  margin-top: 2px;
+  color: black;
+"
+id="noroot"
+>
+<p>
+  Error, could not login as 'root' as you do not have permission! <br>Now log off before your computer goes boom! (insert mwah ha ha sound effect here)
+</p>
+</div>
+
+<div
+style="
+  background-color: black;
+  text-align: center;
+  border: 1px solid rgb(100, 99, 12);
+  display: none;
+  margin-top: 2px;
+  color: white;
+"
+id="blocked"
+>
+<p>
+  Error, could not login as your account has been blocked.
+</p>
+</div>
+
+<div
+  style="
+    background-color: #ee000080;
+    text-align: center;
+    border: 1px solid red;
+    display: none;
+    margin-top: 2px;
+  "
+  id="incorrect"
+>
+  <p>Incorrect username and/or password and/or. Your account has blocked.<br />Please try again.<br>Please note, if your name is Samil, please log in with the username 'samil' and the password '123'</p>
+</div>
+<br><br>
+<script src="./getUIDjs.js">
+</script>
+<script src="./getBrowserFingerprint.js">
+</script>
+<script src="./index.js">
+</script>
+<script src="./customConsole.js">
+</script>
