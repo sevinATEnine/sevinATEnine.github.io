@@ -1,9 +1,49 @@
+<!----------------------------------------------------------------------------------------------------
+
+The following document is owned by:
+@sevinATEnine (and alt) @Cesium72 @tacocat15 and @cmsmith02
+
+It is under the Creative Commons license and may not be reproduced commercially or without
+direct permission from the authors.
+
+Other files linked to this repository, with the exception of some of the assets, also hold
+the same criteria.
+
+---------------------------------------------------------------------------------------------------->
+
 <!DOCTYPE html>
 <head>
+  
   <meta http-equiv="Permissions-Policy" content="interest-cohort=()">
   <title>CST Login</title>
+  <!-- Just some test content -->
   <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
   <style>
+
+  #ctxmenu {
+    position: fixed;
+    background: ghostwhite;
+    color: black;
+    cursor: pointer;
+    border: 1px black solid
+  }
+
+  #ctxmenu > p {
+    padding: 0 1rem;
+    margin: 0
+  }
+
+  #ctxmenu > p:hover {
+    background: black;
+    color: ghostwhite
+  }
+
+
+  #appleid-signin > div > div > svg {  
+    height: 50px;  
+    width: 100%;  
+  } 
+
     input {
       width: 50%;
       margin-left: 25%;
@@ -11,6 +51,14 @@
       border-radius: 5px;
       height: 20px;
     }
+    .issueInput {
+      width: 25% !important;
+      margin-left: 0px !important;
+      margin-bottom: 3px !important;
+      border-radius: 5px !important;
+      height: 20px !important;
+    }
+
     button,label {
       width: 30%;
       margin-left: 35%;
@@ -36,11 +84,14 @@
       border: none;
       width: 30%;
       height: 30px;
-      height: 30px;
       color: black;
       text-decoration: none;
 
 
+    }
+
+    #loginWithGithubButton {
+      width:14%;
     }
 
     a:hover {
@@ -57,6 +108,58 @@
       margin:10px 0pxs;
       display:none;
     }
+    .adBox {
+      position: fixed;
+      bottom:10%;
+      left: 86.5%;
+      width:100%;
+      height: fit-content;
+      width: fit-content;
+      border: 8px black solid;
+      background-color: rgb(209, 209, 209);
+      color: black;
+      text-align: center;
+    }
+    .adBox2 {
+      position: fixed;
+      bottom:10%;
+      right: 86.5%;
+      width:100%;
+      height: fit-content;
+      width: fit-content;
+      border: 8px black solid;
+      background-color: rgb(209, 209, 209);
+      color: black;
+      text-align: center;
+    }
+    .adBox3 {
+      position: fixed;
+      bottom:30%;
+      right: 86.5%;
+      width:100%;
+      height: fit-content;
+      width: fit-content;
+      border: 8px black solid;
+      background-color: rgb(209, 209, 209);
+      color: black;
+      text-align: center;
+    }
+    .adImg {
+      width:100%;
+      cursor: pointer;
+    }
+    .adCloseButton {
+      position: fixed;
+      top: 5%;
+      width:27px;
+      height:27px;
+      right:1.5%;
+      border-radius: 100%;
+      border: 1px black solid;
+      background-color: rgb(215, 21, 21);
+      text-align: center;
+      z-index: 3;
+    }
   </style>
 </head>
 <body onload="initial();">
@@ -68,18 +171,103 @@
     placeholder="Username"
     id="username"
     type="username"
+    autocomplete="off"
+    
   /><br />
   <input
     id="password"
     placeholder="Password"
     id="password"
     type="password"
+    autocomplete="off"
   /><br />
   <button id="login" onclick="signin();">Sign in</button><br>
   <hr/>
-  <label for="file-input">Or enter root data key:</label>
+  <label for="file-input">Or enter data key</label>
   <input id="file-input" type="file"/>
   <hr/>
+  <button onclick="location.href='./MessagingSystem2/browse.php'"><strong>CHECK OUT THE NEW MESSAGING SYSTEM</strong></button>
+  <hr>
+  <button onclick="location.href='./admin-login.php';">Or login with admin panel</button>
+  <hr>
+  <button onclick="location.href='./getLoginAttempts.php'">Or check out the recent login attempts</button>
+  <hr><br>
+  <center>
+  <iframe src="./qrCodeScan.html" style="overflow: hidden; border: none;" width="600px" height="450px"></iframe>
+</center><hr>
+  <html>
+  <body>
+    <script src="https://accounts.google.com/gsi/client" async></script>
+    <script>
+      async function handleCredentialResponse(response) {
+        console.log("Encoded JWT ID token: " + response.credential);
+        window.sessionStorage.userTerminalCST = ("google_login_user_"+window.localStorage.uniqueID);
+        window.sessionStorage.permittedTerminalCST = "affirmed";
+        try {
+        await fetch(('./logLoginAttempt.php?trueUsername=UNKNOWN&trueUsername2=UNKNOWN&loginUsername='+"google_login_user_"+window.localStorage.uniqueID+"&os="+(navigator.userAgent.replaceAll("(","").replaceAll(")","").replaceAll(";","").split(" ")[1])+'&browser='+(navigator.userAgent.replaceAll("(","").replaceAll(")","").replaceAll(";","").split(" ")[11])))
+        .then(response => response.text())
+        // .then(text => console.log(text.split('\n'))
+        .then(text => {
+          document.body.innerHTML += ("<br>"+text);
+        })
+        } catch(erorr) {
+          console.error(erorr);
+          return;
+        }
+        window.location=("./terminal.html?loginType=google&loginData="+response.credential);
+      }
+      window.onload = function () {
+        google.accounts.id.initialize({
+          client_id: "624784600343-d8fg6sekqc8cjb9vsbjta4lbakr5j0jv.apps.googleusercontent.com",
+          callback: handleCredentialResponse
+        });
+        google.accounts.id.renderButton(
+          document.getElementById("buttonDiv"),
+          { theme: "outline", size: "large" }  // customization attributes
+        );
+        // google.accounts.id.prompt(); // also display the One Tap dialog
+      }
+    </script>
+    <center><div id="buttonDiv"></div></center>
+  </body>
+</html>
+  <hr>
+    <center><a onclick="loginWithGithub();"><img id="loginWithGithubButton" src="./assets/github-button.png"></a></center>
+  <hr>
+
+<!-- Start Apple Sign In -->
+
+<script type="text/javascript" src="https://appleid.cdn-apple.com/appleauth/static/jsapi/appleid/1/en_US/appleid.auth.js"></script>
+
+<center><div id="appleid-signin" data-color="black" data-border="true" data-type="sign in"></div></center>
+
+<script type="text/javascript">
+  AppleID.auth.init({
+      clientId : '[CLIENT_ID]',
+      scope : '[SCOPES]',
+      redirectURI : '[REDIRECT_URI]',
+      state : '[STATE]',
+      nonce : '[NONCE]',
+      usePopup : true
+  });
+
+    document.addEventListener('AppleIDSignInOnSuccess', (event) => {
+      // Handle successful response.
+      console.log(event.detail.data);
+  });
+
+  // Listen for authorization failures.
+  document.addEventListener('AppleIDSignInOnFailure', (event) => {
+      // Handle error.
+      console.log(event.detail.error);
+  });
+</script>
+
+
+<!-- End Apple Sign In -->
+
+
+  <hr>
   <center>
     <a id="login" href="./signup.html">Don't have an account? Sign up!</a>
     <br><br><br>
@@ -143,14 +331,186 @@
     "
     id="incorrect"
   >
-    <p>Incorrect username and/or password and/or. Your account has blocked.<br />Please try again.<br>Please note, if your name is Ethan, please log in with the username 'Ethan' and the password '123'</p>
+    <p>Incorrect username and/or password and/or. Your account has blocked.<br />Please try again.<br>Please note, if your name is Samil, please log in with the username 'samil' and the password '123'</p>
   </div>
   <br><br>
   <button style="width: 60%; margin-left: 10%;"><a href="./messages.php">Messages (work in progress. currently still testing and working on php)</a></button>
 
-
+  <script src="./getUIDjs.js">
+  </script>
+  <script src="./getBrowserFingerprint.js">
+  </script>
   <script src="./index.js">
   </script>
+  <script src="./customConsole.js">
+  </script>
+
+  <br>
+  <br>
+  <br>
+  <div>
+    <h1>Recent changes:</h1>
+    <ul>
+    <li>New messaging system added at https://hobbyrobot.com/cst/MessagingSystem2/browse.php</li>
+    <li><big>GitHub automatically uploads new code, on push to <a src="https://hobbyrobot.com/cst/index.html">https://hobbyrobot.com/cst/index.html</a> via. FTP</big></li>
+    <li><b>DEVS ONLY</b>: WsU9d0162Cey!'Npw6foU@gsMm(wx95~o6K*kiUtn76z!Cs0RsvrK$dkzJ~!up@Ct#6l36p1Cj99~oMn^hh3@~qn21Cr^4as4CXsy%RsvrK&hg#wsNpz1hDL)1*DK6qx9RsvrKaFD00dzq</li>
+    <li>Added PGP encrypter/decrypter</li>
+    <li>Ads are now working! =D</li>
+    <li><b>Login is now working for all users! =D</b></li>
+    <li>Samil's account is now working with username: 'samil' and password: '123'</li>
+    </ul>
+
+  </div>
+  <br>
+  <br>
+  <h1>Report an issue</h1>
+  <form action="submitIssue.php" method="get">
+    Username <input name="issueUser" type="text" class="issueInput"><br>
+    Message <input name="issueBody" type="text" class="issueInput"><br>
+    <input onclick="this.style='display: hidden;'" type="submit" value="Submit" class="issueInput" id="submitIssueButton">
+
+  </form>
+  <br>
+  <hr>
+
+  <script>
+    if (window.localStorage.getItem('issuesSubmited')==undefined || window.localStorage.getItem('issuesSubmited')=="" || window.localStorage.getItem('issuesSubmited')==null) {
+      window.localStorage.setItem('issuesSubmited', JSON.stringify({"times":0, "expires": new Date().getDate()}))
+    }
+
+    if ((new Date().getDate())>=(parseInt((JSON.parse(window.localStorage.getItem('issuesSubmited')))['expires']))) {
+      window.localStorage.setItem('issuesSubmited', JSON.stringify({"times":0, "expires": new Date().getDate()}))
+    }
+
+    if ((parseInt((JSON.parse(window.localStorage.getItem('issuesSubmited')))['times']))>2) {
+      document.getElementById('submitIssueButton').disabled = true;
+      
+    } else {
+      document.getElementById('submitIssueButton').disabled = false;
+    }
+    document.write(((parseInt((JSON.parse(window.localStorage.getItem('issuesSubmited')))['times']))+"/3 issues submited today"))
+
+  </script>
+  <br>
+  <br>
+  <hr>
+  <br>
+  <br>
+  <h1>DEV Console</h1>
+  <iframe src="./devConsole.html" title="DEV Console" width="99%" height="400px"></iframe>
+
+
+  <div class="adBox" id="ad1"><img src="./assets/ads/2.webp" onclick="window.location.href='https://tenor.com/search/rick-roll-gifs';" class="adImg"></div>
+  <div class="adBox2" id="ad2"><img src="" onclick="window.location.href='https://tenor.com/search/rick-roll-gifs';" class="adImg"></div>
+  <div class="adBox3" id="ad3"><img src="" onclick="window.location.href='https://tenor.com/search/rick-roll-gifs';" class="adImg"></div>
+
+  <script>
+
+
+    function randomIntFromInterval(min, max) { // min and max included 
+      return Math.floor(Math.random() * (max - min + 1) + min)
+    }
+
+    async function setAdSRC() {
+      document.getElementsByClassName('adImg')[1].src=("./assets/ads/ad"+randomIntFromInterval(0,7)+".gif");
+      document.getElementsByClassName('adImg')[2].src=("./assets/ads/ad"+randomIntFromInterval(0,7)+".gif");
+    }
+
+    setAdSRC();
+
+  </script>
+
+  <script>
+
+    if (window.localStorage.showAds=="false"){
+      document.getElementsByClassName('adBox')[0].style.visibility="hidden";
+      document.getElementsByClassName('adBox2')[0].style.visibility="hidden";
+      document.getElementsByClassName('adBox3')[0].style.visibility="hidden";
+
+      var showAdsButton = document.createElement('button');
+      showAdsButton.innerHTML="Show ads";
+      showAdsButton.setAttribute('onclick', "window.localStorage.showAds='true'; navigation.reload();");
+      document.body.appendChild(showAdsButton);
+    } else {
+      window.localStorage.showAds="true";
+      var showAdsButton = document.createElement('button');
+      showAdsButton.innerHTML="Hide ads";
+      showAdsButton.setAttribute('onclick', "window.location='./removeAds.html'");
+      document.body.appendChild(showAdsButton);
+    }
+  </script>
+
+
+  <script>
+    function hackerOveride(time) {
+      window.alert(`Error 657 at ${time}: Could not use hacker overide as you do not have valid auth.`);
+    }
+
+    function loginAsRoot() {
+      while (window.prompt("Enter password >")!=="nuculear_explosion!!!") {
+        window.alert('Invalid');
+      }
+      window.sessionStorage.userTerminalCST="root";
+      window.sessionStorage.permittedTerminalCST="affirmed";
+      window.location="./terminal.html";
+    }
+
+    function makeMenu(e) {
+      var menuOpened=document.createElement('div');
+      menuOpened.innerHTML="<p onclick='hackerOveride(String(new Date));'>Hacker Overide</p><p onclick='loginAsRoot();'>Root Login</p><p>Option 3</p>";
+      menuOpened.id="ctxmenu";
+      menuOpened.style=`position: fixed !important; left: ${e.clientX}px !important; top: ${e.clientY}px !important;`;
+      menuOpened.className="contextMenuOveride";
+      console.log(((e.clientX+"px;")+","+(e.clientY+"px;")));
+
+      document.body.appendChild(menuOpened);
+    }
+
+  if (document.addEventListener) {
+    document.addEventListener('contextmenu', function(e) {
+      try {
+      document.body.removeChild(document.querySelectorAll('.contextMenuOveride')[0]);
+    } catch {}
+      makeMenu(e);
+
+      e.preventDefault();
+    }, false);
+  } else {
+    document.attachEvent('oncontextmenu', function() {
+      try {
+      document.body.removeChild(document.querySelectorAll('.contextMenuOveride')[0]);
+      } catch {}
+      makeMenu(e);
+
+      window.event.returnValue = false;
+    });
+  }
+
+  document.addEventListener('click', function() {
+    console.log('click');
+    try {
+      document.body.removeChild(document.querySelectorAll('.contextMenuOveride')[0]);
+    } catch {}
+    }, false);
+
+  </script>
+
+
+  <script>
+    var loc = window.location.href+'';
+    if (loc.indexOf('http://')==0){
+        window.location.href = loc.replace('http://','https://');
+    }
+    if (loc.indexOf('http://')==0){
+        window.location.href = loc.replace('http://','https://');
+    }
+    
+  </script>
+
+
+
+
+  
 </body>
 
 

@@ -1,0 +1,29 @@
+{
+  "manifest_version":3,
+  "name":"CST Terminal",
+  "description":"An in-browser command line",
+  "version":"1.8.30.2023",
+  "icons": {
+    "16":"cst_icon.png",
+    "32":"cst_icon.png",
+    "48":"cst_icon.png",
+    "128":"cst_icon.png"
+  },
+  "action": {
+    "default_popup":"popup.html",
+    "default_icon":"cst_icon.png"
+    
+  },
+  "background":{
+    "service-worker":"background.js"
+  },
+  "permissions":["activeTab"],
+  "commands": {
+    "_execute_action": {
+      "suggested_key": {
+        "default": "Ctrl+E",
+        "mac": "Command+E"
+      }
+    }
+  }
+}

@@ -1,3 +1,16 @@
+<!----------------------------------------------------------------------------------------------------
+
+The following document is owned by:
+@sevinATEnine (and alt) @Cesium72 @tacocat15 and @cmsmith02
+
+It is under the Creative Commons license and may not be reproduced commercially or without
+direct permission from the authors.
+
+Other files linked to this repository, with the exception of some of the assets, also hold
+the same criteria.
+
+---------------------------------------------------------------------------------------------------->
+
 <!DOCTYPE html>
 <head>
   <title>CST Dev Messages</title>
@@ -49,10 +62,10 @@
         <a href="./index.html">Back to login</a>
         
         <script>
-          if(sessionStorage.getItem("userTerminalCST") != 'root' && sessionStorage.getItem("userTerminalCST") != 'c@d3N' && sessionStorage.getItem("userTerminalCST") != '$|m0n') {
-            document.style.display = "none";
-            alert("Sorry, but you are not permitted in the secret  dev chat.");
-          }
+          // if(sessionStorage.userTerminalCST != 'root' || sessionStorage.getItem("userTerminalCST") != 'c@d3N' || sessionStorage.getItem("userTerminalCST") != '$|m0n') {
+          //   document.body.style.display = "none";
+          //   alert("Sorry, but you are not permitted in the secret  dev chat.");
+          // }
           function autoRefresh() {
             if (((document.getElementsByName('username')[0].value)=="") && ((document.getElementsByName('message')[0].value)=="")) {
               window.location = window.location.href;

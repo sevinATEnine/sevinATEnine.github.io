@@ -1,19 +1,69 @@
+<!----------------------------------------------------------------------------------------------------
+
+The following document is owned by:
+@sevinATEnine (and alt) @Cesium72 @tacocat15 and @cmsmith02
+
+It is under the Creative Commons license and may not be reproduced commercially or without
+direct permission from the authors.
+
+Other files linked to this repository, with the exception of some of the assets, also hold
+the same criteria.
+
+---------------------------------------------------------------------------------------------------->
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
+
+    <!-- <meta http-equiv="Cross-Origin-Opener-Policy-Report-Only" content="same-origin">
+    <meta http-equiv="Cross-Origin-Embedder-Policy-Report-Only" content="require-corp">
+    <meta http-equiv="COOP" content="same-origin">
+    <meta http-equiv="COEP" content="require-corp"> -->
+
+
     <title>CST Command Line</title>
     <link rel="stylesheet" href="terminal-default.css" />
-    <link rel="stylesheet" href=""id="theme"/>
-    <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
-    <meta charset="UTF-8">
+    <link rel="stylesheet" href="" id="theme" />
+    <link rel="icon" type="image/x-icon" href="./assets/favicon.ico" />
+    <meta charset="UTF-8" />
     <title>CST Terminal-Web</title>
   </head>
-  <body id="body"style="background-color:black;">
+  <body id="body" style="background-color: black">
     <ul id="previous">
-      <li class = "comment">// Welcome to CST open source terminal.<br/>// Version: 1.0.8.18.23<br/>// Type help for a list of basic commands</li>
-
+      <li id="loginType"></li>
+      <li class="comment">
+        // Welcome to CST open source terminal.<br />// Version: 1.0.8.18.23<br />//
+        Type help for a list of basic commands
+      </li>
+      
     </ul>
-    <span id="prompt"></span><input type="text"id="command"style="background-color:black;">
+    <div id="editor" style="display: none">
+      <textarea id="fm"></textarea>
+      <button id="save"onclick="saveFunc();">
+        SAVE
+      </button>
+      <button id="cancel"onclick="hideEdit();">
+        CANCEL
+      </button>
+    </div>
+    <br/>
+    <span id="prompt"></span
+    ><input type="text" id="command" style="background-color: black" />
+    <script>
+      var parts = window.location.search.substr(1).split("&");
+      var $_GET = {};
+      for (var i = 0; i < parts.length; i++) {
+          var temp = parts[i].split("=");
+          $_GET[decodeURIComponent(temp[0])] = decodeURIComponent(temp[1]);
+      }
+      try {
+        document.getElementById('loginType').innerHTML=("Logged in with "+$_GET.loginType+" login with data: <br>"+$_GET.loginData);
+      } catch {
+        document.getElementById('loginType').innerHTML="Logged in with standard login with no data";
+      }
+    </script>
     <script src="terminal.js"></script>
+    <script src="./customConsole.js">
+    </script>
   </body>
 </html>

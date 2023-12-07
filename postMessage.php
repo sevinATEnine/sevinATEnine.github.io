@@ -1,3 +1,16 @@
+<!----------------------------------------------------------------------------------------------------
+
+The following document is owned by:
+@sevinATEnine (and alt) @Cesium72 @tacocat15 and @cmsmith02
+
+It is under the Creative Commons license and may not be reproduced commercially or without
+direct permission from the authors.
+
+Other files linked to this repository, with the exception of some of the assets, also hold
+the same criteria.
+
+---------------------------------------------------------------------------------------------------->
+
 
 
 <?php
@@ -22,8 +35,8 @@
         echo(('You are not ' . $_GET['username'] . '. Don\'t try to fake as them. Anything starting with `[` is reserved for root.'));
         die();
     };
-
-    $sql = "INSERT INTO Messages (username, messageContent) VALUES ('" . $_GET['username'] . "', '" . $_GET['message'] . "')";
+    $message = $_GET['message'];
+    $sql = "INSERT INTO Messages (username, messageContent) VALUES ('" . $_GET['username'] . "', '" . $message . "')";
 
     if ($conn->query($sql) === TRUE) {
     echo "Successfully posted";
