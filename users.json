@@ -66,5 +66,10 @@
         "name":"NEEEEEEEERRRRRRRDDDDDD",
         "password":"is a nerd",
         "banned":false
+    },
+    "0m": {
+        "name":"da best hacker",
+        "password":"2468",
+        "banned":false
     }
   }
