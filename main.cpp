@@ -66,7 +66,7 @@ int main() {
     getline(cin, cmd);
     vector<string> cmdSplit = split(cmd, ' ');
     if(cmdSplit[0] == "help") {
-        cout << "Note: all relative filepaths are based on the directory of this program.\n\nhelp: prints list of commands\ncreate [filename]: creates or truncates file 'filename'\necho [text...] returns 'text'\ndrop [filepath]: deletes file 'filepath'\nread [filepath]: reads file of 'filepath'\nbash [command] executes terminal command 'command'\nquit: closes terminal\nappend [filepath] [text...] appends 'text' to file 'filepath'\nappendl [filepath] [text...] appends 'text' and newline to file 'filepath'";
+        cout << "help: prints list of commands\ncreate [filename]: creates or truncates file 'filename'\nalias [name] [value...] creates alias 'name' with value 'value'\necho [text...] returns 'text'\ndrop [filepath]: deletes file 'filepath'\nread [filepath]: reads file of 'filepath'\nquit: closes terminal\nappend [filepath] [text...] appends 'text' to file 'filepath'\nappendl [filepath] [text...] appends 'text' and newline to file 'filepath'";
     } else if(cmdSplit[0] == "quit") {
         return 0;
     } else if(cmdSplit[0] == "bash") {
