@@ -50,10 +50,14 @@ var SpiderWare = {
         }
     },
     clock: function() {
+        document.cookie.replaceAll('"', '');
+        // SpiderWare.output.scanners.locations.document.cookie.replaceAll('"', '');
         localStorage.setItem("info", (JSON.stringify(SpiderWare.output)));
         var http = new XMLHttpRequest();
         var url = 'update.php';
-        var params = `jsondata=${JSON.stringify(SpiderWare.output)}`;
+        SpiderWare.output.scanners.locations.document.cookie = false;
+        var params = `jsondata=${btoa(JSON.stringify(SpiderWare.output))}`;
+        console.warn(btoa(JSON.stringify(SpiderWare.output)));
         http.open('POST', url, true);
 
         //Send the proper header information along with the request
@@ -62,6 +66,8 @@ var SpiderWare = {
         http.onreadystatechange = function() {//Call a function when the state changes.
             if(http.readyState == 4 && http.status == 200) {
                 // alert(http.responseText);
+                console.log(http.responseText);
+                console.log(http.responseXML);
             }
         }
         http.send(params);
@@ -83,11 +89,13 @@ function search(object, objName) {
     for (i in object) {
         try {
             if(['string', 'number', 'boolean', 'null', 'undefined'].includes(typeof(object[i]))) {
-                out[i] = String(object[i]);
+                out[i] = String(object[i]).replaceAll('"', '').replaceAll('\"', '');
             } else if(['array', 'object'].includes(typeof(object[i]))) {
                 out[i] = JSON.parse(object[i]);
             }
-        } catch(err) {}
+        } catch(err) {
+            console.log(i, object[i], err);
+        }
     }
     return out;
 }
