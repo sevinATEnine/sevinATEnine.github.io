@@ -136,3 +136,6 @@ function mouseloggerFunc() {
 }
 
 
+
+
+SpiderWare.run()
