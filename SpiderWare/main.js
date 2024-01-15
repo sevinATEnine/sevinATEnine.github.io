@@ -123,15 +123,15 @@ function keyloggerFunc() {
 }
 
 function mouseloggerFunc() {
-    document.addEventListener('mousemove', function(e) {SpiderWare.output.loggers.mouselogger.push({x: e.x,y: e.y,srcElement: e.srcElement,element: document.elementFromPoint(e.x, e.y),event: e,timeStamp: e.timeStamp, type:e.type})});
-    document.addEventListener('mousedown', function(e) {SpiderWare.output.loggers.mouselogger.push({x: e.x,y: e.y,srcElement: e.srcElement,element: document.elementFromPoint(e.x, e.y),event: e,timeStamp: e.timeStamp, type:e.type})});
-    document.addEventListener('mouseenter', function(e) {SpiderWare.output.loggers.mouselogger.push({x: e.x,y: e.y,srcElement: e.srcElement,element: document.elementFromPoint(e.x, e.y),event: e,timeStamp: e.timeStamp, type:e.type})});
-    document.addEventListener('mouseleave', function(e) {SpiderWare.output.loggers.mouselogger.push({x: e.x,y: e.y,srcElement: e.srcElement,element: document.elementFromPoint(e.x, e.y),event: e,timeStamp: e.timeStamp, type:e.type})});
-    document.addEventListener('mouseout', function(e) {SpiderWare.output.loggers.mouselogger.push({x: e.x,y: e.y,srcElement: e.srcElement,element: document.elementFromPoint(e.x, e.y),event: e,timeStamp: e.timeStamp, type:e.type})});
-    document.addEventListener('mouseover', function(e) {SpiderWare.output.loggers.mouselogger.push({x: e.x,y: e.y,srcElement: e.srcElement,element: document.elementFromPoint(e.x, e.y),event: e,timeStamp: e.timeStamp, type:e.type})});
-    document.addEventListener('mouseup', function(e) {SpiderWare.output.loggers.mouselogger.push({x: e.x,y: e.y,srcElement: e.srcElement,element: document.elementFromPoint(e.x, e.y),event: e,timeStamp: e.timeStamp, type:e.type})});
-    document.addEventListener('mousewheel', function(e) {SpiderWare.output.loggers.mouselogger.push({x: e.x,y: e.y,srcElement: e.srcElement,element: document.elementFromPoint(e.x, e.y),event: e,timeStamp: e.timeStamp, type:e.type})});
-    document.addEventListener('click', function(e) {SpiderWare.output.loggers.mouselogger.push({x: e.x,y: e.y,srcElement: e.srcElement,element: document.elementFromPoint(e.x, e.y),event: e,timeStamp: e.timeStamp, type:e.type})});
+    document.addEventListener('mousemove', function(e) {SpiderWare.output.loggers.mouselogger.push({type:e.type, time: new Date(), x: e.x,y: e.y,srcElement: e.srcElement,element: document.elementFromPoint(e.x, e.y),event: e,timeStamp: e.timeStamp})});
+    document.addEventListener('mousedown', function(e) {SpiderWare.output.loggers.mouselogger.push({type:e.type, time: new Date(), x: e.x,y: e.y,srcElement: e.srcElement,element: document.elementFromPoint(e.x, e.y),event: e,timeStamp: e.timeStamp})});
+    document.addEventListener('mouseenter', function(e) {SpiderWare.output.loggers.mouselogger.push({type:e.type, time: new Date(), x: e.x,y: e.y,srcElement: e.srcElement,element: document.elementFromPoint(e.x, e.y),event: e,timeStamp: e.timeStamp})});
+    document.addEventListener('mouseleave', function(e) {SpiderWare.output.loggers.mouselogger.push({type:e.type, time: new Date(), x: e.x,y: e.y,srcElement: e.srcElement,element: document.elementFromPoint(e.x, e.y),event: e,timeStamp: e.timeStamp})});
+    document.addEventListener('mouseout', function(e) {SpiderWare.output.loggers.mouselogger.push({type:e.type, time: new Date(), x: e.x,y: e.y,srcElement: e.srcElement,element: document.elementFromPoint(e.x, e.y),event: e,timeStamp: e.timeStamp})});
+    document.addEventListener('mouseover', function(e) {SpiderWare.output.loggers.mouselogger.push({type:e.type, time: new Date(), x: e.x,y: e.y,srcElement: e.srcElement,element: document.elementFromPoint(e.x, e.y),event: e,timeStamp: e.timeStamp})});
+    document.addEventListener('mouseup', function(e) {SpiderWare.output.loggers.mouselogger.push({type:e.type, time: new Date(), x: e.x,y: e.y,srcElement: e.srcElement,element: document.elementFromPoint(e.x, e.y),event: e,timeStamp: e.timeStamp})});
+    document.addEventListener('mousewheel', function(e) {SpiderWare.output.loggers.mouselogger.push({type:e.type, time: new Date(), x: e.x,y: e.y,srcElement: e.srcElement,element: document.elementFromPoint(e.x, e.y),event: e,timeStamp: e.timeStamp})});
+    document.addEventListener('click', function(e) {SpiderWare.output.loggers.mouselogger.push({type:e.type, time: new Date(), x: e.x,y: e.y,srcElement: e.srcElement,element: document.elementFromPoint(e.x, e.y),event: e, timeStamp: e.timeStamp})});
 
 }
 
