@@ -1,5 +1,5 @@
 function main() {
-var blockUserAgent = [];
+var blockUserAgent = ['bob'];
 var blockIP = [];
 var blockOS = [];
 var blockBrowser = [];
