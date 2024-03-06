@@ -10,7 +10,19 @@ if (blockedUserAgents.includes(window.navigator.userAgent)) {
     document.body.innerHTML = forbiddenHTML;
 }
 
-document.getElementById('error_ab1ff6ceb029b079314e09d7015cf0a379bcc55e').remove();
+
+elementToObserve = document.body;
+
+// create a new instance of 'MutationObserver' named 'observer', 
+// passing it a callback function
+observer = new MutationObserver(function(mutationsList, observer) {
+    try {document.querySelector('div').remove();} catch{}
+});
+
+// call 'observe' on that MutationObserver instance, 
+// passing it the element to observe, and the options object
+observer.observe(elementToObserve, {characterData: false, childList: true, attributes: false});
+
 
 
 document.querySelectorAll('style').forEach(e => e.remove());
