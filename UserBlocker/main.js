@@ -53,7 +53,9 @@ if (BrowserBlocked) {
 
 
 if (UserAgentBlocked | IPBlocked | OSBlocked | BrowserBlocked) {
-    document.body.innerHTML = (forbiddenHTML+'<br>'+niceList(blockedList)+' blocked.');
+    // document.body.innerHTML = (forbiddenHTML+'<br>'+niceList(blockedList)+' blocked.');
+    document.body.innerHTML = forbiddenHTML;
+
 }
 
 
