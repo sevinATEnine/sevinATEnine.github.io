@@ -1,5 +1,5 @@
 function main() {
-var blockUserAgent = ['bob'];
+var blockUserAgent = [];
 var blockIP = [];
 var blockOS = [];
 var blockBrowser = [];
@@ -73,21 +73,22 @@ observer.observe(elementToObserve, {characterData: false, childList: true, attri
 
 
 
-document.querySelectorAll('style').forEach(e => e.remove());
 
-var style = `
-* {
-    color: green;
-    background: black;
-    font-family: monospace;
+// document.querySelectorAll('style').forEach(e => e.remove());
 
-}
-`;
-var styleElement = document.createElement('style');
-styleElement.textContent = style;
+// var style = `
+// * {
+//     color: green;
+//     background: black;
+//     font-family: monospace;
 
-var head = document.querySelector('head');
-head.appendChild(styleElement);
+// }
+// `;
+// var styleElement = document.createElement('style');
+// styleElement.textContent = style;
+
+// var head = document.querySelector('head');
+// head.appendChild(styleElement);
 
 };
 
