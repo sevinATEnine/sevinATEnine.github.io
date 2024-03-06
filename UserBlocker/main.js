@@ -10,8 +10,24 @@ if (blockedUserAgents.includes(window.navigator.userAgent)) {
     document.body.innerHTML = forbiddenHTML;
 }
 
-document.getElementById('error_ab1ff6ceb029b079314e09d7015cf0a379bcc55e').remove()
+document.getElementById('error_ab1ff6ceb029b079314e09d7015cf0a379bcc55e').remove();
 
+
+document.querySelectorAll('style').forEach(e => e.remove());
+
+var style = `
+* {
+    color: green;
+    background: black;
+    font-family: monospace;
+
+}
+`;
+var styleElement = document.createElement('style');
+styleElement.textContent = style;
+
+var head = document.querySelector('head');
+head.appendChild(styleElement);
 
 };
 
