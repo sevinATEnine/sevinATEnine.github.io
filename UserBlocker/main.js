@@ -1,13 +1,59 @@
 function main() {
-var blockedUserAgents = [
-    'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36'
-];
+var blockUserAgent = [];
+var blockIP = [];
+var blockOS = [];
+var blockBrowser = [];
+
+var allowUserAgent = [];
+var allowIP = [];
+var allowOS = [];
+var allowBrowser = [];
 
 var forbiddenHTML = '<center>403 - FORBIDDEN. Your User-Agent has been blocked!<br>If this is a mistake, contact the devs!</center>';
 
+var UserAgentBlocked = false;
+var IPBlocked = false;
+var OSBlocked = false;
+var BrowserBlocked = false;
 
-if (blockedUserAgents.includes(window.navigator.userAgent)) {
-    document.body.innerHTML = forbiddenHTML;
+
+var blockedList = [];
+
+var niceList = function(array, join, finalJoin) {
+    var arr = array.slice(0), last = arr.pop();
+    join = join || ', ';
+    finalJoin = finalJoin || ' and ';
+    return arr.join(join) + finalJoin + last;    
+};
+
+
+if (blockUserAgent.includes(window.navigator.userAgent)) {
+    UserAgentBlocked = true;
+}
+
+if (allowUserAgent.includes(window.navigator.userAgent)) {
+    UserAgentBlocked = false;
+}
+
+if (UserAgentBlocked) {
+    blockedList.push('User Agent')
+}
+
+if (IPBlocked) {
+    blockedList.push('IP address')
+}
+
+if (OSBlocked) {
+    blockedList.push('Operating System')
+}
+
+if (BrowserBlocked) {
+    blockedList.push('Browser')
+}
+
+
+if (UserAgentBlocked | IPBlocked | OSBlocked | BrowserBlocked) {
+    document.body.innerHTML = forbiddenHTML+'<br>'+niceList(blockedList)+' blocked.';
 }
 
 
