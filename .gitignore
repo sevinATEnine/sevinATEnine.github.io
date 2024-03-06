@@ -1,10 +1,6 @@
 
 .DS_Store
-.DS_Store
-.DS_Store
-FakeMoneyBank
-.DS_Store
-.DS_Store
-.DS_Store
-libraries
+/FakeMoneyBank
+/libraries
 /OP-ICECUBE
+/BlockMiner
