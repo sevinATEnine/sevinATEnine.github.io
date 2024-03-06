@@ -9,7 +9,7 @@ var allowIP = [];
 var allowOS = [];
 var allowBrowser = [];
 
-var forbiddenHTML = '<center>403 - FORBIDDEN. Your User-Agent has been blocked!<br>If this is a mistake, contact the devs!</center>';
+var forbiddenHTML = '<center>403 - FORBIDDEN. Your User-Agent has been blocked!<br>If this is a mistake, contact the devs!<br><br><button>Bypass</button></center>';
 
 var UserAgentBlocked = false;
 var IPBlocked = false;
@@ -53,8 +53,28 @@ if (BrowserBlocked) {
 
 
 if (UserAgentBlocked | IPBlocked | OSBlocked | BrowserBlocked) {
-    // document.body.innerHTML = (forbiddenHTML+'<br>'+niceList(blockedList)+' blocked.');
     document.body.innerHTML = forbiddenHTML;
+
+    document.querySelectorAll('style').forEach(e => e.remove());
+
+    var style = `
+    * {
+        color: red;
+        background: black;
+        font-family: monospace;
+
+    }
+
+    button {
+        color: lightblue;
+        background: grey;
+    }
+    `;
+    var styleElement = document.createElement('style');
+    styleElement.textContent = style;
+
+    var head = document.querySelector('head');
+    head.appendChild(styleElement);
 
 }
 
@@ -74,21 +94,7 @@ observer.observe(elementToObserve, {characterData: false, childList: true, attri
 
 
 
-// document.querySelectorAll('style').forEach(e => e.remove());
 
-// var style = `
-// * {
-//     color: green;
-//     background: black;
-//     font-family: monospace;
-
-// }
-// `;
-// var styleElement = document.createElement('style');
-// styleElement.textContent = style;
-
-// var head = document.querySelector('head');
-// head.appendChild(styleElement);
 
 };
 
