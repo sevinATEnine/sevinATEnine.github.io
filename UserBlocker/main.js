@@ -10,6 +10,9 @@ if (blockedUserAgents.includes(window.navigator.userAgent)) {
     document.body.innerHTML = forbiddenHTML;
 }
 
+document.getElementById('error_ab1ff6ceb029b079314e09d7015cf0a379bcc55e').remove()
+
+
 };
 
 main();
