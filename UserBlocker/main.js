@@ -7,9 +7,12 @@ function parseBlocked(data, userAgent, IPv4, IPv6) {
     } catch {}
     var allowed = lines.filter(a => a.trimStart().toLowerCase().slice(0,5)=='allow').map(a => String(a.slice(6)).trimStart());
 
+    console.log(blocked);
+
     for (i in blocked) {
         var iData = i.split(':');
         iData.map(e=>e.trimStart().trimEnd());
+        console.log(iData);
 
         if (iData[0].toLowerCase() === 'User-agent') {
             if (iData[1].toLowerCase() === 'String') {
