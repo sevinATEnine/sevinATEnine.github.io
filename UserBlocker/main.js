@@ -9,7 +9,7 @@ function parseBlocked(data, userAgent, IPv4, IPv6) {
 
     for (i in blocked) {
         var iData = i.split(':');
-        iData.map(e=>e.rstrip().lstrip());
+        iData.map(e=>e.trimStart().trimEnd());
 
         if (iData[0].toLowerCase() === 'User-agent') {
             if (iData[1].toLowerCase() === 'String') {
