@@ -25,7 +25,8 @@ function parseBlocked(data, userAgent, IPv4, IPv6) {
                 console.log(iData[2].trim())
                 if (iData[2].trim() == userAgent.trim()) {
                     blockedBecause.push(iData[2].trim());
-                    console.log(iData[2].trim())
+                    console.log(iData[2].trim());
+                    return true;
                 }
                 
             }
