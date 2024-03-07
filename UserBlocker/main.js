@@ -13,6 +13,7 @@ function parseBlocked(data, userAgent, IPv4, IPv6) {
 
         if (iData[0].toLowerCase() === 'User-agent') {
             if (iData[1].toLowerCase() === 'String') {
+                console.log(iData[2].trimStart().trimEnd())
                 if (iData[2].trimStart().trimEnd() === userAgent.trimStart().trimEnd()) {
                     blockedBecause.push(iData[2]);
                 }
