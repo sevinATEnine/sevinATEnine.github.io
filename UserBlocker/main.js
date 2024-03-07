@@ -14,11 +14,11 @@ function parseBlocked(data, userAgent, IPv4, IPv6) {
         iData.map(e=>e.trimStart().trimEnd());
         console.log(iData);
 
-        if (iData[0].toLowerCase() === 'User-agent') {
-            if (iData[1].toLowerCase() === 'String') {
+        if (iData[0].trimStart().trimEnd().toLowerCase() === 'User-agent') {
+            if (iData[1].trimStart().trimEnd().toLowerCase() === 'String') {
                 console.log(iData[2].trimStart().trimEnd())
                 if (iData[2].trimStart().trimEnd() === userAgent.trimStart().trimEnd()) {
-                    blockedBecause.push(iData[2]);
+                    blockedBecause.push(iData[2].trimStart().trimEnd());
                 }
                 
             }
