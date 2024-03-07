@@ -9,7 +9,7 @@ function parseBlocked(data, userAgent, IPv4, IPv6) {
 
     console.log(blocked);
 
-    for (i in blocked) {
+    for (i of blocked) {
         var iData = i.split(':');
         iData.map(e=>e.trimStart().trimEnd());
         console.log(iData);
