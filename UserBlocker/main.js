@@ -11,7 +11,7 @@ function parseBlocked(data, userAgent, IPv4, IPv6) {
 
     for (i of blocked) {
         var iData = i.split(':');
-        iData.map(e=>e.trimLeft().trimRight());
+        iData = iData.map(e => e.trim());
         console.log(iData);
 
         if (iData[0].trimLeft().trimRight().toLowerCase() === 'User-agent') {
