@@ -35,6 +35,8 @@ Block: User-agent: String: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) Apple
 var userAgent = window.navigator.userAgent;
 var IPv6 = null;
 
+var IPv4 = null;
+
 
 
 ajax = new XMLHttpRequest();
