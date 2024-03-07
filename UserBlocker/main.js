@@ -37,7 +37,7 @@ var IPv6 = null;
 
 var IPv4 = null;
 
-
+try {
 
 ajax = new XMLHttpRequest();
 if(ajax!=null){
@@ -50,6 +50,10 @@ if(ajax!=null){
         }
     }
     ajax.send(null);
+}
+
+} catch(err) {
+    console.log(err);
 }
 
 
