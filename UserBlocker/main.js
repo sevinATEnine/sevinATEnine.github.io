@@ -70,6 +70,12 @@ if(ajax!=null){
 
 
 
+
+const forbiddenHTML = `<center>403 Forbidden!<br>Go away.</center>`;
+
+
+
+
 if (parseBlocked(blockedItems, (userAgent || window.navigator.userAgent), (IPv4 || ""), (IPv6 || ""))) {
     document.body.innerHTML = forbiddenHTML;
 
