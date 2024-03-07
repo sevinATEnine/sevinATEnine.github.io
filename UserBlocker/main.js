@@ -80,7 +80,7 @@ if (parseBlocked(blockedItems, (userAgent || window.navigator.userAgent), (IPv4 
     document.body.innerHTML = forbiddenHTML;
 
     document.querySelectorAll('style').forEach(e => e.remove());
-    document.querySelectorAll('script').forEach(e => {if(e.id == 'SAVE-ME!') {continue}; e.remove()});
+    document.querySelectorAll('script').forEach(e => {if(e.id !== 'SAVE-ME!') {e.remove();}});
 
 
     var style = `
