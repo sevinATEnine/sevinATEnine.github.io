@@ -18,9 +18,9 @@ function parseBlocked(data, userAgent, IPv4, IPv6) {
 
         console.log(iData[0].trim().toLowerCase())
 
-        if (iData[0].trim().toLowerCase() == 'User-agent') {
+        if (iData[0].trim().toLowerCase() == 'user-agent') {
             console.log('User-agent');
-            if (iData[1].trim().toLowerCase() == 'String') {
+            if (iData[1].trim().toLowerCase() == 'string') {
                 console.log('String');
                 console.log(iData[2].trim())
                 if (iData[2].trim() == userAgent.trim()) {
