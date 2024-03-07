@@ -1,58 +1,58 @@
+function parseBlocked(data, userAgent, IPv4, IPv6) {
+    var blockedBecause = [];
+    var lines = data.split('\n');
+    lines.filter(a => a.length>0);
+    try {
+    var blocked = lines.filter(a => a.trimStart().toLowerCase().slice(0,5)=='block').map(a => String(a.slice(6)).trimStart());
+    } catch {}
+    var allowed = lines.filter(a => a.trimStart().toLowerCase().slice(0,5)=='allow').map(a => String(a.slice(6)).trimStart());
+
+    for (i in blocked) {
+        var iData = i.split(':');
+        iData.map(e=>e.rstrip().lstrip());
+
+        if (iData[0].toLowerCase() === 'User-agent') {
+            if (iData[1].toLowerCase() === 'String') {
+                if (iData[2].trimStart().trimEnd() === userAgent.trimStart().trimEnd()) {
+                    blockedBecause.push(iData[2]);
+                }
+                
+            }
+        }
+    }
+
+    console.log(blockedBecause);
+
+    return false;
+}
+
 function main() {
-var blockUserAgent = [];
-var blockIP = [];
-var blockOS = [];
-var blockBrowser = [];
-
-var allowUserAgent = [];
-var allowIP = [];
-var allowOS = [];
-var allowBrowser = [];
-
-var forbiddenHTML = '<center>403 - FORBIDDEN. Your User-Agent has been blocked!<br>If this is a mistake, contact the devs!<br><br><button>Bypass</button></center>';
-
-var UserAgentBlocked = false;
-var IPBlocked = false;
-var OSBlocked = false;
-var BrowserBlocked = false;
+var blockedItems = `
+Block: User-agent: String: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36
+`;
 
 
-var blockedList = [];
-
-var niceList = function(array, join, finalJoin) {
-    var arr = array.slice(0), last = arr.pop();
-    join = join || ', ';
-    finalJoin = finalJoin || ' and ';
-    return arr.join(join) + finalJoin + last;    
-};
+var userAgent = window.navigator.userAgent;
+var IPv6 = null;
 
 
-if (blockUserAgent.includes(window.navigator.userAgent)) {
-    UserAgentBlocked = true;
-}
 
-if (allowUserAgent.includes(window.navigator.userAgent)) {
-    UserAgentBlocked = false;
-}
-
-if (UserAgentBlocked) {
-    blockedList.push('User Agent')
-}
-
-if (IPBlocked) {
-    blockedList.push('IP address')
-}
-
-if (OSBlocked) {
-    blockedList.push('Operating System')
-}
-
-if (BrowserBlocked) {
-    blockedList.push('Browser')
+ajax = new XMLHttpRequest();
+if(ajax!=null){
+    ajax.open("GET","https://europe-west3-devrcc.cloudfunctions.net/whatismyip",true);
+    ajax.onreadystatechange = function() {
+        if(this.readyState == 4) {
+            if(this.status == 200) {
+                IPv6=JSON.parse(this.responseText)["ip"];
+            }
+        }
+    }
+    ajax.send(null);
 }
 
 
-if (UserAgentBlocked | IPBlocked | OSBlocked | BrowserBlocked) {
+
+if (parseBlocked(blockedItems, (userAgent || window.navigator.userAgent), (IPv4 || ""), (IPv6 || ""))) {
     document.body.innerHTML = forbiddenHTML;
 
     document.querySelectorAll('style').forEach(e => e.remove());
