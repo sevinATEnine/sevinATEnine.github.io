@@ -71,7 +71,7 @@ if(ajax!=null){
 
 
 
-const forbiddenHTML = `<center>403 Forbidden!<br>Go away.</center>`;
+const forbiddenHTML = `<br><br><br><br><br><center>403 Forbidden!<br>${window.location.href} is banned for you.<br>Now, go away.</center>`;
 
 
 
