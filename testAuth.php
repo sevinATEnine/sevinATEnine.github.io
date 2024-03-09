@@ -29,7 +29,12 @@ if ($data['response'] != $valid_response)
     die('Wrong Credentials!');
 
 // ok, valid username & password
+
+
 echo 'You are logged in as: ' . $data['username'];
+
+readfile("./OP-ICECUBE/FileSystem/index.html");
+
 
 
 // function to parse the http auth header
