@@ -1,5 +1,7 @@
 <?php
 
+    echo "running";
+
   $servername = "localhost";
   $username = "elem435_cst_usr";
   $password = "#3rm|n@2";
@@ -17,7 +19,6 @@
 
   $sql = "DELETE FROM messages2 WHERE 1";
   $result = $conn->query($sql);
-
   echo $result." ".$conn -> error;
   
   $conn->close();
