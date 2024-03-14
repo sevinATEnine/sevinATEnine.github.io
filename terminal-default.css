@@ -1,3 +1,16 @@
+/****************************************************************************************************
+
+The following document is owned by:
+@sevinATEnine (and alt) @Cesium72 @tacocat15 and @cmsmith02
+
+It is under the Creative Commons license and may not be reproduced commercially or without
+direct permission from the authors.
+
+Other files linked to this repository, with the exception of some of the assets, also hold
+the same criteria.
+
+****************************************************************************************************/
+
 @keyframes fatal-error-keys {
   from {
     color:red;
@@ -6,12 +19,44 @@
     color:white;
   }
 }
-input {
+@keyframes colore-colors {
+  0% {background-color: red; color:orange;}
+  10% {background-color: orange; color:lightgoldenrodyellow;}
+  20% {background-color: lightgoldenrodyellow; color:lightgreen;}
+  30% {background-color: lightgreen; color:blue;}
+  40% {background-color: blue; color:rgb(40, 99, 226);}
+  50% {background-color: rgb(40, 99, 226); color:purple;}
+  60% {background-color: purple; color:palevioletred;}
+  70% {background-color: palevioletred; color:black;}
+  80% {background-color: black; color:white;}
+  90% {background-color: white; color:red;}
+}
+
+input, textarea {
   width:80vw;
   overflow-x:visible;
   border:none;
   outline:none;
   font-size: medium;
+  background-color: black;
+  caret-shape: block;
+  caret-color: green;
+  resize: none;
+  color:green;
+}
+textarea {
+  height:80vh;
+  width:100%;
+}
+#save,#cancel {
+  color:white;
+  background-color:black;
+  border:none;
+  outline:none;
+  cursor:pointer;
+}
+#cancel {
+  color:red;
 }
 input::spelling-error {
   text-decoration:none;
@@ -24,12 +69,6 @@ body {
   caret-shape: block;
   caret-color: grey;
 
-}
-
-input {
-  background-color: black;
-  caret-shape: block;
-  caret-color: grey;
 }
 
 p,h1,h2,h3,h4,h5,h6,li,ul,input {
@@ -62,6 +101,12 @@ p,h1,h2,h3,h4,h5,h6,li,ul,input {
   color: magenta;
 }
 
+
+
+.colore {
+  animation: colore-colors 5s infinite;
+}
+
 span {
   max-width:25%
 }
@@ -73,5 +118,5 @@ ul {
 * {
   font-family: "Lucida Console", "Menlo", "Monaco", "Courier", monospace;
   caret-shape: block;
-  caret-color: grey;
+  caret-color: green;
 }

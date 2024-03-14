@@ -1,0 +1,52 @@
+<head>
+    <title>Google Classroom</title>
+
+      <link rel="icon" type="image/png" href="    https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Google_Classroom_Logo.svg/512px-Google_Classroom_Logo.svg.png">
+
+    <style>
+        
+        * {
+            font-family: monospace;
+            width:500px;
+            height:30px;
+        }
+        input {
+            border: 1px solid grey inset;
+            border-radius:5px;
+            width:500px;
+            height:30px;
+            display:inline-block;
+        }
+        iframe {
+        width:1350px;
+            height:700px
+        }
+    </style>
+</head>
+<body>
+    <h1>Iframe Loader</h1>
+    <small><strong>NOTE:</strong> Many websites apear to be blocked</small><br><br>
+    Enter game url to boot: <input id='gameURL' oninput='bootGame(this.value);'> (then click enter)<br><br>
+    Or select from presets: 
+    <select id='gamePreset' onchange='changeVal(this.value);'>
+        <option></option>
+        <option>https://watchdocumentaries.com/ice-dodo-game/</option>
+        <option>https://watchdocumentaries.com/rocket-league-game/</option>
+        <option>https://www.coolmathgames.com/</option>
+
+    </select><br><br>
+    <iframe id='gameIframe'></iframe>
+    <script>
+        function changeVal(val) {
+            document.getElementById('gameURL').value=val;
+            bootGame(val);
+        }
+        
+        function bootGame(val) {
+            document.getElementById('gameIframe').src=val;
+            var iframe = document.getElementById("gameIframe");
+    
+    // Adjusting the iframe height onload event
+        }
+    </script>
+</body>

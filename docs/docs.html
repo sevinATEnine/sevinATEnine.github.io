@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>CST Docs</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+        body {
+          font-family: "Lato", sans-serif;
+        }
+        .menuBarUl > a {
+            font-size: 15px !important;
+            padding: 1px 8px 3px 16px !important;
+            color: #9d9898 !important;
+
+        }
+        .menuBarUl > a:hover {
+            color: #807474 !important;
+
+
+        }
+
+        .menuBarUl {
+            padding: 1px 8px 9px 16px !important;
+        }
+
+        
+        
+        .sidenav {
+          height: 100%;
+          width: 250px;
+          position: fixed;
+          z-index: 1;
+          top: 0;
+          left: 0;
+          background-color: #111;
+          overflow-x: hidden;
+          padding-top: 20px;
+        }
+        
+        .sidenav a {
+          padding: 6px 8px 3px 16px;
+          text-decoration: none;
+          font-size: 20px;
+          color: #ddd5d5;
+          display: block;
+        }
+        
+        .sidenav a:hover {
+          color: #807474;
+        }
+        .code-snippet {
+            font-family:monospace;
+            color:green;
+            background-color:black;
+            margin:2px;
+            padding:2px;
+        }
+        section {
+            background-color: #1f1f1f;
+        }
+        
+        .main {
+          margin-left: 250px; /* Same as the width of the sidenav */
+          font-size: 20px; /* Increased text to enable scrolling */
+          padding: 0px 10px;
+        }
+        .dataOutputDisplay {
+            display: none;
+            font-size: 15px !important;
+        }
+        .dataOutputDisplay:target {
+            display: block;
+        }
+        
+        @media screen and (max-height: 450px) {
+          .sidenav {padding-top: 13px;}
+          .sidenav a {font-size: 18px;}
+        }
+        </style>
+        </head>
+        <script>
+            if(window.location.hash) {
+
+            } else {
+                window.location=(window.location.href+'#intro');
+            }
+        </script>
+    <body>
+        <div class="sidenav">
+
+            <section>
+                <a href="#intro">Introduction</a>
+                <ul class="menuBarUl">
+                    <a href="#setup">Setting up your command line</a>
+                    <a href="#intro-uses">Uses</a>
+                </ul>
+                <a href="#basic-home">Learning the basics</a>
+                <ul class="menuBarUl">
+                    <a href="#intro-first">Learning your first commands</a>
+                    <a href="#throw-command">Printing customized text</a>
+                    <a href="#colore">The colore command</a>
+                    <a href="#other-scripts">Other scripts</a>
+                    <a href="#help">The help and docs commands</a>
+                </ul>
+            </section>
+
+
+            <section>
+                <a href="#advanced">Advanced</a>
+                <ul class="menuBarUl">
+
+                </ul>
+            </section>
+
+            <section>
+                <a href="#data-handling">Data Handling</a>
+                <ul class="menuBarUl">
+
+                </ul>
+            </section>
+            
+          </div>
+
+        <div class="main">
+            <h1>CST Docs</h1>
+            <hr/>
+            <div id="intro" class="dataOutputDisplay">
+                <h1>Intro</h1>
+                <hr>
+                <p>Welcome to CST!</p>
+            </div>
+            <div id="basic-home" class="dataOutputDisplay">
+                <h1>Intro</h1>
+                <hr>
+                <h2>Welcome to the CST command line!</h2>
+                <p>Now that you have set up your command line, you can learn some basic commands.<br/>
+                Click on the "learning your first commands" link to get started.</p>
+            </div>
+            <div id="help" class="dataOutputDisplay">
+                <h1>Getting hep in the terminal</h1>
+                <hr>
+                <h2>Using the help and docs commands</h2>
+                <p>If you ever need assistance in the terminal, simply type the <i>help</i> or <i>docs</i> commands.</p>
+            </div>
+            <div id="setup" class="dataOutputDisplay">
+                <h1>Setting up CST</h1>
+                <hr>
+                <p>We are glad you want to learn CST! To set up the web-based terminal, do the following:</p>
+                <ol>
+                    <li>Go to <a href="https://hobbyrobot.com/cst">hobbyrobot.com/cst</a></li>
+                    <li>If you have contacted the developers and have an account, sign in with your username and password, a data key, or a QR code.<br/>
+                    Otherwise, simply log in with google, github, or apple. You may also sign in as a guest using the username "Guest" and the password "123."</li>
+                    <li>That's it! You're all set up!</li>
+                </ol>
+            </div>
+            <div id="colore" class="dataOutputDisplay">
+                <h1>The colore command</h1>
+                <hr>
+                <p>Try it out! It looks really cool!</p>
+            </div>
+            <div id="intro-first" class="dataOutputDisplay">
+                <h1>Intro</h1>
+                <hr>
+                <h2>First Code</h2>
+                <p>Today you will learn how to run your first lines of code.</p>
+                <h3>The echo command</h3>
+                <p>The echo command is used to return a line of text.<br/>
+                When you enter the terminal, you should see something like this:</p>
+                <p class="code-snippet">CST/<i>your_name</i>--&gt;</p>
+                <p>This is what we call the "prompt."<br/>
+                At the prompt, enter the following and then press enter:</p>
+                <p class="code-snippet">echo hi</p>
+                <p>As you can see, this outputs the phrase "hi." You can enter anything you want after the "echo," and it will work.</p>
+                <h3>The open command</h3>
+                <p>The open command opens a new page.<br/>
+                Simply enter the following command at the prompt:</p>
+                <p class="code-snippet">open <i>[webpage]</i></p>
+                <p>Replace <i>webpage</i> with the name of the webpage. Be sure to put http:// or https:// at the beginning of the webpage.</p>
+                <h3>Wrapping up</h3>
+                <p>Congratulations! You have just written your first code in CST!<br/>
+                Continue the experience and learn more.</p>
+            </div>
+            <div id="intro-uses" class="dataOutputDisplay">
+                <h1>Intro</h1>
+                <hr>
+                <h2>Uses</h2>
+                <p>The CST Command Line has many uses:
+                    <ul>
+                        <li>A standard terminal</li>
+                        <li>A custom coding language made by a few eleven-twelve year olds</li>
+                        <li>Coding for beginners</li>
+                        <li>For fun</li>
+                    </ul>
+                    <small>[Caden, help add to this list please]</small>
+                </p>
+            </div>
+            <div id="throw-command" class="dataOutputDisplay">
+                <h3>The throw command</h3>
+                The throw command looks like this:</p>
+                <p class="code-snippet">throw <i>[type]</i> <i>[message]</i></p>
+                <p>The parameter <i>message</i> specifies the text to write, and <i>type</i> specifies the text style.<br/>
+                <i>Type</i> can be output, important, comment, error, or fatal-error. Try them out!</p>
+                <hr>
+                <h3>The html command</h3>
+                The html command looks like this:</p>
+                <p class="code-snippet">html <i>[code]</i></p>
+                <p>It will output html code to the screen</p>
+                <p>The parameter <i>code</i> specifies the html text to output.<br/>
+            </div>
+            <div id="other-scripts" class="dataOutputDisplay">
+                <h3>Running javascript</h3>
+                The js command looks like this:</p>
+                <p class="code-snippet">js <i>[code]</i></p>
+                <p>The parameter <i>code</i> specifies the javascript to run.<br/>
+                <hr>
+                <h3>Importing predefined libraries</h3>
+                The import command looks like this:</p>
+                <p class="code-snippet">import <i>[name]</i></p>
+                <p>The parameter <i>name</i> specifies the text to write, and <i>type</i> specifies the text style.<br/>
+                The <i>name</i> parameter must be in the following lists:
+                <ul>
+                    <li>fm</li>
+                    <li>frame-widget</li>
+                    <li>guess-game</li>
+                    <li>install</li>
+                    <li>param-self-exec-test</li>
+                    <li>play-sound</li>
+                    <li>root</li>
+                    <li>smile</li>
+                    <li>su</li>
+                    <li>test-lib</li>
+                </ul><br/>
+                If you want to import a library under a different name, you can use <i>namespaces</i>. For example, if you want to import the library <i>test-lib</i> under the name <i>test</i>, you could write the following:
+                <p class="code-snippet">import test-lib test</p>
+                </p>
+                
+            </div>
+            <div id="advanced" class="dataOutputDisplay">
+                <h1>Advanced</h1>
+                <hr>
+            </div>
+            <div id="data-handling" class="dataOutputDisplay">
+                <h1>Data handling</h1>
+                <hr>
+                
+            </div>
+        </div>
+        <!--Add more links later-->
+    </body>
+</html>

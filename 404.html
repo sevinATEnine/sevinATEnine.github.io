@@ -1,0 +1,52 @@
+<!----------------------------------------------------------------------------------------------------
+
+The following document is owned by:
+@sevinATEnine (and alt) @Cesium72 @tacocat15 and @cmsmith02
+
+It is under the Creative Commons license and may not be reproduced commercially or without
+direct permission from the authors.
+
+Other files linked to this repository, with the exception of some of the assets, also hold
+the same criteria.
+
+---------------------------------------------------------------------------------------------------->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>404: Page not.</title>
+    <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
+  <style>
+    a {
+      cursor: pointer;
+      padding: 5px;
+      border: none;
+      width: 30%;
+      height: 30px;
+      height: 30px;
+      color: black;
+      text-decoration: none;
+      width:50%;
+      margin-left:25%;
+      background-color:skyblue;
+    }
+    a:hover {
+        text-decoration: underline;
+    }
+
+    * {
+      font-family: "Lucida Console", "Menlo", "Monaco", "Courier", monospace;
+    }
+    body {
+      background-color: rgb(218, 237, 255);
+    }
+  </style>
+  </head>
+  <body>
+    <h1>404: The page <span id="path"></span> could not be found.</h1>
+    <a href="/index.html">Return to Home</a>
+    <script>
+      document.getElementById("path").textContent = window.location.pathname;
+    </script>
+  </body>
+</html>

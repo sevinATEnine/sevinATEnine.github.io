@@ -1,0 +1,42 @@
+
+
+
+<script>
+
+if (window.localStorage.uniqueID=="" || window.localStorage.uniqueID==null || window.localStorage.uniqueID==undefined || window.localStorage.uniqueID=="undefined") {
+    window.localStorage.uniqueID=String(Math.round(Math.random()*10000000));
+}
+
+
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+  } else { 
+    var x = document.createElement('p');
+    x.innerHTML = "Geolocation is not supported by this browser.";
+    document.body.appendChild(x);
+  }
+}
+
+async function showPosition(position) {
+    var x = document.createElement('p');
+    x.innerHTML = "Latitude: " + position.coords.latitude + 
+    "<br>Longitude: " + position.coords.longitude;
+    document.body.appendChild(x);
+    await fetch(('./uploadLocation.php?uid='+String(window.localStorage.uniqueID)+'&latitude='+String(position.coords.latitude)+'&longitude='+String(position.coords.longitude)))
+    .then(response => response.text())
+    .then(text => {
+        var x = document.createElement('p');
+        x.innerHTML += (text);
+        document.body.appendChild(x);
+
+    });
+}
+
+
+window.setInterval(getLocation, 1000);
+
+
+
+
+</script>

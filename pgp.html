@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>PGP encrypter/decrypter</title>
+    <style>
+      body {
+        background-color:rgb(218,237,255)
+      }
+      input {
+      width: 50%;
+      margin-bottom: 3px;
+      border-radius: 5px;
+      height: 20px;
+    }
+    button {
+      width: 30%;
+      height: 30px;
+      margin-bottom:5px;
+      background-color: skyblue;
+      border-radius: 5px;
+      color: black;
+      cursor: pointer;
+      padding: 5px;
+      border: none;
+      text-decoration: none;
+    }
+    button:hover {
+      text-decoration:underline;
+    }
+    * {
+      font-family: "Lucida Console", "Menlo", "Monaco", "Courier", monospace;
+    }
+    </style>
+  </head>
+  <body>
+    <input id="input"placeholder="Input"/><br/>
+    <input id="key"placeholder="Key"/><br/>
+    <button onclick="encrypt();">Encrypt</button><br/>
+    <button onclick="decrypt();">Decrypt</button><br/>
+    <p id="output"></p>
+    <script src="./pgp-code.js"></script>
+    <!--    '08|;'Vr\?+>s/8./}*[s>8:+}*[s:8.>)!+>s#:s8k7' with password 'test'   -->
+  </body>
+</html>

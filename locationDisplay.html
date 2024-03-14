@@ -1,0 +1,113 @@
+<head>
+    <style>
+        .mapMarker {
+            position: fixed;
+            width: fit-content;
+            height: fit-content;
+            font-size: xx-small;
+            border-radius: 100%;
+        }
+        .mapHouse {
+            position: fixed;
+            left: 590.399px; 
+            top: 598.949px; 
+            color: rgb(184, 184, 184); 
+            background-color: rgb(184, 184, 184);
+            border: 8px solid rgb(184, 184, 184);
+            height: 20px;
+            width: 20px;
+            
+        }
+        * {
+            font-family: monospace;
+        }
+</style>
+</head>
+
+
+
+
+
+<body>
+    
+    <!-- <div class="mapHouse"></div> -->
+    <div id="map"></div>
+    
+
+    <script>
+        var users = {
+            8291899: "(2@r@",
+            2185747: "$|m0n",
+            2691587: "$|m0n",
+            7979766: "d@d",
+            3154820: "$@wy3|-",
+            328895 : "(2@r@",
+
+        }
+        function addressFromCords(lat, long, i) {
+
+
+
+
+            fetch(('https://geocode.maps.co/reverse?lat='+lat+'&lon='+long))
+            .then(response => response.json())
+            .then(text => {
+                
+                document.querySelector('#map').innerHTML+=("<p>"+users[(Number(i.split("|")[0]))]+" - "+(Number(i.split("|")[0]))+" - "+(Number(i.split("|")[1]))+","+(Number(i.split("|")[2]))+" - "+text['display_name']+"</p>");
+            });
+        }
+
+        var rand = [];
+        var k=0;
+        var prevLat = [];
+        var prevLong = [];
+        while(k<30) {
+            rand.push(
+                Number(Math.round(Math.random()*255)).toString(16)+
+                Number(Math.round(Math.random()*255)).toString(16)+
+                Number(Math.round(Math.random()*255)).toString(16)
+            );
+            k++;
+        }
+        
+
+
+        function firstMap() {
+
+            fetch(('./locationDisplay.php'))
+            .then(response => response.text())
+            .then(text => {
+                document.querySelector('#map').innerHTML="";
+                var j=0;
+                for (i of text.split(",")) {
+                    // var color = (Number(((i.split("|")[0])[0])+((i.split("|")[0])[1])).toString(16))+(Number(((i.split("|")[0])[2])+((i.split("|")[0])[3])).toString(16))+(Number(((i.split("|")[0])[4])+((i.split("|")[0])[5])).toString(16));
+                    // var mapMarker = document.createElement('p');
+                    // mapMarker.className="mapMarker";
+                    // mapMarker.style.left=(String((Number(i.split("|")[1])/100+600))+"px");
+                    // mapMarker.style.top=(String((Number(i.split("|")[2])/100+600))+"px");
+                    // mapMarker.style.color=("#"+rand[j]);
+                    // mapMarker.style.backgroundColor=("#"+rand[j]);
+                    // mapMarker.style.border=("1px solid "+rand[j]);
+                    // mapMarker.innerHTML="++";
+                    
+                    if (((Number(i.split("|")[1])+600))>0) {
+                        addressFromCords((Number(i.split("|")[1])), (Number(i.split("|")[2])), i);
+                        document.querySelector('#map').innerHTML+=('<iframe class="googleMap" src = "https://maps.google.com/maps?q='+(Number(i.split("|")[1]))+","+(Number(i.split("|")[2]))+'&hl=es;zoom=2&amp;output=embed"></iframe>');
+                        
+                    }
+                    j++;
+                }
+            });
+
+
+        }
+
+
+
+        firstMap();
+        window.setInterval(firstMap, 10000);
+
+    </script>
+
+
+</body>

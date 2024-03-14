@@ -1,0 +1,3 @@
+function sendMessage() {
+    window.alert(':)');
+}
