@@ -39,9 +39,19 @@ function parseBlocked(data, userAgent, IPv4, IPv6) {
 }
 
 function main() {
+
+
+
+
+
 var blockedItems = `
-Block: User-agent: String: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36
+// Block: User-agent: String: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36
 `;
+
+
+
+
+
 
 
 var userAgent = window.navigator.userAgent;
