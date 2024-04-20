@@ -6,6 +6,17 @@
     <title>ASCII Streaming</title>
 </head>
 <body>
-    <iframe width="1218" height="685" src="https://www.youtube.com/embed/M7zW11KC1Nk" title="Best Fails of the Decade | Try Not to Laugh" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen autoplay></iframe>
+    <iframe id="player" width="1218" height="685" src="https://www.youtube.com/embed/M7zW11KC1Nk" title="Best Fails of the Decade | Try Not to Laugh" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen autoplay></iframe>
+
+    <script>
+        var player = document.getElementById('player');
+        player.addEventListener('onTimeUpdate', function() {
+  // Get the current time of the video
+        var currentTime = player.getCurrentTime();
+
+        // Run your code here
+        console.log('Current time: ' + currentTime);
+        });
+    </script>
 </body>
 </html>
