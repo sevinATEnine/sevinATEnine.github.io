@@ -6,17 +6,32 @@
     <title>ASCII Streaming</title>
 </head>
 <body>
-    <iframe id="player" width="1218" height="685" src="https://www.youtube.com/embed/M7zW11KC1Nk" title="Best Fails of the Decade | Try Not to Laugh" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen autoplay></iframe>
+    <canvas id="canvas"></canvas>
+    <video src="./duck.mp4" autoplay="on" muted id="player"></video>
 
     <script>
         var player = document.getElementById('player');
-        player.addEventListener('onTimeUpdate', function() {
-  // Get the current time of the video
-        var currentTime = player.getCurrentTime();
 
-        // Run your code here
-        console.log('Current time: ' + currentTime);
-        });
+        document.getElementById('player').play()
+
+        var VideoSnapper = {
+            captureAsCanvas: function (video, size)
+            {
+                // create a canvas, set the width and height, and draw the video
+                var canvas = document.getElementById('canvas');
+                canvas.width = size.width;
+                canvas.height = size.height;
+                canvas.getContext('2d').drawImage(video, 0, 0, size.width, size.height)
+                var url = canvas.toDataURL();
+                console.log(url)
+
+                
+            }
+        }
+        window.setInterval(function() {
+            VideoSnapper.captureAsCanvas(player, { width: 160, height: 68 });
+        }, 10);
+        
     </script>
 </body>
 </html>
