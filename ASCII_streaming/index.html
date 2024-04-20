@@ -28,7 +28,7 @@
                 
             }
         }
-        window.setInterval(function() {
+        var loop = window.setInterval(function() {
             VideoSnapper.captureAsCanvas(player, { width: 160, height: 68 });
         }, 10);
         
