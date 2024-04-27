@@ -141,10 +141,29 @@ the same criteria.
           chars = chars.split('');
 
           
-          
-          var badWords = [(chars[5] + chars[20] + chars[2] + chars[10]),(chars[0] + chars[18] + chars[18] + chars[7] + chars[14] + chars[11] + chars[4]),(chars[1] + chars[8] + chars[19] + chars[2] + chars[7]),(chars[2] + chars[20] + chars[12] + chars[12]),(chars[2] + chars[14] + chars[2] + chars[10]),(chars[15] + chars[20] + chars[18] + chars[18] + chars[24]),(chars[3] + chars[8] + chars[2] + chars[10]),(chars[15] + chars[4] + chars[13] + chars[8] + chars[18]),(chars[21] + chars[0] + chars[6] + chars[8] + chars[13] + chars[0]),(chars[1] + chars[0] + chars[11] + chars[11] + chars[18]),(chars[1] + chars[14] + chars[14] + chars[1] + chars[18]),(chars[58] + chars[61]),(chars[56] + chars[54] + chars[52]),(chars[13] + chars[8] + chars[6] + chars[6] + chars[4] + chars[17])];
+          var badWords = [
+            (chars[5] + chars[20] + chars[2] + chars[10]),
+            (chars[0] + chars[18] + chars[18] + chars[7] + chars[14] + chars[11] + chars[4]),
+            (chars[1] + chars[8] + chars[19] + chars[2] + chars[7]),
+            (chars[2] + chars[20] + chars[12] + chars[12]),
+            (chars[2] + chars[14] + chars[2] + chars[10]),
+            (chars[15] + chars[20] + chars[18] + chars[18] + chars[24]),
+            (chars[3] + chars[8] + chars[2] + chars[10]),
+            (chars[15] + chars[4] + chars[13] + chars[8] + chars[18]),
+            (chars[21] + chars[0] + chars[6] + chars[8] + chars[13] + chars[0]),
+            (chars[1] + chars[0] + chars[11] + chars[11] + chars[18]),
+            (chars[1] + chars[14] + chars[14] + chars[1] + chars[18]),
+            (chars[58] + chars[61]),(chars[56] + chars[54] + chars[52]),
+            (chars[13] + chars[8] + chars[6] + chars[6] + chars[4] + chars[17]),
+            (chars[18] + chars[7] + chars[8] + chars[19]),
+            (chars[2] + chars[17] + chars[0] + chars[15]),
+            (chars[0] + chars[18] + chars[18]),
+            (chars[17] + chars[4] + chars[19] + chars[0] + chars[17] + chars[3])
+          ];
           for (word of badWords) {
-            output = output.replace((eval('/'+String(word)+'/gi')), ('*'.repeat(word.length)));
+            var pattern = new RegExp('\\b' + word + '\\b', 'g');
+            output = output.replace(pattern, ('*'.repeat(word.length)));
+            
           }
 
           return output;
