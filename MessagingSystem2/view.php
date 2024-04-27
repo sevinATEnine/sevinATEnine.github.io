@@ -190,21 +190,24 @@ the same criteria.
             if (output.trim().slice(0,1)==="#") {
               if (['ban', 'unban', 'ban-ip', 'unban-ip', 'report', 'help'].includes(output.trim().slice(1).split('.')[0])) {
                 try {
-                  if(output.trim().slice(1).split('.')[1].length>0) {
+                  if (output.trim().slice(1).split('.')[0]==='help') {
+                    document.getElementById('message').style.backgroundColor=COMPLETE;
+                  } else if(output.trim().slice(1).split('.')[1].length>0) {
                     switch (output.trim().slice(1).split('.')[0]) {
-                      case "ban-ip": {
+                      case "ban-ip":
+                      case "unban-ip": 
                         banUnbanIp(output);
-                      }
-                      case "unban-ip": {
-                        banUnbanIp(output);
-                      }
+                        break;
+                      
+  
+                      
                     }
                     
                   };
                   
                   
                 } catch {
-                  document.getElementById('message').style.backgroundColor=VALID
+                  document.getElementById('message').style.backgroundColor=VALID;
                 }
               } else {
                 document.getElementById('message').style.backgroundColor=INVALID;
