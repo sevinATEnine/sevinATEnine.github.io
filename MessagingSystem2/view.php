@@ -67,6 +67,7 @@ the same criteria.
       border: 1px solid grey !important;
       overflow: scroll !important;
     }
+
     
   </style>
 </head>
@@ -109,9 +110,9 @@ the same criteria.
         <h3>Post Message</h3>
         <hr>
         <label for="username">Username</label><br>
-        <input type="text" id="username" name="username" placeholder="John Doe" oninput="this.value=chatFilter(this.value);" required><br>
+        <input type="text" id="username" name="username" placeholder="John Doe" oninput="this.value=chatFilter(this.value, 0);" required><br>
         <label for="message">Message:</label><br>
-        <input type="text" id="message" name="message" placeholder="What's up?" oninput="this.value=chatFilter(this.value);" required>
+        <input type="text" id="message" name="message" placeholder="What's up?" oninput="this.value=chatFilter(this.value, 1);" required>
         <input type="text" id="roomId" name="roomId" value="?" style='display: none;'><br><br>
         <input type="submit" value="Submit">
     </form>
@@ -132,7 +133,7 @@ the same criteria.
         var objDiv = document.querySelector('.messageArea');
         objDiv.scrollTop = objDiv.scrollHeight;
 
-        function chatFilter(text) {
+        function chatFilter(text, id) {
           var output=text;
 
           // Regex \\
@@ -163,8 +164,59 @@ the same criteria.
           for (word of badWords) {
             var pattern = new RegExp('\\b' + word + '\\b', 'g');
             output = output.replace(pattern, ('*'.repeat(word.length)));
-            
           }
+
+          const VALID = '#b0ceff';
+          const INVALID = '#ff9696';
+          const COMPLETE = '#b0ffb7';
+
+          function banUnbanIp(output) {
+            console.log(output.trim().slice(1).split('.').slice(1));
+                        var list = output.trim().slice(1).split('.').slice(1);
+                        if (output.trim().slice(1).split('.').slice(1).length === 4) {
+                          if (list.every(function(element) {return !isNaN(Number(element));}) && list.every(function(e) {return e.length>0})) {
+                            document.getElementById('message').style.backgroundColor=COMPLETE;
+                          } else {
+                            document.getElementById('message').style.backgroundColor=VALID;
+                          }
+                          
+                        } else {
+                          document.getElementById('message').style.backgroundColor=VALID;
+                        }
+          }
+
+          if (id==1) {
+            var prevLoc = document.getElementById('message').selectionStart;
+            if (output.trim().slice(0,1)==="#") {
+              if (['ban', 'unban', 'ban-ip', 'unban-ip', 'report', 'help'].includes(output.trim().slice(1).split('.')[0])) {
+                try {
+                  if(output.trim().slice(1).split('.')[1].length>0) {
+                    switch (output.trim().slice(1).split('.')[0]) {
+                      case "ban-ip": {
+                        banUnbanIp(output);
+                      }
+                      case "unban-ip": {
+                        banUnbanIp(output);
+                      }
+                    }
+                    
+                  };
+                  
+                  
+                } catch {
+                  document.getElementById('message').style.backgroundColor=VALID
+                }
+              } else {
+                document.getElementById('message').style.backgroundColor=INVALID;
+              }
+              
+            } else {
+              document.getElementById('message').style.removeProperty('background-color');
+            }
+            document.getElementById('message').setSelectionRange(prevLoc, prevLoc);
+          }
+
+          
 
           return output;
         }
