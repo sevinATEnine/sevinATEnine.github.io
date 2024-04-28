@@ -13,7 +13,7 @@ the same criteria.
 
 <!DOCTYPE html> 
 <head>
-  <title>CST BLocked</title>
+  <title>CST Admin Panel</title>
   <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
 
   <style>
