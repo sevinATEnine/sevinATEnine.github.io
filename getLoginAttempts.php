@@ -131,7 +131,7 @@ if ($conn->connect_error) {
 }
 
 // $sql = "CREATE TABLE Stock(ItemName text, Ammount int, Price int)";
-$sql = "SELECT trueUsername, loginUsername, os, browser, ip1, loginTime, trueUsername2 FROM loginAttempts ORDER BY loginTime DESC";
+$sql = "SELECT trueUsername, loginUsername, os, browser, ip1, loginTime, trueUsername2 FROM loginAttempts ORDER BY loginTime DESC LIMIT 250";
 // $sql = "DELETE FROM Stock";
 // $sql = "INSERT INTO Stock VALUES('Test 3',5,20)";
 
