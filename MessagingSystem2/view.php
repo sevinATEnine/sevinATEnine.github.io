@@ -26,6 +26,15 @@ the same criteria.
       border-radius: 5px;
       height: 20px;
     }
+
+    button {
+      width: fit-content;
+      margin-bottom: 3px;
+      border-radius: 5px;
+      height: fit-content;
+      padding: 5px;
+      margin-right: 3px;
+    }
     * {
         font-family: monospace;
         background-color: ghostwhite;
@@ -68,6 +77,17 @@ the same criteria.
       overflow: scroll !important;
     }
 
+    div > button {
+      background-color: red;
+    }
+    div > button:not(:disabled):hover {
+      background-color: brown;
+    }
+
+    div > button:disabled {
+      background-color: grey;
+    }
+
     
   </style>
 </head>
@@ -96,7 +116,7 @@ the same criteria.
     // output data of each row
     while($row = $result->fetch_assoc()) {
 
-      echo "<div><small>".$row["timeSent"] . " [".$row["messageIdentifier"]."] #".$row["id"]." </small><hr><span>" . $row["sender"] . "</span>" . $row["message"] . "<hr><button onclick='report(\"".$row["messageIdentifier"]."\", \"".$row["id"]."\",\"".$row["sender"]."\", \"".$row["message"]."\", document.getElementById(\"".$row["messageIdentifier"]."-input\").value);'>Report</button><input id=\"".$row["messageIdentifier"]."-input\"></div><br>"; 
+      echo "<div><small>".$row["timeSent"] . " [".$row["messageIdentifier"]."] #".$row["id"]." </small><hr><span>" . $row["sender"] . "</span>" . $row["message"] . "<hr><button id=\"".$row["messageIdentifier"]."-button\" onclick='report(\"".$row["messageIdentifier"]."\", \"".$row["id"]."\",\"".$row["sender"]."\", \"".$row["message"]."\");'>Report</button></div><br>"; 
     }
   } else {
     echo "No messages";
@@ -232,8 +252,9 @@ the same criteria.
         }
 
 
-        function report(messageIdentifer, id, sender, message, reason, user=window.localStorage.userTerminalCST) {
-          fetch(`./report.php?messageId=${messageIdentifer}&id=${id}&sender=${sender}&message=${message}&reason=${reason}&user=${user}`)
+        function report(messageIdentifer, id, sender, message, user=window.localStorage.userTerminalCST) {
+          document.getElementById(`${messageIdentifer}-button`).disabled = true;
+          fetch(`./report.php?messageId=${messageIdentifer}&id=${id}&sender=${sender}&message=${message}&user=${user}`)
           .then(response => response.text())
           .then(text => {window.alert(text);});
         }
