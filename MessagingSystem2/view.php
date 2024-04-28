@@ -96,7 +96,7 @@ the same criteria.
     // output data of each row
     while($row = $result->fetch_assoc()) {
 
-      echo "<div><small>".$row["timeSent"] . "</small><hr><span>" . $row["sender"] . "</span>" . $row["message"] . "</div><br>"; 
+      echo "<div><small>".$row["timeSent"] . " [".$row["messageIdentifier"]."] #".$row["id"]." </small><hr><span>" . $row["sender"] . "</span>" . $row["message"] . "</div><br>"; 
     }
   } else {
     echo "No messages";
