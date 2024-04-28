@@ -230,6 +230,13 @@ the same criteria.
 
           return output;
         }
+
+
+        function report(messageIdentifer, id, sender, message, reason, user=window.localStorage.userTerminalCST) {
+          fetch(`./report.php?messageId=${messageIdentifer}&id=${id}&sender=${sender}&message=${message}&reason=${reason}&user=${user}`)
+          .then(response => response.text())
+          .then(text => {window.alert(text);});
+        }
     </script>
 
 
