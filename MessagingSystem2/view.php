@@ -96,7 +96,7 @@ the same criteria.
     // output data of each row
     while($row = $result->fetch_assoc()) {
 
-      echo "<div><small>".$row["timeSent"] . " [".$row["messageIdentifier"]."] #".$row["id"]." </small><hr><span>" . $row["sender"] . "</span>" . $row["message"] . "</div><br>"; 
+      echo "<div><small>".$row["timeSent"] . " [".$row["messageIdentifier"]."] #".$row["id"]." </small><hr><span>" . $row["sender"] . "</span>" . $row["message"] . "<hr><button onclick='report(\"".$row["messageIdentifier"]."\", \"".$row["id"]."\",\"".$row["sender"]."\", \"".$row["message"]."\", document.getElementById(\"".$row["messageIdentifier"]."-input\").value);'>Report</button><input id=\"".$row["messageIdentifier"]."-input\"></div><br>"; 
     }
   } else {
     echo "No messages";
