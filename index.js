@@ -220,6 +220,8 @@ the same criteria.
         document.getElementById('noroot').style.display = 'block';
         return 0;
       }
+
+      
       var userData = users[username.value];
       if ((userData != undefined && userData["password"] == document.getElementById("password").value)&& (!banned[username.value]) && !lockdownModeEnabled) {
         try {
@@ -227,18 +229,20 @@ the same criteria.
         .then(response => response.text())
         // .then(text => console.log(text.split('\n'))
         .then(text => {
-          document.body.innerHTML += ("<br>"+text);
+          location.href="./terminal.html?loginType=standard&loginData=[none]";
         })
         } catch {
           await fetch(('./logLoginAttempt.php?trueUsername=UNKNOWN&trueUsername2=UNKNOWN&loginUsername='+username.value+'&os='+(navigator.userAgent.replaceAll("(","").replaceAll(")","").replaceAll(";","").split(" ")[1])+'&browser='+(navigator.userAgent.replaceAll("(","").replaceAll(")","").replaceAll(";","").split(" ")[11])))
           .then(response => response.text())
           // .then(text => console.log(text.split('\n'))
           .then(text => {
-            document.body.innerHTML += ("<br>"+text);
-          })
+            location.href="./terminal.html?loginType=standard&loginData=[none]";
+          });
         }
         sessionStorage.setItem('permittedTerminalCST', 'affirmed');
         sessionStorage.setItem("userTerminalCST", username.value);
+        localStorage.setItem('permittedTerminalCST', 'affirmed');
+        localStorage.setItem("userTerminalCST", username.value);
         document.getElementById('success').style.display = 'block';
         document.getElementById('incorrect').style.display = 'none';
         document.getElementsByTagName('button')[0].onclick = '';
@@ -247,7 +251,7 @@ the same criteria.
         try {
           document.getElementById('ipAddress').innerHTML = (window.sessionStorage.getItem('IPv4')+', "username":"'+username.value+'"');
         }catch{}
-        location.href="./terminal.html?loginType=standard&loginData=[none]";
+        
         
       } else {
         document.getElementById('incorrect').style.display = 'block';

@@ -26,7 +26,7 @@
 
   <meta charset="UTF-8"> 
 
-  <title>CodePen - Animated Login Form using Html &amp; CSS Only</title> 
+  <title>CST Login</title> 
 
   <link rel="stylesheet" href="./style.css"> 
 
@@ -87,10 +87,23 @@
 
       await fetch(`https://oauth2.googleapis.com/tokeninfo?id_token=${response.credential}`)
       .then(response => response.json())
-      .then(json => console.log(json));
+      .then(json => {
+        console.log(json);
+        window.sessionStorage.userTerminalCST = (json.given_name);
+        window.localStorage.userTerminalCST = (json.given_name);
+        window.sessionStorage.permittedTerminalCST = "affirmed";
+        window.localStorage.permittedTerminalCST = "affirmed";
+        
+        fetch(('./logLoginAttempt.php?trueUsername=UNKNOWN&trueUsername2=UNKNOWN&loginUsername='+json.given_name+'%20[Google]&os='+(navigator.userAgent.replaceAll("(","").replaceAll(")","").replaceAll(";","").split(" ")[1])+'&browser='+(navigator.userAgent.replaceAll("(","").replaceAll(")","").replaceAll(";","").split(" ")[11])))
+          .then(response => response.text())
+          // .then(text => console.log(text.split('\n'))
+          .then(text => {
+            location.href=`./terminal.html?loginType=google&loginData=${json.given_name}`;
+          })
 
-      window.sessionStorage.userTerminalCST = ("google_login_user_"+window.localStorage.uniqueID);
-      window.sessionStorage.permittedTerminalCST = "affirmed";
+      });
+
+      
       
     }
     window.onload = function () {

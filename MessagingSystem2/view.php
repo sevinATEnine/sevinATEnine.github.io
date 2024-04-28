@@ -118,6 +118,13 @@ the same criteria.
     </form>
 
     <script>
+        if (window.localStorage.userTerminalCST !== undefined) {
+          document.getElementById('username').value = window.localStorage.userTerminalCST;
+          document.getElementById('username').oninput = function() {
+            document.getElementById('username').value = window.localStorage.userTerminalCST
+          };
+        }
+
         function genText(word) {
           var chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789`-=~_+!@#$%^&*()[]{}\\|/.,<>?";
           chars = chars.split('');

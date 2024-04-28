@@ -196,8 +196,14 @@ let names = {
   'Ethan': 'Ethan',
   '(@2v1n': 'NEEEEERRRRRRDDDDD',
 }; //basic name definitions
+
+
+
+
+/// ** NOTE: Stack window temp. removed! ** \\\
+
 var aliases = {
-'STACK':window.open('./stack.html'),
+// 'STACK':window.open('./stack.html'),
 };
 var tempAliases = {};
 var parameters = [];
@@ -306,6 +312,10 @@ if (permitted != 'affirmed') {
     'CST/' + names[sessionStorage.getItem('userTerminalCST')] + '-->';
   command.focus();
 } //Access granted? Time to find out!
+
+if ($_GET.loginType === 'google') {
+  document.getElementById('prompt').textContent = `CST/${$_GET.loginData}-->`
+}
 
 async function doCommand(cmd) {
 var time = 0;

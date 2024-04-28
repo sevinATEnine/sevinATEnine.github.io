@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    const paymentMethods = [
+        {
+            supportedMethods: "https://www.google.com/pay",
+            merchantId: "BCR2DN4TW6H7T7I5",
+            data: {
+            supportedNetworks: ['visa', 'mastercard', 'discover'],
+            supportedTypes: ['credit']
+            }
+        }
+    ]
+
+    const paymentDetails = {
+        total: {
+            label: 'Total Amount',
+            amount: {
+            currency: 'USD',
+            value: 8.49
+            }
+        },
+        displayItems: [
+            {
+            label: '15% Discount',
+            amount: {
+                currency: 'USD',
+                value: -1.49
+            }
+            },
+            {
+            label: 'Tax',
+            amount: {
+                currency: 'USD',
+                value: 0.79
+            }
+            }
+        ]
+    }
+
+    const options = {
+        requestPayerName: false,
+        requestPayerPhone: false,
+        requestPayerEmail: false
+    }
+
+    const paymentRequest = new PaymentRequest(paymentMethods, paymentDetails, options);
+
+    paymentRequest
+        .show()
+        .then(paymentResponse => {
+            // close the payment UI
+            paymentResponse.complete().then(() => {
+            // TODO: call REST API to process the payment at the backend server
+            // with the data from `paymentResponse`.
+            })
+        })
+        .catch(err => {
+            // user closed the UI or the API threw an error
+            console.log('Error:', err)
+        })
+    
+    </script>
+</body>
+</html>
