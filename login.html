@@ -1,46 +1,97 @@
-
-  <input
-  id="username"
-  placeholder="Username"
-  id="username"
-  type="username"
-  autocomplete="off"
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CST Command Line</title>
+  <link rel="stylesheet" href="./style.css">
   
-/><br />
-<input
-  id="password"
-  placeholder="Password"
-  id="password"
-  type="password"
-  autocomplete="off"
-/><br />
-<button id="login" onclick="signin();">Sign in</button><br>
-<hr/>
-<label for="file-input">Or enter data key</label>
-<input id="file-input" type="file"/>
-<center>
-<iframe src="./qrCodeScan.html" style="overflow: hidden; border: none;" width="600px" height="450px"></iframe>
-</center><hr>
-<html>
+  <style>
+    .passwordDisplay {
+      paddding: 10px;
+      width: fit-content;
+      height: fit-content;
+      min-width: 100px;
+      min-height: 50px;
+    }
+  </style>
+
+</head>
 <body>
-  <script src="https://accounts.google.com/gsi/client" async></script>
+<!-- partial:index.partial.html -->
+<!doctype html>
+
+<html lang="en"> 
+
+ <head> 
+
+  <meta charset="UTF-8"> 
+
+  <title>CodePen - Animated Login Form using Html &amp; CSS Only</title> 
+
+  <link rel="stylesheet" href="./style.css"> 
+
+ </head> 
+
+ <body> <!-- partial:index.partial.html --> 
+
+  <section> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> 
+
+   <div class="signin"> 
+
+    <div class="content"> 
+
+     <h2>Sign In</h2> 
+
+     <div class="form"> 
+
+      <div class="inputBox"> 
+
+       <input type="text" required
+       id="username"
+        id="username"
+        type="username"
+        autocomplete="off"
+              > <i>Username</i> 
+
+      </div> 
+
+      <div class="inputBox"> 
+
+       <input type="password" required
+       
+       id="password"
+      id="password"
+      type="password"
+      autocomplete="off"
+    
+    > <i>Password</i> 
+
+      </div> 
+
+      <div class="links"> <a onclick="window.alert('You forgot your password!?!?!\nHow could you commit such a crime!\nPlease email simon@wirz.com and he will tell you your new password\n(or just hack it and get it -- and no. i\'m not telling you how to hack it)')">Forgot Password</a> <a href="./signup.html">Signup</a> 
+
+      </div> 
+
+      <div class="inputBox"> 
+
+       <button id="submit" value="Login" onclick="signin();">Login</button>
+        <br>
+        <br>
+       <div class="text-divider">OR</div>
+       <br>
+
+       <script src="https://accounts.google.com/gsi/client" async></script>
   <script>
     async function handleCredentialResponse(response) {
       console.log("Encoded JWT ID token: " + response.credential);
+
+      await fetch(`https://oauth2.googleapis.com/tokeninfo?id_token=${response.credential}`)
+      .then(response => response.json())
+      .then(json => console.log(json));
+
       window.sessionStorage.userTerminalCST = ("google_login_user_"+window.localStorage.uniqueID);
       window.sessionStorage.permittedTerminalCST = "affirmed";
-      try {
-      await fetch(('./logLoginAttempt.php?trueUsername=UNKNOWN&trueUsername2=UNKNOWN&loginUsername='+"google_login_user_"+window.localStorage.uniqueID+"&os="+(navigator.userAgent.replaceAll("(","").replaceAll(")","").replaceAll(";","").split(" ")[1])+'&browser='+(navigator.userAgent.replaceAll("(","").replaceAll(")","").replaceAll(";","").split(" ")[11])))
-      .then(response => response.text())
-      // .then(text => console.log(text.split('\n'))
-      .then(text => {
-        document.body.innerHTML += ("<br>"+text);
-      })
-      } catch(erorr) {
-        console.error(erorr);
-        return;
-      }
-      window.location=("./terminal.html?loginType=google&loginData="+response.credential);
+      
     }
     window.onload = function () {
       google.accounts.id.initialize({
@@ -51,54 +102,28 @@
         document.getElementById("buttonDiv"),
         { theme: "outline", size: "large" }  // customization attributes
       );
-      // google.accounts.id.prompt(); // also display the One Tap dialog
+      google.accounts.id.prompt(); // also display the One Tap dialog
     }
+    
   </script>
-  <center><div id="buttonDiv"></div></center>
-</body>
+  <div id="buttonDiv"></div>
+
+      </div> 
+
+     </div> 
+
+    </div> 
+
+   </div> 
+
+  </section> <!-- partial --> 
+
+ </body>
+
 </html>
-<hr>
-  <center><a onclick="loginWithGithub();"><img id="loginWithGithubButton" src="./assets/github-button.png"></a></center>
-<hr>
-
-<!-- Start Apple Sign In -->
-
-<script type="text/javascript" src="https://appleid.cdn-apple.com/appleauth/static/jsapi/appleid/1/en_US/appleid.auth.js"></script>
-
-<center><div id="appleid-signin" data-color="black" data-border="true" data-type="sign in"></div></center>
-
-<script type="text/javascript">
-AppleID.auth.init({
-    clientId : '[CLIENT_ID]',
-    scope : '[SCOPES]',
-    redirectURI : '[REDIRECT_URI]',
-    state : '[STATE]',
-    nonce : '[NONCE]',
-    usePopup : true
-});
-
-  document.addEventListener('AppleIDSignInOnSuccess', (event) => {
-    // Handle successful response.
-    console.log(event.detail.data);
-});
-
-// Listen for authorization failures.
-document.addEventListener('AppleIDSignInOnFailure', (event) => {
-    // Handle error.
-    console.log(event.detail.error);
-});
-</script>
+<!-- partial -->
 
 
-<!-- End Apple Sign In -->
-
-
-<hr>
-<center>
-  <a id="login" href="./signup.html">Don't have an account? Sign up!</a>
-  <br><br><br>
-  <p id="bansText"></p>
-</center>
 <div
   style="
     background-color: #00ee0080;
@@ -106,6 +131,9 @@ document.addEventListener('AppleIDSignInOnFailure', (event) => {
     border: 1px solid green;
     display: none;
     margin-top: 2px;
+    position: fixed;
+    bottom: 0px;
+    z-index: 120;
   "
   id="success"
 >
@@ -115,7 +143,7 @@ document.addEventListener('AppleIDSignInOnFailure', (event) => {
     clear sessionStorage data.
   </p>
 </div>
-<div
+<div class="passwordDisplay"
 style="
   background-color: #ffff0a80;
   text-align: center;
@@ -123,6 +151,9 @@ style="
   display: none;
   margin-top: 2px;
   color: black;
+  position: fixed;
+  bottom: 0px;
+  z-index: 120;
 "
 id="noroot"
 >
@@ -131,7 +162,7 @@ id="noroot"
 </p>
 </div>
 
-<div
+<div class="passwordDisplay"
 style="
   background-color: black;
   text-align: center;
@@ -139,6 +170,9 @@ style="
   display: none;
   margin-top: 2px;
   color: white;
+  position: fixed;
+  bottom: 0px;
+  z-index: 120;
 "
 id="blocked"
 >
@@ -147,24 +181,24 @@ id="blocked"
 </p>
 </div>
 
-<div
+<div class="passwordDisplay"
   style="
-    background-color: #ee000080;
+    background-color: #ed7171;
     text-align: center;
     border: 1px solid red;
     display: none;
     margin-top: 2px;
+    position: fixed;
+    bottom: 0px;
+    z-index: 120;
   "
   id="incorrect"
 >
-  <p>Incorrect username and/or password and/or. Your account has blocked.<br />Please try again.<br>Please note, if your name is Samil, please log in with the username 'samil' and the password '123'</p>
+  <p>Incorrect credentials!</p>
 </div>
-<br><br>
-<script src="./getUIDjs.js">
-</script>
-<script src="./getBrowserFingerprint.js">
-</script>
+
 <script src="./index.js">
 </script>
-<script src="./customConsole.js">
-</script>
+
+</body>
+</html>
