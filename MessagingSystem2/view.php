@@ -88,10 +88,25 @@ the same criteria.
       background-color: grey;
     }
 
+
+    nav {
+      text-align: center;
+      color:white;
+      background-color:black;
+      position:fixed;
+      width:100%;
+      top:0px;
+      left:0px;
+      height:5vh;
+      padding:6px;
+      z-index:3;
+    }
+
     
   </style>
 </head>
 <body>
+
   <?php
 
   $servername = "localhost";
@@ -107,7 +122,7 @@ the same criteria.
   }
   $roomId = $_GET['roomId'];
 
-  echo "<div id='top'><h1>CST New Messaging System - Room #$roomId</h1><a href='./browse.php'>Back</a><hr></div><div class='messageArea'>";
+  echo "<div id='top'><h1>CST New Messaging System - Room #$roomId</h1><a href='../index.html'>Home</a> | <a href='./browse.php'>Back</a><hr></div><div class='messageArea'>";
 
   $sql = "SELECT * FROM messages2 WHERE roomId = $roomId";
   $result = $conn->query($sql);
