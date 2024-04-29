@@ -146,7 +146,7 @@ the same criteria.
 <body onload="initial();">
   <noscript><h2>Note: JavaScript is disabled in your browser. Please enable it for terminal functionality.</h2></noscript>
   <nav>
-    <a href="./login.html">login</a>&bull;<a href="./MessagingSystem2/browse.php">messaging</a>&bull;<a href="./admin-login.php">admin login</a>&bull;<a href="./getLoginAttempts.php">login attempts</a>&bull;<a href="./docs/docs.html#intro">docs</a>
+    <a href="./login.html" id="loginTerminalTab">login</a>&bull;<a href="./MessagingSystem2/browse.php">messaging</a>&bull;<a href="./admin-login.php">admin login</a>&bull;<a href="./getLoginAttempts.php">login attempts</a>&bull;<a href="./docs/docs.html#intro">docs</a>
   </nav>
   <header>
   <h1 style="margin-top:26vh;">CST</h1>
@@ -177,6 +177,16 @@ the same criteria.
     <h1>Recent changes:</h1>
     <p>Terminal last updated <span id="lastUpdatedOn">[LOADING...]</span></p>
   <script>
+    if (window.sessionStorage.permittedTerminalCST!==undefined) {
+      if (window.sessionStorage.googleLogin === true) {
+        document.getElementById('loginTerminalTab').innerHTML = 'terminal';
+        document.getElementById('loginTerminalTab').href = `./terminal.html?loginType=google&loginData=${window.sessionStorage.userTerminalCST }`;
+      } else {
+        document.getElementById('loginTerminalTab').innerHTML = 'terminal';
+        document.getElementById('loginTerminalTab').href = './terminal.html';
+      }
+    }
+
     window.setInterval(updateTime, 1000);
 
     function updateTime() {

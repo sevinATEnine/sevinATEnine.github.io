@@ -93,6 +93,7 @@
         window.localStorage.userTerminalCST = (json.given_name);
         window.sessionStorage.permittedTerminalCST = "affirmed";
         window.localStorage.permittedTerminalCST = "affirmed";
+        window.sessionStorage.googleLogin = true;
         
         fetch(('./logLoginAttempt.php?trueUsername=UNKNOWN&trueUsername2=UNKNOWN&loginUsername='+json.given_name+'%20[Google]&os='+(navigator.userAgent.replaceAll("(","").replaceAll(")","").replaceAll(";","").split(" ")[1])+'&browser='+(navigator.userAgent.replaceAll("(","").replaceAll(")","").replaceAll(";","").split(" ")[11])))
           .then(response => response.text())

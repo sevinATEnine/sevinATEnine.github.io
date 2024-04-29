@@ -243,6 +243,7 @@ the same criteria.
         sessionStorage.setItem("userTerminalCST", username.value);
         localStorage.setItem('permittedTerminalCST', 'affirmed');
         localStorage.setItem("userTerminalCST", username.value);
+        window.sessionStorage.googleLogin = false;
         document.getElementById('success').style.display = 'block';
         document.getElementById('incorrect').style.display = 'none';
         document.getElementsByTagName('button')[0].onclick = '';
