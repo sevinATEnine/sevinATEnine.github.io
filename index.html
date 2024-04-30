@@ -141,13 +141,35 @@ the same criteria.
       outline:none;
       border-radius:4px;
     }
+    #personStat {
+      position: fixed;
+      top: 0px;
+      right: 0px;
+      width: 130px;
+      height: 5vh;
+      color: white;
+      padding: 5px;
+      z-index: 10000;
+      padding-top: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #272525;
+    }
+    #personImg {
+      margin-left: 8px;
+      margin-right: 3px;
+    }
+    
   </style>
 </head>
+<section id="personStat"><span id="usernameDisplay"></span> <img id="personImg" src="./assets/person-circle.svg" width="25px"></section>
 <body onload="initial();">
   <noscript><h2>Note: JavaScript is disabled in your browser. Please enable it for terminal functionality.</h2></noscript>
   <nav>
-    <a href="./login.html" id="loginTerminalTab">login</a>&bull;<a href="./MessagingSystem2/browse.php">messaging</a>&bull;<a href="./admin-login.php">admin login</a>&bull;<a href="./getLoginAttempts.php">login attempts</a>&bull;<a href="./docs/docs.html#intro">docs</a>
+    <a href="./login.html" id="loginTerminalTab">login</a>&bull;<a href="./MessagingSystem2/browse.php">messaging</a>&bull;<a href="./admin-login.php">admin login</a>&bull;<a href="./getLoginAttempts.php">login attempts</a>&bull;<a href="./docs/docs.html#intro">docs</a><span id="signOutButton">&bull;<a onclick="sessionStorage.removeItem('userTerminalCST');sessionStorage.removeItem('permittedTerminalCST');sessionStorage.removeItem('googleLogin');window.location='';" style="text-decoration: underline; cursor: pointer;">sign out</a></span>
   </nav>
+  
   <header>
   <h1 style="margin-top:26vh;">CST</h1>
   <h2>An in-browser command line</h2>
@@ -176,8 +198,13 @@ the same criteria.
   <div>
     <h1>Recent changes:</h1>
     <p>Terminal last updated <span id="lastUpdatedOn">[LOADING...]</span></p>
-  <script>
+    
+    <script>
     if (window.sessionStorage.permittedTerminalCST!==undefined) {
+      
+      
+      document.getElementById('signOutButton').style.display = "inline";
+      document.getElementById('signOutButton').removeAttribute("hidden");
       if (window.sessionStorage.googleLogin === "true") {
         document.getElementById('loginTerminalTab').innerHTML = 'terminal';
         document.getElementById('loginTerminalTab').href = `./terminal.html?loginType=google&loginData=${window.sessionStorage.userTerminalCST }`;
@@ -185,7 +212,17 @@ the same criteria.
         document.getElementById('loginTerminalTab').innerHTML = 'terminal';
         document.getElementById('loginTerminalTab').href = './terminal.html';
       }
+      document.getElementById('usernameDisplay').innerHTML = window.sessionStorage.userTerminalCST;
+    } else {
+      document.getElementById('usernameDisplay').innerHTML = 'Sign in';
+      
+      document.getElementById('signOutButton').setAttribute("hidden", "");
+      document.getElementById('signOutButton').style.content = "";
+      
     }
+    </script>
+  <script>
+  
 
     window.setInterval(updateTime, 1000);
 
@@ -329,33 +366,33 @@ the same criteria.
       return Math.floor(Math.random() * (max - min + 1) + min)
     }
 
-    async function setAdSRC() {
-      document.getElementsByClassName('adImg')[1].src=("./assets/ads/ad"+randomIntFromInterval(0,7)+".gif");
-      document.getElementsByClassName('adImg')[2].src=("./assets/ads/ad"+randomIntFromInterval(0,7)+".gif");
-    }
+    // async function setAdSRC() {
+    //   document.getElementsByClassName('adImg')[1].src=("./assets/ads/ad"+randomIntFromInterval(0,7)+".gif");
+    //   document.getElementsByClassName('adImg')[2].src=("./assets/ads/ad"+randomIntFromInterval(0,7)+".gif");
+    // }
 
-    setAdSRC();
+    // setAdSRC();
 
   </script>
 
   <script>
 
-    if (window.localStorage.showAds=="false"){
-      document.getElementsByClassName('adBox')[0].style.visibility="hidden";
-      document.getElementsByClassName('adBox2')[0].style.visibility="hidden";
-      document.getElementsByClassName('adBox3')[0].style.visibility="hidden";
+    // if (window.localStorage.showAds=="false"){
+    //   document.getElementsByClassName('adBox')[0].style.visibility="hidden";
+    //   document.getElementsByClassName('adBox2')[0].style.visibility="hidden";
+    //   document.getElementsByClassName('adBox3')[0].style.visibility="hidden";
 
-      var showAdsButton = document.createElement('button');
-      showAdsButton.innerHTML="Show ads";
-      showAdsButton.setAttribute('onclick', "window.localStorage.showAds='true'; navigation.reload();");
-      document.body.appendChild(showAdsButton);
-    } else {
-      window.localStorage.showAds="true";
-      var showAdsButton = document.createElement('button');
-      showAdsButton.innerHTML="Hide ads";
-      showAdsButton.setAttribute('onclick', "window.location='./removeAds.html'");
-      document.body.appendChild(showAdsButton);
-    }
+    //   var showAdsButton = document.createElement('button');
+    //   showAdsButton.innerHTML="Show ads";
+    //   showAdsButton.setAttribute('onclick', "window.localStorage.showAds='true'; navigation.reload();");
+    //   document.body.appendChild(showAdsButton);
+    // } else {
+    //   window.localStorage.showAds="true";
+    //   var showAdsButton = document.createElement('button');
+    //   showAdsButton.innerHTML="Hide ads";
+    //   showAdsButton.setAttribute('onclick', "window.location='./removeAds.html'");
+    //   document.body.appendChild(showAdsButton);
+    // }
   </script>
 
 
