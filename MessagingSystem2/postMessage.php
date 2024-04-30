@@ -11,8 +11,9 @@
   if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
   }
+  $a = $_SERVER['REMOTE_ADDR'];
 
-  $usernameGet = ($_GET['username']." (".$_SERVER['REMOTE_ADDR']).")";
+  $usernameGet = $_GET['username']." (XX.XX.XX.XX)";
   $messageGet = $_GET['message'];
   $roomId = $_GET['roomId'];
   $ipAddress = $_SERVER['REMOTE_ADDR'];
