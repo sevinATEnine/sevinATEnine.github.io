@@ -178,7 +178,7 @@ the same criteria.
     <p>Terminal last updated <span id="lastUpdatedOn">[LOADING...]</span></p>
   <script>
     if (window.sessionStorage.permittedTerminalCST!==undefined) {
-      if (window.sessionStorage.googleLogin === true) {
+      if (window.sessionStorage.googleLogin === "true") {
         document.getElementById('loginTerminalTab').innerHTML = 'terminal';
         document.getElementById('loginTerminalTab').href = `./terminal.html?loginType=google&loginData=${window.sessionStorage.userTerminalCST }`;
       } else {

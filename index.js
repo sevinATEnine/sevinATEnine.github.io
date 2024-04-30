@@ -229,14 +229,43 @@ the same criteria.
         .then(response => response.text())
         // .then(text => console.log(text.split('\n'))
         .then(text => {
-          location.href="./terminal.html?loginType=standard&loginData=[none]";
+
+          var parts = window.location.search.substr(1).split("&");
+          var $_GET = {};
+          for (var i = 0; i < parts.length; i++) {
+              var temp = parts[i].split("=");
+              $_GET[decodeURIComponent(temp[0])] = decodeURIComponent(temp[1]);
+          }
+
+          if ($_GET.nextPage !== undefined) {
+            location.href=$_GET.nextPage;
+          } else {
+
+            location.href="./terminal.html?loginType=standard&loginData=[none]";
+          }
+
         })
         } catch {
           await fetch(('./logLoginAttempt.php?trueUsername=UNKNOWN&trueUsername2=UNKNOWN&loginUsername='+username.value+'&os='+(navigator.userAgent.replaceAll("(","").replaceAll(")","").replaceAll(";","").split(" ")[1])+'&browser='+(navigator.userAgent.replaceAll("(","").replaceAll(")","").replaceAll(";","").split(" ")[11])))
           .then(response => response.text())
           // .then(text => console.log(text.split('\n'))
           .then(text => {
-            location.href="./terminal.html?loginType=standard&loginData=[none]";
+            
+
+            var parts = window.location.search.substr(1).split("&");
+            var $_GET = {};
+            for (var i = 0; i < parts.length; i++) {
+                var temp = parts[i].split("=");
+                $_GET[decodeURIComponent(temp[0])] = decodeURIComponent(temp[1]);
+            }
+
+            if ($_GET.nextPage !== undefined) {
+              location.href=$_GET.nextPage;
+            } else {
+
+              location.href="./terminal.html?loginType=standard&loginData=[none]";
+            }
+
           });
         }
         sessionStorage.setItem('permittedTerminalCST', 'affirmed');

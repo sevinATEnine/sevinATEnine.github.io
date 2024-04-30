@@ -153,11 +153,13 @@ the same criteria.
     </form>
 
     <script>
-        if (window.localStorage.userTerminalCST !== undefined) {
-          document.getElementById('username').value = window.localStorage.userTerminalCST;
+        if (window.sessionStorage.userTerminalCST !== undefined) {
+          document.getElementById('username').value = window.sessionStorage.userTerminalCST;
           document.getElementById('username').oninput = function() {
-            document.getElementById('username').value = window.localStorage.userTerminalCST
+            document.getElementById('username').value = window.sessionStorage.userTerminalCST
           };
+        } else {
+          window.location = `../login.html?nextPage=./MessagingSystem2/view.php%3FroomId%3D${chatroomId}`;
         }
 
         function genText(word) {

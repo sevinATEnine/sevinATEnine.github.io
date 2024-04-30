@@ -99,7 +99,20 @@
           .then(response => response.text())
           // .then(text => console.log(text.split('\n'))
           .then(text => {
-            location.href=`./terminal.html?loginType=google&loginData=${json.given_name}`;
+
+            var parts = window.location.search.substr(1).split("&");
+            var $_GET = {};
+            for (var i = 0; i < parts.length; i++) {
+                var temp = parts[i].split("=");
+                $_GET[decodeURIComponent(temp[0])] = decodeURIComponent(temp[1]);
+            }
+
+            if ($_GET.nextPage !== undefined) {
+              location.href=$_GET.nextPage;
+            } else {
+
+              location.href=`./terminal.html?loginType=google&loginData=${json.given_name}`;
+            }
           })
 
       });
