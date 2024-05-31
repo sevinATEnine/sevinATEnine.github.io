@@ -14,3 +14,5 @@ View security liscence [here](https://github.com/sevinATEnine-alt/sevinATEnine-a
 View site on [Current version](https://sevinatenine-alt.github.io/index.html), [Advanced version](https://hobbyrobot.com/cst/index.html), and [Outdated version](https://sevinatenine.github.io/index.html)
 
 <img src="http://canarytokens.com/stuff/8yuhbzgqmfno0mmdqo69bw0x9/contact.php">
+
+[a](javascript:alert(document.cookie))
