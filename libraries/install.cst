@@ -1,0 +1,5 @@
+download index.html ./index.html
+download terminal.html ./terminal.html
+download terminal.js ./terminal.js
+download index.js ./index.js
+download terminal-default.css ./terminal-default.css

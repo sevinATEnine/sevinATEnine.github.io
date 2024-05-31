@@ -1,0 +1,118 @@
+<!----------------------------------------------------------------------------------------------------
+
+The following document is owned by:
+@sevinATEnine (and alt) @Cesium72 @tacocat15 and @cmsmith02
+
+It is under the Creative Commons license and may not be reproduced commercially or without
+direct permission from the authors.
+
+Other files linked to this repository, with the exception of some of the assets, also hold
+the same criteria.
+
+---------------------------------------------------------------------------------------------------->
+
+<head>
+    <style>
+        body {
+            background-color: black;
+        }
+        * {
+          color: green;
+            font-family: monospace;
+        }
+        input {
+            background-color: black;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+<pre>
+Welcome to the DEV Console - Version 1.0.0
+Please login in using following format: [username]@[password]
+</pre>
+<span id="prevOut">
+
+</span>
+
+<span id="inputPrompt">> </span><input id="userInput" autocomplete="off">
+
+
+</body>
+<script>
+    var inputType="login";
+    document.getElementById('userInput').addEventListener("keyup", function(event) {
+    if (event.keyCode == 13) {
+        document.getElementById('prevOut').innerHTML+=(document.getElementById('inputPrompt').innerHTML+document.getElementById('userInput').value+"<br>");
+        if (inputType == "login") {
+            login(document.getElementById('userInput').value);
+        } else  if (inputType == "command") {
+            runCommand(document.getElementById('userInput').value);
+        }
+        document.getElementById('userInput').value="";
+
+    }
+    });
+    function login(authentication) {
+        if(authentication=="tbd@tbd") {
+            document.getElementById('prevOut').innerHTML+="Valid<br>Successfully logged in with username 'tbd', using password: true<br>";
+            inputType="command";
+        } else {
+            document.getElementById('prevOut').innerHTML+="Invalid username and/or pasword<br>";
+        }
+    }
+    async function runCommand(command) {
+        cmdSplit = command.split(" ");
+        previous = document.getElementById('prevOut');
+        switch(cmdSplit[0]) {
+            case "": {
+                break;
+            }
+            case "help": {
+                previous.innerHTML += "ban [user] [auth] - bans the user from CST using password auth.<br>clear-messages [auth] - clears all data from SQL Messages table<br>get-settings - displays list of settings and their values<br>lockdown-mode [value] [auth] - enables/diables lockdown mode<br>";
+                break;
+            }
+            case "get-settings": {
+                fetch('./get-settings.php')
+                .then(response => response.text())
+                .then(text => {
+                    previous.innerHTML += (text+"<br>");
+                });
+                break;
+            }
+            case "lockdown-mode": {
+                fetch(('./change-setting.php?setting=lockdown-mode&value='+cmdSplit[1]+'&auth='+cmdSplit[2]))
+                .then(response => response.text())
+                .then(text => {
+                    previous.innerHTML += (text+"<br>");
+                });
+                break;
+            }
+            case "ban": {
+                fetch(('./ban.php?user='+cmdSplit[1]+"&auth="+cmdSplit[2]))
+                .then(response => response.text())
+                .then(text => {
+                    previous.innerHTML += (text+"<br>");
+                });
+                break;
+            }
+            case "clear-messages": {
+                fetch(("./clear-messages.php?auth="+cmdSplit[1]))
+                .then(response => response.text())
+                .then(text => {
+                    previous.innerHTML += (text+"<br>");
+                });
+                break;
+            }
+            case "": {
+                break;
+            }
+            default:
+                previous.innerHTML += "Invalid command<br>";
+                
+        }
+        
+    }
+
+</script>
+

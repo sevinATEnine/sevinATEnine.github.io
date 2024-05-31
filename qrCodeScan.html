@@ -1,0 +1,58 @@
+<script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+<div style="width: 500px" id="reader"></div>
+<div id="output" style="font-family: monospace; font-size:20px;">Login with QR code (Caden: Simon has them at his house -- he will give them to you when you next come)</div>
+
+<script>
+    function onScanSuccess(decodedText, decodedResult) {
+        // Handle on success condition with the decoded text or result.
+        console.log(`Scan result: ${decodedText}`, decodedResult);
+        html5QrcodeScanner.clear();
+
+        var logins = {
+            'sdy^2Dd':'bannanaTaco34',// Simon
+            'dfi8sdu':'evilMonkey56', // Sawyer
+            's8Y^Ijd':'helloKitty10', // Clara
+            'koDHJKs':'unoReverse71', // Caden
+
+            'TTUjd7w':'grizlyBear45', // Dad
+            'asiduya':'cuddleSloth2', // Mom
+            '37ywsef':'rattySanta23', // Ethan
+            'asdusIU':'angryAnts312', // Charlie
+            
+            'Sud_HJD':'',
+            '67wdhhU':'',
+            'sdjisjd':'',
+            'EUDIjsk':'',
+            'sdfsdfD':'',
+            'DSdaijd':'',
+            'sdjjdlk':'',
+            '378rhwi':'',
+            'EYiuddd':'',
+            'sdaiYbu':'',
+        }
+
+        var usernameEntered = decodedText.toString().split('@')[0];
+        var passwordEntered = decodedText.toString().split('@')[1];
+
+        if(logins[usernameEntered]!==passwordEntered) {
+            document.getElementById('output').innerHTML = `Invalid login with username: 'Guest_User_${decodedText.toString().split('@')[0]}' and password: '${passwordEntered}'`;
+            return;
+        }
+
+
+
+        document.getElementById('output').innerHTML = `Logging in with username: 'Guest_User_${decodedText.toString().split('@')[0]}' and password: <span style='color: red;'><strong>********</strong></span><br>Please wait...`;
+        window.setTimeout(function() {
+            window.top.location=`https://hobbyrobot.com/cst/terminal.html?loginType=qr%20code&loginData=${decodedText}&code=QR_CODE_LOGIN_${decodedText}`;
+        }, 2000);
+
+    }
+
+    function onScanError(errorMessage) {
+        // handle on error condition, with error message
+    }
+
+    var html5QrcodeScanner = new Html5QrcodeScanner(
+        "reader", { fps: 10, qrbox: 250 });
+    html5QrcodeScanner.render(onScanSuccess, onScanError);
+</script>

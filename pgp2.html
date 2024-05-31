@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>PGP encrypter/decrypter</title>
+  </head>
+  <body>
+    <p id="input"></p>
+    <p id="key"></p>
+    <p id="ed"></p>
+    <p id="output"></p>
+    <script>
+      var urlParts = {
+        "input":decodeURIComponent(window.location.href.split("?")[1].split("&")[0].split("=")[1]),
+        "key":decodeURIComponent(window.location.href.split("?")[1].split("&")[1].split("=")[1]),
+        "ed":decodeURIComponent(window.location.href.split("?")[1].split("&")[2].split("=")[1])
+      }
+      document.getElementById("input").textContent = urlParts["input"];
+      document.getElementById("key").textContent = urlParts["key"];
+      document.getElementById("ed").textContent = urlParts["ed"];
+      const arrDefault = [
+    'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K',
+    'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V',
+    'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g',
+    'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r',
+    's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2',
+    '3', '4', '5', '6', '7', '8', '9', '!', '@', '#', '$',
+    '%', '^', '&', '*', '(', ')', '-', '_', '+', '=', '[',
+    ']', '{', '}', '\\', '|', ';', ':', '"', "'", ',', '<',
+    '.', '>', '/', '?', '`', '~',' '
+];
+function encrypt() {
+var input = document.getElementById("input").textContent;
+var key = document.getElementById("key").textContent;
+var key2 = key;
+var output = "";
+if(key.length != 0) {
+while(key2.length < input.length) {
+    key2 += key;
+}
+for(var i = 0; i < input.length; i++) {
+    output += arrDefault[(arrDefault.indexOf(input[i])+arrDefault.indexOf(key2[i])) % arrDefault.length]
+}
+document.body.textContent = output;
+}
+}
+function decrypt() {
+    var input = document.getElementById("input").textContent;
+    var key = document.getElementById("key").textContent;
+    var key2 = key;
+    var output = "";
+    if(key.length != 0) {
+    while(key2.length < input.length) {
+        key2 += key;
+    }
+    for(var i = 0; i < input.length; i++) {
+        output += arrDefault[((arrDefault.indexOf(input[i])-arrDefault.indexOf(key2[i])) % arrDefault.length > 0)?(arrDefault.indexOf(input[i])-arrDefault.indexOf(key2[i])) % arrDefault.length : arrDefault.length + (arrDefault.indexOf(input[i])-arrDefault.indexOf(key2[i]))]
+    }
+    document.body.textContent = output;
+    }   
+}
+if(document.getElementById("ed").textContent == "encrypt") {
+  encrypt();
+} else {
+  decrypt();
+}
+    </script>
+    <!--    '08|;'Vr\?+>s/8./}*[s>8:+}*[s:8.>)!+>s#:s8k7' with password 'test'   -->
+  </body>
+</html>

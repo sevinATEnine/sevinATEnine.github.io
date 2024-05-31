@@ -1,0 +1,83 @@
+<head>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Roboto:100,300,400&display=swap');
+
+
+    .loading-text {
+        font-family: 'Roboto', sans-serif;
+        font-size   : 50px;
+    }
+    #marquee-like {
+        text-align: center;
+        font-family : 'Roboto', sans-serif;
+        font-weight : bold;
+        font-size   : 55px;
+        opacity     : 0;
+        transition  : opacity 1s ease;
+        }
+    #marquee-like.fade-in {
+        opacity : 1;
+        display: inline-block;
+    }
+    #loading {
+        position: absolute;
+        left: 35%;
+        display: inline-block;
+    }
+    .loading-progress {
+        height: 20px;
+        width: 400px;
+        background-color: gray;
+        display: inline-block;
+    }
+    .ammount-finished {
+        height: 20px;
+        width: 0px;
+        background-color: rgb(16, 108, 199);
+        display: inline-block;
+    }
+    </style>
+    
+</head>
+
+<body>
+    
+    <div id="loading"><span class="loading-text">Loading </span><span id="marquee-like"> Text Here! </span><br><div class="loading-progress"><div class="ammount-finished" id="loading_progress" style="width: 0"></div></div></div>
+    
+    <script>
+        const
+        marqueeLike = document.querySelector('#marquee-like')
+        , textList = (function* () { // IIGFE
+            // const arr = ['smart', 'creative', 'funny', 'kind', 'amazing', 'nice', 'caring', 'awesome', 'brave', 'honest', 'loyal', 'confident', 'humble', 'responsible', 'respectful', 'flexible', 'curious', 'patient', 'open-minded'];
+            const arr = ['assets', 'content', 'tacos', 'images', 'code', 'beans', 'users', 'people', 'sql server', 'lots of random stuff', 'junk the devs. put in', 'still more junk', 'the next loading bar', 'nothing - just making you wait', 'nanobots', 'goblins'];
+            let   idx = -1;
+            for(;;) {
+            idx = ++idx % arr.length;
+            yield arr[idx]; 
+            yield arr[idx]; 
+            }}())
+        , marqueeChange =_=> {
+            marqueeLike.textContent = textList.next().value;
+            marqueeLike.classList.toggle('fade-in');    
+            };
+
+        marqueeLike.ontransitionend = marqueeChange;
+        // window.addEventListener('DOMContentLoaded', marqueeChange ); // doesn't work with SO snippet...  
+        var repeatAgain = setTimeout(marqueeChange, 500);  // to replace DOMContentLoaded  for SO sni
+    </script>
+
+    <script>
+        var loadingBarProgress = document.getElementById('loading_progress')
+        var advanceLoadingBar = window.setInterval(function(){
+            loadingBarProgress.style.width=(Number(loadingBarProgress.style.width.slice(0,-2))+.1);
+            if(Number(loadingBarProgress.style.width.slice(0,-2))>400) {
+                document.getElementById('loading').style.visibility="hidden";
+                clearInterval(advanceLoadingBar);
+            }
+        },1);
+        // clearTimeout(repeatAgain);
+    </script>
+</body>
+
+
+

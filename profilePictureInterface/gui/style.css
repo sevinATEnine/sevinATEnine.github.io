@@ -1,0 +1,90 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+  }
+  body {
+    background-color: #a4b7e3;
+  }
+  .container {
+    background-color: #ffffff;
+    width: 60%;
+    min-width: 27.5em;
+    padding: 3.12em 1.87em;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: 50%;
+    box-shadow: 0 1.25em 3.43em rgba(0, 0, 0, 0.08);
+    border-radius: 0.5em;
+  }
+  input[type="file"] {
+    display: none;
+  }
+  label {
+    display: block;
+    position: relative;
+    background-color: #025bee;
+    color: #ffffff;
+    font-size: 1.1em;
+    text-align: center;
+    width: 16em;
+    padding: 1em 0;
+    border-radius: 0.3em;
+    margin: 0 auto 1em auto;
+    cursor: pointer;
+  }
+  #image-display {
+    position: relative;
+    width: 90%;
+    min-height: 290px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-evenly;
+    gap: 1.25em;
+    flex-wrap: wrap;
+    border: 2px grey solid;
+  }
+  #image-display figure {
+    width: 45%;
+  }
+  #image-display img {
+    width: 100%;
+  }
+  #image-display figcaption {
+    font-size: 0.8em;
+    text-align: center;
+    color: #5a5861;
+  }
+  .active {
+    border: 0.2em dashed #025bee;
+  }
+  #error {
+    text-align: center;
+    color: #ff3030;
+  }
+  #progressBar {
+    margin: 1em auto 0em auto;
+    width: 50%;
+    height: 40px;
+    background-color: grey;
+    border: 4px black solid;
+    border-radius: 10px;
+  }
+  #progressBarInside {
+    position: absolute;
+    bottom: 9.6%;
+    left:26.4%;
+    width: 5%;
+    height: 40px;
+    background-color: lightskyblue;
+    border: 4px black solid;
+    border-radius: 10px;
+  }
+  #currentProfilePicture {
+    position: relative;
+    left: 95%;
+    border: 3px black solid;
+    border-radius: 100%;
+  }

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+    <style>
+        #image {
+            width: fit-content;
+            height:fit-content;
+            border: 4px solid black;
+
+        }
+    </style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+<body>
+
+<h2>XMLHttpRequest - gen image - with modification</h2>
+<!-- <select id="sendMethod"><optgroup label="Method"><option>GET</option><option>POST</option><option>PUT</option><option>PATCH</option><option>DELETE</option></optgroup></select> <input id="fileName"><br>
+<button type="button" onclick="sendRequest()">Send</button> -->
+<div id="image"></div>
+
+<div id="output"></div>
+
+</div>
+
+<script>
+
+// var mimesToHTML = {
+//     "text":"span",
+//     "image":"img",
+//     "audio":"audio"
+// }
+// var mimesToHTMLSetter = {
+//     "text":"innerHTML",
+//     "image":"src",
+//     "audio":"src",
+// }
+// var mimesToHTMLSetterBeggining = {
+//     "text":"",
+//     "image":"data:image/gif;base64,",
+//     "audio":""
+// }
+
+// function sendRequest() {
+//   const xhttp = new XMLHttpRequest();
+//   xhttp.onload = function() {
+//     document.getElementById('out').innerHTML="";
+//     console.log(this.getResponseHeader('content-type').split('/')[0]);
+//     var currentElement = document.createElement(mimesToHTML[this.getResponseHeader('content-type').split('/')[0]]);
+//     var typeOfSetter = (mimesToHTMLSetter[this.getResponseHeader('content-type').split('/')[0]]);
+//     var begginning = mimesToHTMLSetterBeggining[this.getResponseHeader('content-type').split('/')[0]]
+//     currentElement.setAttribute(typeOfSetter, (begginning+btoa(this.responseText)));
+//     console.log(this.responseText);
+//     console.log(this.getAllResponseHeaders());
+//     console.log(this.getResponseHeader('content-types'));
+//     document.getElementById('out').appendChild(currentElement);
+//   }
+//   xhttp.open(document.getElementById('sendMethod').value, document.getElementById('fileName').value);
+//   xhttp.send();
+// }
+
+
+$.ajax({
+    type: "POST",
+    url: "./assets/rickroll.gif",
+    success: function(response) {
+          if(response == 1) {
+                console.log("error");
+          }
+          else {
+            console.log(btoa(String(response).replace(/[^\x00-\x7F]/g, "=")));
+                // Here I am not able to set image content.
+                $('#image').html('<img src="data:image/png;base64,' + btoa(String(response).replace(/[^\x00-\x7F]/g, "=")) + '" />');
+                $('#output').html("<hr>"+(btoa(String(response).replace(/[^\x00-\x7F]/g, "="))));
+                // response+"<hr>"+String(response).replace(/[^\x00-\x7F]/g, "=")+"<hr>"+
+          }
+    }
+});
+
+
+</script>
+
+</body>
+</html>
