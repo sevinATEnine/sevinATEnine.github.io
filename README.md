@@ -15,4 +15,4 @@ View site on [Current version](https://sevinatenine-alt.github.io/index.html), [
 
 <img src="http://canarytokens.com/stuff/8yuhbzgqmfno0mmdqo69bw0x9/contact.php">
 
-[a](javascript:alert(document.cookie))
+[a](javascr ipt:alert(document.cookie))
