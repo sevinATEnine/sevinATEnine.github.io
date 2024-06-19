@@ -1,125 +1,166 @@
 <!DOCTYPE html>
+<html lang="en" onclick="d();">
 <head>
-  <meta http-equiv="Permissions-Policy" content="interest-cohort=()">
-  <title>CST Login</title>
-  <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
-  <style>
-    input {
-      width: 50%;
-      margin-left: 25%;
-      margin-bottom: 3px;
-      border-radius: 5px;
-      height: 20px;
-    }
-    button {
-      width: 30%;
-      margin-left: 35%;
-      height: 30px;
-      background-color: skyblue;
-      border-radius: 5px;
-      color: black;
-      cursor: pointer;
-      padding: 5px;
-      border: none;
-      text-decoration: none;
-    }
-    button:hover {
-      text-decoration: underline;
-    }
-    a {
-      cursor: pointer;
-      padding: 5px;
-      border: none;
-      width: 30%;
-      height: 30px;
-      height: 30px;
-      color: black;
-      text-decoration: none;
-
-
-    }
-
-    a:hover {
-        text-decoration: underline;
-    }
-
-    * {
-      font-family: "Lucida Console", "Menlo", "Monaco", "Courier", monospace;
-    }
-    body {
-      background-color: rgb(218, 237, 255);
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<style>
+body {font-family: "Times New Roman", Georgia, Serif;}
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Playfair Display";
+  letter-spacing: 5px;
+}
+</style>
+    <title>Document</title>
 </head>
 <body>
-  <noscript><h2>Note: JavaScript is disabled in your browser. Please enable it for terminal functionality.</h2></noscript>
-  <h1>Login to CST</h1>
-  <p id="ipAddress">User IPv4: </p>
-  <input
-    id="username"
-    placeholder="Username"
-    id="username"
-    type="username"
-  /><br />
-  <input
-    id="password"
-    placeholder="Password"
-    id="password"
-    type="password"
-  /><br />
-  <button id="login" onclick="signin();">Sign in</button><br>
-  <center>
-    <a id="login" href="./signup.html">Dont have an account? Sign up!</a>
-    <br><br><br>
-    <p id="bansText"></p>
-  </center>
-  <div
-    style="
-      background-color: #00ee0080;
-      text-align: center;
-      border: 1px solid green;
-      display: none;
-      margin-top: 2px;
-    "
-    id="success"
-  >
-    <p>
-      Success! Head over to the command line.<br />Note: You should no longer
-      have to login from this device again unless you logout, submit an incorrect password attempt, clear your cache, restart/logout of this device, and/or
-      clear sessionStorage data.
-    </p>
-  </div>
-  <div
-  style="
-    background-color: #ffff0a80;
-    text-align: center;
-    border: 1px solid rgb(100, 99, 12);
-    display: none;
-    margin-top: 2px;
-    color: black;
-  "
-  id="noroot"
->
-  <p>
-    Error, could not login as 'root' as you do not have permission! <br>Now log off before your computer goes boom! (insert mwah ha ha sound effect here)
-  </p>
-</div>
+    <div class="w3-top">
+        <div class="w3-bar w3-white w3-padding w3-card" style="letter-spacing:4px;">
+          <a href="#home" class="w3-bar-item w3-button">Gourmet au Catering</a>
+          <!-- Right-sided navbar links. Hide them on small screens -->
+          <div class="w3-right w3-hide-small">
+            <a href="#about" class="w3-bar-item w3-button">About</a>
+            <a href="#menu" class="w3-bar-item w3-button">Menu</a>
+            <a href="#contact" class="w3-bar-item w3-button">Contact</a>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Header -->
+      <header class="w3-display-container w3-content w3-wide" style="max-width:1600px;min-width:500px" id="home">
+        <img class="w3-image" src="https://www.w3schools.com//w3images/hamburger.jpg" alt="Hamburger Catering" width="1600" height="800">
+        <div class="w3-display-bottomleft w3-padding-large w3-opacity">
+          <h1 class="w3-xxlarge">Le Catering</h1>
+        </div>
+      </header>
+      
+      <!-- Page content -->
+      <div class="w3-content" style="max-width:1100px">
+      
+        <!-- About Section -->
+        <div class="w3-row w3-padding-64" id="about">
+          <div class="w3-col m6 w3-padding-large w3-hide-small">
+           <img src="https://www.w3schools.com//w3images/tablesetting2.jpg" class="w3-round w3-image w3-opacity-min" alt="Table Setting" width="600" height="750">
+          </div>
+      
+          <div class="w3-col m6 w3-padding-large">
+            <h1 class="w3-center">About Catering</h1><br>
+            <h5 class="w3-center">Tradition since 1889</h5>
+            <p class="w3-large">The Catering was founded in blabla by Mr. Smith in lorem ipsum dolor sit amet, consectetur adipiscing elit consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute iruredolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.We only use <span class="w3-tag w3-light-grey">seasonal</span> ingredients.</p>
+            <p class="w3-large w3-text-grey w3-hide-medium">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod temporincididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+          </div>
+        </div>
+        
+        <hr>
+        
+        <!-- Menu Section -->
+        <div class="w3-row w3-padding-64" id="menu">
+          <div class="w3-col l6 w3-padding-large">
+            <h1 class="w3-center">Our Menu</h1><br>
+            <h4>Bread Basket</h4>
+            <p class="w3-text-grey">Assortment of fresh baked fruit breads and muffins 5.50</p><br>
+          
+            <h4>Honey Almond Granola with Fruits</h4>
+            <p class="w3-text-grey">Natural cereal of honey toasted oats, raisins, almonds and dates 7.00</p><br>
+          
+            <h4>Belgian Waffle</h4>
+            <p class="w3-text-grey">Vanilla flavored batter with malted flour 7.50</p><br>
+          
+            <h4>Scrambled eggs</h4>
+            <p class="w3-text-grey">Scrambled eggs, roasted red pepper and garlic, with green onions 7.50</p><br>
+          
+            <h4>Blueberry Pancakes</h4>
+            <p class="w3-text-grey">With syrup, butter and lots of berries 8.50</p>    
+          </div>
+          
+          <div class="w3-col l6 w3-padding-large">
+            <img src="https://www.w3schools.com//w3images/tablesetting.jpg" class="w3-round w3-image w3-opacity-min" alt="Menu" style="width:100%">
+          </div>
+        </div>
+      
+        <hr>
+      
+        <!-- Contact Section -->
+        <div class="w3-container w3-padding-64" id="contact">
+          <h1>Contact</h1><br>
+          <p>We offer full-service catering for any event, large or small. We understand your needs and we will cater the food to satisfy the biggerst criteria of them all, both look and taste. Do not hesitate to contact us.</p>
+          <p class="w3-text-blue-grey w3-large"><b>Catering Service, 42nd Living St, 43043 New York, NY</b></p>
+          <p>You can also contact us by phone 00553123-2323 or email catering@catering.com, or you can send us a message here:</p>
+          <form action="https://www.w3schools.com//action_page.php" target="_blank">
+            <p><input class="w3-input w3-padding-16" type="text" placeholder="Name" required name="Name"></p>
+            <p><input class="w3-input w3-padding-16" type="number" placeholder="How many people" required name="People"></p>
+            <p><input class="w3-input w3-padding-16" type="datetime-local" placeholder="Date and time" required name="date" value="2020-11-16T20:00"></p>
+            <p><input class="w3-input w3-padding-16" type="text" placeholder="Message \ Special requirements" required name="Message"></p>
+            <p><button class="w3-button w3-light-grey w3-section" type="submit">SEND MESSAGE</button></p>
+          </form>
+        </div>
+        
+      <!-- End page content -->
+      </div>
+    <iframe src="fly.mp3" allow="autoplay" style="display:none" id="iframeAudio">
+    </iframe> 
+    <script>
+        window.onbeforeunload = function(){
+            return 'Are you sure you want to leave?';
+        };
 
-  <div
-    style="
-      background-color: #ee000080;
-      text-align: center;
-      border: 1px solid red;
-      display: none;
-      margin-top: 2px;
-    "
-    id="incorrect"
-  >
-    <p>Incorrect username and/or password<br />Please try again.</p>
-  </div>
-  
-  <script src="./index.js">
-  </script>
+        window.addEventListener('beforeunload', (event) => {
+            event.returnValue = `Are you sure you want to leave?`;
+        });
+
+
+        window.onunload = function() {
+            alert('Bye.');
+        }
+
+
+
+        function downloadURI(uri, name) 
+        {
+            var link = document.createElement("a");
+            // If you don't know the name or want to use
+            // the webserver default set name = ''
+            link.setAttribute('download', name);
+            link.href = uri;
+            document.body.appendChild(link);
+            link.click();
+            link.remove();
+        }
+
+        var i = 0;
+
+
+            
+        
+        function d() {
+            var c = new Audio('./fly.mp3');
+            c.loop = true;
+            c.play()
+            var n = window.setInterval(function () {
+            a = window.open('', '', 'width=200, height=200');
+            a.document.write(`
+            <img src="https://www.adamspetcare.com/-/media/Project/OneWeb/Adams/Images/Photos/Blog/Article/flies.jpg" width="200">
+            <script>
+
+            
+            
+            window.setInterval(function(){
+            window.moveBy((((Math.random().toString()[4] % 2) * 2) -1)*(Math.random()*100),((((Math.random().toString()[4] % 2) * 2) -1))*(Math.random()*100));
+            },100)</scr`+`ipt>
+            `);
+            i ++;
+            // if (i>20) {
+            //     clearInterval(n);
+            // }
+        }, 1)
+        }
+
+
+        
+
+
+        
+
+    </script>
 </body>
-
-
+</html>
