@@ -17,6 +17,12 @@ if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 
+if ($loginUsername === 'google_login_user_undefined') {
+  die('Invalid username. Exiting.');
+};
+
+
+// $_SERVER['HTTP_USER_AGENT']
 
 // $_SERVER['REMOTE_ADDR']
 
@@ -33,8 +39,10 @@ $sql = "INSERT INTO loginAttempts (trueUsername, loginUsername, os, browser, ip1
 //     )";
 // $sql = "";
 
-if ($conn->query($sql) === TRUE) {
-    echo "Successfull";
+$result = $conn->query($sql);
+
+if ($result === TRUE) {
+    echo $result."\n\nSuccessfull\n$loginUsername\n$os\n$browser\n".$_SERVER['REMOTE_ADDR'];
   } else {
     echo "Error: " . $conn->error;
 }

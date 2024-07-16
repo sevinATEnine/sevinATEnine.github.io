@@ -53,7 +53,7 @@
         "name":"TEST",
         "password":"Dev"
     },
-    "(#@r2|3": {
+    "Charlie": {
         "name":"Charlie",
         "password":"123"
     },
@@ -65,6 +65,11 @@
     "(@2v1n": {
         "name":"NEEEEEEEERRRRRRRDDDDDD",
         "password":"is a nerd",
+        "banned":false
+    },
+    "0m": {
+        "name":"da best hacker",
+        "password":"2468",
         "banned":false
     }
   }

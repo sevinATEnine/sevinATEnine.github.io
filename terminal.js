@@ -14,10 +14,7 @@ the same criteria.
 
 
 
-/*
-OPEN THE STACK:
-*/
-window.open('./stack.html');
+
 
 
 
@@ -42,7 +39,7 @@ function forceDownload(blob, filename) {
 
 // Current blob size limit is around 500MB for browsers
 function saveFunc() {
-  functions[funcToSave] = text.value.split("\n");
+  aliases[funcToSave] = text.value.split("\n");
   writeToStack("Function saved.");
   hideEdit();
 }
@@ -165,10 +162,10 @@ function varHandle(data, len = -1, mode = false) {
       }
       final2 += root;
       } else {
-        if (typeof aliases[outputSplit[i]] == "string") {
-        final2 += aliases[outputSplit[i]];
-        } else {
+        if (typeof aliases[outputSplit[i]] == "object") {
           return aliases[outputSplit[i]];
+        } else {
+          final2 += aliases[outputSplit[i]];
         }
       }
       isString = !isString;
@@ -199,8 +196,16 @@ let names = {
   'Ethan': 'Ethan',
   '(@2v1n': 'NEEEEERRRRRRDDDDD',
 }; //basic name definitions
-var aliases = {};
-var pages = {};
+
+
+
+
+/// ** NOTE: Stack window temp. removed! ** \\\
+
+var aliases = {
+// 'STACK':window.open('./stack.html'),
+};
+var tempAliases = {};
 var parameters = [];
 var funcToSave = "";
 var text = document.getElementById("fm");
@@ -212,7 +217,6 @@ var cmdSplit = null;
 var execWindow = [];
 var clear = 0;
 var foreground = 'green';
-var functions = {};
 var clearMode = '';
 var clearFunc = '';
 var prevCommands = [""];
@@ -308,8 +312,12 @@ if (permitted != 'affirmed') {
   command.focus();
 } //Access granted? Time to find out!
 
-async function doCommand(cmd) {
+if ($_GET.loginType === 'google') {
+  document.getElementById('prompt').textContent = `CST/${$_GET.loginData}-->`
+}
 
+async function doCommand(cmd) {
+var time = 0;
 
 
   /// ADD TO HISTORY \\\
@@ -487,7 +495,15 @@ async function doCommand(cmd) {
       break;
     }
     case 'close': {
-      pages[cmdSplit[1]].close();
+      aliases[cmdSplit[1]].close();
+      break;
+    }
+    case 'delay': {
+      time = parseInt(cmdSplit[1]);
+      break;
+    }
+    case 'skip': {
+      clear -= parseInt(cmdSplit[1]);
       break;
     }
     case 'push': {
@@ -527,11 +543,6 @@ async function doCommand(cmd) {
       }
       break;
     }
-    case 'drop-func': {
-      delete functions[varHandle(cmdSplit[1], -1, true)];
-      writeToStack("Function deleted successfully.");
-      break;
-    }
     case 'load': {
       var file = document.createElement('input');
       file.type = 'file';
@@ -546,25 +557,25 @@ async function doCommand(cmd) {
       }
 
       function handleFileLoad(event) {
-        functions[varHandle(cmdSplit[1], -1, true)] = event.target.result.split("\n");
+        aliases[varHandle(cmdSplit[1], -1, true)] = event.target.result.split("\n");
         writeToStack("File exported to function successfully.");
-        if (functions[cmdSplit[e]].map((inp) => (inp.split(" ")[0])).includes("self-exec")) {
-          clear = functions[cmdSplit[e]].length;
+        if (aliases[cmdSplit[e]].map((inp) => (inp.split(" ")[0])).includes("self-exec")) {
+          clear = aliases[cmdSplit[e]].length;
           clearMode = 'multiple';
           clearFunc = cmdSplit[e];
-          parameters.push(functions[cmdSplit[e]][functions[cmdSplit[e]].map((inp) => (inp.split(" ")[0])).indexOf("self-exec")].slice(10).split(" ").map((inp) => (ampHandle(inp))));
+          parameters.push(aliases[cmdSplit[e]][aliases[cmdSplit[e]].map((inp) => (inp.split(" ")[0])).indexOf("self-exec")].slice(10).split(" ").map((inp) => (ampHandle(inp))));
           writeToStack("Function execution initiating...");
         }
       }
       break;
     }
-    case 'rename-func': {
-      functions[varHandle(cmdSplit[2], -1, true)] = functions[varHandle(cmdSplit[1], -1, true)];
-      delete functions[varHandle(cmdSplit[1], -1, true)];
+    case 'rename': {
+      aliases[varHandle(cmdSplit[2], -1, true)] = aliases[varHandle(cmdSplit[1], -1, true)];
+      delete aliases[varHandle(cmdSplit[1], -1, true)];
       break;
     }
     case 'new-func': {
-      functions[varHandle(cmdSplit[1], -1, true)] = [];
+      aliases[varHandle(cmdSplit[1], -1, true)] = [];
       funcToSave = varHandle(cmdSplit[1], -1, true)
       document.getElementById("editor").style.display = "block";
       text.focus();
@@ -574,7 +585,7 @@ async function doCommand(cmd) {
       writeToStack("Editor opened succesfully.");
       document.getElementById("editor").style.display = "block";
       funcToSave = varHandle(cmdSplit[1], -1, true);
-      text.value = functions[varHandle(cmdSplit[1], -1, true)].join("\n");
+      text.value = aliases[varHandle(cmdSplit[1], -1, true)].join("\n");
       text.focus();
       break;
     }
@@ -590,18 +601,18 @@ async function doCommand(cmd) {
       break;
     }
     case 'add-from': {
-      for (var i = 0; i < functions[varHandle(cmdSplit[1], -1, true)].length; i++) {
-        execWindow.push(functions[varHandle(cmdSplit[1], -1, true)][i]);
+      for (var i = 0; i < aliases[varHandle(cmdSplit[1], -1, true)].length; i++) {
+        execWindow.push(aliases[varHandle(cmdSplit[1], -1, true)][i]);
       }
       break;
     }
     case 'add-from-if': {
-      for (var i = 0; i < functions[varHandle(cmdSplit[1], -1, true)].length; i++) {
+      for (var i = 0; i < aliases[varHandle(cmdSplit[1], -1, true)].length; i++) {
         execWindow.push(
           'if ' +
           cmd.slice(13 + cmdSplit[1].length) +
           ' >> ' +
-          functions[varHandle(cmdSplit[1], -1, true)][i]
+          aliases[varHandle(cmdSplit[1], -1, true)][i]
         );
       }
       break;
@@ -678,6 +689,11 @@ async function doCommand(cmd) {
       }
       break;
     }
+    case 'run-html': {
+      aliases[cmdSplit[1]] = window.open("");
+      aliases[cmdSplit[1]].document.write(varHandle(cmdSplit[2],-1,true))
+      break;
+    }
     case 'cursor': {
       document.querySelector('*').style.cursor = varHandle(cmd, 6);
       writeToStack("Cursor changed successfully.");
@@ -687,7 +703,7 @@ async function doCommand(cmd) {
       if(cmdSplit.length == 2) {
         window.open(cmdSplit[1]);
       }else {
-        pages[cmdSplit[2]] = window.open(cmdSplit[1]);
+        aliases[cmdSplit[2]] = window.open(cmdSplit[1]);
       }
       writeToStack("Page opened.");
       break;
@@ -895,7 +911,7 @@ async function doCommand(cmd) {
       writeToStack("Command line has been reset.","important");
       break;
     }
-    case 'drop-alias': {
+    case 'drop': {
       delete aliases[varHandle(cmdSplit[1], -1, true)];
       writeToStack("Alias deleted successfully.");
       break;
@@ -941,14 +957,14 @@ async function doCommand(cmd) {
       break;
     }
     case 'export-exec': {
-      functions[varHandle(cmdSplit[1], -1, true)] = execWindow;
+      aliases[varHandle(cmdSplit[1], -1, true)] = execWindow;
       execWindow = [];
       writeToStack("Function exported.");
       break;
     }
     case '$': {
       try {
-        clear = functions[varHandle(cmdSplit[1], -1, true)].length;
+        clear = aliases[varHandle(cmdSplit[1], -1, true)].length;
         clearMode = 'multiple';
         clearFunc = varHandle(cmdSplit[1], -1, true);
         parameters.push(cmd.slice(cmdSplit[1].length + 3).split(' '));
@@ -965,7 +981,7 @@ async function doCommand(cmd) {
       break;
     }
     case 'view-func': {
-      var funcToRead = functions[varHandle(cmdSplit[1], -1, true)];
+      var funcToRead = aliases[varHandle(cmdSplit[1], -1, true)];
       output.innerHTML = '<ul>';
       if (cmdSplit.length == 2) {
         for (var i = 0; i < funcToRead.length; i++) {
@@ -1002,15 +1018,15 @@ async function doCommand(cmd) {
       } else {
         e = 2;
       }
-      functions[varHandle(cmdSplit[e], -1, true)] = (
+      aliases[varHandle(cmdSplit[e], -1, true)] = (
         await getData('./libraries/' + varHandle(cmdSplit[1], -1, true) + '.cst')
       ).split('\n');
       writeToStack("Library imported.");
-      if (functions[cmdSplit[e]].map((inp) => (inp.split(" ")[0])).includes("self-exec")) {
-        clear = functions[cmdSplit[e]].length;
+      if (aliases[cmdSplit[e]].map((inp) => (inp.split(" ")[0])).includes("self-exec")) {
+        clear = aliases[cmdSplit[e]].length;
         clearMode = 'multiple';
         clearFunc = cmdSplit[e];
-        parameters.push(functions[cmdSplit[e]][functions[cmdSplit[e]].map((inp) => (inp.split(" ")[0])).indexOf("self-exec")].slice(10).split(" ").map((inp) => (ampHandle(inp))));
+        parameters.push(aliases[cmdSplit[e]][aliases[cmdSplit[e]].map((inp) => (inp.split(" ")[0])).indexOf("self-exec")].slice(10).split(" ").map((inp) => (ampHandle(inp))));
         writeToStack("Function execution initiating...");
       }
       break;
@@ -1043,7 +1059,7 @@ async function doCommand(cmd) {
     default: {
       if (cmd.substr(0, 1) == '$') {
         try {
-        clear = functions[varHandle(cmdSplit[0].slice(1), -1, true)].length;
+        clear = aliases[varHandle(cmdSplit[0].slice(1), -1, true)].length;
         clearMode = 'multiple';
         clearFunc = varHandle(cmdSplit[0].slice(1), -1, true);
         parameters.push(cmd.slice(cmdSplit[0].length + 1).split(' '));
@@ -1099,12 +1115,12 @@ async function doCommand(cmd) {
       command.value = execWindow[execWindow.length - 1];
       writeToStack("Single-line executional executed.");
     } else {
-      command.value = functions[clearFunc][functions[clearFunc].length - clear];
+      command.value = aliases[clearFunc][aliases[clearFunc].length - clear];
       writeToStack("Executing next line of function...");
     }
     clear -= 1;
     if (clear == 0 && clearMode == `multiple`) {writeToStack("Function complete.");}
-    doCommand(command.value);
+    window.setTimeout((() => {doCommand(command.value)}),time);
   }
 }
 command.addEventListener('keydown', function (event) {

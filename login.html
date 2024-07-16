@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CST Command Line</title>
+  <link rel="stylesheet" href="./style.css">
+  
+  <style>
+    .passwordDisplay {
+      paddding: 10px;
+      width: fit-content;
+      height: fit-content;
+      min-width: 100px;
+      min-height: 50px;
+    }
+  </style>
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<!doctype html>
+
+<html lang="en"> 
+
+ <head> 
+
+  <meta charset="UTF-8"> 
+
+  <title>CST Login</title> 
+
+  <link rel="stylesheet" href="./style.css"> 
+
+ </head> 
+
+ <body> <!-- partial:index.partial.html --> 
+
+  <section> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> 
+
+   <div class="signin"> 
+
+    <div class="content"> 
+
+     <h2>Sign In</h2> 
+
+     <div class="form"> 
+
+      <div class="inputBox"> 
+
+       <input type="text" required
+       id="username"
+        id="username"
+        type="username"
+        autocomplete="off"
+              > <i>Username</i> 
+
+      </div> 
+
+      <div class="inputBox"> 
+
+       <input type="password" required
+       
+       id="password"
+      id="password"
+      type="password"
+      autocomplete="off"
+    
+    > <i>Password</i> 
+
+      </div> 
+
+      <div class="links"> <a onclick="window.alert('You forgot your password!?!?!\nHow could you commit such a crime!\nPlease email simon@wirz.com and he will tell you your new password\n(or just hack it and get it -- and no. i\'m not telling you how to hack it)')">Forgot Password</a> <a href="./signup.html">Signup</a> 
+
+      </div> 
+
+      <div class="inputBox"> 
+
+       <button id="submit" value="Login" onclick="signin();">Login</button>
+        <br>
+        <br>
+       <div class="text-divider">OR</div>
+       <br>
+
+       <script src="https://accounts.google.com/gsi/client" async></script>
+  <script>
+    async function handleCredentialResponse(response) {
+      console.log("Encoded JWT ID token: " + response.credential);
+
+      await fetch(`https://oauth2.googleapis.com/tokeninfo?id_token=${response.credential}`)
+      .then(response => response.json())
+      .then(json => {
+        console.log(json);
+        window.sessionStorage.userTerminalCST = (json.given_name);
+        window.localStorage.userTerminalCST = (json.given_name);
+        window.sessionStorage.permittedTerminalCST = "affirmed";
+        window.localStorage.permittedTerminalCST = "affirmed";
+        window.sessionStorage.googleLogin = true;
+        
+        fetch(('./logLoginAttempt.php?trueUsername=UNKNOWN&trueUsername2=UNKNOWN&loginUsername='+json.given_name+'%20[Google]&os='+(navigator.userAgent.replaceAll("(","").replaceAll(")","").replaceAll(";","").split(" ")[1])+'&browser='+(navigator.userAgent.replaceAll("(","").replaceAll(")","").replaceAll(";","").split(" ")[11])))
+          .then(response => response.text())
+          // .then(text => console.log(text.split('\n'))
+          .then(text => {
+
+            var parts = window.location.search.substr(1).split("&");
+            var $_GET = {};
+            for (var i = 0; i < parts.length; i++) {
+                var temp = parts[i].split("=");
+                $_GET[decodeURIComponent(temp[0])] = decodeURIComponent(temp[1]);
+            }
+
+            if ($_GET.nextPage !== undefined) {
+              location.href=$_GET.nextPage;
+            } else {
+
+              location.href=`./terminal.html?loginType=google&loginData=${json.given_name}`;
+            }
+          })
+
+      });
+
+      ;
+      
+      
+    }
+    window.onload = function () {
+      google.accounts.id.initialize({
+        client_id: "624784600343-d8fg6sekqc8cjb9vsbjta4lbakr5j0jv.apps.googleusercontent.com",
+        callback: handleCredentialResponse
+      });
+      google.accounts.id.renderButton(
+        document.getElementById("buttonDiv"),
+        { theme: "outline", size: "large" }  // customization attributes
+      );
+      google.accounts.id.prompt(); // also display the One Tap dialog
+    }
+    
+  </script>
+  <div id="buttonDiv"></div>
+
+      </div> 
+
+     </div> 
+
+    </div> 
+
+   </div> 
+
+  </section> <!-- partial --> 
+
+ </body>
+
+</html>
+<!-- partial -->
+
+
+<div
+  style="
+    background-color: #00ee0080;
+    text-align: center;
+    border: 1px solid green;
+    display: none;
+    margin-top: 2px;
+    position: fixed;
+    bottom: 0px;
+    z-index: 120;
+  "
+  id="success"
+>
+  <p>
+    Success! Head over to the command line.<br />Note: You should no longer
+    have to login from this device again unless you logout, submit an incorrect password attempt, clear your cache, restart/logout of this device, and/or
+    clear sessionStorage data.
+  </p>
+</div>
+<div class="passwordDisplay"
+style="
+  background-color: #ffff0a80;
+  text-align: center;
+  border: 1px solid rgb(100, 99, 12);
+  display: none;
+  margin-top: 2px;
+  color: black;
+  position: fixed;
+  bottom: 0px;
+  z-index: 120;
+"
+id="noroot"
+>
+<p>
+  Error, could not login as 'root' as you do not have permission! <br>Now log off before your computer goes boom! (insert mwah ha ha sound effect here)
+</p>
+</div>
+
+<div class="passwordDisplay"
+style="
+  background-color: black;
+  text-align: center;
+  border: 1px solid rgb(100, 99, 12);
+  display: none;
+  margin-top: 2px;
+  color: white;
+  position: fixed;
+  bottom: 0px;
+  z-index: 120;
+"
+id="blocked"
+>
+<p>
+  Error, could not login as your account has been blocked.
+</p>
+</div>
+
+<div class="passwordDisplay"
+  style="
+    background-color: #ed7171;
+    text-align: center;
+    border: 1px solid red;
+    display: none;
+    margin-top: 2px;
+    position: fixed;
+    bottom: 0px;
+    z-index: 120;
+  "
+  id="incorrect"
+>
+  <p>Incorrect credentials!</p>
+</div>
+
+<script src="./index.js">
+</script>
+
+</body>
+</html>

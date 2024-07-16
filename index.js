@@ -220,6 +220,8 @@ the same criteria.
         document.getElementById('noroot').style.display = 'block';
         return 0;
       }
+
+      
       var userData = users[username.value];
       if ((userData != undefined && userData["password"] == document.getElementById("password").value)&& (!banned[username.value]) && !lockdownModeEnabled) {
         try {
@@ -227,25 +229,59 @@ the same criteria.
         .then(response => response.text())
         // .then(text => console.log(text.split('\n'))
         .then(text => {
-          document.body.innerHTML += ("<br>"+text);
+
+          var parts = window.location.search.substr(1).split("&");
+          var $_GET = {};
+          for (var i = 0; i < parts.length; i++) {
+              var temp = parts[i].split("=");
+              $_GET[decodeURIComponent(temp[0])] = decodeURIComponent(temp[1]);
+          }
+
+          if ($_GET.nextPage !== undefined) {
+            location.href=$_GET.nextPage;
+          } else {
+
+            location.href="./terminal.html?loginType=standard&loginData=[none]";
+          }
+
         })
         } catch {
           await fetch(('./logLoginAttempt.php?trueUsername=UNKNOWN&trueUsername2=UNKNOWN&loginUsername='+username.value+'&os='+(navigator.userAgent.replaceAll("(","").replaceAll(")","").replaceAll(";","").split(" ")[1])+'&browser='+(navigator.userAgent.replaceAll("(","").replaceAll(")","").replaceAll(";","").split(" ")[11])))
           .then(response => response.text())
           // .then(text => console.log(text.split('\n'))
           .then(text => {
-            document.body.innerHTML += ("<br>"+text);
-          })
+            
+
+            var parts = window.location.search.substr(1).split("&");
+            var $_GET = {};
+            for (var i = 0; i < parts.length; i++) {
+                var temp = parts[i].split("=");
+                $_GET[decodeURIComponent(temp[0])] = decodeURIComponent(temp[1]);
+            }
+
+            if ($_GET.nextPage !== undefined) {
+              location.href=$_GET.nextPage;
+            } else {
+
+              location.href="./terminal.html?loginType=standard&loginData=[none]";
+            }
+
+          });
         }
         sessionStorage.setItem('permittedTerminalCST', 'affirmed');
         sessionStorage.setItem("userTerminalCST", username.value);
+        localStorage.setItem('permittedTerminalCST', 'affirmed');
+        localStorage.setItem("userTerminalCST", username.value);
+        window.sessionStorage.googleLogin = false;
         document.getElementById('success').style.display = 'block';
         document.getElementById('incorrect').style.display = 'none';
         document.getElementsByTagName('button')[0].onclick = '';
         console.log((useUrl('https://api.ipify.org?format=json')+', {"username":"'+username.value+'"}'));
         console.log(window.sessionStorage.getItem('IPv4')+', "username":"'+username.value+'"')
-        document.getElementById('ipAddress').innerHTML = (window.sessionStorage.getItem('IPv4')+', "username":"'+username.value+'"');
-        location.href="./terminal.html?loginType=standard&loginData=[none]";
+        try {
+          document.getElementById('ipAddress').innerHTML = (window.sessionStorage.getItem('IPv4')+', "username":"'+username.value+'"');
+        }catch{}
+        
         
       } else {
         document.getElementById('incorrect').style.display = 'block';

@@ -11,14 +11,17 @@
   if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
   }
+  $a = $_SERVER['REMOTE_ADDR'];
 
-  $usernameGet = ($_GET['username']." (".$_SERVER['REMOTE_ADDR']).")";
+  $usernameGet = $_GET['username']." (XX.XX.XX.XX)";
   $messageGet = $_GET['message'];
   $roomId = $_GET['roomId'];
   $ipAddress = $_SERVER['REMOTE_ADDR'];
 
 
   /// Check IPs \\\
+
+  $messageIdentifier = hash("md5",rand().rand());
 
 
   $sql = "SELECT * FROM bannedMessageIPs WHERE ipAddress = '$ipAddress'";
@@ -38,7 +41,7 @@
 
   echo "Posting message...<br>";
 
-  $sql = "INSERT INTO messages2 (sender, message, roomId) VALUES ('$usernameGet', '$messageGet', $roomId)";
+  $sql = "INSERT INTO messages2 (sender, message, roomId, messageIdentifier) VALUES ('$usernameGet', '$messageGet', $roomId, '$messageIdentifier')";
   $result = $conn->query($sql);
 
   echo $result." ".$conn -> error;
@@ -48,6 +51,11 @@
   $conn->close();
   ?>
     <script>
+/* The commented line `// window.location=('./view.php?roomId='+chatroomId);` is setting the window
+location to redirect the user to the `view.php` page with the `roomId` parameter appended to the
+URL. This line of code is currently commented out, which means it is not active and will not
+execute. If you uncomment this line by removing the `//`, the user will be redirected to the
+`view.php` page with the `roomId` parameter passed in the URL. */
         window.location=('./view.php?roomId='+chatroomId);
     </script>
   
