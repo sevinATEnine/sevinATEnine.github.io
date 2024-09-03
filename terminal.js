@@ -288,7 +288,7 @@ writeToStack('Initialized', 'important');
 
 
 
-let password == prompt('Enter lockdown shutoff key')
+let password = prompt('Enter lockdown shutoff key')
 if (permitted != 'affirmed') {
   document.getElementById('body').style.display = 'none';
   window.alert(
